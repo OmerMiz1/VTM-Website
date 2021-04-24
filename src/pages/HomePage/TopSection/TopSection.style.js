@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import imageBackground from '../../../images/backgrounds/summaryBackgroungImage.jpg'
 
-// top section container style - image full screan 
+// top section container style - image 600px screen 
 export const TopSectionContainer = styled.section`
     background: linear-gradient(to left, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url(${imageBackground});
     /* height:100vh; */
@@ -10,7 +10,7 @@ export const TopSectionContainer = styled.section`
     background-position: center ;
     background-size: cover;
 `;
-
+// top section context style - left of the screen
 export const TopSectionContent = styled.div`
     /* display: block;
     position: absolute;
@@ -23,68 +23,77 @@ export const TopSectionContent = styled.div`
     padding: 0rem calc((100vw-1300px) / 2); 
 `;
 
+// top items in the section style - center all and choose size
+// mubile full of the screen
 export const TopSectionItems = styled.div`
     display: flex;
     flex-direction:column;
     justify-content: center;
     align-items: flex-start;
     height:600px;
-    height: 100vh;
+    /* height: 100vh; */
     max-height: 100%;
     padding: 0 2rem;
-    width: 650px;
+    width: 550px;
     color: #fff;
     /* text-transform: uppercase; */
     line-height: 1;
     font-weight: bold;
 
-    @media screen and (max-width: 650px) {
+    @media screen and (max-width: 550px) {
         width: 100%;
     }
 `;
 
+// top H1 style - choose size and margin
 export const TopSectionH1 = styled.h1`
-    font-size: clamp(2.5rem, 8vw, 4rem);
-    margin-bottom: 1rem;
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    padding: 0px 10px;
+    margin-bottom: 6px;
     /* box-shadow: 0px 3px #e9ba23; */
     letter-spacing: 3px;
     text-align: center;
     font-family: serif;
-    
 `;
 
+// top Button style - TODO chanege colors
 export const TopSectionBtn = styled.button`
-    font-size: 1.7rem;
-    padding: 0.8rem 3rem;
+    font-size: 1.4rem;
+    padding: 0.7rem 2.8rem;
     border: none;
-    background-color: #eeeeee;
+    background-color: #d1d5e8;
     color: blueviolet;
     font-weight: bold;
     display:block;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom:1rem;
     transition: 0.2s ease-out;
     border-radius: 5px;
+    outline: none;
+    font-weight: 1000;
+    cursor: pointer;
+    margin-bottom: 6px;
+
 
     &:hover {
-        background-color: #D3D3D3;
+        background-color: #b3b7c8;
         transition: 0.2s ease-in;
+        outline: none;
 
     }
-
-
-
-    
-
 `;
+
+// top p style - center and margin each ohter
+// props margin and cursor
 export const TopSectionP = styled.p`
     display:inline;
-    font-size: clamp(1.5rem, 2vw, 1.5rem);
-    cursor: ${({cursor}) => (cursor? cursor: "none")};
+    font-size: clamp(1.3rem, 1.7vw, 1.3rem);
+    cursor: ${({cursor}) => (cursor? cursor: "default")};
     margin-left: ${({marginleft}) => (marginleft? marginleft: "0px")};
+    font-weight: 700;
+
     /* margin-bottom: 2rem; */
-    @media screen and (max-width: 650px) {
+    @media screen and (max-width: 550px) {
         width: 100%;
         display: block;
         margin-left:auto;
@@ -95,11 +104,11 @@ export const TopSectionP = styled.p`
     }
 `;
 
+// top continer p style - center and margin
 export const ContainerP = styled.div`
     margin-left: auto;
     margin-right: auto;
     align-items: center;
     justify-content: center;
-    
 `;
 

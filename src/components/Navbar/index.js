@@ -1,21 +1,27 @@
 import React from 'react';
-import {Navbar, NavLink, NavIcon} from './Navbar.style';
+import {Navbar, NavLink, NavSectionContent, NavIcon} from './Navbar.style';
 import BrandLogo from '../BrandLogo';
 
 
 function index(props) {
     return (
-        <>
-            <Navbar>
+        <Navbar>
+            <NavSectionContent>
                 <NavIcon>
-                    <BrandLogo size={60} color='#fff'></BrandLogo>
+                    <BrandLogo size={50} color='#fff'></BrandLogo>
                 </NavIcon>
                 <NavLink to='/'>Home</NavLink>
                 <NavLink to='/About'>About</NavLink>
                 <NavLink to='/GetStart'>Get Start</NavLink>
                 <NavLink to='/Downloads'>Downloads</NavLink>
-            </Navbar>
-        </>
+            </NavSectionContent>
+            <NavSectionContent float="right" marginTop="9px">
+                <NavLink to='/GetStart'>LogIn</NavLink>
+                <NavLink to='/Downloads'>SingIn</NavLink>
+            </NavSectionContent>
+            
+        </Navbar>
+    
     )
 }
 
