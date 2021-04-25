@@ -33,7 +33,7 @@ export const NavSectionContent = styled.section`
     font-weight: 600;
     float: ${({float}) => float ? float: "left"};
     margin-top: ${({ marginTop}) => marginTop ? marginTop: "0px"};
-    margin-right: 10px;
+    margin-right: 20px;
 
 
     
@@ -60,6 +60,5 @@ export const NavLink = styled(Link)`
         left: 25px;
     }
 `;
-
 
 

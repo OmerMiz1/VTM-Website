@@ -19,7 +19,7 @@ export const TopSectionContent = styled.div`
     height: 400px;
     /* height: calc(100vh - 80px); */
     max-height: 100%;
-    width: 100vw;
+    width: 100%;
     padding: 0rem calc((100vw-1300px) / 2); 
 `;
 
@@ -47,8 +47,8 @@ export const TopSectionItems = styled.div`
 
 // top H1 style - choose size and margin
 export const TopSectionH1 = styled.h1`
-    font-size: clamp(1.8rem, 6vw, 2.5rem);
-    padding: 0px 10px;
+    font-size: clamp(2.2rem, 6.6vw, 2.6rem);
+    padding: 0px 25px;
     margin-bottom: 6px;
     /* box-shadow: 0px 3px #e9ba23; */
     letter-spacing: 3px;
