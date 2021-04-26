@@ -1,27 +1,36 @@
 import React from 'react';
-import {InfoSectionContainer, InfoSectionContent, InfoSectionH1,
-     InfoItem, InfoP} from './InfoSection.style';
-import {InfoData} from './data';
-import Illustration from '../../../components/Illustration'
+import {BottomSectionContainer, BottomSectionContent, BottomItems, BottomItem,
+     BottomSectionH1, BottomSectionP, Border} from './BottomSection.style';
+
+import Footer from '../../../components/Footer'
 
 
-// InfoSection - container, header, imge and text  
-function InfoSection() {
+
+
+// BottomSection - container, contextSection, footer  
+function BottomSection() {
     return (
-        <InfoSectionContainer>
-            <InfoSectionH1>What do we give?</InfoSectionH1>
-            <InfoSectionContent>
-                {InfoData.map((data, index) => {
-                    return(
-                        <InfoItem>
-                            <Illustration key={index} src={data.img} size="150"></Illustration>
-                            <InfoP>{data.text}</InfoP>        
-                        </InfoItem>
-                    )
-                })}
-            </InfoSectionContent>
-        </InfoSectionContainer>
+        <BottomSectionContainer>
+            <BottomSectionContent>
+                {/* <BottomSectionH1>ADD... </BottomSectionH1> */}
+                <BottomItems>
+                    <BottomItem>
+                        <BottomSectionP>Item 1</BottomSectionP>
+                    </BottomItem>
+                    <Border>
+                        <BottomItem>
+                            <BottomSectionP>Item 2</BottomSectionP>
+                        </BottomItem>
+                    </Border>
+                    <BottomItem>
+                        <BottomSectionP>Item 3</BottomSectionP>
+                    </BottomItem>
+                </BottomItems>
+                
+            </BottomSectionContent>
+            <Footer></Footer>
+        </BottomSectionContainer>
     )
 }
 
-export default InfoSection
+export default BottomSection

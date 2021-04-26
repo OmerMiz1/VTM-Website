@@ -13,7 +13,7 @@ function InfoSection() {
             <InfoSectionContent>
                 {InfoData.map((data, index) => {
                     return(
-                        <InfoItem>
+                        <InfoItem key={index}>
                             <Illustration key={index} src={data.img} size="150"></Illustration>
                             <InfoP>{data.text}</InfoP>        
                         </InfoItem>

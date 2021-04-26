@@ -29,9 +29,12 @@ export const LogoImage = styled.div`
 // LogoTitle , get size and text color or default
 export const LogoTitle = styled.h2`
     margin: 0px;
-    font-size: ${({size}) => size ? Math.floor(size/2) + "px" : "25px" };
+    font-size: ${({size}) => size ? Math.floor(size/2.5) + "px" : "20px" };
     color: ${({ color }) => (color ? color : "#fff")};
     font-weight:600;
     margin-left: 6px;
+    line-height: 16px;
+    text-align: center;
+    
 `;
 

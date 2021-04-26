@@ -10,7 +10,7 @@ function index(props) {
             <LogoImage size={size}>
                 <img src={MyLogo} alt='my logo'></img>
             </LogoImage>
-            <LogoTitle size={size} color={color}>Video Tag</LogoTitle>
+            <LogoTitle size={size} color={color}>Video Tag<br/>Mannger</LogoTitle>
 
         </BrandLogoContainer>
     );
