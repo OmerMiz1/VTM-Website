@@ -1,16 +1,30 @@
 import React from 'react'
-import {SupportSectionContainer} from './SupportSection.style'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import ZoomIcon from  '../../../components/icons/ZoomIcon'
+import {SupportSectionContainer, SupportH1, SupportImg, SupportIcon, SupportContainerImge} from './SupportSection.style'
+import ImgScreenApp from './ImgScreenApp.jpg';
 
-// TODO create this section
+import {SupportData} from './data'
+
 function SupportSection() {
     return (
         <SupportSectionContainer>
-            <h1>Support for all video sites:</h1>
-            <h3>YouTube</h3>
-            <h3>Zoom</h3>
-            <h3>Udamy</h3>
-            <h3>DropBox</h3>
-            <h3>And More...</h3>
+            <SupportH1>Support for all video sites.</SupportH1>
+            <SupportContainerImge>
+                {SupportData.map((data, index) => {
+                    return(
+                        <SupportIcon key={index} left={data.left} top={data.top} size={data.size}>
+                            <FontAwesomeIcon key={index} color={data.color} icon={data.icon}></FontAwesomeIcon>
+                        </SupportIcon>
+                    )
+                })} 
+                <SupportIcon left='65%' top='-85px' size='100px'>
+                    <ZoomIcon></ZoomIcon>
+                </SupportIcon>
+                <SupportImg>
+                    <img src={ImgScreenApp}></img>
+                </SupportImg>
+            </SupportContainerImge>
         </SupportSectionContainer>
     )
 }

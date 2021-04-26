@@ -48,8 +48,15 @@ export const InfoSectionH1 = styled.h1`
     font-size: clamp(2.2rem, 6.2vw, 2.4rem);
     padding-top: 15px;
     letter-spacing: 3px;
-    text-align: center;
+    text-align: left;
+    margin-left: calc((100% -1000) / 10);
     /* font-family: serif; */
+    @media screen and (max-width: 1244px) {
+        text-align: center;
+        margin: 0;
+    }
+    
+    
 `;
 
 // info item style
