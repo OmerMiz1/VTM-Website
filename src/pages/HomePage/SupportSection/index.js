@@ -1,7 +1,7 @@
 import React from 'react'
 import {SupportSectionContainer} from './SupportSection.style'
 
-// TODO
+// TODO create this section
 function SupportSection() {
     return (
         <SupportSectionContainer>

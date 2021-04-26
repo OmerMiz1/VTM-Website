@@ -7,10 +7,9 @@ import BottomSection from './BottomSection'
 
 function HomePage() {
 
-    //TODO DELET OR CHANGE
+    // Scroll up smooth when need to back to home page
     useLayoutEffect(() => {
-        console.log(`try`);
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, behavior: 'smooth' })
     });
 
     return (

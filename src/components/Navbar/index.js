@@ -13,11 +13,11 @@ function index(props) {
                 <NavLink to='/'>Home</NavLink>
                 <NavLink to='/About'>About</NavLink>
                 <NavLink to='/GetStart'>Get Start</NavLink>
-                <NavLink to='/Downloads'>Downloads</NavLink>
+                <NavLink to='/Download'>Downloads</NavLink>
             </NavSectionContent>
             <NavSectionContent float="right" marginTop="9px">
-                <NavLink to='/GetStart'>LogIn</NavLink>
-                <NavLink to='/Downloads'>SingIn</NavLink>
+                <NavLink to='/Login'>LogIn</NavLink>
+                <NavLink to='/Singin'>SingIn</NavLink>
             </NavSectionContent>
             
         </Navbar>

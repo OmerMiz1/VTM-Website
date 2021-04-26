@@ -15,8 +15,6 @@ function index(props) {
                 <FooterP>&#169; All Rights reserved, 2021</FooterP>
             </FooterContent>
             <FooterContent float="right" marginTop="9px">
-                {/* <FooterIcon size={40} color='#fff'></FooterIcon>
-                <FooterIcon size={40} color='#fff'></FooterIcon> */}
                 <FooterIcon>
                     < FontAwesomeIcon icon={faChrome}/>
                 </FooterIcon>
