@@ -5,7 +5,6 @@ import {faFacebook, faGithub, faChrome } from '@fortawesome/free-brands-svg-icon
 
 
 
-//TODO on click -> Viedo tag to top!
 //TODO on click -> git chrome  
 function index(props) {
 
