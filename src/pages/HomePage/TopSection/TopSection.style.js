@@ -7,7 +7,9 @@ export const TopSectionContainer = styled.section`
     /* height:100vh; */
     height: 600px;
     /* background-position: 60%; */
-    background-position: center ;
+    /* background-position: center ; */
+    background-position: 60%;
+
     background-size: cover;
 `;
 // top section context style - left of the screen
@@ -56,32 +58,6 @@ export const TopSectionH1 = styled.h1`
     font-family: serif;
 `;
 
-// top Button style - TODO chanege colors
-export const TopSectionBtn = styled.button`
-    font-size: 1.4rem;
-    padding: 0.7rem 2.8rem;
-    border: none;
-    background-color: #d1d5e8;
-    color: blueviolet;
-    font-weight: bold;
-    display:block;
-    margin-left: auto;
-    margin-right: auto;
-    transition: 0.2s ease-out;
-    border-radius: 5px;
-    outline: none;
-    font-weight: 1000;
-    cursor: pointer;
-    margin-bottom: 6px;
-
-
-    &:hover {
-        background-color: #b3b7c8;
-        transition: 0.2s ease-in;
-        outline: none;
-
-    }
-`;
 
 // top p style - center and margin each ohter
 // props margin and cursor

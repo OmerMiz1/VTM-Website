@@ -14,12 +14,9 @@ export const Navbar = styled.nav`
 `;
 
 export const NavIcon = styled.div`
-    /* display: flex; */
-    /* position: absolute; */
-    /* top:10px;
-    left:20px; */
     cursor: pointer;
     color: #fff;
+    margin: 8px 4px;
 
     p {
         /* transform: translate(-175%, 100%); */
@@ -33,22 +30,21 @@ export const NavSectionContent = styled.section`
     font-weight: 600;
     float: ${({float}) => float ? float: "left"};
     margin-top: ${({ marginTop}) => marginTop ? marginTop: "0px"};
-    margin-right: 20px;
+    margin-right: 22px;
 
 
     
 `
 // link style
 export const NavLink = styled(Link)`
-    color:#fff;
+    color: #efefef;
     font-size: 20px;
     display: flex;
     align-items:center;
     text-decoration: none;
     cursor: pointer;
-    margin-left: 20px;
+    margin: 4px 0px 0px 20px;
     transition: all 200ms ease-in-out;
-
     &:hover {
         filter: contrast(0.6)
     }

@@ -8,7 +8,7 @@ function index(props) {
         <Navbar>
             <NavSectionContent>
                 <NavIcon>
-                    <BrandLogo size={50} color='#fff'></BrandLogo>
+                    <BrandLogo size={40} color='#fff'></BrandLogo>
                 </NavIcon>
                 <NavLink to='/'>Home</NavLink>
                 <NavLink to='/About'>About</NavLink>

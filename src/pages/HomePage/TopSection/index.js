@@ -1,7 +1,8 @@
 import React from 'react'
 import Navbar from '../../../components/Navbar'
 import {TopSectionContainer, TopSectionContent, TopSectionItems,
-     TopSectionH1, TopSectionBtn, TopSectionP, ContainerP} from './TopSection.style'
+     TopSectionH1, TopSectionP, ContainerP} from './TopSection.style';
+import {SingUpBtn} from '../../../components/Buttons/Buttons.style';
 
 function TopSection() {
     return (
@@ -10,7 +11,7 @@ function TopSection() {
             <TopSectionContent>
                 <TopSectionItems>
                     <TopSectionH1>Strat Tags Your Videos!</TopSectionH1>
-                    <TopSectionBtn>Sing Up Now</TopSectionBtn>
+                    <SingUpBtn>Sing Up Now</SingUpBtn>
                     <ContainerP>
                         <TopSectionP marginleft="0px">Already have an account?</TopSectionP>
                         <TopSectionP marginleft="30px" cursor="pointer"><u>Log In</u></TopSectionP>
