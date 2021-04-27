@@ -16,7 +16,7 @@ const setTop = (num) => {
 }
 
 // all the icons that added to the photo
-export const SupportData = [
+export const SupportFaData = [
     {
         name: 'youtube',
         icon: faYoutube, 
@@ -57,7 +57,15 @@ export const SupportData = [
         size:'45px',
         color:'#8d47c9'
     },
-   
-]
+];
+
+export const SupportSvgData = {
+    name: 'zoom',
+    icon: faInstagram, 
+    left :setLeft(65),
+    top: setTop(-85),
+    size:'100px'
+}
+
 
 

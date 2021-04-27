@@ -1,33 +1,49 @@
 import React from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import ZoomIcon from  '../../../components/icons/ZoomIcon'
-import {SupportSectionContainer, SupportH1, SupportImg, SupportIcon, SupportContainerImge} from './SupportSection.style'
+import {SupportSectionContainer, SupportH1,SupportP, SupportImg, SupportIcon, SupportContainerImge} from './SupportSection.style'
 import ImgScreenApp from './ImgScreenApp.jpg';
 
-import {SupportData} from './data'
+import {SupportFaData, SupportSvgData} from './data'
 
-
-// TODO add text under the title.
 function SupportSection() {
     return (
         <SupportSectionContainer>
-            <SupportH1>Support for all video sites.</SupportH1>
+            <SupportH1>Support for all video sites</SupportH1>
+            <SupportP> Tag your videos from any website.<br/>
+            Manage and organize all your video content in one place.
+            Not related to the site where it was published.
+            </SupportP>
+
             <SupportContainerImge>
-                {SupportData.map((data, index) => {
+                {SupportFaData.map((data, index) => {
                     return(
                         <SupportIcon key={index} left={data.left} top={data.top} size={data.size}>
                             <FontAwesomeIcon key={index} color={data.color} icon={data.icon}></FontAwesomeIcon>
                         </SupportIcon>
                     )
                 })} 
-                <SupportIcon left='65%' top='-85px' size='100px'>
-                    <ZoomIcon></ZoomIcon>
+                <SupportIcon left={SupportSvgData.left} top={SupportSvgData.top}
+                 size={SupportSvgData.size}>
+                    <ZoomIcon/>
                 </SupportIcon>
                 <SupportImg>
                     <img src={ImgScreenApp}></img>
                 </SupportImg>
             </SupportContainerImge>
+
+
+           
+
+
         </SupportSectionContainer>
+
+
+
+        // <SupportSectionContainer>
+        //     <SupportH1>Support for all video sites.</SupportH1>
+            
+        // </SupportSectionContainer>
     )
 }
 
