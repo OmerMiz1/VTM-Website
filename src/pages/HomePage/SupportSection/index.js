@@ -6,6 +6,8 @@ import ImgScreenApp from './ImgScreenApp.jpg';
 
 import {SupportData} from './data'
 
+
+// TODO add text under the title.
 function SupportSection() {
     return (
         <SupportSectionContainer>

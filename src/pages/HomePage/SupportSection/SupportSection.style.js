@@ -19,7 +19,9 @@ export const SupportSectionContainer = styled.section`
         justify-content: center;
         align-items: center;
         height: 450px;
-    }    
+    }
+
+      
 `;
 
 
@@ -37,6 +39,11 @@ export const SupportH1 = styled.h1`
         margin-left: auto;
         margin-right: auto;
     }
+
+    @media screen and (max-width: 540px) {
+        font-size: clamp(1.8rem, 5.8vw, 2rem);
+    }
+
 `;
 
 export const SupportContainerImge = styled.div`

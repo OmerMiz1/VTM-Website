@@ -55,6 +55,10 @@ export const InfoSectionH1 = styled.h1`
         text-align: center;
         margin: 0;
     }
+
+    @media screen and (max-width: 540px) {
+        font-size: clamp(1.8rem, 5.8vw, 2rem);
+    }
     
     
 `;
