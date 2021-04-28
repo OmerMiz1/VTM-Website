@@ -5,9 +5,6 @@ import {expandingTransition } from './AccountBox.style';
 const AccountBoxLogic = (props) => {
     const {initRegistered} = props;
 
-
-    
-
     // use state if expanded the animation
     const [expandedAnimation, setExpandedAnimation] = useState(false);
     // use state if sing in or login
@@ -26,8 +23,8 @@ const AccountBoxLogic = (props) => {
         }, expandingTransition.duration * 1000 - 1500);
     };
 
-    // taggle to singin
-    const swichToSingIn = () => {
+    // taggle to signin
+    const swichTosignin = () => {
         playAnimation();
         setTimeout(() => {
             setIsRegistered(true);
@@ -42,9 +39,8 @@ const AccountBoxLogic = (props) => {
         }, 500);
     };
 
-    const constextValue = {swichToSingIn, swichToSingUp}
+    const constextValue = {swichTosignin, swichToSingUp}
     return {
-        playAnimation,
         expandedAnimation,
         constextValue,
         isRegistered

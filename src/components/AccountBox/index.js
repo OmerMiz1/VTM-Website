@@ -1,16 +1,15 @@
 import React from 'react';
 import AccountBoxLogic, {AccountContext} from './AccountBox.logic'
-import {BoxContainer, BackDrop, TopContainer, HeaderContainer,
-     ContentContainer,
+import {BoxContainer, BackDrop, TopContainer, ContentContainer,
     backdropVariants, expandingTransition } from './AccountBox.style';
 import {LoginForm} from './AccountForms/LogInForm';
-import {SinginForm} from './AccountForms/SinginForm';
+import {SigninForm} from './AccountForms/SigninForm';
 import  HeaderContext from './HeaderContext'
 
 
 function AccountBox(props) {
     // logic of the animation and the Context (context and values)
-    const {playAnimation, expandedAnimation,
+    const {expandedAnimation,
          constextValue, isRegistered} = AccountBoxLogic(props);
 
     return (
@@ -25,7 +24,7 @@ function AccountBox(props) {
                     <HeaderContext isRegistered={isRegistered}/>                 
                 </TopContainer>
                 <ContentContainer>
-                    {isRegistered ? <LoginForm/>: <SinginForm/>}
+                    {isRegistered ? <LoginForm/>: <SigninForm/>}
                 </ContentContainer>
             </BoxContainer>
         </AccountContext.Provider>

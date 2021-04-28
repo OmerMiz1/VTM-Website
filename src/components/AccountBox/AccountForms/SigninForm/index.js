@@ -4,9 +4,9 @@ import {BoldLink, BoxContainer, FormContainer,
 } from '../AccountForms.style'
 import {AccountContext} from '../../AccountBox.logic'
 
-export function SinginForm(props) {
+export function SigninForm(props) {
 
-  const {swichToSingIn} = useContext(AccountContext)
+    const {swichTosignin} = useContext(AccountContext)
 
     return (
         <BoxContainer>
@@ -22,7 +22,7 @@ export function SinginForm(props) {
           <SubmitButton type="submit">Signup</SubmitButton>
           <MutedLink href="#">
             Already have an account?
-            <BoldLink href="#" onClick={swichToSingIn}>
+            <BoldLink href="#" onClick={swichTosignin}>
               Signin
             </BoldLink>
           </MutedLink>
