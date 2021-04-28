@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import {NavLink as Link} from 'react-router-dom';
+
 
 // Container of the logo style
 export const BrandLogoContainer = styled.div`
@@ -10,7 +12,7 @@ export const BrandLogoContainer = styled.div`
 `;
 
 // LogoImage , get size or default
-export const LogoImage = styled.div`
+export const LogoImage = styled(Link)`
     /* margin-top: 4px; */
     display: flex;
     align-items: center;
@@ -27,7 +29,7 @@ export const LogoImage = styled.div`
 `;
 
 // LogoTitle , get size and text color or default
-export const LogoTitle = styled.h2`
+export const LogoTitle = styled(Link)`
     margin: 0px;
     font-size: ${({size}) => size ? Math.floor(size/2.5) + "px" : "20px" };
     color: ${({ color }) => (color ? color : "#fff")};
@@ -35,6 +37,8 @@ export const LogoTitle = styled.h2`
     margin-left: 6px;
     line-height: 16px;
     text-align: center;
+    text-decoration: none;
+
     
 `;
 

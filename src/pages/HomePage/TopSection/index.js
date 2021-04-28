@@ -7,7 +7,7 @@ import {SingUpBtn} from '../../../components/Buttons/Buttons.style';
 function TopSection() {
     return (
         <TopSectionContainer>
-            <Navbar></Navbar>
+            <Navbar useTransparent/>
             <TopSectionContent>
                 <TopSectionItems>
                     <TopSectionH1>Strat Tags Your Videos!</TopSectionH1>

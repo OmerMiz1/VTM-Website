@@ -1,9 +1,9 @@
 import React from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import ZoomIcon from  '../../../components/icons/ZoomIcon'
-import {SupportSectionContainer, SupportH1,SupportP, SupportImg, SupportIcon, SupportContainerImge} from './SupportSection.style'
+import {SupportSectionContainer, SupportH1, SupportP, SupportImg,
+     SupportIcon, SupportContainerImge} from './SupportSection.style'
 import ImgScreenApp from './ImgScreenApp.jpg';
-
 import {SupportFaData, SupportSvgData} from './data'
 
 function SupportSection() {
@@ -14,7 +14,6 @@ function SupportSection() {
             Manage and organize all your video content in one place.
             Not related to the site where it was published.
             </SupportP>
-
             <SupportContainerImge>
                 {SupportFaData.map((data, index) => {
                     return(
@@ -31,19 +30,7 @@ function SupportSection() {
                     <img src={ImgScreenApp}></img>
                 </SupportImg>
             </SupportContainerImge>
-
-
-           
-
-
         </SupportSectionContainer>
-
-
-
-        // <SupportSectionContainer>
-        //     <SupportH1>Support for all video sites.</SupportH1>
-            
-        // </SupportSectionContainer>
     )
 }
 

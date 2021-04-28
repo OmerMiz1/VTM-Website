@@ -3,12 +3,14 @@ import {NavLink as Link} from 'react-router-dom';
 
 // navbar style
 export const Navbar = styled.nav`
-    background: transparent;
+    /* background: transparent; */
+    background-color: ${({useTransparent}) => useTransparent? 'transparent': '#B3B7C8'};
     height: 65px;
     width:100%;
     display: block;
     /* justify-content: space-between; */
     padding: 0, 1.25rem;
+
     
 
 `;

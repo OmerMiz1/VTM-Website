@@ -7,10 +7,10 @@ function index(props) {
     const {size, color} = props
     return (
         <BrandLogoContainer>
-            <LogoImage size={size}>
+            <LogoImage to='/' size={size}>
                 <img src={MyLogo} alt='my logo'></img>
             </LogoImage>
-            <LogoTitle size={size} color={color}>Video Tag<br/>Mannger</LogoTitle>
+            <LogoTitle to='/' size={size} color={color}>Video Tag<br/>Mannger</LogoTitle>
 
         </BrandLogoContainer>
     );

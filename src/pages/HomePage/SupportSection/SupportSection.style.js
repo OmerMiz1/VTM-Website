@@ -28,7 +28,6 @@ export const SupportSectionContainer = styled.section`
     } 
 `;
 
-
 // Support H1 style - choose size and margin and fix small screen
 export const SupportH1 = styled.h1`
     font-size: clamp(2.2rem, 6.2vw, 2.4rem);
@@ -50,6 +49,8 @@ export const SupportH1 = styled.h1`
     }
 `;
 
+// Support P style - choose size and place in table 
+// fix to small screen 
 export const SupportP= styled.p`
     grid-column-start: 1;
     grid-row-start: 2; 
@@ -73,8 +74,7 @@ export const SupportP= styled.p`
 
 `;
 
-
-
+// Support Container Imge style -  place in table and make it relative
 export const SupportContainerImge = styled.div`
     grid-column-start: 2;
     grid-row-start: 1; 
@@ -94,7 +94,7 @@ export const SupportContainerImge = styled.div`
     }
 `;
 
-
+// Support app Img -, place it on the middel section (or prop the marging) 
 export const SupportImg = styled.div`
     width: 350px;
     height: 250px;
@@ -116,9 +116,9 @@ export const SupportImg = styled.div`
 `;
 
 
+// Support icon all over the image -> prop the posision (marging) and size 
 export const SupportIcon = styled.div`
         font-size: ${({size}) => size ? size: "30px"};
-
         position: absolute;
         top: ${({top}) => top ? top: "10px"};
         left: ${({left}) => left ? left: "10px"};

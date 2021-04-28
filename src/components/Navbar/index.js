@@ -3,9 +3,12 @@ import {Navbar, NavLink, NavSectionContent, NavIcon} from './Navbar.style';
 import BrandLogo from '../BrandLogo';
 
 
-function index(props) {
+function NavBar(props) {
+
+    const {useTransparent} = props;
+
     return (
-        <Navbar>
+        <Navbar useTransparent={useTransparent}>
             <NavSectionContent>
                 <NavIcon>
                     <BrandLogo size={40} color='#fff'></BrandLogo>
@@ -16,8 +19,8 @@ function index(props) {
                 <NavLink to='/Download'>Downloads</NavLink>
             </NavSectionContent>
             <NavSectionContent float="right" marginTop="9px">
-                <NavLink to='/Login'>LogIn</NavLink>
-                <NavLink to='/Singin'>SingIn</NavLink>
+                <NavLink to='/access/login'>LogIn</NavLink>
+                <NavLink to='/access/signin'>SignIn</NavLink>
             </NavSectionContent>
             
         </Navbar>
@@ -25,4 +28,4 @@ function index(props) {
     )
 }
 
-export default index
+export default NavBar

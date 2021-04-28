@@ -4,6 +4,7 @@ import { GlobalStyle } from './globalStyle.style';
 import NotFound404 from './pages/NotFound404';
 
 import HomePage from './pages/HomePage'
+import AccessAccountPage from './pages/AccessAccountPage';
 
 function App() {
 
@@ -16,9 +17,8 @@ function App() {
         <Route exact path='/about' component={HomePage}/>
         <Route exact path='/getstart' component={HomePage}/>
         <Route exact path='/download' component={HomePage}/>
-        <Route exact path='/login' component={HomePage}/>
-        <Route exact path='/singin' component={HomePage}/>
-        <Route exact path="/notFound404" component={NotFound404}/>
+        <Route exact path='/access/:action' component={AccessAccountPage}/>
+        <Route exactpath="/notFound404" component={NotFound404}/>
 
         <Redirect to="/notFound404" />
       </Switch>
