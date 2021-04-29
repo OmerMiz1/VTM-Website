@@ -19,8 +19,8 @@ function NavBar(props) {
                 <NavLink to='/Download'>Downloads</NavLink>
             </NavSectionContent>
             <NavSectionContent float="right" marginTop="9px">
-                <NavLink to='/access/login'>LogIn</NavLink>
-                <NavLink to='/access/signin'>SignIn</NavLink>
+                <NavLink to='/access/login'>Log In</NavLink>
+                <NavLink to='/access/signup'>Sign Up</NavLink>
             </NavSectionContent>
             
         </Navbar>

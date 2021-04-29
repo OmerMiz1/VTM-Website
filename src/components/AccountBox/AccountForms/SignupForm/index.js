@@ -7,24 +7,24 @@ import AccountApi from '../../Account.Api';
 //validastion 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {useSigninSchema} from '../../../../validation/SignupValidation'
+import {useSignupSchema} from '../../../../validation/SignupValidation'
 
-export function SigninForm(props) {
-    // context - swich to signin
-    const {swichToSignin} = useContext(AccountContext)
+export function SignupForm(props) {
+    // context - swich to signup
+    const {swichToSignup} = useContext(AccountContext)
 
     // account api - post:
-    const {submitForm} = AccountApi();
+    const {PostSingupForm} = AccountApi();
     
-    // Valdation state from useSigninSchema (schema)
+    // Valdation state from useSignupSchema (schema)
     const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: yupResolver(useSigninSchema),
+    resolver: yupResolver(useSignupSchema),
   })
   
     return (
         <BoxContainer>
           <MrginSpanHeight height='15px'/>
-          <FormContainer  onSubmit={handleSubmit(submitForm)}>
+          <FormContainer  onSubmit={handleSubmit(PostSingupForm)}>
             <Input type='text' placeholder='User Name' name='userName' {...register("userName")} />
             <ValidsionWarnnig> {errors.userName?.message} </ValidsionWarnnig>
             <MrginSpanHeight height='6px'/>
@@ -37,13 +37,13 @@ export function SigninForm(props) {
             <Input type='password' placeholder='Confirm Password' name='confirmPassword' {...register("confirmPassword")}/>
             <ValidsionWarnnig> {errors.confirmPassword?.message} </ValidsionWarnnig>
             <MrginSpanHeight height='15px'/>
-            <SubmitButton type='submit'>Signup</SubmitButton>
+            <SubmitButton type='submit'>Sign Up</SubmitButton>
           </FormContainer>
           <MrginSpanHeight height='5px'/>
           <MutedLink href='#'>
             Already have an account?
-            <BoldLink onClick={swichToSignin}>
-              Signin
+            <BoldLink onClick={swichToSignup}>
+              Sign in
             </BoldLink>
           </MutedLink>
         </BoxContainer>

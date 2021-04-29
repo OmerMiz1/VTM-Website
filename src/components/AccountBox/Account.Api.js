@@ -1,12 +1,17 @@
 
 const AccountApi = () => {
   
-    //MOCK ->post to the server (signin) 
-  const submitForm = (data) => {
-    console.log(data);
+  //MOCK ->post to the server (signup) 
+  const PostSingupForm = (data) => {
+    console.log('sign up:' ,data);
   }
 
-  return {submitForm};
+  //MOCK ->post to the server (signup) 
+  const PostLoginForm = (data) => {
+    console.log('login:' ,data);
+  }
+
+  return {PostSingupForm, PostLoginForm};
 }
 
 

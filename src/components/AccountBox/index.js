@@ -3,7 +3,7 @@ import AccountBoxLogic, {AccountContext} from './AccountBox.logic'
 import {BoxContainer, BackDrop, TopContainer, ContentContainer,
     backdropVariants, expandingTransition } from './AccountBox.style';
 import {LoginForm} from './AccountForms/LogInForm';
-import {SigninForm} from './AccountForms/SigninForm';
+import {SignupForm} from './AccountForms/SignupForm';
 import  HeaderContext from './HeaderContext'
 
 
@@ -24,7 +24,7 @@ function AccountBox(props) {
                     <HeaderContext isRegistered={isRegistered}/>                 
                 </TopContainer>
                 <ContentContainer>
-                    {isRegistered ? <LoginForm/>: <SigninForm/>}
+                    {isRegistered ? <LoginForm/>: <SignupForm/>}
                 </ContentContainer>
             </BoxContainer>
         </AccountContext.Provider>

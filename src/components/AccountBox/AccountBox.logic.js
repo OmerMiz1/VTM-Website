@@ -23,8 +23,8 @@ const AccountBoxLogic = (props) => {
         }, expandingTransition.duration * 1000 - 1500);
     };
 
-    // taggle to signin
-    const swichToSignin = () => {
+    // taggle to Signup
+    const swichToSignup = () => {
         playAnimation();
         setTimeout(() => {
             setIsRegistered(true);
@@ -39,7 +39,7 @@ const AccountBoxLogic = (props) => {
         }, 500);
     };
 
-    const constextValue = {swichToSignin, swichToSingUp}
+    const constextValue = {swichToSignup, swichToSingUp}
     return {
         expandedAnimation,
         constextValue,

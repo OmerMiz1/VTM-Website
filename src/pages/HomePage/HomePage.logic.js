@@ -14,9 +14,9 @@ const HomePageLogic =  () => {
         history.push('/access/login')
     }
 
-    // route to '/access/signin'
+    // route to '/access/signup'
     const routeToSignUp = () => {
-        history.push('/access/signin')
+        history.push('/access/signup')
     }
 
     return {
