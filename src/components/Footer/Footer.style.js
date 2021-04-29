@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {NavLink as Link} from 'react-router-dom';
 
-// navbar style
+// Footer Conatainer - display, size 
 export const FooterConatainer = styled.nav`
     background-color: rgba(228,223,223,10);
     width: 100%;
@@ -17,6 +17,7 @@ export const FooterConatainer = styled.nav`
     }
 `;
 
+// Footer icon - color  size and hover
 export const FooterIcon = styled.div`
     cursor: pointer;
     color: #3f423e;
@@ -33,7 +34,8 @@ export const FooterIcon = styled.div`
     }
 `;
 
-export const FooterContent = styled.section`
+// Footer div of content style - display , size and margin
+export const FooterContent = styled.div`
     display: flex;
     font-weight: 600;
     float: ${({float}) => float ? float: "left"};
@@ -41,11 +43,10 @@ export const FooterContent = styled.section`
     margin-right: 22px;
 `;
 
-// link style
+// Footer link style -> posision , cursor size marging hover...
 export const FooterLink = styled(Link)`
     line-height: 1.2;
     text-align: center;
-
     color: black;
     font-size: 20px;
     align-items:center;
@@ -65,6 +66,7 @@ export const FooterLink = styled(Link)`
     }
 `;
 
+// Footer p style -> size, margin 
 export const FooterP = styled.p`
     font-size: clamp(0.8rem, 1.3vw, 0.9rem);
     font-weight: 700;

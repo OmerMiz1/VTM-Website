@@ -1,6 +1,6 @@
 import React from 'react';
 import {BottomSectionContainer, BottomSectionContent, BottomItems, BottomItem,
-     BottomSectionH1, BottomSectionP, Border} from './BottomSection.style';
+    BottomSectionP, Border} from './BottomSection.style';
 
 import Footer from '../../../components/Footer'
 

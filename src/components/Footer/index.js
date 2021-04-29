@@ -1,7 +1,7 @@
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {FooterConatainer, FooterLink, FooterContent, FooterIcon, FooterP} from './Footer.style';
-import {faFacebook, faGithub, faChrome } from '@fortawesome/free-brands-svg-icons';
+import {faGithub, faChrome } from '@fortawesome/free-brands-svg-icons'; // add faFacebook??
 
 
 

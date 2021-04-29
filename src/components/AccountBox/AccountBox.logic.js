@@ -1,4 +1,4 @@
-import React, {useState, createContext, useEffect} from 'react'
+import {useState, createContext, useEffect} from 'react'
 import {expandingTransition } from './AccountBox.style';
 
 
@@ -15,7 +15,7 @@ const AccountBoxLogic = (props) => {
         setIsRegistered(initRegistered ? true: false)
     }, [initRegistered])
 
-    // start the animation and affter done back to normal state (flase)
+    // start the animation and affter done back to normal state (false)
     const playAnimation = () => {
         setExpandedAnimation(true);
         setTimeout(() => {
@@ -24,7 +24,7 @@ const AccountBoxLogic = (props) => {
     };
 
     // taggle to signin
-    const swichTosignin = () => {
+    const swichToSignin = () => {
         playAnimation();
         setTimeout(() => {
             setIsRegistered(true);
@@ -39,7 +39,7 @@ const AccountBoxLogic = (props) => {
         }, 500);
     };
 
-    const constextValue = {swichTosignin, swichToSingUp}
+    const constextValue = {swichToSignin, swichToSingUp}
     return {
         expandedAnimation,
         constextValue,

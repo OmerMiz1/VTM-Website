@@ -1,39 +1,43 @@
 import styled from "styled-components";
 
+// Box Container style - display margin ..
 export const BoxContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
 `;
 
+// Form Container style - display margin..
 export const FormContainer = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1em;
   
   /* box-shadow: 0px 0px 2.5px rgba(15, 15, 15, 0.19); */
 `;
 
+// link style
 export const MutedLink = styled.div`
   font-size: 15px;
   color: #2C7CD4; //fix?
   font-weight: 590;
   text-decoration: none;
+  cursor:pointer;
   @media screen and (max-width:500px) {
     font-size: 13px;
   }
 
 `;
 
+//bold link style 
 export const BoldLink = styled.a`
   font-size: 15px;
   color: #2C7CD2;
   font-weight: 600;
   text-decoration: none;
   margin: 0 8px;
+  cursor:pointer;
   @media screen and (max-width:500px) {
     font-size: 13px;
   }
@@ -72,6 +76,7 @@ export const Input = styled.input`
   }
 `;
 
+// submit button style - size clor padding...
 export const SubmitButton = styled.button`
   width: 100%;
   padding: 11px 40%;
@@ -93,11 +98,15 @@ export const SubmitButton = styled.button`
   }
 `;
 
-export const MrginSpanHidth= styled.span`
-    width: ${({width}) => width? width: '0px'};
-`;
+
 
 export const MrginSpanHeight= styled.span`
     height: ${({height}) => height? height: '0px'};
-`
+`;
+
+export const ValidsionWarnnig = styled.p`
+  color:red;
+  font-weight:600;
+  font-size:12px;
+`;
 

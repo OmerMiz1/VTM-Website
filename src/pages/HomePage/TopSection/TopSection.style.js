@@ -22,7 +22,7 @@ export const TopSectionContent = styled.div`
     /* height: calc(100vh - 80px); */
     max-height: 100%;
     width: 100%;
-    padding: 0rem calc((100vw-1300px) / 2); 
+    padding: 0rem calc((100%-1300px) / 6); 
 `;
 
 // top items in the section style - center all and choose size
@@ -56,6 +56,7 @@ export const TopSectionH1 = styled.h1`
     letter-spacing: 3px;
     text-align: center;
     font-family: serif;
+    
 `;
 
 

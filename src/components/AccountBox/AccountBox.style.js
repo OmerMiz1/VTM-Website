@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
 
-
+// Box conatainer style - size color..
 export const BoxContainer = styled.section`
     width: 400px;
     min-height: 680px;
@@ -19,6 +19,7 @@ export const BoxContainer = styled.section`
     }
 `;
 
+// top section  conatainer style - size color display..
 export const TopContainer = styled.div`
     width: 100%;
     height: 200px;
@@ -33,6 +34,7 @@ export const TopContainer = styled.div`
     }
 `
 
+// back drop (shape on the backgroung ) style - shape, size color
 export const BackDrop = styled(motion.div)`
     width: 100%;
     height: 600px;
@@ -51,12 +53,14 @@ export const BackDrop = styled(motion.div)`
         /* height: 500px; */
     }
 `
+// Header Container style - display
 export const HeaderContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
 `;
 
+// Header Text style - size color ..
 export const HeaderText = styled.h2`
   font-size: 45px;
   font-weight: 800;
@@ -70,6 +74,7 @@ export const HeaderText = styled.h2`
     }
 `;
 
+// small Text style - size color ..
 export const SmallText = styled.h5`
   color: #fff;
   font-weight: 550;
@@ -89,15 +94,15 @@ export const ContentContainer =styled.div`
     display: flex;
     flex-direction: column;
     padding: 0 3em;
-    margin-top: 30%;
+    margin-top: 25%;
     
     @media screen and (max-width: 500px) {
-        margin-top: 30%;
+        margin-top: 25%;
     }
      
 `
 
-// animation style 
+//  *** animation style ***//
 
 // style befor and affter the animation
 export const backdropVariants = {

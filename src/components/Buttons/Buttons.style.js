@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
+// Sing Up Button style -> get padding, font size, color, bg-color
 export const SingUpBtn = styled.button`
 font-size: ${({fontSize}) => fontSize ? fontSize: '1.4rem'};
 padding: ${({padding}) => padding ? padding: '0.7rem 2.8rem'};
-
-/* color: blueviolet; */
-/* color: #16a79e; */
 color: ${({color}) => color? color:'rgb(30,138,255)'};
 background-color: ${({backgroundColor}) => backgroundColor? backgroundColor:'#d1d5e8'};
 border: none;

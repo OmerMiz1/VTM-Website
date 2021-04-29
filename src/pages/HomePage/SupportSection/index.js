@@ -27,7 +27,7 @@ function SupportSection() {
                     <ZoomIcon/>
                 </SupportIcon>
                 <SupportImg>
-                    <img src={ImgScreenApp}></img>
+                    <img src={ImgScreenApp} alt="ImgScreenApp"></img>
                 </SupportImg>
             </SupportContainerImge>
         </SupportSectionContainer>
