@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../../components/Navbar';
+import OffNavbar from '../../components/Navbar/OffNavbar';
 import Footer from '../../components/Footer'
 import AccountBox from '../../components/AccountBox'
 import PageContainer from '../../containers/PageContainers';
@@ -12,7 +12,7 @@ function AccessAccountPage() {
     
     return (
         <PageContainer>
-            <Navbar/>
+            <OffNavbar useTransparent ={false} />
             <InnerPageContainer>
                 <AccountBox initRegistered = {action === 'login'? true: false}/>
             </InnerPageContainer>

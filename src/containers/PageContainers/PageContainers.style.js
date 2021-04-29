@@ -8,6 +8,7 @@ export const PageWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #EEEEEE;
     
 `;
 
@@ -20,5 +21,5 @@ export const InnerPageContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin: 30px 0;
-  `;
+`;
 

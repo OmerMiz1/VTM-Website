@@ -4,20 +4,19 @@ import {NavLink as Link} from 'react-router-dom';
 // navbar style
 export const Navbar = styled.nav`
     /* background: transparent; */
-    background-color: ${({useTransparent}) => useTransparent? 'transparent': '#B3B7C8'};
+    background-color: ${({useTransparent}) => useTransparent? 'transparent': '#fff'}; //#B3B7C8
     height: 65px;
     width:100%;
     display: block;
     /* justify-content: space-between; */
     padding: 0, 1.25rem;
-
-    
-
+    box-shadow: #fff;
+    border-bottom: ${({useTransparent}) => useTransparent? 'none': '2px solid #d9d9d9'};
 `;
 
 export const NavIcon = styled.div`
     cursor: pointer;
-    color: #fff;
+    /* color: #fff; */
     margin: 8px 4px;
 
     p {
@@ -39,7 +38,8 @@ export const NavSectionContent = styled.section`
 `
 // link style
 export const NavLink = styled(Link)`
-    color: #efefef;
+    color: ${({useTransparent}) => useTransparent? '#efefef': 'black'};
+
     font-size: 20px;
     display: flex;
     align-items:center;

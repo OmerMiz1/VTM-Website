@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../../components/Navbar'
+import OffNavbar from '../../../components/Navbar/OffNavbar'
 import {TopSectionContainer, TopSectionContent, TopSectionItems,
      TopSectionH1, TopSectionP, ContainerP} from './TopSection.style';
 import {SingUpBtn} from '../../../components/Buttons/Buttons.style';
@@ -12,7 +12,7 @@ function TopSection() {
    
     return (
         <TopSectionContainer>
-            <Navbar useTransparent/>
+            <OffNavbar useTransparent ={true}/>
             <TopSectionContent>
                 <TopSectionItems>
                     <TopSectionH1>Strat Tags Your Videos!</TopSectionH1>
