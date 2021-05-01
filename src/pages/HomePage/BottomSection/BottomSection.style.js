@@ -26,9 +26,10 @@ export const BottomSectionContent = styled.section`
     
 `;
 
-// info H1 style - choose size and margin
+//H1 style - choose size and margin
 export const BottomSectionH1 = styled.h1`
-    font-size: clamp(2.2rem, 6.2vw, 2.4rem);
+    font-size: ${props => props.theme.fontSizes.header};
+
     color: #eee;
     padding-top: 15px;
     letter-spacing: 3px;
@@ -61,7 +62,7 @@ export const Border = styled.div`
 // info p style 
 export const BottomSectionP = styled.p`
     display: block;
-    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    font-size: ${props => props.theme.fontSizes.medium};
     font-weight: 700;
     text-align: center;
     line-height: 1.3;

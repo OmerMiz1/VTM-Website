@@ -40,7 +40,8 @@ export const TopSectionItems = styled.div`
 
 // top H1 style - choose size and margin
 export const TopSectionH1 = styled.h1`
-    font-size: clamp(2.2rem, 6.6vw, 2.6rem);
+
+    font-size: ${props => props.theme.fontSizes.header};
     padding: 0px 25px;
     margin-bottom: 6px;
     letter-spacing: 3px;
@@ -54,7 +55,8 @@ export const TopSectionH1 = styled.h1`
 // props margin and cursor
 export const TopSectionP = styled.p`
     display:inline;
-    font-size: clamp(1.3rem, 1.7vw, 1.3rem);
+    font-size: ${props => props.theme.fontSizes.autoFitMedium};
+
     cursor: ${({cursor}) => (cursor? cursor: "default")};
     margin-left: ${({marginleft}) => (marginleft? marginleft: "0px")};
     font-weight: 700;

@@ -19,27 +19,27 @@ export const FormContainer = styled.form`
 
 // link style
 export const MutedLink = styled.div`
-  font-size: 15px;
+  font-size: ${props => props.theme.fontSizes.small};
   color: ${props => props.theme.colors.main}; //fix?
   font-weight: 590;
   text-decoration: none;
   cursor:pointer;
   @media screen and (max-width:500px) {
-    font-size: 13px;
+    font-size: ${props => props.theme.fontSizes.smallMobile};
   }
 
 `;
 
 //bold link style 
 export const BoldLink = styled.a`
-  font-size: 15px;
+  font-size: ${props => props.theme.fontSizes.small};
   color: #2C7CD2;
   font-weight: 600;
   text-decoration: none;
   margin: 0 8px;
   cursor:pointer;
   @media screen and (max-width:500px) {
-    font-size: 13px;
+    font-size: ${props => props.theme.fontSizes.smallMobile};
   }
 `;
 
@@ -54,7 +54,7 @@ export const Input = styled.input`
   //import for save style at all timr
   border-bottom: 1.4px solid transparent;
   transition: all 200ms ease-in-out;
-  font-size: 18px;
+  font-size: ${props => props.theme.fontSizes.medium};
   font-weight:600;
   margin: ${({margin})=> margin? margin: "0" };
   border-bottom: 1.5px solid rgba(200, 200, 200, 0.4);
@@ -71,7 +71,7 @@ export const Input = styled.input`
   }
 
   @media screen and (max-width:500px) {
-    font-size: 16px;
+    font-size: ${props => props.theme.fontSizes.mediumMubile};
     height: 42px;
   }
 `;
@@ -81,7 +81,7 @@ export const SubmitButton = styled.button`
   width: 100%;
   padding: 11px 40%;
   color: #fff;
-  font-size: 18px; //fix
+  font-size: ${props => props.theme.fontSizes.medium};
   font-weight: 600;
   border: none;
   border-radius: 100px 100px 100px 100px;
@@ -107,6 +107,6 @@ export const MrginSpanHeight= styled.span`
 export const ValidsionWarnnig = styled.p`
   color:red;
   font-weight:600;
-  font-size:12px;
+  font-size: ${props => props.theme.fontSizes.smallMobile};
 `;
 

@@ -62,7 +62,7 @@ export const HeaderContainer = styled.div`
 
 // Header Text style - size color ..
 export const HeaderText = styled.h2`
-  font-size: 45px;
+  font-size: ${props=> props.theme.fontSizes.header};
   font-weight: 800;
   line-height: 1.28;
   color: #fff;
@@ -70,7 +70,7 @@ export const HeaderText = styled.h2`
   margin: 0;
 
   @media screen and (max-width: 500px) {
-        font-size: 40px;
+        font-size: ${props=> props.theme.fontSizes.headerMobile};
     }
 `;
 
@@ -78,13 +78,13 @@ export const HeaderText = styled.h2`
 export const SmallText = styled.h5`
   color: #fff;
   font-weight: 550;
-  font-size: 15px;
+  font-size: ${props=> props.theme.fontSizes.small};
   z-index: 10;
   margin: 0;
   margin-top: 7px;
 
   @media screen and (max-width: 500px) {
-        font-size: 13px;
+        font-size: ${props=> props.theme.fontSizes.smallMobile};
         margin-top: 5px;
     }
 `;

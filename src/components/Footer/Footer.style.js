@@ -21,7 +21,7 @@ export const FooterConatainer = styled.nav`
 export const FooterIcon = styled.div`
     cursor: pointer;
     color: #3f423e;
-    font-size: 25px;
+    font-size: ${props => props.theme.fontSizes.icon};
     margin: 12px 6px;
     text-align: center;
 
@@ -48,7 +48,7 @@ export const FooterLink = styled(Link)`
     line-height: 1.2;
     text-align: center;
     color: black;
-    font-size: 20px;
+    font-size: ${props => props.theme.fontSizes.nav};
     align-items:center;
     text-decoration: none;
     cursor: pointer;
@@ -68,7 +68,7 @@ export const FooterLink = styled(Link)`
 
 // Footer p style -> size, margin 
 export const FooterP = styled.p`
-    font-size: clamp(0.8rem, 1.3vw, 0.9rem);
+    font-size: ${props => props.theme.fontSizes.small};
     font-weight: 700;
     text-align: center;
     line-height: 1.2;

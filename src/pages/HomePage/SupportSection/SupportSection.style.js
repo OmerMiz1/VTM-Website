@@ -30,7 +30,7 @@ export const SupportSectionContainer = styled.section`
 
 // Support H1 style - choose size and margin and fix small screen
 export const SupportH1 = styled.h1`
-    font-size: clamp(2.2rem, 6.2vw, 2.4rem);
+    font-size: ${props => props.theme.fontSizes.header};
     letter-spacing: 3px;
     /* float: left; */
     margin-left: auto;
@@ -45,7 +45,7 @@ export const SupportH1 = styled.h1`
     }
 
     @media screen and (max-width: 540px) {
-        font-size: clamp(1.8rem, 5.8vw, 2rem);
+        font-size: ${props => props.theme.fontSizes.headerMobile};
     }
 `;
 
@@ -54,7 +54,7 @@ export const SupportH1 = styled.h1`
 export const SupportP= styled.p`
     grid-column-start: 1;
     grid-row-start: 2; 
-    font-size: clamp(1.4rem, 4vw, 1.4rem);
+    font-size: ${props => props.theme.fontSizes.autoFitMedium};
     padding: 0rem calc((50%-1200px) / 3); 
     font-weight: 590;
     text-align: center;
@@ -69,7 +69,7 @@ export const SupportP= styled.p`
     } 
 
     @media screen and (max-width: 700px) {
-        font-size: clamp(1.2rem, 3vw, 1.2rem);
+        font-size: ${props => props.theme.fontSizes.autoFitMediumMubile};
     }
 
 `;

@@ -45,7 +45,8 @@ export const InfoSectionContent = styled.section`
 
 // info H1 style - choose size and margin
 export const InfoSectionH1 = styled.h1`
-    font-size: clamp(2.2rem, 6.2vw, 2.4rem);
+    font-size: ${props => props.theme.fontSizes.header};
+
     padding-top: 15px;
     letter-spacing: 3px;
     text-align: center;
@@ -57,7 +58,7 @@ export const InfoSectionH1 = styled.h1`
     }
 
     @media screen and (max-width: 540px) {
-        font-size: clamp(1.8rem, 5.8vw, 2rem);
+        font-size: ${props => props.theme.fontSizes.headerMobile};
     }
     
     
@@ -72,7 +73,7 @@ export const InfoItem = styled.div`
 
 // info p style 
 export const InfoP = styled.p`
-       font-size: clamp(1rem, 1.5vw, 1.1rem);
+       font-size: ${props => props.theme.fontSizes.medium};
        font-weight: 700;
        text-align: center;
        line-height: 1.3;

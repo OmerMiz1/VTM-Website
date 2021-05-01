@@ -35,15 +35,14 @@ export const NavMenu = styled.div`
     display: none;
     flex-direction: column;
     cursor: pointer;
-    font-size: 30px;
+    font-size: ${props => props.theme.fontSizes.icon};
     
     @media (max-width: 750px) {
         display: block;
         position: absolute;
-        top: -18px;
+        top: -6px;
         left: 40px;
         transform: translate(-100%, 60%);
-        font-size: 30px;
         cursor: pointer;
         color: ${({useTransparent}) => useTransparent? '#dfdce2': 'black'};
 
@@ -59,7 +58,6 @@ export const NavLeftList = styled.ul`
     width: ${({width}) => width? width : '70vw'};
     justify-content: ${({position}) => position? 'position': 'start'};
     margin-right: 2rem;
-    font-size: 30px;
 
     @media screen and (max-width: 750px) {
         display: flex;
@@ -96,7 +94,7 @@ export const NavLink = styled(Link)`
 
     /* border-bottom: 2px solid #2C7CD4; */
     color: ${({useTransparent}) => useTransparent? '#efefef': 'black'};
-    font-size: 20px;
+    font-size: ${props => props.theme.fontSizes.nav};
     display: flex;
     text-decoration: none;
     cursor: pointer;
@@ -134,7 +132,7 @@ export const NavRightList = styled.ul`
     width: ${({width}) => width? width : '80vw'};
     justify-content: ${({position}) => position? 'position': 'start'};
     margin-right: 2rem;
-    font-size: 27px;
+    font-size: ${props => props.theme.fontSizes.icon};
     color: black;
 
     @media screen and (max-width: 750px) {
