@@ -20,7 +20,7 @@ export const FormContainer = styled.form`
 // link style
 export const MutedLink = styled.div`
   font-size: 15px;
-  color: #2C7CD4; //fix?
+  color: ${props => props.theme.colors.main}; //fix?
   font-weight: 590;
   text-decoration: none;
   cursor:pointer;
@@ -67,7 +67,7 @@ export const Input = styled.input`
   } */
   &:focus {
     outline: none;
-    border-bottom: 2px solid #2C7CD4;
+    border-bottom: 2px solid ${props => props.theme.colors.main};
   }
 
   @media screen and (max-width:500px) {
@@ -87,11 +87,11 @@ export const SubmitButton = styled.button`
   border-radius: 100px 100px 100px 100px;
   cursor: pointer;
   transition: all, 240ms ease-in-out;
-  background: #2B2E7F;
+  background: ${props => props.theme.colors.darkMain};
   background: linear-gradient(
     58deg,
-    #2C7CD4 10%,
-    #2B2E7F 100%
+    ${props => props.theme.colors.main} 10%,
+    ${props => props.theme.colors.darkMain} 100%
   );
   &:hover {
     filter: brightness(1.2);

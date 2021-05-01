@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const SingUpBtn = styled.button`
 font-size: ${({fontSize}) => fontSize ? fontSize: '1.4rem'};
 padding: ${({padding}) => padding ? padding: '0.7rem 2.8rem'};
-color: ${({color}) => color? color:'rgb(30,138,255)'};
+color: ${({color}) => color? color: props => props.theme.colors.main};
 background-color: ${({backgroundColor}) => backgroundColor? backgroundColor:'#d1d5e8'};
 border: none;
 font-weight: bold;

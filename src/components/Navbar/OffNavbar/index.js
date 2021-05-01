@@ -40,8 +40,12 @@ function OffNavBar(props) {
             </NavLeftList>
 
             <NavRightList position='end' width='auto'>
+            <NavItem>
                 <NavLink to='/access/login' useTransparent={useTransparent}>Log In</NavLink>
+            </NavItem>
+            <NavItem>
                 <NavLink to='/access/signup' useTransparent={useTransparent}>Sign Up</NavLink>
+            </NavItem>
             </NavRightList>
 
         </NavbarSection>
