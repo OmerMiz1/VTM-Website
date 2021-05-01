@@ -49,7 +49,10 @@ export const BackDrop = styled(motion.div)`
     background: linear-gradient(90deg, rgba(179,183,200,1) 0%, rgba(25,115,213,1) 35%, rgba(20,68,139,1) 75%,
     rgba(56,33,120,1) 100%);
 
-    @media screen and (max-width: 500px) {
+
+     ${props=> props.theme.mediaQueries.smallScreen};
+
+     @media ${({theme}) => theme.mediaQueries.bellow500} {
         /* height: 500px; */
     }
 `
@@ -69,7 +72,7 @@ export const HeaderText = styled.h2`
   z-index: 10;
   margin: 0;
 
-  @media screen and (max-width: 500px) {
+  @media ${({theme}) => theme.mediaQueries.bellow500} {
         font-size: ${props=> props.theme.fontSizes.headerMobile};
     }
 `;
@@ -83,7 +86,7 @@ export const SmallText = styled.h5`
   margin: 0;
   margin-top: 7px;
 
-  @media screen and (max-width: 500px) {
+  @media ${({theme}) => theme.mediaQueries.bellow500} {
         font-size: ${props=> props.theme.fontSizes.smallMobile};
         margin-top: 5px;
     }
@@ -96,7 +99,7 @@ export const ContentContainer =styled.div`
     padding: 0 3em;
     margin-top: 25%;
     
-    @media screen and (max-width: 500px) {
+    @media ${({theme}) => theme.mediaQueries.bellow500} {
         margin-top: 25%;
     }
      

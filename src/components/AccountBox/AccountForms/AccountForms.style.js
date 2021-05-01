@@ -24,7 +24,7 @@ export const MutedLink = styled.div`
   font-weight: 590;
   text-decoration: none;
   cursor:pointer;
-  @media screen and (max-width:500px) {
+  @media ${({theme}) => theme.mediaQueries.bellow500} {
     font-size: ${props => props.theme.fontSizes.smallMobile};
   }
 
@@ -38,7 +38,7 @@ export const BoldLink = styled.a`
   text-decoration: none;
   margin: 0 8px;
   cursor:pointer;
-  @media screen and (max-width:500px) {
+  @media ${({theme}) => theme.mediaQueries.bellow500} {
     font-size: ${props => props.theme.fontSizes.smallMobile};
   }
 `;
@@ -70,7 +70,7 @@ export const Input = styled.input`
     border-bottom: 2px solid ${props => props.theme.colors.main};
   }
 
-  @media screen and (max-width:500px) {
+  @media ${({theme}) => theme.mediaQueries.bellow500} {
     font-size: ${props => props.theme.fontSizes.mediumMubile};
     height: 42px;
   }
