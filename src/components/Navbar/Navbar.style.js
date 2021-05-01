@@ -73,7 +73,7 @@ export const NavLeftList = styled.ul`
         ${({active}) => active && css`
             /* background: #eee; */
             left: 0;
-            opacity: 1;
+            opacity: 1;s
             transition: all 0.5s ease;
             z-index: 1;
         `};
@@ -124,7 +124,7 @@ export const NavLink = styled(Link)`
 
 export const NavRightList = styled.ul`
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(5, auto);
     grid-gap: 5px;
     list-style: none;
     text-align: center;
@@ -133,7 +133,6 @@ export const NavRightList = styled.ul`
     margin-right: 2rem;
     font-size: ${props => props.theme.fontSizes.icon};
     color: black;
-    
 
     @media screen and (max-width: 750px) {
         position: absolute;

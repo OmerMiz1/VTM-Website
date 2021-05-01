@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const ToolTipText = styled.span` 
     visibility: hidden;
-    width: 60px;
+    width: fit-content;
     font-size: ${props => props.theme.fontSizes.small};
     background-color: #000;
     color: #fff;

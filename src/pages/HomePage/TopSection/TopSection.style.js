@@ -35,6 +35,7 @@ export const TopSectionItems = styled.div`
 
     @media screen and (max-width: 550px) {
         width: 100%;
+        width: 500px;
     }
 `;
 

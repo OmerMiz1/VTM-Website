@@ -5,10 +5,15 @@ const NavbarLogic = () => {
     const [clickedOnMenu, setClickedOnMenu] = useState(false);
 
     // toggle clickOnMenu
-    const toggleMenuClicked = () => setClickedOnMenu(!clickedOnMenu);
+    const toggleMenuClicked = () => {
+        console.log(`clicke toggleMenuClicked`);
+        setClickedOnMenu(!clickedOnMenu);
+    }
     // close mobile menu
-    const closeMobileMenu = () => setClickedOnMenu(false);
-
+    const closeMobileMenu = () => {
+        console.log(`clicke closeMobileMenu`);
+        setClickedOnMenu(false);
+    }
     return{
         clickedOnMenu, toggleMenuClicked, closeMobileMenu
     }

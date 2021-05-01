@@ -8,25 +8,22 @@ import {NavbarSection, NavLogoContainer, NavMenu, SeparatorLine,
 import ToolTip from '../../ToolTip'
 // icons
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTimes, faBars, faSearch, faPlus, faUser} from '@fortawesome/free-solid-svg-icons'
+import {faSearch, faPlus, faUser, faBell} from '@fortawesome/free-solid-svg-icons'
 
 
 function NavBar(props) {
     const {useTransparent} = props;
-    const {clickedOnMenu, toggleMenuClicked, closeMobileMenu,  } = NavbarLogic()
+    const {clickedOnMenu, closeMobileMenu} = NavbarLogic()
 
     return (
         <NavbarSection useTransparent={useTransparent}>
             <NavLogoContainer onClick={closeMobileMenu}>
                 <BrandLogo size={40} color={useTransparent? '#fff' : 'black'}></BrandLogo>
             </NavLogoContainer>
-            <NavMenu onClick={toggleMenuClicked} useTransparent={useTransparent}>
-                {clickedOnMenu ? <FontAwesomeIcon icon={faTimes}/>: <FontAwesomeIcon icon={faBars}/>}
-            </NavMenu>
             <NavLeftList active={clickedOnMenu}> 
-                <NavItem>
+                {/* <NavItem>
                     <NavLink onClick={closeMobileMenu} to='/GetStart' useTransparent={useTransparent}>Get Start</NavLink>
-                </NavItem>
+                </NavItem> */}
                 <NavItem>
                     <NavLink onClick={closeMobileMenu} to='/GetStart' useTransparent={useTransparent}>My Summaries</NavLink>
                 </NavItem>
@@ -47,6 +44,13 @@ function NavBar(props) {
                     </ToolTip>
             
                 </NavItem>
+                <NavItem>
+                    <ToolTip toolTipText="Notifications">
+                         < FontAwesomeIcon onClick={closeMobileMenu} icon={faBell}/> 
+                    </ToolTip>
+                </NavItem>
+
+                    
                 <NavItem>
                     <SeparatorLine>
                         <FontAwesomeIcon onClick={closeMobileMenu} icon={faUser}/>                

@@ -5,7 +5,6 @@ import styled from 'styled-components';
 export const BottomSectionContainer = styled.section`
     width: 100%;
     height: 370px;
-    display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
