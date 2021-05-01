@@ -1,31 +1,54 @@
-import React from 'react';
-import {Navbar, NavLink, NavSectionContent, NavIcon} from '../Navbar.style';
+import React, {useState} from 'react';
 import BrandLogo from '../../BrandLogo';
+import NavbarLogic from '../Navbar.logic';
+
+import {NavbarSection, NavLogoContainer, NavMenu,
+    NavLeftList, NavRightList,  NavItem, NavLink } from '../Navbar.style'
+
+// icons
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTimes, faBars, faSearch, faPlus, faUser} from '@fortawesome/free-solid-svg-icons'
 
 
 function NavBar(props) {
-
     const {useTransparent} = props;
+    const {clickedOnMenu, toggleMenuClicked, closeMobileMenu,  } = NavbarLogic()
 
     return (
-        <Navbar useTransparent={useTransparent}>
-            <NavSectionContent>
-                <NavIcon>
-                    <BrandLogo size={40} color={useTransparent? '#fff' : 'black'}></BrandLogo>
-                </NavIcon>
-                <NavLink to='/' useTransparent={useTransparent}>Home</NavLink>
-                <NavLink to='/About' useTransparent={useTransparent}>About</NavLink>
-                <NavLink to='/GetStart' useTransparent={useTransparent}>Get Start</NavLink>
-                <NavLink to='/Download' useTransparent={useTransparent}>Downloads</NavLink>
-            </NavSectionContent>
-            <NavSectionContent float="right" marginTop="9px">
-                <NavLink to='/access/login' useTransparent={useTransparent}>Log In</NavLink>
-                <NavLink to='/access/signup' useTransparent={useTransparent}>Sign Up</NavLink>
-            </NavSectionContent>
-            
-        </Navbar>
+        <NavbarSection useTransparent={useTransparent}>
+            <NavLogoContainer onClick={closeMobileMenu}>
+                <BrandLogo size={40} color={useTransparent? '#fff' : 'black'}></BrandLogo>
+            </NavLogoContainer>
+            <NavMenu onClick={toggleMenuClicked} useTransparent={useTransparent}>
+                {clickedOnMenu ? <FontAwesomeIcon icon={faTimes}/>: <FontAwesomeIcon icon={faBars}/>}
+            </NavMenu>
+            <NavLeftList active={clickedOnMenu}> 
+                <NavItem>
+                    <NavLink onClick={closeMobileMenu} to='/GetStart' useTransparent={useTransparent}>Get Start</NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink onClick={closeMobileMenu} to='/GetStart' useTransparent={useTransparent}>My Summaries</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink onClick={closeMobileMenu} to='/Download' useTransparent={useTransparent}>Discover</NavLink>
+                </NavItem>
+            </NavLeftList>
+
+            <NavRightList position='end' width='auto'>
+                <NavItem >
+                    <FontAwesomeIcon onClick={closeMobileMenu} icon={faSearch}/>
+                </NavItem>
+                <NavItem>
+                    < FontAwesomeIcon onClick={closeMobileMenu} icon={faPlus}/>                
+                </NavItem>
+                <NavItem>
+                    <FontAwesomeIcon onClick={closeMobileMenu} icon={faUser}/>                
+                </NavItem>
+            </NavRightList>
+        </NavbarSection>
     
     )
 }
 
 export default NavBar
+
