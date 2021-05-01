@@ -122,10 +122,9 @@ export const NavLink = styled(Link)`
     
 `;
 
-
 export const NavRightList = styled.ul`
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(4, auto);
     grid-gap: 5px;
     list-style: none;
     text-align: center;
@@ -134,6 +133,7 @@ export const NavRightList = styled.ul`
     margin-right: 2rem;
     font-size: ${props => props.theme.fontSizes.icon};
     color: black;
+    
 
     @media screen and (max-width: 750px) {
         position: absolute;
@@ -141,3 +141,10 @@ export const NavRightList = styled.ul`
 
     };
 `;
+
+
+export const SeparatorLine = styled.div`
+    border-left: 4px solid;
+    border-color: ${({color}) => color? color: props => props.theme.colors.darkGray};
+    padding-left: 10px;
+`

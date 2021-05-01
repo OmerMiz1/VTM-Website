@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import BrandLogo from '../../BrandLogo';
 import NavbarLogic from '../Navbar.logic';
 
-import {NavbarSection, NavLogoContainer, NavMenu,
+import {NavbarSection, NavLogoContainer, NavMenu, SeparatorLine,
     NavLeftList, NavRightList,  NavItem, NavLink } from '../Navbar.style'
 
+import ToolTip from '../../ToolTip'
 // icons
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes, faBars, faSearch, faPlus, faUser} from '@fortawesome/free-solid-svg-icons'
@@ -36,13 +37,20 @@ function NavBar(props) {
 
             <NavRightList position='end' width='auto'>
                 <NavItem >
-                    <FontAwesomeIcon onClick={closeMobileMenu} icon={faSearch}/>
+                    
+                    <ToolTip toolTipText="Search"><FontAwesomeIcon onClick={closeMobileMenu} icon={faSearch}/></ToolTip>
                 </NavItem>
                 <NavItem>
-                    < FontAwesomeIcon onClick={closeMobileMenu} icon={faPlus}/>                
+                       
+                    <ToolTip toolTipText="Add">
+                     < FontAwesomeIcon onClick={closeMobileMenu} icon={faPlus}/> 
+                    </ToolTip>
+            
                 </NavItem>
                 <NavItem>
-                    <FontAwesomeIcon onClick={closeMobileMenu} icon={faUser}/>                
+                    <SeparatorLine>
+                        <FontAwesomeIcon onClick={closeMobileMenu} icon={faUser}/>                
+                    </SeparatorLine>
                 </NavItem>
             </NavRightList>
         </NavbarSection>
