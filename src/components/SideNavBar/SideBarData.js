@@ -1,4 +1,3 @@
-import React  from 'react';
 // icons
 import {faBookOpen, faGifts ,faGlobe, faUserFriends, faTools,
 faTags, faStar, faExclamationCircle, faCheckSquare } from '@fortawesome/free-solid-svg-icons';

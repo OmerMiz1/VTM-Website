@@ -35,7 +35,7 @@ export const TopSectionItems = styled.div`
 
     @media screen and (max-width: 550px) {
         width: 100%;
-        width: 500px;
+        padding: 0;
     }
 `;
 
@@ -43,8 +43,7 @@ export const TopSectionItems = styled.div`
 export const TopSectionH1 = styled.h1`
 
     font-size: ${props => props.theme.fontSizes.header};
-    padding: 0px 25px;
-    margin-bottom: 6px;
+    margin-bottom: ${props => props.theme.spacers.medium};
     letter-spacing: 3px;
     text-align: center;
     font-family: serif;

@@ -9,6 +9,8 @@ export const NavbarSection = styled.nav`
     width:100%;
     display: flex;
     box-shadow: #fff;
+    overflow: hidden;
+    white-space: nowrap;
    
     ${({useTransparent}) => useTransparent && css`
         background-color: transparent;
@@ -20,7 +22,8 @@ export const NavbarSection = styled.nav`
 export const NavLogoContainer = styled.div`
     cursor: pointer;
     justify-self: start;
-    margin-left: 20px;
+    margin-left: ${props => props.theme.spacers.medium};
+
     
     @media screen and (max-width: 750px) {
         position: absolute;
@@ -57,7 +60,8 @@ export const NavLeftList = styled.ul`
     text-align: center;
     width: ${({width}) => width? width : '70vw'};
     justify-content: ${({position}) => position? 'position': 'start'};
-    margin-right: 2rem;
+    margin-right: ${props => props.theme.spacers.large};
+
 
     @media screen and (max-width: 750px) {
         display: flex;
@@ -68,13 +72,14 @@ export const NavLeftList = styled.ul`
         top: 65px;
         left: -100%;
         opacity: 1;
-        transition: all 0.5s ease;
+        transition: all 1s ease;
 
         ${({active}) => active && css`
-            /* background: #eee; */
+            background: ${({useTransparent}) => useTransparent? 'rgba(113, 113, 114, 0.7)': 'rgba(238, 238, 238, 0.9)'};
+            font-weight: 800;
             left: 0;
-            opacity: 1;s
-            transition: all 0.5s ease;
+            opacity: 1;
+            transition: all 1s ease;
             z-index: 1;
         `};
     };
@@ -88,7 +93,6 @@ export const NavItem = styled.li`
     cursor: pointer;
 `;
 
-//TODO fix context 1 line (long string)
 // link style
 export const NavLink = styled(Link)`
 
@@ -131,6 +135,8 @@ export const NavRightList = styled.ul`
     width: ${({width}) => width? width : '80vw'};
     justify-content: ${({position}) => position? 'position': 'start'};
     margin-right: 2rem;
+
+    
     font-size: ${props => props.theme.fontSizes.icon};
     color: black;
 

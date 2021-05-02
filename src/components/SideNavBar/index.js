@@ -9,10 +9,13 @@ import {faTimes, faBars} from '@fortawesome/free-solid-svg-icons';
 
 
 function SideNavBar() {
-    const {clickedOnMenu, toggleMenuClicked, closeMobileMenu } = NavBarLogic()
+    const {clickedOnMenu, toggleMenuClicked, closeMobileMenu, useOutsideCloseMenu ,wrapperRef} = NavBarLogic();
+    // onclick out of the var hide the vbar
+    useOutsideCloseMenu(wrapperRef);
+
 
     return (
-        <SideBarContainer>
+        <SideBarContainer ref={wrapperRef}>
             <NavMenu onClick={toggleMenuClicked}>
                 {clickedOnMenu ? <FontAwesomeIcon icon={faTimes}/>: <FontAwesomeIcon icon={faBars}/>}
             </NavMenu>

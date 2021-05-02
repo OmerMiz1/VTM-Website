@@ -9,35 +9,27 @@ export const SideBarContainer = styled.section`
     /* border-right: 1px solid black; */   
 `;
 
-
-
 export const SideBarList = styled.ul`
     width:100%;
     height:auto;
     padding: 0;
 
     @media screen and (max-width: 750px) {
-        
-
         width: 75%;
         /* height: 90vh; */
         position: absolute;
         top: 65px;
         left: -100%;
         opacity: 1;
-        transition: all 0.5s ease;
-    
+        transition: all 1s ease;
 
         ${({active}) => active && css`
             background: #fff;
             left: 0;
-            transition: all 0.5s ease;
+            transition: all 1s ease;
 
         `};
     };
-
-
-
 `;
 
 export const SideBarItem = styled.li`
@@ -72,7 +64,7 @@ export const SideBarItem = styled.li`
 `;
 
 export const TitleItem = styled.h2`
-    font-size: ${props=> props.theme.fontSizes.nav};
+    font-size: 100%;
 `;
 
 

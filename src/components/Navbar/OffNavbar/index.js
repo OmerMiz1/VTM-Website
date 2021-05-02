@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import BrandLogo from '../../BrandLogo';
 import NavbarLogic from '../Navbar.logic';
 
@@ -9,13 +9,16 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes, faBars} from '@fortawesome/free-solid-svg-icons';
 
 
-
 function OffNavBar(props) {
     const {useTransparent} = props;
-    const {clickedOnMenu, toggleMenuClicked, closeMobileMenu,  } = NavbarLogic()
+    const {clickedOnMenu, toggleMenuClicked, closeMobileMenu, useOutsideCloseMenu ,wrapperRef} = NavbarLogic()
+
+    // onclick out of the var hide the vbar
+    useOutsideCloseMenu(wrapperRef);
+
 
     return (
-        <NavbarSection useTransparent={useTransparent}>
+        <NavbarSection useTransparent={useTransparent} ref={wrapperRef}>
             <NavLogoContainer onClick={closeMobileMenu}>
                 <BrandLogo size={40} color={useTransparent? '#fff' : 'black'}></BrandLogo>
             </NavLogoContainer>
@@ -24,7 +27,7 @@ function OffNavBar(props) {
                 {clickedOnMenu ? <FontAwesomeIcon icon={faTimes}/>: <FontAwesomeIcon icon={faBars}/>}
             </NavMenu>
 
-            <NavLeftList active={clickedOnMenu}> 
+            <NavLeftList active={clickedOnMenu} useTransparent={useTransparent}> 
                 <NavItem>
                     <NavLink onClick={closeMobileMenu} to='/' useTransparent={useTransparent}>Home</NavLink>
                 </NavItem>
@@ -39,7 +42,7 @@ function OffNavBar(props) {
                 </NavItem>     
             </NavLeftList>
 
-            <NavRightList position='end' width='auto'>
+            <NavRightList position='end' width='auto'  onClick={closeMobileMenu}>
             <NavItem>
                 <NavLink to='/access/login' useTransparent={useTransparent}>Log In</NavLink>
             </NavItem>

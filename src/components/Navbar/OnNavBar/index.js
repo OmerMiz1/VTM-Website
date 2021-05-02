@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import BrandLogo from '../../BrandLogo';
 import NavbarLogic from '../Navbar.logic';
 
-import {NavbarSection, NavLogoContainer, NavMenu, SeparatorLine,
+import {NavbarSection, NavLogoContainer, SeparatorLine,
     NavLeftList, NavRightList,  NavItem, NavLink } from '../Navbar.style'
 
 import ToolTip from '../../ToolTip'
@@ -21,9 +21,6 @@ function NavBar(props) {
                 <BrandLogo size={40} color={useTransparent? '#fff' : 'black'}></BrandLogo>
             </NavLogoContainer>
             <NavLeftList active={clickedOnMenu}> 
-                {/* <NavItem>
-                    <NavLink onClick={closeMobileMenu} to='/GetStart' useTransparent={useTransparent}>Get Start</NavLink>
-                </NavItem> */}
                 <NavItem>
                     <NavLink onClick={closeMobileMenu} to='/GetStart' useTransparent={useTransparent}>My Summaries</NavLink>
                 </NavItem>

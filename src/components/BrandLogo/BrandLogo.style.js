@@ -6,8 +6,10 @@ import {NavLink as Link} from 'react-router-dom';
 export const BrandLogoContainer = styled.div`
     display: flex;
     align-items: center;
-    margin-left: 10px;
-    margin-right: 8px;
+    margin-left: ${props => props.theme.spacers.medium};
+    margin-right: ${props => props.theme.spacers.small};
+    overflow: hidden;
+    white-space: nowrap;
     
 `;
 
@@ -31,10 +33,10 @@ export const LogoImage = styled(Link)`
 // LogoTitle , get size and text color or default
 export const LogoTitle = styled(Link)`
     margin: 0px;
-    font-size: ${({size}) => size ? Math.floor(size/2.5) + "px" : "20px" };
+    font-size: 100%;
     color: ${({ color }) => (color ? color : "#fff")};
     font-weight:600;
-    margin-left: 6px;
+    margin-left: ${props => props.theme.spacers.small};
     line-height: 16px;
     text-align: center;
     text-decoration: none;

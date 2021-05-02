@@ -1,9 +1,7 @@
-export default {
+const theme = {
     colors: {
         main: '#2C7CD4',
         darkMain: '#2B2E7F',
-
-
         darkGary: '#262525'
     },
 
@@ -36,6 +34,6 @@ export default {
         medium: '1rem',
         small: '0.5rem'
     }
-
-
 };
+
+export default theme;

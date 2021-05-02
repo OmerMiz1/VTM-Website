@@ -1,6 +1,5 @@
 import * as yup from 'yup';
 
-
 // Schema validation - username required , valid email, confirmPassword
 // and password Contain 6 characters one Uppercase and One Lowercase..
 export const useLoginSchema = yup.object().shape({
