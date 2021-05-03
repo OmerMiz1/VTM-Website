@@ -9,12 +9,14 @@ export const NavbarSection = styled.nav`
     width:100%;
     display: flex;
     box-shadow: #fff;
-    overflow: hidden;
     white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border-bottom: 1px solid #d9d9d9;
    
     ${({useTransparent}) => useTransparent && css`
         background-color: transparent;
         border-bottom: none;
+        box-shadow: none;
     `}
 `;
 
@@ -91,6 +93,7 @@ export const NavItem = styled.li`
     width: 100%;
     display: table;
     cursor: pointer;
+
 `;
 
 // link style
@@ -104,9 +107,10 @@ export const NavLink = styled(Link)`
     cursor: pointer;
     margin: 4px 0px 0px 10px;
     transition: all 200ms ease-in-out;
-
+    
     &:hover {
         filter: ${({useTransparent}) => useTransparent? 'contrast(2)': 'contrast(0.4)'};
+        color:${props => props.theme.colors.main};
 
         border-bottom: 2px solid ${props => props.theme.colors.main};
         /* background-color: #FFFFFF; */

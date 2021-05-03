@@ -5,10 +5,10 @@ import NavbarLogic from '../Navbar.logic';
 import {NavbarSection, NavLogoContainer, SeparatorLine,
     NavLeftList, NavRightList,  NavItem, NavLink } from '../Navbar.style'
 
+import {DataLeftLinks, DataIcons} from './OnNavBarData';
 import ToolTip from '../../ToolTip'
 // icons
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSearch, faPlus, faUser, faBell} from '@fortawesome/free-solid-svg-icons'
 
 
 function NavBar(props) {
@@ -20,39 +20,33 @@ function NavBar(props) {
             <NavLogoContainer onClick={closeMobileMenu}>
                 <BrandLogo size={40} color={useTransparent? '#fff' : 'black'}></BrandLogo>
             </NavLogoContainer>
-            <NavLeftList active={clickedOnMenu}> 
-                <NavItem>
-                    <NavLink onClick={closeMobileMenu} to='/GetStart' useTransparent={useTransparent}>My Summaries</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink onClick={closeMobileMenu} to='/Download' useTransparent={useTransparent}>Discover</NavLink>
-                </NavItem>
-            </NavLeftList>
-
-            <NavRightList position='end' width='auto'>
-                <NavItem >
-                    
-                    <ToolTip toolTipText="Search"><FontAwesomeIcon onClick={closeMobileMenu} icon={faSearch}/></ToolTip>
-                </NavItem>
-                <NavItem>
-                       
-                    <ToolTip toolTipText="Add">
-                     < FontAwesomeIcon onClick={closeMobileMenu} icon={faPlus}/> 
-                    </ToolTip>
             
-                </NavItem>
-                <NavItem>
-                    <ToolTip toolTipText="Notifications">
-                         < FontAwesomeIcon onClick={closeMobileMenu} icon={faBell}/> 
-                    </ToolTip>
-                </NavItem>
-
-                    
-                <NavItem>
-                    <SeparatorLine>
-                        <FontAwesomeIcon onClick={closeMobileMenu} icon={faUser}/>                
-                    </SeparatorLine>
-                </NavItem>
+            <NavLeftList active={clickedOnMenu}> 
+            {DataLeftLinks.map((item,index) => {
+                return(
+                    <NavItem key={index}>
+                        <NavLink onClick={closeMobileMenu} to={item.link}
+                            useTransparent={useTransparent}>{item.title}</NavLink>
+                    </NavItem>
+                    )
+                })}
+            </NavLeftList>
+            
+            <NavRightList position='end' width='auto'>
+                {DataIcons.map((item, index) => {
+                        return (
+                            <NavItem key={index}>
+                                    <ToolTip toolTipText={item.toolTipText}>
+                                        { item.separator ?
+                                        <SeparatorLine>
+                                            <FontAwesomeIcon onClick={closeMobileMenu} icon={item.icon}/>
+                                        </SeparatorLine>:
+                                        <FontAwesomeIcon onClick={closeMobileMenu} icon={item.icon}/>
+                                        }
+                                    </ToolTip>
+                            </NavItem>
+                        );
+                })}
             </NavRightList>
         </NavbarSection>
     

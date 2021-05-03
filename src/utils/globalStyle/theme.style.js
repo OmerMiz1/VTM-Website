@@ -2,7 +2,8 @@ const theme = {
     colors: {
         main: '#2C7CD4',
         darkMain: '#2B2E7F',
-        darkGary: '#262525'
+        darkGary: '#262525',
+        header: "black",
     },
 
     fontSizes: {

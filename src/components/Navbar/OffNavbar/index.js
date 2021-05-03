@@ -4,6 +4,8 @@ import NavbarLogic from '../Navbar.logic';
 
 import {NavbarSection, NavLogoContainer, NavMenu,
     NavLeftList, NavRightList,  NavItem, NavLink } from '../Navbar.style';
+
+import {DataLinks, DataRightLinks} from './OffNavBarData'
 // icons
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes, faBars} from '@fortawesome/free-solid-svg-icons';
@@ -22,33 +24,29 @@ function OffNavBar(props) {
             <NavLogoContainer onClick={closeMobileMenu}>
                 <BrandLogo size={40} color={useTransparent? '#fff' : 'black'}></BrandLogo>
             </NavLogoContainer>
-
             <NavMenu onClick={toggleMenuClicked} useTransparent={useTransparent}>
                 {clickedOnMenu ? <FontAwesomeIcon icon={faTimes}/>: <FontAwesomeIcon icon={faBars}/>}
             </NavMenu>
 
-            <NavLeftList active={clickedOnMenu} useTransparent={useTransparent}> 
-                <NavItem>
-                    <NavLink onClick={closeMobileMenu} to='/' useTransparent={useTransparent}>Home</NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink onClick={closeMobileMenu} to='/About' useTransparent={useTransparent}>About</NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink onClick={closeMobileMenu} to='/GetStart' useTransparent={useTransparent}>Get Start</NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink onClick={closeMobileMenu} to='/Download' useTransparent={useTransparent}>Downloads</NavLink>
-                </NavItem>     
+            <NavLeftList active={clickedOnMenu} useTransparent={useTransparent}>
+                {DataLinks.map((item, index) => {
+                    return(
+                        <NavItem key={index}>
+                            <NavLink onClick={closeMobileMenu} to={item.link}
+                             useTransparent={useTransparent}>{item.title}</NavLink>
+                        </NavItem>
+                    )
+                })}    
             </NavLeftList>
 
             <NavRightList position='end' width='auto'  onClick={closeMobileMenu}>
-            <NavItem>
-                <NavLink to='/access/login' useTransparent={useTransparent}>Log In</NavLink>
-            </NavItem>
-            <NavItem>
-                <NavLink to='/access/signup' useTransparent={useTransparent}>Sign Up</NavLink>
-            </NavItem>
+                {DataRightLinks.map((item, index) => {
+                    return (
+                        <NavItem key={index}>
+                            <NavLink to={item.link} useTransparent={useTransparent}>{item.title}</NavLink>
+                        </NavItem>
+                    );
+                })}
             </NavRightList>
 
         </NavbarSection>

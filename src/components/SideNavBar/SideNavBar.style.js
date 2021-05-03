@@ -1,12 +1,19 @@
 import styled, {css} from 'styled-components';
 
 export const SideBarContainer = styled.section`
-    height: 100vh;
+    height: 100%;
     max-width: 1128px;
     background-color: #fff;
     box-sizing: content-box;
     grid-column: span 2;
-    /* border-right: 1px solid black; */   
+    z-index:10;
+    /* border-right: 1px solid black; */  
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-bottom: 1px solid #d9d9d9; 
+    @media screen and (max-width: 750px) {
+        box-shadow: none;
+        border-bottom: none; 
+    }
 `;
 
 export const SideBarList = styled.ul`

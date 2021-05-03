@@ -2,15 +2,17 @@ import {useState, useEffect, useRef} from 'react';
 
 const NavbarLogic = () => {
     const [clickedOnMenu, setClickedOnMenu] = useState(false);
+    // const [isMySummaries, setIsMySummaries] = useState(true);
+
 
     // toggle clickOnMenu
     const toggleMenuClicked = () => {
         setClickedOnMenu(!clickedOnMenu);
     }
+    
     // close mobile menu
     const closeMobileMenu = () => {
         setClickedOnMenu(false);
-
     }
 
     //Hook that close menu clicks outside of the passed ref
@@ -34,7 +36,8 @@ const NavbarLogic = () => {
     const wrapperRef = useRef(null);
 
     return{
-        clickedOnMenu, toggleMenuClicked, closeMobileMenu, useOutsideCloseMenu, wrapperRef
+        clickedOnMenu, toggleMenuClicked, closeMobileMenu,
+        useOutsideCloseMenu, wrapperRef,
     }
 };
 
