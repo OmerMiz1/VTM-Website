@@ -1,7 +1,9 @@
 import React from 'react';
 import OnNavbar from '../../components/Navbar/OnNavBar';
 import SideNavBar from '../../components/SideNavBar';
-import MySummarys from './MySummarys'
+import MySummaries from './MySummaries'
+import Footer from '../../components/Footer'
+
 import { useParams } from 'react-router-dom';
 
 
@@ -17,8 +19,10 @@ function MyHomePage() {
             <OnNavbar useTransparent ={false} />
             <MyHomePageContainer>
                 <SideNavBar/>
-                {action ==='mySummarys' ? <MySummarys/> : <h1>Dis</h1>}
+                {action ==='mySummaries' ? <MySummaries/> : <h1>Dis</h1>}
             </MyHomePageContainer>
+            <Footer></Footer>
+
        </>
     )
 }

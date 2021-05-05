@@ -1,8 +1,8 @@
 import React from 'react';
-import {DropDownMenuData} from './DropDownSummary.data'
+import {DropDownMenuData} from './DropDownSummaries.data'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {MenuContainer, MenuList, MenuButton,
-  MenuItem, ItemText} from './DropDownSummary.style'
+  MenuItem, ItemText} from './DropDownSummaries.style'
 
 
 

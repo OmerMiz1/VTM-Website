@@ -2,7 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
-import DropDownSummary from '../../DropDown/DropDownSummary';
+import DropDownSummary from '../../DropDown/DropDownSummaries';
 import CardSummaryLogic from './CardSummary.logic'
 
 import {CradContainer, TopContainer, CardH1, CardImgContainer,

@@ -7,12 +7,12 @@ export const DataOperations = [
     {
         title:'My Summaries',
         icon: faBookOpen,
-        link: '/myHome/mySummarys'
+        link: '/myHome/mySummaries'
     }, 
     {
         title:'Discover',
         icon: faGlobe,
-        link: 'myHome/mySummarys'
+        link: 'myHome/mySummaries'
     },
     {
         title:'Shared With me',

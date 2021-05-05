@@ -1,7 +1,7 @@
 import IllustrationOrganizationData from '../../../images/illustrations/Organization_data.png'
 import IllustrationTackingNote from '../../../images/illustrations/Tacking_note1.png'
 import IllustrationMassesWisdom from '../../../images/illustrations/MassesWisdom.png'
-import IllustrationSendSummarys from '../../../images/illustrations/SendSummarys.png'
+import IllustrationSendSummaries from '../../../images/illustrations/SendSummaries.png'
 
 
 const InfoData = [
@@ -21,8 +21,8 @@ const InfoData = [
         text: 'Learning from the wisdom of the masses'
     },
     {
-        name: 'Send Summarys',
-        img: IllustrationSendSummarys, 
+        name: 'Send Summaries',
+        img: IllustrationSendSummaries, 
         text: 'Share your summaries with friends'
     }
 ]

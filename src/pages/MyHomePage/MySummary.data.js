@@ -5,7 +5,7 @@
 import img1 from '../../images/illustrations/1MassesWisdom.png'
 import img2 from '../../images/illustrations/Tacking_note1.png'
 import img3 from '../../images/illustrations/Sending emails_Monochromatic.png'
-import img4 from '../../images/illustrations/SendSummarys.png'
+import img4 from '../../images/illustrations/SendSummaries.png'
 
 export const MockData = [
     {

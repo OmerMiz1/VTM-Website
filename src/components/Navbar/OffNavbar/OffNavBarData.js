@@ -14,7 +14,7 @@ export const DataLinks = [
     }, 
     {
         title:'My Home',
-        link: '/myHome/mySummarys',
+        link: '/myHome/mySummaries',
     } 
 ]
  //  TODO CHANGE TO download
