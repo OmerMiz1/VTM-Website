@@ -2,7 +2,6 @@ import {useState, useEffect, useRef} from 'react';
 
 
 const CardSummaryLogic = () => {
-
     const [isDropDown, setIsDropDown] = useState(false);
 
     const toggleDropDown = () => {
@@ -14,7 +13,7 @@ const CardSummaryLogic = () => {
         setIsDropDown(false);
     }
 
-    //TODO CRETE GLOBAL HOO
+    //TODO CRETE GLOBAL HOOk..
     //Hook that close menu clicks outside of the passed ref
     const useOutsideCloseMenu = (ref) => {
         useEffect(() => {

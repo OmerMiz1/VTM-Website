@@ -2,6 +2,7 @@ import React from 'react';
 import CardSummary from '../../../components/Card/CardSummary';
 
 import MyHomePageLogic from '../MyHomePage.logic';
+import MyHomePageApi from '../MyHomePage.Api';
 
 import {MainPageContainer, MyHomePageH1, WarningText, CardSummariesContainers,
     CardItemContainer, Lodaing, LodaingContanir, LoadingConainer,
@@ -9,17 +10,13 @@ import {MainPageContainer, MyHomePageH1, WarningText, CardSummariesContainers,
     loadingCircleVariants, loadingCircleTransition, loadingContainerVariants} from '../MyHomePage.style';
 
 
-
-
-
-
-
 function MySummaries() {
 
 
-    const {isMySummaryEmpty, mySummaries, isLoading,
-        ShowMoreSummaries, amountSummariesShow} = MyHomePageLogic();
+    const {ShowMoreSummaries, amountSummariesShow} = MyHomePageLogic();
 
+    // TODO move to homepage and add usecontent 
+    const {isMySummaryEmpty, mySummaries, isLoading,} = MyHomePageApi();
 
     return (
         <MainPageContainer>
@@ -54,6 +51,7 @@ function MySummaries() {
                         return(
                             <CardItemContainer key={card.id}>
                                 <CardSummary
+                                summaryId = {card.id}
                                 imgUrl= {card.imgUrl}
                                 title= {card.title}
                                 createdTime= {card.createdTime}
@@ -62,6 +60,7 @@ function MySummaries() {
                                 autorName= {card.autorName}
                                 url= {card.url}
                                 tags = {card.tags}
+                                favorite = {card.favorite}
                                 ></CardSummary>
                             </CardItemContainer>
                         )

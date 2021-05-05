@@ -10,6 +10,7 @@ import img4 from '../../images/illustrations/SendSummaries.png'
 export const MockData = [
     {
         id: 1,
+        favorite: false,
         imgUrl: img1,
         title: 'My first card!',
         tags: ['Todo'],
@@ -21,6 +22,7 @@ export const MockData = [
     },
     {
         id: 2,
+        favorite: true,
         imgUrl: img2,
         title: 'Zoom',
         tags: ['sport', 'football', 'pop'],
@@ -32,6 +34,7 @@ export const MockData = [
     },
     {
         id: 3,
+        favorite: false,
         imgUrl: img3,
         title: 'My first card!',
         tags: ['sport', 'zoom', 'imp','shon4me@gmail', 'fdasfads'],
@@ -44,6 +47,7 @@ export const MockData = [
 
     {
         id: 4,
+        favorite: false,
         imgUrl: img4,
         title: 'My first card!',
         tags: ['sport', 'zoom'],
@@ -55,6 +59,7 @@ export const MockData = [
     },
     {
         id: 5,
+        favorite: true,
         imgUrl: img1,
         title: 'My first card!',
         tags: ['Todo'],
@@ -66,6 +71,7 @@ export const MockData = [
     },
     {
         id: 6,
+        favorite: true,
         imgUrl: img2,
         title: 'Zoom',
         tags: ['sport', 'football', 'pop'],
@@ -77,6 +83,7 @@ export const MockData = [
     },
     {
         id: 7,
+        favorite: true,
         imgUrl: img3,
         title: 'My first card!',
         tags: ['sport', 'zoom', 'imp','shon4me@gmail', 'fdasfads'],
@@ -89,6 +96,7 @@ export const MockData = [
 
     {
         id: 8,
+        favorite: true,
         imgUrl: img4,
         title: 'My first card!',
         tags: ['sport', 'zoom'],
@@ -100,6 +108,7 @@ export const MockData = [
     },
     {
         id: 9,
+        favorite: true,
         imgUrl: img1,
         title: 'My first card!',
         tags: ['Todo'],
@@ -111,6 +120,7 @@ export const MockData = [
     },
     {
         id: 11,
+        favorite: true,
         imgUrl: img2,
         title: 'Zoom',
         tags: ['sport', 'football', 'pop'],
@@ -122,6 +132,7 @@ export const MockData = [
     },
     {
         id: 12,
+        favorite: true,
         imgUrl: img3,
         title: 'My first card!',
         tags: ['sport', 'zoom', 'imp','shon4me@gmail', 'fdasfads'],
@@ -134,6 +145,7 @@ export const MockData = [
 
     {
         id: 13,
+        favorite: true,
         imgUrl: img4,
         title: 'My first card!',
         tags: ['sport', 'zoom'],
@@ -145,6 +157,7 @@ export const MockData = [
     },
     {
         id: 14,
+        favorite: true,
         imgUrl: img1,
         title: 'My first card!',
         tags: ['Todo'],
@@ -156,6 +169,7 @@ export const MockData = [
     },
     {
         id: 15,
+        favorite: true,
         imgUrl: img2,
         title: 'Zoom',
         tags: ['sport', 'football', 'pop'],
@@ -167,6 +181,7 @@ export const MockData = [
     },
     {
         id: 16,
+        favorite: true,
         imgUrl: img3,
         title: 'My first card!',
         tags: ['sport', 'zoom', 'imp','shon4me@gmail', 'fdasfads'],
@@ -179,6 +194,7 @@ export const MockData = [
 
     {
         id: 17,
+        favorite: true,
         imgUrl: img4,
         title: 'My first card!',
         tags: ['sport', 'zoom'],

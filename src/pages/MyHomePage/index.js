@@ -6,9 +6,7 @@ import Footer from '../../components/Footer'
 
 import { useParams } from 'react-router-dom';
 
-
 import {MyHomePageContainer}from './MyHomePage.style';
-
 
 function MyHomePage() {
     const {action} = useParams();

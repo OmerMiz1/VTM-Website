@@ -11,27 +11,35 @@ export const CradContainer = styled.div`
     position: relative;
 `;
 
-export const CradLink = styled.a`
+export const CradLink = styled.div`
     text-decoration: none;
     display: block;
 `;
 
 export const TopContainer = styled.div`
     width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
 `;
 
-export const CardH1 = styled.h1`
+export const CardH1 = styled.a`
     color: black;
     color: ${props => props.theme.colors.darkMain}; //fix
     display: flex;
     justify-content: center;
+    text-decoration: none;
+    font-size:  ${props => props.theme.fontSizes.icon};
+    font-weight: 800;
+
 
 `;
 
-export const CardImgContainer = styled.div`
+export const CardImgContainer = styled.a`
     width: 100%;
     height: 11em;
+    display: block;
     img {
         width: 100%;
         height: 100%;
@@ -49,6 +57,13 @@ export const Taglist = styled.ul`
     display: flex;
     align-items: center;
     margin: 0 auto;
+
+`;
+
+export const IconContaner = styled.div`
+    cursor:pointer;
+    z-index:9;
+    color: ${({favorite}) => favorite? '#F7D300' : 'rgba(219, 219, 208, 0.7)'};
 
 `;
 export const TagItem = styled.li`

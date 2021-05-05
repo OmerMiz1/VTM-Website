@@ -1,16 +1,10 @@
 import {useState, useEffect} from 'react';
 import {MockData} from './MySummary.data'
 
-const MyHomePageLogic = ()  => {
+const MyHomePageApi = ()  => {
     const [mySummaries, setMySummaries] = useState([]);
     const [isLoading, setLoading] = useState(true);
-    const [amountSummariesShow, setAmountSummariesShow] = useState(9);
 
-
-    //view more.. 
-    const ShowMoreSummaries = () => {
-        setAmountSummariesShow((prevValue) => prevValue + 9);
-    };
 
     const isMySummaryEmpty =
         !mySummaries || (mySummaries && mySummaries.length === 0);
@@ -28,16 +22,14 @@ const MyHomePageLogic = ()  => {
             }, 10);
     }
 
-
     useEffect(() => {
         fetchServices();
       }, []);
 
     return {
-        isMySummaryEmpty, mySummaries, isLoading,
-        ShowMoreSummaries, amountSummariesShow
+        isMySummaryEmpty, mySummaries, isLoading
     }
 } 
 
 
-export default MyHomePageLogic;
+export default MyHomePageApi;
