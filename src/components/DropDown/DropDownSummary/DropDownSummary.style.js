@@ -66,6 +66,7 @@ export const MenuButton = styled.button`
     padding: 4px 20%;
     align-items: center;
     background-color: #fff;
+    border: none;
 
     
     &:hover {

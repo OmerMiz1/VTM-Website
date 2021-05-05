@@ -5,7 +5,7 @@ import NavbarLogic from '../Navbar.logic';
 import {NavbarSection, NavLogoContainer, SeparatorLine,
     NavLeftList, NavRightList,  NavItem, NavLink } from '../Navbar.style'
 
-import {DataLeftLinks, DataIcons} from './OnNavBarData';
+import {DataLeftLinks, DataIcons} from './OnNavBar.data';
 import ToolTip from '../../ToolTip'
 // icons
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';

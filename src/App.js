@@ -23,7 +23,7 @@ function App() {
           <Route exact path='/about' component={HomePage}/>
           <Route exact path='/getstart' component={HomePage}/>
           <Route exact path='/download' component={HomePage}/>
-          <Route exact path='/myHome' component={MyHomePage}/>
+          <Route exact path='/myHome/:action' component={MyHomePage}/>
           <Route exact path='/access/:action' component={AccessAccountPage}/>
           <Route exactpath="/notFound404" component={NotFound404}/>
           <Redirect to="/notFound404" />

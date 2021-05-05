@@ -3,7 +3,7 @@ import NavBarLogic from '../Navbar/Navbar.logic';
 
 import {SideBarContainer, SideBarList, SideBarItem, NavMenu, TitleItem, SpanSideBar } from './SideNavBar.style';
 
-import {DataOperations} from './SideBarData';
+import {DataOperations} from './SideBar.data';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes, faBars} from '@fortawesome/free-solid-svg-icons';
 

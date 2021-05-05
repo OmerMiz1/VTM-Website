@@ -4,7 +4,7 @@ import ZoomIcon from  '../../../components/icons/ZoomIcon'
 import {SupportSectionContainer, SupportH1, SupportP, SupportImg,
      SupportIcon, SupportContainerImge} from './SupportSection.style'
 import ImgScreenApp from './ImgScreenApp.jpg';
-import {SupportFaData, SupportSvgData} from './data'
+import {SupportFaData, SupportSvgData} from './Support.data'
 
 function SupportSection() {
     return (

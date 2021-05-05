@@ -4,7 +4,7 @@ import IllustrationMassesWisdom from '../../../images/illustrations/MassesWisdom
 import IllustrationSendSummarys from '../../../images/illustrations/SendSummarys.png'
 
 
-export const InfoData = [
+const InfoData = [
     {
         name: 'Tacking Note',
         img: IllustrationTackingNote, 
@@ -27,4 +27,6 @@ export const InfoData = [
     }
 ]
 
+
+export default InfoData;
 

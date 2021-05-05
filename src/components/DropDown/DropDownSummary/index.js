@@ -1,14 +1,14 @@
 import React from 'react';
-import {DropDownMenuData} from './DropDownMenu.data'
+import {DropDownMenuData} from './DropDownSummary.data'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {MenuContainer, MenuList, MenuButton,
-  MenuItem, ItemText} from './DropDownMenu.style'
+  MenuItem, ItemText} from './DropDownSummary.style'
 
 
 
 
 
-function DropDownMenu() {
+function DropDownSummary() {
   
     return (
         <MenuContainer>
@@ -30,4 +30,4 @@ function DropDownMenu() {
     )
 }
 
-export default DropDownMenu
+export default DropDownSummary

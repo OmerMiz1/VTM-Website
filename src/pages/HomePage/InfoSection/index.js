@@ -1,7 +1,7 @@
 import React from 'react';
 import {InfoSectionContainer, InfoSectionContent, InfoSectionH1,
      InfoItem, InfoP} from './InfoSection.style';
-import {InfoData} from './data';
+import InfoData from './Info.data';
 import Illustration from '../../../components/Illustration'
 
 

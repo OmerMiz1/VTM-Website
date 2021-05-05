@@ -29,10 +29,10 @@ export const DataIcons = [
 export const DataLeftLinks = [
     {
         title:'My Summaries',
-        link: '/myHome',
+        link: '/myHome/mySummarys',
     },
     {
         title:'Discover',
-        link: '/Discover',
+        link: '/myHome/Discover',
     }
 ]
