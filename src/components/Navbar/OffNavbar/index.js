@@ -13,7 +13,8 @@ import {faTimes, faBars} from '@fortawesome/free-solid-svg-icons';
 
 function OffNavBar(props) {
     const {useTransparent} = props;
-    const {clickedOnMenu, toggleMenuClicked, closeMobileMenu, useOutsideCloseMenu ,wrapperRef} = NavbarLogic()
+    const {clickedOnMenu, toggleMenuClicked,
+        closeMobileMenu, useOutsideCloseMenu ,wrapperRef} = NavbarLogic()
 
     // onclick out of the var hide the vbar
     useOutsideCloseMenu(wrapperRef);

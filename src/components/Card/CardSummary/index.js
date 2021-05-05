@@ -2,18 +2,25 @@ import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
+import DropDownMenu from '../../DropDownMenu';
+import CardSummaryLogic from './CardSummary.logic'
+
 import {CradContainer, TopContainer, CardH1, CardImgContainer,
      DetailsContainer, Taglist, TagItem,DateSection, CradLink,
      BottomContainer, RatingContainer, AutorContainer, CreateBy,
-     DateContainer, LeftContainer,
-     CardTextInput} from './CardSummary.style'
+     DateContainer, LeftContainer, CardTextInput} from './CardSummary.style';
 
 
 
 function CardSummary(props) {
 
+    const {isDropDown, toggleDropDown,
+        useOutsideCloseMenu, wrapperRef} = CardSummaryLogic();
+    
+    // onclick out of the var hide the vbar
+    useOutsideCloseMenu(wrapperRef);
+
     const {imgUrl, title, createdTime, editTime, likes, autorName, url, tags} = props;
-    console.log(`tags`, tags);
     return (
         <CradContainer>
             <CradLink href={url} target="_blank" rel="noopener noreferrer">
@@ -24,7 +31,6 @@ function CardSummary(props) {
                     <img src={imgUrl} alt={title}></img>
                 </CardImgContainer>
             </CradLink>
-            
             <DetailsContainer>
                 <Taglist>
                     {tags.map((tag, index) => {
@@ -33,14 +39,18 @@ function CardSummary(props) {
                         )
                     })}
                 </Taglist>
-                <DateSection>
+
+                <DateSection >
                     <DateContainer>
                         <CreateBy>Last Change:</CreateBy>
                         <CardTextInput color='black'>{editTime}</CardTextInput>
-                        <LeftContainer>
-                            <FontAwesomeIcon icon={faEllipsisV}/>
+                        <LeftContainer ref={wrapperRef}>
+                            <FontAwesomeIcon onClick={toggleDropDown} icon={faEllipsisV}/>
+                            {isDropDown && <DropDownMenu />}
+
                         </LeftContainer>
                     </DateContainer>
+
                 </DateSection>
             </DetailsContainer>
             <BottomContainer>

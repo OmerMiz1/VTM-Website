@@ -1,27 +1,26 @@
 import {useState, useEffect, useRef} from 'react';
 
-const NavbarLogic = () => {
-    
-    const [clickedOnMenu, setClickedOnMenu] = useState(false);
-    // const [isMySummaries, setIsMySummaries] = useState(true);
 
+const CardSummaryLogic = () => {
 
-    // toggle clickOnMenu
-    const toggleMenuClicked = () => {
-        setClickedOnMenu(!clickedOnMenu);
+    const [isDropDown, setIsDropDown] = useState(false);
+
+    const toggleDropDown = () => {
+        setIsDropDown(!isDropDown);
     }
-    
+
     // close mobile menu
-    const closeMobileMenu = () => {
-        setClickedOnMenu(false);
+    const closeDropDwon = () => {
+        setIsDropDown(false);
     }
 
+    //TODO CRETE GLOBAL HOO
     //Hook that close menu clicks outside of the passed ref
     const useOutsideCloseMenu = (ref) => {
         useEffect(() => {
             function handleClickOutside(event) {
                 if (ref.current && !ref.current.contains(event.target)) {
-                    closeMobileMenu();
+                    closeDropDwon();
                 }
             }
             // Bind the event listener
@@ -36,10 +35,14 @@ const NavbarLogic = () => {
     // ref click out of the navbar
     const wrapperRef = useRef(null);
 
-    return{
-        clickedOnMenu, toggleMenuClicked, closeMobileMenu,
-        useOutsideCloseMenu, wrapperRef,
-    }
-};
 
-export default NavbarLogic;
+
+    return {
+        isDropDown, toggleDropDown,
+        useOutsideCloseMenu,
+        wrapperRef
+    }
+}
+
+ 
+export default CardSummaryLogic;

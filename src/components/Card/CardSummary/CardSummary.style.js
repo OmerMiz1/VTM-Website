@@ -46,7 +46,7 @@ export const DetailsContainer = styled.div`
     
 `;
 export const Taglist = styled.ul`
-    display: flex
+    display: flex;
     align-items: center;
     margin: 0 auto;
 

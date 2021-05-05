@@ -8,15 +8,16 @@ export const DataIcons = [
     {
         toolTipText:'Search',
         icon: faSearch,
-    }, 
+    },
     {
         toolTipText:'Add',
-        icon: faBell,
-    },
+        icon: faPlus,
+    }, 
     {
         toolTipText:'Notifications',
-        icon: faPlus,
+        icon: faBell,
     },
+    
     {
         icon: faUser,
         toolTipText:'User',
