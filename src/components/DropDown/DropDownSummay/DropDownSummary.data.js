@@ -7,7 +7,6 @@ const DropDownSummaryData = () => {
 
     const {deleteSummary, editSummary, ShareSummary} = useContext(SummariesContext);
 
-
     return [
         {
             title:'Share',

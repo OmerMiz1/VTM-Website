@@ -10,13 +10,34 @@ const MyHomePageApi = ()  => {
         !mySummaries || (mySummaries && mySummaries.length === 0);
 
 
-    
+    //MOCK delete summary and all the notes.. 
     const deleteSummary = (id) => {
-        console.log(`api - delete id`, id)
+        console.log(`api - delete id`, id);
+        // fronted delete -
+        const newSummaries = [...mySummaries].filter(summary => summary.id !== id);
+        setMySummaries(newSummaries);
     }
 
+    //MOCK update summary 
     const editSummary = (id) => {
-        console.log(`api - edit id`, id)
+        //Mock edit summary
+        const newSummary = {
+            id: id,
+            favorite: false,
+            title: 'this is edit mock',
+            tags: ['edit', 'mock'],
+            createdTime:'16/11/2021',
+            editTime: 'Now',
+            likes: 0,
+            autorName:'Shon Pozner',
+            url: 'https://www.google.com/',
+        }
+
+        console.log(`api - edit id`, id, ' to ' ,newSummary);
+
+        setMySummaries(prev => prev.map(item => (item.id === id ? newSummary : item)));
+
+
     }
 
     const ShareSummary = (id) => {
@@ -25,7 +46,18 @@ const MyHomePageApi = ()  => {
 
 
     const toggleFavorite = (id) => {
-        console.log(`api - toggle Favorite id`, id)
+        console.log(`api - toggle Favorite id`, id);
+
+        const updateSummaries = [...mySummaries].map((summary) => {
+            if (summary.id === id) {
+                summary.favorite = !summary.favorite
+            };
+            return summary;
+        });
+
+        setMySummaries(updateSummaries);
+
+        
     }
 
 

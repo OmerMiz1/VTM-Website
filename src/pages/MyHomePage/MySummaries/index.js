@@ -67,7 +67,7 @@ function MySummaries() {
                 </CardSummariesContainers>
             }
             <BottomContainer>
-                {!isMySummaryEmpty && !isLoading && (
+                {!isMySummaryEmpty && !isLoading && amountSummariesShow < mySummaries.length && (
                     <ViewMoreButton onClick={ShowMoreSummaries}>View More</ViewMoreButton>
                 )} 
             </BottomContainer>
