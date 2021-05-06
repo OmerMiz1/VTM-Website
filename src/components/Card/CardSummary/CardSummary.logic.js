@@ -1,8 +1,21 @@
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect, useRef, useContext } from 'react';
+import {SummariesContext} from '../../../utils/context/SummariesContext';
 
 
-const CardSummaryLogic = () => {
+
+const CardSummaryLogic = (favorites) => {
     const [isDropDown, setIsDropDown] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(favorites);
+
+    const {toggleFavorite} = useContext(SummariesContext);
+
+
+   //only frontend change here  
+    const toggleIsFavorite = (summaryId) => {
+        console.log(`toggleIs Favorite... now summay id: ` + summaryId + ' is - ' + isFavorite);
+        setIsFavorite(!isFavorite);
+        toggleFavorite(summaryId);
+    }
 
     const toggleDropDown = () => {
         setIsDropDown(!isDropDown);
@@ -39,7 +52,8 @@ const CardSummaryLogic = () => {
     return {
         isDropDown, toggleDropDown,
         useOutsideCloseMenu,
-        wrapperRef
+        wrapperRef,
+        toggleIsFavorite, isFavorite
     }
 }
 

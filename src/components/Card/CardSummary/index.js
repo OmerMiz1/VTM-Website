@@ -4,7 +4,6 @@ import {faStar, faHeart, faEllipsisV} from '@fortawesome/free-solid-svg-icons';
 
 import DropDownSummary from '../../DropDown/DropDownSummay';
 import CardSummaryLogic from './CardSummary.logic'
-import CardSummaryApi from './CardSummary.Api'
 
 import {CradContainer, TopContainer, CardH1, CardImgContainer, IconContaner,
      DetailsContainer, Taglist, TagItem,DateSection, CradLink,
@@ -17,13 +16,10 @@ function CardSummary(props) {
     const {summaryId ,imgUrl, title, createdTime,
         editTime, likes, autorName, url, tags, favorite} = props;
 
-
-    // api of the summary card
-    const {toggleIsFavorite, isFavorite} = CardSummaryApi(favorite);
-
     // all the component logic
     const {isDropDown, toggleDropDown,
-        useOutsideCloseMenu, wrapperRef} = CardSummaryLogic();
+        useOutsideCloseMenu, wrapperRef,
+        toggleIsFavorite, isFavorite} = CardSummaryLogic(favorite);
 
     // close when click outside
     useOutsideCloseMenu(wrapperRef);

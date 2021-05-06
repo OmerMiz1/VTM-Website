@@ -1,9 +1,8 @@
-import React from 'react';
-import CardSummary from '../../../components/Card/CardSummary';
-
+import React, { useContext } from 'react';
+import {SummariesContext} from '../../../utils/context/SummariesContext';
 import MyHomePageLogic from '../MyHomePage.logic';
-import MyHomePageApi from '../MyHomePage.Api';
 
+import CardSummary from '../../../components/Card/CardSummary';
 import {MainPageContainer, MyHomePageH1, WarningText, CardSummariesContainers,
     CardItemContainer, Lodaing, LodaingContanir, LoadingConainer,
     BottomContainer, ViewMoreButton,
@@ -11,12 +10,12 @@ import {MainPageContainer, MyHomePageH1, WarningText, CardSummariesContainers,
 
 
 function MySummaries() {
-
-
+    // logic of my home page
     const {ShowMoreSummaries, amountSummariesShow} = MyHomePageLogic();
 
-    // TODO move to homepage and add usecontent 
-    const {isMySummaryEmpty, mySummaries, isLoading,} = MyHomePageApi();
+    // context from api
+    const {isMySummaryEmpty, mySummaries, isLoading } = useContext(SummariesContext);
+
 
     return (
         <MainPageContainer>

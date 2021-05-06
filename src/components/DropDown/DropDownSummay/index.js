@@ -1,11 +1,8 @@
 import React from 'react';
-import {DropDownMenuData} from './DropDownSummary.data'
+import DropDownSummaryData from './DropDownSummary.data'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {MenuContainer, MenuList, MenuButton,
-  MenuItem, ItemText} from './DropDownSummary.style'
-
-
-
+  MenuItem, ItemText} from './DropDownSummary.style';
 
 
 function DropDownSummary(props) {
@@ -14,16 +11,17 @@ function DropDownSummary(props) {
     return (
         <MenuContainer>
           <MenuList>
-            {DropDownMenuData.map((item, index) => {
-              return(
-                <MenuItem key={index}>
-                  <MenuButton onClick={ () => item.function(summaryId)}>
-                    <FontAwesomeIcon className='icon' icon={item.icon}/>
-                    <ItemText>{item.title}</ItemText>
-                  </MenuButton>
-                </MenuItem>
-              )
-            })}
+              {DropDownSummaryData().map((item, index) => {
+                return(
+                  <MenuItem key={index}>
+                    <MenuButton onClick={ () => item.function(summaryId)}>
+                      <FontAwesomeIcon className='icon' icon={item.icon}/>
+                      <ItemText>{item.title}</ItemText>
+                    </MenuButton>
+                  </MenuItem>
+                )
+              })}
+           
 
           </MenuList>
           
