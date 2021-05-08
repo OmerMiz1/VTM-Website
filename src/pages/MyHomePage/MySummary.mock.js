@@ -13,7 +13,7 @@ export const MockData = [
         favorite: false,
         imgUrl: img1,
         title: 'My first card!',
-        tags: ['Todo'],
+        tags: ['hey my name fasd dfsa dasf', 'todo'],
         createdTime:'16/11/2021',
         editTime: '1/1/2022',
         likes: 100,

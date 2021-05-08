@@ -1,6 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faStar, faHeart, faEllipsisV} from '@fortawesome/free-solid-svg-icons';
+import {stringLength} from '../../../utils/function/Strings';
 
 import DropDownSummary from '../../DropDown/DropDownSummay';
 import CardSummaryLogic from './CardSummary.logic'
@@ -40,9 +41,12 @@ function CardSummary(props) {
             </CradLink>
             <DetailsContainer>
                 <Taglist>
-                    {tags.map((tag, index) => {
+                    {tags.filter((_, i) => i < 4 ).map((tag, index) => {
+                        if (index == 3) {
+                            tag = ' ... ';
+                        }
                         return (
-                            <TagItem key={index}>{tag}</TagItem>
+                            <TagItem key={index}>{stringLength(tag, 10, true)}</TagItem>
                         )
                     })}
                 </Taglist>

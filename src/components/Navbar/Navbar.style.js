@@ -107,7 +107,7 @@ export const NavLink = styled(Link)`
     cursor: pointer;
     margin: 4px 0px 0px 10px;
     transition: all 200ms ease-in-out;
-    border-bottom: ${({border}) =>  border ? '2px solid #55A1B2' : 'none' };
+    border-bottom: ${({border}) => border ? '2px solid #55A1B2' : 'none' };
     
     &:hover {
         filter: ${({useTransparent}) => useTransparent? 'contrast(2)': 'contrast(0.4)'};

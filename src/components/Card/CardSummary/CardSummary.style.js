@@ -57,7 +57,6 @@ export const Taglist = styled.ul`
     display: flex;
     align-items: center;
     margin: 0 auto;
-
 `;
 
 export const IconContaner = styled.div`
@@ -73,6 +72,8 @@ export const TagItem = styled.li`
     margin: 0 ${props => props.theme.spacers.small};
     border-radius: 8px;
     cursor: pointer;
+    /* overflow: hidden;
+    white-space: nowrap; */
 `;
 
 export const DateSection = styled.div`

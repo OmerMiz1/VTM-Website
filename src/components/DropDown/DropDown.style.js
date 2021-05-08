@@ -70,7 +70,8 @@ export const MenuButton = styled.button`
 
     
     &:hover {
-        background-color:${props => props.theme.colors.main};
+        /* background-color:${props => props.theme.colors.main}; */
+        background-color: #55A1B2;
         color: #fff;
     }
 `;
