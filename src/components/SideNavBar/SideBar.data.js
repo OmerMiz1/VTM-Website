@@ -24,17 +24,16 @@ export const DataOperations = [
         icon: faUserFriends,
         link: '/MyFrinds'
     },
+    {
+        title:'Settings',
+        icon: faTools,
+        link: '/Settings'
+    },
 
     {
         spanText:'Fillters',
         link: '#'
 
-    },
-
-    {
-        title:'Settings',
-        icon: faTools,
-        link: '/Settings'
     },
     
     {
