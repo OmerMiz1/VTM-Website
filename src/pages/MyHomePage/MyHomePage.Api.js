@@ -69,7 +69,7 @@ const MyHomePageApi = (mySummaries, setMySummaries)  => {
 
     useEffect(() => {
         fetchServices();
-      }, []);
+      },[]);
 
 
 

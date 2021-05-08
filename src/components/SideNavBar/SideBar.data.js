@@ -12,12 +12,12 @@ export const DataOperations = [
     {
         title:'Discover',
         icon: faGlobe,
-        link: 'myHome/mySummaries'
+        link: '/myHome/Discover'
     },
     {
         title:'Shared With me',
         icon: faGifts,
-        link: '/SharedWithMe'
+        link: '/myHome/SharedWithMe'
     },
     {
         title:'My Frinds',
@@ -27,6 +27,8 @@ export const DataOperations = [
 
     {
         spanText:'Fillters',
+        link: '#'
+
     },
 
     {
@@ -38,21 +40,21 @@ export const DataOperations = [
     {
         title:'My Tags',
         icon: faTags,
-        link: '/Mytags'
+        link: '/myHome/Mytags'
     }, 
     {
         title:'Favorites',
         icon: faStar,
-        link: '/Favorites'
+        link: '/myHome/filter/Favorites'
     },
     {
         title:'Important',
         icon: faExclamationCircle,
-        link: '/SharedWithMe'
+        link: '/myHome/filter/Important'
     },
     {
         title:'To do',
         icon: faCheckSquare,
-        link: '/Todo'
+        link: '/myHome/filter/Todo'
     }
 ]

@@ -1,7 +1,7 @@
 import {useContext} from 'react';
 import {SummariesContext} from '../../../utils/context/SummariesContext';
 // icons
-import {faShare, faTrash ,faInfo, faEdit } from '@fortawesome/free-solid-svg-icons';
+import {faShare, faTrash , faEdit } from '@fortawesome/free-solid-svg-icons';
 
 const DropDownSummaryData = () => {
 

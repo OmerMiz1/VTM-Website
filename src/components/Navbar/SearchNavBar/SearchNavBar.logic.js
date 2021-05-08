@@ -11,7 +11,6 @@ const SearchNavBarLogic = () => {
 
     const handelChnge = value => {
         setSearchText(value);
-        console.log(`value`, value)
     }
 
     const startSearch = () => {

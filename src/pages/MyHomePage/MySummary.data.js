@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 
 const MyHomePageData = ()  => {
     const [mySummaries, setMySummaries] = useState([]);
+    // const [display, setDisplay] = useState("");
     const [myFilterSummaries, setMyFilterSummaries] = useState([]);
 
 

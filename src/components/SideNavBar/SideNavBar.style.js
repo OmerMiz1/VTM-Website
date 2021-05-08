@@ -1,4 +1,6 @@
 import styled, {css} from 'styled-components';
+import {NavLink as Link} from 'react-router-dom';
+
 
 export const SideBarContainer = styled.section`
     height: 100%;
@@ -102,7 +104,7 @@ export const SpanSideBar = styled.span`
     align-items: center;
     flex-direction: row;
     justify-content: left;
-    padding-left: 5%;
+    padding-left: 6%;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     
     &:hover {
@@ -114,4 +116,20 @@ export const SpanSideBar = styled.span`
         width: 100%;
 
     }
-`
+`;
+
+export const SideNavLink = styled(Link)`
+    display: flex;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    width:100%;
+    height:50px;
+    list-style-type: none;
+    align-items: center;
+    flex-direction: row;
+    justify-content: left;
+`;
+
+
+

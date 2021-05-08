@@ -107,12 +107,13 @@ export const NavLink = styled(Link)`
     cursor: pointer;
     margin: 4px 0px 0px 10px;
     transition: all 200ms ease-in-out;
+    border-bottom: ${({border}) =>  border ? '2px solid #55A1B2' : 'none' };
     
     &:hover {
         filter: ${({useTransparent}) => useTransparent? 'contrast(2)': 'contrast(0.4)'};
         color:${props => props.theme.colors.main};
+        font-weight:800;
 
-        border-bottom: 2px solid ${props => props.theme.colors.main};
         /* background-color: #FFFFFF; */
         /* opacity: 0.3; */
         /* border-radius: 22px; */

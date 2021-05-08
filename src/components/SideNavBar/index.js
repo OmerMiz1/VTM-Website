@@ -1,7 +1,8 @@
 import React from 'react';
 import NavBarLogic from '../Navbar/Navbar.logic';
 
-import {SideBarContainer, SideBarList, SideBarItem, NavMenu, TitleItem, SpanSideBar } from './SideNavBar.style';
+import {SideBarContainer, SideBarList, SideBarItem,
+    NavMenu, TitleItem, SpanSideBar, SideNavLink } from './SideNavBar.style';
 
 import {DataOperations} from './SideBar.data';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -24,11 +25,14 @@ function SideNavBar() {
                     return (
                         
                     <SideBarItem key={index} onClick={closeMobileMenu}>
-                        {index === 4 ? <SpanSideBar>{item.spanText}</SpanSideBar> :
-                        <FontAwesomeIcon className='icon' key={index} icon={item.icon}></FontAwesomeIcon> 
-                        }
-                        {index === 4 ? <></> :
-                         <TitleItem>{item.title}</TitleItem> }
+                        <SideNavLink to={item.link}>
+                            {index === 4 ? <SpanSideBar>{item.spanText}</SpanSideBar> :
+                            <FontAwesomeIcon className='icon' key={index} icon={item.icon}></FontAwesomeIcon> 
+                            }
+                            {index === 4 ? <></> :
+                            <TitleItem>{item.title}</TitleItem> }
+                        </SideNavLink>
+
      
                     </SideBarItem>
                     

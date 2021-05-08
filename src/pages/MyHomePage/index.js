@@ -32,7 +32,7 @@ function MyHomePage() {
         <SummariesContext.Provider value={{isMySummaryEmpty, mySummaries, isLoading, myFilterSummaries,
         deleteSummary, editSummary, ShareSummary, toggleFavorite}}>
             <FilterMySummariesContext.Provider value= {{SearchFillterData}} >
-                <OnNavbar useTransparent ={false} />
+                <OnNavbar useTransparent ={false} PositionMarker={action}/>
                 <MyHomePageContainer>
                     <SideNavBar/>
                     {action ==='mySummaries' ? <MySummaries/> : <h1>Dis</h1>}

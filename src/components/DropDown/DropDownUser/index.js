@@ -1,31 +1,31 @@
 import React from 'react';
-import DropDownSummaryData from './DropDownSummary.data'
+import DropDownSummaryData from './DropDownUser.data'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {MenuContainer, MenuList, MenuButton,
   MenuItem, ItemText} from '../DropDown.style';
 
 
-function DropDownSummary(props) {
-    const summaryId = props.summaryId;
-
- 
+function DropDownUser(props) {
 
     return (
-       <MenuContainer bottom='95px' right='10px'>
+        <MenuContainer bottom='-94px' right='-30px'>
           <MenuList>
               {DropDownSummaryData().map((item, index) => {
                 return(
                   <MenuItem key={index}>
-                    <MenuButton onClick={ () => item.function(summaryId)}>
+                    <MenuButton onClick={ () => item.function(item.title)}>
                       <FontAwesomeIcon className='icon' icon={item.icon}/>
                       <ItemText>{item.title}</ItemText>
                     </MenuButton>
                   </MenuItem>
                 )
               })}
+           
+
           </MenuList>
-       </MenuContainer>
+          
+      </MenuContainer>
     )
 }
 
-export default DropDownSummary
+export default DropDownUser

@@ -8,7 +8,6 @@ const MyHomePageFilters = (mySummaries, setMyFilterSummaries)  => {
     
     const lowerCaseValue = value.toLowerCase().trim();
     if (!lowerCaseValue) {
-        console.log(`false - lowerCaseValue`, lowerCaseValue);
         setMyFilterSummaries(mySummaries);
     } else {
         const fillteredData = mySummaries.filter( item => {

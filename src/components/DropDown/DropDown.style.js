@@ -4,8 +4,8 @@ import styled from 'styled-components';
 export const MenuContainer = styled.section`
     display: block;
     position: absolute;
-    bottom: 95px;
-    right: 10px;
+    bottom: ${({bottom}) => bottom ? bottom : '0'};
+    right: ${({right}) => right ? right : '0'};
     z-index: 10;
     font-size: 15px;
 `;

@@ -2,6 +2,8 @@ import React from 'react';
 import BrandLogo from '../../BrandLogo';
 import NavbarLogic from '../Navbar.logic';
 import SearchNavBar from '../SearchNavBar';
+import DropDownUser from '../../DropDown/DropDownUser';
+import OnNavBarLogic from './OnNavBar.logic';
 
 import {NavbarSection, NavLogoContainer, SeparatorLine,
     NavLeftList, NavRightList,  NavItem, NavLink} from '../Navbar.style'
@@ -12,8 +14,13 @@ import ToolTip from '../../ToolTip'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 function NavBar(props) {
-    const {useTransparent} = props;
+    const {useTransparent, PositionMarker} = props;
     const {clickedOnMenu, closeMobileMenu} = NavbarLogic()
+    const {isUseDropDown, toggleUserDropDown, useOutsideCloseMenu,
+        wrapperRef} = OnNavBarLogic();
+    // close when click outside
+    useOutsideCloseMenu(wrapperRef);
+
 
     return (
         <NavbarSection useTransparent={useTransparent}>
@@ -22,10 +29,10 @@ function NavBar(props) {
             </NavLogoContainer>
             
             <NavLeftList active={clickedOnMenu}> 
-            {DataLeftLinks.map((item,index) => {
+            {DataLeftLinks(PositionMarker).map((item,index) => {
                 return(
                     <NavItem key={index}>
-                        <NavLink onClick={closeMobileMenu} to={item.link}
+                        <NavLink onClick={closeMobileMenu} to={item.link} border={item.boarder}
                             useTransparent={useTransparent}>{item.title}</NavLink>
                     </NavItem>
                     )
@@ -40,15 +47,16 @@ function NavBar(props) {
                 <SearchNavBar/>
             </NavItem>
             
-                {DataIcons.map((item, index) => {
+                {DataIcons().map((item, index) => {
                         return (
                             <NavItem key={index}>
                                     <ToolTip toolTipText={item.toolTipText}>
                                         { item.separator ?
-                                        <SeparatorLine>
-                                            <FontAwesomeIcon onClick={closeMobileMenu} icon={item.icon}/>
+                                        <SeparatorLine ref={wrapperRef}>
+                                            <FontAwesomeIcon onClick={ toggleUserDropDown} icon={item.icon}/>
+                                            {isUseDropDown && <DropDownUser summaryId={1}/>}
                                         </SeparatorLine>:
-                                        <FontAwesomeIcon onClick={closeMobileMenu} icon={item.icon}/>
+                                        <FontAwesomeIcon onClick={() => item.function(item.toolTipText)} icon={item.icon}/>
                                         }
                                     </ToolTip>
                             </NavItem>
