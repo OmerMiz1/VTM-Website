@@ -156,4 +156,7 @@ export const SeparatorLine = styled.div`
     border-left: 4px solid;
     border-color: ${({color}) => color? color: props => props.theme.colors.darkGray};
     padding-left: 10px;
-`
+`;
+
+
+

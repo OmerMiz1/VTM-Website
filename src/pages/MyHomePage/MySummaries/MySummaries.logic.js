@@ -1,18 +1,24 @@
 import {useState } from 'react';
 
-const MyHomePageLogic = ()  => {
-
+const MySummariesLogic = ()  => {
+    // State how much summaries to show in the page..
     const [amountSummariesShow, setAmountSummariesShow] = useState(9);
 
-    //view more.. 
+    // Add more 9 summaries to the page
     const ShowMoreSummaries = () => {
         setAmountSummariesShow((prevValue) => prevValue + 9);
     };
 
+
     return {
-        ShowMoreSummaries, amountSummariesShow
+        ShowMoreSummaries, amountSummariesShow,
     }
 } 
 
 
-export default MyHomePageLogic;
+export default MySummariesLogic;
+
+
+
+
+

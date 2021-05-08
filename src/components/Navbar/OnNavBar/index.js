@@ -1,15 +1,15 @@
 import React from 'react';
 import BrandLogo from '../../BrandLogo';
 import NavbarLogic from '../Navbar.logic';
+import SearchNavBar from '../SearchNavBar';
 
 import {NavbarSection, NavLogoContainer, SeparatorLine,
-    NavLeftList, NavRightList,  NavItem, NavLink } from '../Navbar.style'
+    NavLeftList, NavRightList,  NavItem, NavLink} from '../Navbar.style'
 
 import {DataLeftLinks, DataIcons} from './OnNavBar.data';
 import ToolTip from '../../ToolTip'
 // icons
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-
 
 function NavBar(props) {
     const {useTransparent} = props;
@@ -30,9 +30,16 @@ function NavBar(props) {
                     </NavItem>
                     )
                 })}
+            
             </NavLeftList>
             
+
+        
             <NavRightList position='end' width='auto'>
+            <NavItem>
+                <SearchNavBar/>
+            </NavItem>
+            
                 {DataIcons.map((item, index) => {
                         return (
                             <NavItem key={index}>

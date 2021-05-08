@@ -1,10 +1,9 @@
 import {useState, useEffect, useRef} from 'react';
 
 const NavbarLogic = () => {
-    
+
     const [clickedOnMenu, setClickedOnMenu] = useState(false);
     // const [isMySummaries, setIsMySummaries] = useState(true);
-
 
     // toggle clickOnMenu
     const toggleMenuClicked = () => {

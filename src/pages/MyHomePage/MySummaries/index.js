@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext} from 'react';
 import {SummariesContext} from '../../../utils/context/SummariesContext';
-import MyHomePageLogic from '../MyHomePage.logic';
+import MySummariesLogic from './MySummaries.logic';
 
 import CardSummary from '../../../components/Card/CardSummary';
 import {MainPageContainer, MyHomePageH1, WarningText, CardSummariesContainers,
@@ -11,11 +11,10 @@ import {MainPageContainer, MyHomePageH1, WarningText, CardSummariesContainers,
 
 function MySummaries() {
     // logic of my home page
-    const {ShowMoreSummaries, amountSummariesShow} = MyHomePageLogic();
+    const {ShowMoreSummaries, amountSummariesShow} = MySummariesLogic();
 
     // context from api
-    const {isMySummaryEmpty, mySummaries, isLoading } = useContext(SummariesContext);
-
+    const {isMySummaryEmpty, isLoading, myFilterSummaries } = useContext(SummariesContext);
 
     return (
         <MainPageContainer>
@@ -23,6 +22,10 @@ function MySummaries() {
 
             {isMySummaryEmpty && !isLoading && (
                     <WarningText>No Summaries are published yet!</WarningText>
+                )}
+
+            {myFilterSummaries.length === 0 && !isLoading && (
+                    <WarningText>Not found!!</WarningText>
                 )}
                 {isLoading &&
                 <LoadingConainer>
@@ -46,7 +49,7 @@ function MySummaries() {
 
             {!isMySummaryEmpty && !isLoading &&
                 <CardSummariesContainers>
-                    {mySummaries.slice(0,amountSummariesShow).map((card) => {
+                    {myFilterSummaries.slice(0,amountSummariesShow).map((card) => {
                         return(
                             <CardItemContainer key={card.id}>
                                 <CardSummary
@@ -67,7 +70,7 @@ function MySummaries() {
                 </CardSummariesContainers>
             }
             <BottomContainer>
-                {!isMySummaryEmpty && !isLoading && amountSummariesShow < mySummaries.length && (
+                {!isMySummaryEmpty && !isLoading && amountSummariesShow < myFilterSummaries.length && (
                     <ViewMoreButton onClick={ShowMoreSummaries}>View More</ViewMoreButton>
                 )} 
             </BottomContainer>

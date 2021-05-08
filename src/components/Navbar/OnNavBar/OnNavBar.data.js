@@ -1,14 +1,8 @@
 // icons
-import {faSearch, faPlus, faUser, faBell} from '@fortawesome/free-solid-svg-icons'
-
-
+import {faPlus, faUser, faBell} from '@fortawesome/free-solid-svg-icons'
 
 // Operations Data
 export const DataIcons = [
-    {
-        toolTipText:'Search',
-        icon: faSearch,
-    },
     {
         toolTipText:'Add',
         icon: faPlus,
@@ -21,7 +15,7 @@ export const DataIcons = [
     {
         icon: faUser,
         toolTipText:'User',
-        separator:true
+        separator:true, 
         
     }
 ]
@@ -36,3 +30,4 @@ export const DataLeftLinks = [
         link: '/myHome/Discover',
     }
 ]
+

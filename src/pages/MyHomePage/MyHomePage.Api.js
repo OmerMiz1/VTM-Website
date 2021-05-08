@@ -1,14 +1,9 @@
-import {useState, useEffect, useMemo} from 'react';
-import {MockData} from './MySummary.data'
+import {useState, useEffect} from 'react';
+import {MockData} from './MySummary.mock'
 
-const MyHomePageApi = ()  => {
-    const [mySummaries, setMySummaries] = useState([]);
+const MyHomePageApi = (mySummaries, setMySummaries)  => {
+    
     const [isLoading, setLoading] = useState(true);
-
-    // Cheacking if mySummaries is empty
-    const isMySummaryEmpty =
-        !mySummaries || (mySummaries && mySummaries.length === 0);
-
 
     //MOCK delete summary and all the notes.. 
     const deleteSummary = (id) => {
@@ -44,7 +39,7 @@ const MyHomePageApi = ()  => {
         console.log(`api - sharing id`, id)
     }
 
-
+    //MOCK need add send to data the toggle
     const toggleFavorite = (id) => {
         console.log(`api - toggle Favorite id`, id);
 
@@ -56,8 +51,6 @@ const MyHomePageApi = ()  => {
         });
 
         setMySummaries(updateSummaries);
-
-        
     }
 
 
@@ -81,7 +74,7 @@ const MyHomePageApi = ()  => {
 
 
     return {
-        isMySummaryEmpty, mySummaries, isLoading,
+        isLoading,
         deleteSummary, editSummary, ShareSummary, toggleFavorite
     }
 } 
