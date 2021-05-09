@@ -56,7 +56,7 @@ const MyHomePageApi = (mySummaries, setMySummaries)  => {
 
 
     // MOCK get all my summary and set it on the state
-    const fetchServices = () => {
+    const fetchSummaries = () => {
         setLoading(true);
         console.log('fetch all my summaries...');
         // mock the loading time
@@ -68,7 +68,7 @@ const MyHomePageApi = (mySummaries, setMySummaries)  => {
     }
 
     useEffect(() => {
-        fetchServices();
+        fetchSummaries();
       },[]);
 
 
