@@ -11,6 +11,10 @@ import HomePage from './pages/HomePage'
 import AccessAccountPage from './pages/AccessAccountPage';
 import MyHomePage from './pages/MyHomePage';
 
+
+
+import MyTags from './pages/MyHomePage/MySummaries/MyTags'
+
 function App() {
 
   return (
@@ -24,6 +28,7 @@ function App() {
           <Route exact path='/getstart' component={HomePage}/>
           <Route exact path='/download' component={HomePage}/>
           <Route exact path='/myHome/:action' component={MyHomePage}/>
+          <Route exact path='/myHome/:action/:task' component={MyHomePage}/>
           <Route exact path='/access/:action' component={AccessAccountPage}/>
           <Route exactpath="/notFound404" component={NotFound404}/>
           <Redirect to="/notFound404" />

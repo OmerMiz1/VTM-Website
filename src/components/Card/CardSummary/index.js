@@ -42,7 +42,7 @@ function CardSummary(props) {
             <DetailsContainer>
                 <Taglist>
                     {tags.filter((_, i) => i < 4 ).map((tag, index) => {
-                        if (index == 3) {
+                        if (index === 3) {
                             tag = ' ... ';
                         }
                         return (

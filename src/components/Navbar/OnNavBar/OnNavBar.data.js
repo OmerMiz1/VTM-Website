@@ -41,12 +41,12 @@ export const DataLeftLinks = display => {
         {
             title:'My Summaries',
             link: '/myHome/mySummaries',
-            boarder: (display == 'mySummaries') ? 'true' : undefined,
+            boarder: (display === 'mySummaries') ? 'true' : undefined,
         },
         {
             title:'Discover',
             link: '/myHome/Discover',
-            boarder: (display == 'Discover') ?  'true' : undefined,
+            boarder: (display === 'Discover') ?  'true' : undefined,
 
         }
     ])
