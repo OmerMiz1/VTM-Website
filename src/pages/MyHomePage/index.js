@@ -21,21 +21,21 @@ import MyTags from './MySummaries/MyTags'
 
 function MyHomePage() {
     const {action} = useParams();
-    const {mySummaries, setMySummaries, isMySummaryEmpty, myFilterSummaries, setMyFilterSummaries} = MyHomePageData();
-    const {SearchFillterData} = MyHomePageFilters(mySummaries, setMyFilterSummaries);
+    const {mySummaries, setMySummaries, isMySummaryEmpty, myFilterSummaries,
+        setMyFilterSummaries} = MyHomePageData();
+    const {SearchFillterData, myFilterSummariesTags} = MyHomePageFilters(mySummaries, setMyFilterSummaries);
     // api of my home page
     const {isLoading, deleteSummary, editSummary,
         ShareSummary, toggleFavorite} = MyHomePageApi(mySummaries, setMySummaries);
-        
+
     return (
         <SummariesContext.Provider value={{isMySummaryEmpty, mySummaries, isLoading, myFilterSummaries,
         deleteSummary, editSummary, ShareSummary, toggleFavorite}}>
-            <FilterMySummariesContext.Provider value= {{SearchFillterData}} >
+            <FilterMySummariesContext.Provider value= {{SearchFillterData, myFilterSummariesTags}} >
                 <OnNavbar useTransparent ={false} PositionMarker={action}/>
                 <MyHomePageContainer>
                     <SideNavBar/>
-
-                    <Route exact path='/myHome/mySummaries/:myTags' component={MyTags}/>
+                    <Route exact path='/myHome/mySummaries/:filter' component={MyTags}/>
                     <Route exact path='/myHome/mySummaries' component={MySummaries}/>
                     <Route exact path='/myHome/Discover' component= {Discover}/>   
                     <Route exact path='/myHome/SharedWithMe'>
@@ -44,8 +44,8 @@ function MyHomePage() {
                     <Route exact path='/myHome/MyFrinds'>
                         <h1>My Frinds</h1>
                     </Route>
-                    <Route exact path='/myHome/Setting'>
-                        <h1>Setting</h1>
+                    <Route exact path='/myHome/Settings'>
+                        <h1>Settings</h1>
                     </Route>
 
 

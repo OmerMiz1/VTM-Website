@@ -4,11 +4,10 @@ import MySummariesLogic from './MySummaries.logic';
 
 import CardSummary from '../../../components/Card/CardSummary';
 import {MainPageContainer, MyHomePageH1, WarningText, CardSummariesContainers,
-    CardItemContainer, Lodaing, LodaingContanir, LoadingConainer,
+    CardItemContainer, Lodaing, LodaingContanirMotion, LoadingConainer,
     BottomContainer, ViewMoreButton,
     loadingCircleVariants, loadingCircleTransition, loadingContainerVariants} from '../MyHomePage.style';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import MyTags from './MyTags'
+
 
 
 function MySummaries() {
@@ -32,7 +31,7 @@ function MySummaries() {
                 {isLoading &&
                 <LoadingConainer>
                     <WarningText>Loading</WarningText>
-                        <LodaingContanir
+                        <LodaingContanirMotion
                         variants={loadingContainerVariants}
                         initial="start"
                         animate="end">
@@ -46,7 +45,7 @@ function MySummaries() {
                             variants={loadingCircleVariants}
                             transition={loadingCircleTransition}></Lodaing>
 
-                        </LodaingContanir>   
+                        </LodaingContanirMotion>   
                 </LoadingConainer>}
 
             {!isMySummaryEmpty && !isLoading &&
@@ -76,12 +75,6 @@ function MySummaries() {
                     <ViewMoreButton onClick={ShowMoreSummaries}>View More</ViewMoreButton>
                 )} 
             </BottomContainer>
-
-            <Router>
-                <Switch>
-                    <Route exact path='/myHome/mySummaries/myTags' component={MyTags}/>
-                </Switch>
-            </Router>
                    
         </MainPageContainer>
     )

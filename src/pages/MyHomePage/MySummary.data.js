@@ -5,7 +5,6 @@ const MyHomePageData = ()  => {
     // const [display, setDisplay] = useState("");
     const [myFilterSummaries, setMyFilterSummaries] = useState([]);
 
-
     useEffect(() => {
         console.log(`useEffect!!!!`, mySummaries);
         setMyFilterSummaries(mySummaries);

@@ -89,7 +89,7 @@ export const Lodaing = styled(motion.span)`
 `;
 
 
-export const LodaingContanir = styled(motion.span)`
+export const LodaingContanirMotion = styled(motion.span)`
     display: flex;
     width: 2rem;
     height: 2rem;

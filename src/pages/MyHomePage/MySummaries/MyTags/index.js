@@ -1,37 +1,66 @@
 import React, { useContext} from 'react';
-// import OnNavbar from '../../../../components/Navbar/OnNavBar';
-// import SideNavBar from '../../../../components/SideNavBar';
-// import {MyHomePageContainer} from '../../MyHomePage.style';
+import {SummariesContext} from '../../../../utils/context/SummariesContext';
+import {FilterMySummariesContext} from '../../../../utils/context/FilterMySummariesContext';
+
 import { useParams } from 'react-router-dom';
+
+import {MainPageContainer, MyHomePageH1, LodaingContanirMotion, LoadingConainer,
+    WarningText,Lodaing, loadingCircleVariants, loadingCircleTransition, loadingContainerVariants } from '../../MyHomePage.style'
 
 
 
 function MyTags() {
 
-    const {action} = useParams();
-    console.log(`a`, action)
+    const {filter} = useParams();
+    console.log(`url filter ->  `, filter); //TODO delet 
+
+
+    const {isMySummaryEmpty, isLoading, myFilterSummaries } = useContext(SummariesContext);
+    const { myFilterSummariesTags} = useContext(FilterMySummariesContext);
+
 
     return(
-        <div>
-                <div>
-                    <h1> My tags</h1>
-                    <ul>
-                        <li>
-                            <h2>shon1</h2>
-                        </li>
-                        <li>
-                            <h2>shon2</h2>
-                        </li>
-                        <li>
-                            <h2>shon3</h2>
-                        </li>
-                    </ul>
-                </div>
-                {/* </MyHomePageContainer> */}
+        <MainPageContainer>
+            <MyHomePageH1>My Tags:</MyHomePageH1>
+            {isMySummaryEmpty && !isLoading && (
+                    <WarningText>No Summaries are published yet!</WarningText>
+                )}
 
-        </div>
+            {myFilterSummaries.length === 0 && !isLoading && (
+                    <WarningText>Not found!!</WarningText>
+                )}
+                {isLoading &&
+                <LoadingConainer>
+                    <WarningText>Loading</WarningText>
+                        <LodaingContanirMotion
+                        variants={loadingContainerVariants}
+                        initial="start"
+                        animate="end">
+                            <Lodaing
+                            variants={loadingCircleVariants}
+                            transition={loadingCircleTransition}></Lodaing>
+                            <Lodaing
+                            variants={loadingCircleVariants}
+                            transition={loadingCircleTransition}></Lodaing>
+                            <Lodaing
+                            variants={loadingCircleVariants}
+                            transition={loadingCircleTransition}></Lodaing>
+                        </LodaingContanirMotion>   
+                </LoadingConainer>}
+
+            {!isMySummaryEmpty && !isLoading &&
+                <ul>
+                    {Array.from(myFilterSummariesTags).map( (tag) => {
+                        return (
+                            <li key={tag}>
+                                <a>{tag}</a>
+                            </li>   
+                    )}) 
+                    }
+                </ul>
+            }      
+        </MainPageContainer>
     )
-   
 }
 
 export default MyTags;
