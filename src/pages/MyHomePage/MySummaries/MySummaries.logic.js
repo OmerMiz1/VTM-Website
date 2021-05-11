@@ -27,13 +27,13 @@ const MySummariesLogic = ()  => {
     useEffect(() => {
         if (filter && name) {
             try {
-                console.log(`FillterDataByAttribute!!!!!!!!`)
+                console.log(`FillterDataByAttribute!!!!!!!!`)//TODO delete
                 FillterDataByAttribute(filter, name);
             } catch(err) {
                 UnFillter()
             }
         } else {
-            console.log(`un fillter`)
+            console.log(`un fillter`) //TODO delete
             UnFillter()
         }
     }, [filter, name])
