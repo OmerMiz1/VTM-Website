@@ -12,7 +12,6 @@ const MyHomePageFilters = (mySummaries, setMyFilterSummaries)  => {
     }, [mySummaries])
 
     const getAllFilterTags = (summaries) => {
-        console.log(`getAllFilterTags called`);
         const allTags = new Set();
         summaries.forEach((summary) => {
             summary.tags.forEach((tag) => {

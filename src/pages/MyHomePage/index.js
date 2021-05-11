@@ -1,14 +1,12 @@
 import React from 'react';
 import {SummariesContext} from '../../utils/context/SummariesContext';
 import {FilterMySummariesContext} from '../../utils/context/FilterMySummariesContext';
-import {Route} from 'react-router-dom';
+import {Route, useParams} from 'react-router-dom';
 
 import OnNavbar from '../../components/Navbar/OnNavBar';
 import SideNavBar from '../../components/SideNavBar';
 import MySummaries from './MySummaries'
 import Footer from '../../components/Footer'
-
-import { useParams } from 'react-router-dom';
 
 import MyHomePageData from './MySummary.data'
 import MyHomePageApi from './MyHomePage.Api';
@@ -19,8 +17,10 @@ import Discover from './Discover';
 import MyTags from './MySummaries/MyTags'
 
 
+
+
 function MyHomePage() {
-    const {action} = useParams();
+    const {display} = useParams();
     const {mySummaries, setMySummaries, isMySummaryEmpty, myFilterSummaries,
         setMyFilterSummaries} = MyHomePageData();
     const {SearchFillterData, myFilterSummariesTags} = MyHomePageFilters(mySummaries, setMyFilterSummaries);
@@ -28,14 +28,21 @@ function MyHomePage() {
     const {isLoading, deleteSummary, editSummary,
         ShareSummary, toggleFavorite} = MyHomePageApi(mySummaries, setMySummaries);
 
+    // const {display, filter, name} = useParams();
+    // const {url, path} = useRouteMatch()
+    // console.log(`display, filter, name ->  `, display, filter, name); //TODO delet 
+    // console.log(`url , path ,->  `, url, path); //TODO delet 
+
     return (
         <SummariesContext.Provider value={{isMySummaryEmpty, mySummaries, isLoading, myFilterSummaries,
         deleteSummary, editSummary, ShareSummary, toggleFavorite}}>
             <FilterMySummariesContext.Provider value= {{SearchFillterData, myFilterSummariesTags}} >
-                <OnNavbar useTransparent ={false} PositionMarker={action}/>
+                <OnNavbar useTransparent ={false} PositionMarker={display}/>
                 <MyHomePageContainer>
                     <SideNavBar/>
+                    
                     <Route exact path='/myHome/mySummaries/:filter' component={MyTags}/>
+                    <Route exact path='/myHome/mySummaries/:display/:filter/:name' component={MySummaries}/>                    
                     <Route exact path='/myHome/mySummaries' component={MySummaries}/>
                     <Route exact path='/myHome/Discover' component= {Discover}/>   
                     <Route exact path='/myHome/SharedWithMe'>

@@ -1,14 +1,14 @@
 import React, { useContext} from 'react';
 import {SummariesContext} from '../../../utils/context/SummariesContext';
 import MySummariesLogic from './MySummaries.logic';
+import LoadingComponent from '../Loading'
 
 import CardSummary from '../../../components/Card/CardSummary';
-import {MainPageContainer, MyHomePageH1, WarningText, CardSummariesContainers,
-    CardItemContainer, Lodaing, LodaingContanirMotion, LoadingConainer,
-    BottomContainer, ViewMoreButton,
-    loadingCircleVariants, loadingCircleTransition, loadingContainerVariants} from '../MyHomePage.style';
+import {MainPageContainer, MyHomePageH1, CardSummariesContainers,
+    CardItemContainer,BottomContainer, ViewMoreButton,} from '../MyHomePage.style';
 
 
+import {useParams, useRouteMatch } from 'react-router-dom';
 
 function MySummaries() {
     // logic of my home page
@@ -17,36 +17,16 @@ function MySummaries() {
     // context from api
     const {isMySummaryEmpty, isLoading, myFilterSummaries } = useContext(SummariesContext);
 
+    const {display, filter, name} = useParams();
+
+    const {url, path} = useRouteMatch()
+    console.log(`display, filter, name ->  `, display, filter, name); //TODO delet 
+    console.log(`url , path ,->  `, url, path); //TODO delet 
+
     return (
         <MainPageContainer>
             <MyHomePageH1>My Summary:</MyHomePageH1>
-
-            {isMySummaryEmpty && !isLoading && (
-                    <WarningText>No Summaries are published yet!</WarningText>
-                )}
-
-            {myFilterSummaries.length === 0 && !isLoading && (
-                    <WarningText>Not found!!</WarningText>
-                )}
-                {isLoading &&
-                <LoadingConainer>
-                    <WarningText>Loading</WarningText>
-                        <LodaingContanirMotion
-                        variants={loadingContainerVariants}
-                        initial="start"
-                        animate="end">
-                            <Lodaing
-                            variants={loadingCircleVariants}
-                            transition={loadingCircleTransition}></Lodaing>
-                            <Lodaing
-                            variants={loadingCircleVariants}
-                            transition={loadingCircleTransition}></Lodaing>
-                            <Lodaing
-                            variants={loadingCircleVariants}
-                            transition={loadingCircleTransition}></Lodaing>
-
-                        </LodaingContanirMotion>   
-                </LoadingConainer>}
+            <LoadingComponent></LoadingComponent>
 
             {!isMySummaryEmpty && !isLoading &&
                 <CardSummariesContainers>

@@ -26,7 +26,8 @@ export const ContainerSearchBar = styled.div`
     /* top: 50%;
     left: 50%; */
     transform: translate(-100%, 0%);
-    background: #bcd9e0;
+    background: ${(props) => props.theme.colors.secondLite };
+
     height: 40px;
     border-radius: 40px;
     padding: 0;
@@ -40,7 +41,7 @@ export const ContainerSearchBar = styled.div`
 
         & .link {
             background: #eee;
-            color: #55a1b2;
+            color:${(props) => props.theme.colors.second };
         };
 
     };
@@ -53,7 +54,7 @@ export const SearcLink = styled.a`
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: #55a1b2;
+    background: ${(props) => props.theme.colors.second };
     display: flex;
     justify-content: center;
     align-items: center;

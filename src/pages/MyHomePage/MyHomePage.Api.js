@@ -64,7 +64,7 @@ const MyHomePageApi = (mySummaries, setMySummaries)  => {
             () => {
                 setMySummaries(MockData);
                 setLoading(false);
-            }, 200);
+            }, 2000);
     }
 
     useEffect(() => {
