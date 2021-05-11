@@ -25,7 +25,7 @@ function MyTags() {
                     {Array.from(myFilterSummariesTags).map( (tag) => {
                         return (
                             <ItemButtonTag key={tag}>
-                                 <LinkTag to={'/myHome/mySummaries/filter/tag/' + tag }>
+                                 <LinkTag to={'/myHome/mySummaries/filter/tags/' + tag }>
                                     <ButtonTag>{tag}</ButtonTag>
                                  </LinkTag>
                             </ItemButtonTag>                                

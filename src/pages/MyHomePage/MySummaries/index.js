@@ -8,7 +8,6 @@ import {MainPageContainer, MyHomePageH1, CardSummariesContainers,
     CardItemContainer,BottomContainer, ViewMoreButton,} from '../MyHomePage.style';
 
 
-import {useParams, useRouteMatch } from 'react-router-dom';
 
 function MySummaries() {
     // logic of my home page
@@ -17,11 +16,6 @@ function MySummaries() {
     // context from api
     const {isMySummaryEmpty, isLoading, myFilterSummaries } = useContext(SummariesContext);
 
-    const {display, filter, name} = useParams();
-
-    const {url, path} = useRouteMatch()
-    console.log(`display, filter, name ->  `, display, filter, name); //TODO delet 
-    console.log(`url , path ,->  `, url, path); //TODO delet 
 
     return (
         <MainPageContainer>

@@ -16,27 +16,22 @@ import {MyHomePageContainer}from './MyHomePage.style';
 import Discover from './Discover';
 import MyTags from './MySummaries/MyTags'
 
-
-
-
 function MyHomePage() {
     const {display} = useParams();
     const {mySummaries, setMySummaries, isMySummaryEmpty, myFilterSummaries,
         setMyFilterSummaries} = MyHomePageData();
-    const {SearchFillterData, myFilterSummariesTags} = MyHomePageFilters(mySummaries, setMyFilterSummaries);
+    const {SearchFillterData, myFilterSummariesTags,
+        FillterDataByAttribute, UnFillter} = MyHomePageFilters(mySummaries, setMyFilterSummaries);
     // api of my home page
     const {isLoading, deleteSummary, editSummary,
         ShareSummary, toggleFavorite} = MyHomePageApi(mySummaries, setMySummaries);
 
-    // const {display, filter, name} = useParams();
-    // const {url, path} = useRouteMatch()
-    // console.log(`display, filter, name ->  `, display, filter, name); //TODO delet 
-    // console.log(`url , path ,->  `, url, path); //TODO delet 
 
     return (
         <SummariesContext.Provider value={{isMySummaryEmpty, mySummaries, isLoading, myFilterSummaries,
         deleteSummary, editSummary, ShareSummary, toggleFavorite}}>
-            <FilterMySummariesContext.Provider value= {{SearchFillterData, myFilterSummariesTags}} >
+            <FilterMySummariesContext.Provider value= {{SearchFillterData, myFilterSummariesTags,
+                 FillterDataByAttribute, UnFillter}} >
                 <OnNavbar useTransparent ={false} PositionMarker={display}/>
                 <MyHomePageContainer>
                     <SideNavBar/>

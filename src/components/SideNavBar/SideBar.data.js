@@ -44,16 +44,16 @@ export const DataOperations = [
     {
         title:'Favorites',
         icon: faStar,
-        link: '/myHome/mySummaries/filter/favorites/true'
+        link: '/myHome/mySummaries/filter/favorite/true'
     },
     {
         title:'Important',
         icon: faExclamationCircle,
-        link: '/myHome/mySummaries/filter/tag/important'
+        link: '/myHome/mySummaries/filter/tags/important'
     },
     {
         title:'To do',
         icon: faCheckSquare,
-        link: '/myHome/mySummaries/filter/tag/todo'
+        link: '/myHome/mySummaries/filter/tags/todo'
     }
 ]

@@ -5,9 +5,7 @@ const MyHomePageFilters = (mySummaries, setMyFilterSummaries)  => {
 
     const [myFilterSummariesTags, setMyFilterSummariesTags] = useState([]);
 
-
-
-    useEffect(() => {
+   useEffect(() => {
         getAllFilterTags(mySummaries);
     }, [mySummaries])
 
@@ -22,6 +20,11 @@ const MyHomePageFilters = (mySummaries, setMyFilterSummaries)  => {
     }
 
 
+    const UnFillter = () => {
+        setMyFilterSummaries(mySummaries);
+    }
+
+
 
 
     // Filter summaries by all the data in the object
@@ -29,22 +32,37 @@ const MyHomePageFilters = (mySummaries, setMyFilterSummaries)  => {
     
     const lowerCaseValue = value.toLowerCase().trim();
     if (!lowerCaseValue) {
-        setMyFilterSummaries(mySummaries);
+        UnFillter();
     } else {
         const fillteredData = mySummaries.filter( item => {
             return Object.keys(item).some(key => {
                 return item[key].toString().toLowerCase().includes(lowerCaseValue);
             });
         });
-        getAllFilterTags(fillteredData);
+        // save
         setMyFilterSummaries(fillteredData);
+        }
     }
 
-}
+    // Filter summaries by attribute and value
+    const FillterDataByAttribute = (attribute, value) => {
+
+        const lowerCaseValue = value.toLowerCase().trim();
+        if (!lowerCaseValue) {
+            UnFillter()
+        } else {
+            const fillteredData = mySummaries.filter( item => {
+                return Object.keys(item).some( _ => {
+                    return item[attribute].toString().toLowerCase().includes(lowerCaseValue);
+                });
+            });
+            setMyFilterSummaries(fillteredData);
+        }
+    }
     
 
     return {
-        SearchFillterData, myFilterSummariesTags
+        SearchFillterData, myFilterSummariesTags, FillterDataByAttribute, UnFillter
     }
 } 
 
