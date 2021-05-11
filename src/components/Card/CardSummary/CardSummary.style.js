@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
+
 
 export const CradContainer = styled.div`
     height: 345px;
@@ -72,6 +74,7 @@ export const TagItem = styled.li`
     margin: 0 ${props => props.theme.spacers.small};
     border-radius: 8px;
     cursor: pointer;
+    
     /* overflow: hidden;
     white-space: nowrap; */
 `;
@@ -129,4 +132,11 @@ export const LeftContainer = styled.div`
     margin-right: 20px;
     cursor: pointer;
     
+`;
+
+export const LinkTag = styled(Link)`
+    display: block;
+    cursor: pointer;
+    list-style-type: none;
+    text-decoration: none;
 `;

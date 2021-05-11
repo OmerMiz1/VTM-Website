@@ -7,7 +7,7 @@ import DropDownSummary from '../../DropDown/DropDownSummay';
 import CardSummaryLogic from './CardSummary.logic'
 
 import {CradContainer, TopContainer, CardH1, CardImgContainer, IconContaner,
-     DetailsContainer, Taglist, TagItem,DateSection, CradLink,
+     DetailsContainer, Taglist, TagItem,DateSection, CradLink, LinkTag,
      BottomContainer, RatingContainer, AutorContainer, CreateBy,
      DateContainer, LeftContainer, CardTextInput} from './CardSummary.style';
 
@@ -46,7 +46,9 @@ function CardSummary(props) {
                             tag = ' ... ';
                         }
                         return (
-                            <TagItem key={index}>{stringLength(tag, 10, true)}</TagItem>
+                            <LinkTag to={'/myHome/mySummaries/filter/tags/' + tag }>
+                                <TagItem key={index}>{stringLength(tag, 10, true)}</TagItem>
+                            </LinkTag>
                         )
                     })}
                 </Taglist>

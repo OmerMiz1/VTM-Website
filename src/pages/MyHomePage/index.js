@@ -24,7 +24,8 @@ function MyHomePage() {
         FillterDataByAttribute, UnFillter} = MyHomePageFilters(mySummaries, setMyFilterSummaries);
     // api of my home page
     const {isLoading, deleteSummary, editSummary,
-        ShareSummary, toggleFavorite} = MyHomePageApi(mySummaries, setMySummaries);
+        ShareSummary, toggleFavorite} = MyHomePageApi(mySummaries, setMySummaries,
+            myFilterSummaries, setMyFilterSummaries);
 
 
     return (

@@ -7,7 +7,9 @@ const MyHomePageData = ()  => {
     const [myFilterSummaries, setMyFilterSummaries] = useState([]);
 
     useEffect(() => {
-        setMyFilterSummaries(mySummaries);
+        if (myFilterSummaries.length < 1 ) {
+            setMyFilterSummaries(mySummaries);
+        }
     }, [mySummaries])
 
 
