@@ -14,7 +14,7 @@ export const VeiwSummaryContainer = styled.section`
 export const VeiwSummaryHeaderContainer = styled.div`
     line-height: 1.5;
     font-size: ${props=> props.theme.fontSizes.medium};
-    padding: 0 40px 1em;
+    padding: 0 10% 1em;
     position: relative;
 `;
 
@@ -111,10 +111,26 @@ export const ListNotes = styled.ul`
     line-height: 2;
     justify-content: center;
     text-align: center;
-
-    
- 
 `;
 
+
+export const ViewSummaryFooter = styled.footer`
+    display: block;
+    /* justify-content: space-between; */
+    padding: 0 10%;
+    
+`;
+export const SpaceAroundContainer  = styled.div`
+    display: flex;
+    border-top: 1px solid black;
+    justify-content: space-around;
+
+`;
+
+export const TextContainer = styled.div`
+    display:flex;
+    padding: 15px 30px;
+
+`;
 
 

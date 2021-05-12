@@ -7,8 +7,8 @@ import VeiwSummaryApi from './ViewSummary.Api';
 import Loading from '../Loading';
 
 import {VeiwSummaryContainer, VeiwSummaryHeaderContainer, VeiwSummaryH1,
-    LinksContainer, VideoLink, ViewSummaryContext, ListNotes, ItemNote,
-    TimeTag, TitleTag, ContextText} from './VeiwSummary.style';
+    LinksContainer, VideoLink, ViewSummaryContext, ListNotes, ItemNote, SpaceAroundContainer,
+    TimeTag, TitleTag, ContextText, ViewSummaryFooter , TextContainer} from './VeiwSummary.style';
 
 //TODO make global ...
 import {AutorContainer, CreateBy, CardTextInput} from '../../../components/Card/CardSummary/CardSummary.style';
@@ -64,9 +64,21 @@ function VeiwSummary() {
                             }
                             
                         </ListNotes>
-
-
                     </ViewSummaryContext>
+
+                    <ViewSummaryFooter>
+                        <SpaceAroundContainer >
+                            <TextContainer>
+                                <CreateBy>Create At:</CreateBy>
+                                <CardTextInput color='black'>{viewSummary.createdTime}</CardTextInput>
+                            </TextContainer>
+
+                            <TextContainer>
+                                <CreateBy>Last Change:</CreateBy>
+                                <CardTextInput color='black'>{viewSummary.editTime}</CardTextInput>
+                            </TextContainer>
+                        </SpaceAroundContainer >
+                    </ViewSummaryFooter>
                 
                 </>
                
