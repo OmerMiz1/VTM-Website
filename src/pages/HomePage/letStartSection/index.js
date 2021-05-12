@@ -1,6 +1,6 @@
 import React from 'react';
 import {LetStartSectionContainer, LetStartContent, LetStartH1} from './letStartSection.style';
-import {SingUpBtn} from '../../../components/Buttons/Buttons.style';
+import {SingUpBtn} from '../../../components/atoms/Buttons/Buttons.style';
 import HomePageLogic from '../HomePage.logic'
 
 

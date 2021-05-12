@@ -3,9 +3,10 @@ import {SummariesContext} from '../../../../utils/context/SummariesContext';
 import {FilterMySummariesContext} from '../../../../utils/context/FilterMySummariesContext';
 
 import LoadingComponent from '../../Loading';
+import ListOfButtonsTags from '../../../../containers/ListOfButtonsTag';
+import TagsButton from '../../../../components/atoms/Buttons/TagsButton';
 
 import {MainPageContainer, MyHomePageH1} from '../../MyHomePage.style';
-import {ListOfButtonsTags, ItemButtonTag, ButtonTag, LinkTag} from './MyTags.style';
 
 
 
@@ -24,18 +25,12 @@ function MyTags() {
                 <ListOfButtonsTags margin='2% 8%'>
                     {Array.from(myFilterSummariesTags).map( (tag) => {
                         return (
-                            <ItemButtonTag key={tag}>
-                                 <LinkTag to={'/myHome/mySummaries/filter/tags/' + tag }>
-                                    <ButtonTag padding="5px 10px">{tag}</ButtonTag>
-                                 </LinkTag>
-                            </ItemButtonTag>                                
+                            <TagsButton key={tag} padding="5px 10px" text={tag} 
+                            link={'/myHome/mySummaries/filter/tags/' + tag }/>
                     )}) 
                     }
                 </ListOfButtonsTags>
             }
-        
-      
-            
         </MainPageContainer>
     )
 }

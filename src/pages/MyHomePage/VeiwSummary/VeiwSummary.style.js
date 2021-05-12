@@ -93,9 +93,6 @@ export const ContextText = styled.div`
         font-weight: 700;
 
     };
-
-
-    
     
 `;
 
@@ -124,12 +121,8 @@ export const SpaceAroundContainer  = styled.div`
     display: flex;
     border-top: 1px solid black;
     justify-content: space-around;
-
-`;
-
-export const TextContainer = styled.div`
-    display:flex;
     padding: 15px 30px;
+
 
 `;
 

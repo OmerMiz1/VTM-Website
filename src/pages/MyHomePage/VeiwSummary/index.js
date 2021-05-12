@@ -1,24 +1,19 @@
 import React, {useContext} from "react";
 import {SummariesContext} from '../../../utils/context/SummariesContext';
 import parse from 'html-react-parser';
-
-
 import VeiwSummaryApi from './ViewSummary.Api';
+
 import Loading from '../Loading';
+import AttributText from '../../../components/atoms/Texts/AttributText';
+import TagsButton from '../../../components/atoms/Buttons/TagsButton';
+import ListOfButtonsTags from '../../../containers/ListOfButtonsTag';
 
 import {VeiwSummaryContainer, VeiwSummaryHeaderContainer, VeiwSummaryH1,
     LinksContainer, VideoLink, ViewSummaryContext, ListNotes, ItemNote, SpaceAroundContainer,
-    TimeTag, TitleTag, ContextText, ViewSummaryFooter , TextContainer} from './VeiwSummary.style';
-
-//TODO make global ...
-import {AutorContainer, CreateBy, CardTextInput} from '../../../components/Card/CardSummary/CardSummary.style';
-//TODO make global ...
-import {ListOfButtonsTags, ItemButtonTag, LinkTag, ButtonTag} from '../MySummaries/MyTags/MyTags.style';
-
+    TimeTag, TitleTag, ContextText, ViewSummaryFooter } from './VeiwSummary.style';
 
 function VeiwSummary() {
     const {isLoading, setLoading , mySummaries } = useContext(SummariesContext);
-
     const {notes, viewSummary} = VeiwSummaryApi(setLoading , mySummaries);
     
     return (
@@ -29,20 +24,15 @@ function VeiwSummary() {
                 <>
                     <VeiwSummaryHeaderContainer>
                         <VeiwSummaryH1>{viewSummary.title}</VeiwSummaryH1>
-                        <AutorContainer>
-                            <CreateBy>Create By</CreateBy>
-                            <CardTextInput>{viewSummary.autorName}</CardTextInput>
-                        </AutorContainer>
+                            <AttributText attribution='Create By'
+                                textValue={viewSummary.autorName}></AttributText>
                         <LinksContainer>
                             <VideoLink href={viewSummary.url} target="_blank" rel="noopener noreferrer">Link to Video!</VideoLink>
                             <ListOfButtonsTags>
                             {viewSummary.tags.map((tag, index) => {
                                 return(
-                                    <ItemButtonTag key={index}>
-                                        <LinkTag to={'/myHome/mySummaries/filter/tags/' + tag }>
-                                        <ButtonTag>{tag}</ButtonTag>
-                                        </LinkTag>
-                                    </ItemButtonTag>
+                                    <TagsButton key={index} text={tag}
+                                    link={'/myHome/mySummaries/filter/tags/' + tag } />
                                 );
                             })}
                             </ListOfButtonsTags>
@@ -68,25 +58,17 @@ function VeiwSummary() {
 
                     <ViewSummaryFooter>
                         <SpaceAroundContainer >
-                            <TextContainer>
-                                <CreateBy>Create At:</CreateBy>
-                                <CardTextInput color='black'>{viewSummary.createdTime}</CardTextInput>
-                            </TextContainer>
+                            <AttributText attribution='Create At:'
+                                textValue={viewSummary.createdTime} color='black'></AttributText>
 
-                            <TextContainer>
-                                <CreateBy>Last Change:</CreateBy>
-                                <CardTextInput color='black'>{viewSummary.editTime}</CardTextInput>
-                            </TextContainer>
+                            <AttributText attribution='Last Change:'
+                                textValue={viewSummary.editTime} color='black'></AttributText>
                         </SpaceAroundContainer >
                     </ViewSummaryFooter>
-                
                 </>
-               
             }
                
             
-            
-
 
             
         </VeiwSummaryContainer>

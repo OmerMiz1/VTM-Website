@@ -100,25 +100,6 @@ export const RatingContainer = styled.div`
     color: red;
 
 `;
-export const AutorContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-`;
-export const CreateBy = styled.p`
-    margin: 0;
-    color: rgb(161, 161, 161);
-    font-weight: 400;
-
-`;
-export const CardTextInput = styled.div`
-    margin-left: 3px;
-    color: ${({color}) => color? 'color': 'green'};
-
-    font-weight: 800;
-`;
-
 
 export const DateContainer = styled.div`
     display: flex;
