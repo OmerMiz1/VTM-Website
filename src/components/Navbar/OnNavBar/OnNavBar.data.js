@@ -36,17 +36,17 @@ export const DataIcons = () => {
     )
 } 
 
-export const DataLeftLinks = display => {
+export const DataLeftLinks = page => {
     return ([
         {
             title:'My Summaries',
             link: '/myHome/mySummaries',
-            boarder: (display === 'mySummaries') ? 'true' : undefined,
+            boarder: (page === 'mySummaries') ? 'true' : undefined,
         },
         {
             title:'Discover',
             link: '/myHome/Discover',
-            boarder: (display === 'Discover') ?  'true' : undefined,
+            boarder: (page === 'Discover') ?  'true' : undefined,
 
         }
     ])

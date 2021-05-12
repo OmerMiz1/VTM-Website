@@ -21,12 +21,12 @@ function MyTags() {
             <LoadingComponent/>
     
             {!isMySummaryEmpty && !isLoading &&
-                <ListOfButtonsTags>
+                <ListOfButtonsTags margin='2% 8%'>
                     {Array.from(myFilterSummariesTags).map( (tag) => {
                         return (
                             <ItemButtonTag key={tag}>
                                  <LinkTag to={'/myHome/mySummaries/filter/tags/' + tag }>
-                                    <ButtonTag>{tag}</ButtonTag>
+                                    <ButtonTag padding="5px 10px">{tag}</ButtonTag>
                                  </LinkTag>
                             </ItemButtonTag>                                
                     )}) 

@@ -17,7 +17,7 @@ const MySummariesLogic = ()  => {
         setAmountSummariesShow((prevValue) => prevValue + 9);
     };
 
-    const {filter, name} = useParams();
+    const {attribute, name} = useParams();
 
     // const {url, path} = useRouteMatch();
     // console.log(`display, filter, name ->  `, display, filter, name); //TODO delet 
@@ -25,18 +25,18 @@ const MySummariesLogic = ()  => {
 
 
     useEffect(() => {
-        if (filter && name) {
+        if (attribute && name) {
             try {
-                console.log(`FillterDataByAttribute!!!!!!!!`)//TODO delete
-                FillterDataByAttribute(filter, name);
+                console.log(`FillterDataByAttribute!!!!!!!!`, attribute, name); //TODO delete
+                FillterDataByAttribute(attribute, name);
             } catch(err) {
                 UnFillter()
             }
         } else {
-            console.log(`un fillter`) //TODO delete
+            // console.log(`un fillter`) //TODO delete
             UnFillter()
         }
-    }, [filter, name])
+    }, [attribute, name])
 
 
    

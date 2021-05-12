@@ -58,11 +58,10 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
     }
 
 
-
     // MOCK get all my summary and set it on the state
     const fetchSummaries = () => {
         setLoading(true);
-        console.log('fetch all my summaries...');
+        // console.log('fetch all my summaries...');
         // mock the loading time
         setTimeout(
             () => {
@@ -72,14 +71,14 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
     }
 
     useEffect(() => {
-        console.log(`use effect fetchSummaries`);
+        // console.log(`use effect fetchSummaries`);
         fetchSummaries();
       },[]);
 
 
 
     return {
-        isLoading,
+        isLoading, setLoading,
         deleteSummary, editSummary, ShareSummary, toggleFavorite
     }
 } 

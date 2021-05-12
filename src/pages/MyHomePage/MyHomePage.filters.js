@@ -6,7 +6,7 @@ const MyHomePageFilters = (mySummaries, setMyFilterSummaries)  => {
     const [myFilterSummariesTags, setMyFilterSummariesTags] = useState([]);
 
    useEffect(() => {
-        console.log(`use effect getAllFilterTags`);
+        // console.log(`use effect getAllFilterTags`);
         getAllFilterTags(mySummaries);
     }, [mySummaries])
 

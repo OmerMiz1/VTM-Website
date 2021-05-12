@@ -46,9 +46,9 @@ function CardSummary(props) {
                             tag = ' ... ';
                         }
                         return (
-                            <LinkTag to={ tag === ' ... ' ? '/myHome/mySummaries/myTags' :
+                            <LinkTag key={index} to={ tag === ' ... ' ? '/myHome/mySummaries/myTags' :
                             '/myHome/mySummaries/filter/tags/' + tag }>
-                                <TagItem key={index}>{stringLength(tag, 10, true)}</TagItem>
+                                <TagItem>{stringLength(tag, 10, true)}</TagItem>
                             </LinkTag>
                         )
                     })}

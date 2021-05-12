@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 export const ListOfButtonsTags = styled.ul`
     list-style-type: none;
-    margin: 2% 8%;
+    margin: ${({margin}) => margin ? margin : '0' };
     padding: 0;
 
 `
@@ -20,7 +20,7 @@ export const ItemButtonTag = styled.li`
 export const ButtonTag = styled.button`
     width: 100%;
     cursor: pointer;
-    padding: 10px 20px;
+    padding: ${({padding}) => padding ? padding : "5px 10px"};
     background: none;
     color: black;
     font-size: ${(props) => props.theme.fontSizes.medium};

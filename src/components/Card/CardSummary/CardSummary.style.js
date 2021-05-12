@@ -103,6 +103,7 @@ export const RatingContainer = styled.div`
 export const AutorContainer = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
 
 `;
 export const CreateBy = styled.p`
