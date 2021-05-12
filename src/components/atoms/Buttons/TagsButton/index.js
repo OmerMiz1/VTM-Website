@@ -38,9 +38,9 @@ export const LinkTag = styled(Link)`
     list-style-type: none;
 `;
 
-function TagsButton({key, link, text ,padding}) {
+function TagsButton({keyId, link, text ,padding}) {
     return (
-        <ItemButtonTag key={key}>
+        <ItemButtonTag key={keyId}>
             <LinkTag to={link}>
             <ButtonTag padding={padding}>{text}</ButtonTag>
             </LinkTag>

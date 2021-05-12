@@ -113,13 +113,13 @@ export const ListNotes = styled.ul`
 
 export const ViewSummaryFooter = styled.footer`
     display: block;
-    /* justify-content: space-between; */
     padding: 0 10%;
     
 `;
 export const SpaceAroundContainer  = styled.div`
     display: flex;
     border-top: 1px solid black;
+    /* border-bottom: 1px solid black; */
     justify-content: space-around;
     padding: 15px 30px;
 

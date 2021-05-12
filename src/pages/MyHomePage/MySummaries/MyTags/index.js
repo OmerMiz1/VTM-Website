@@ -23,9 +23,9 @@ function MyTags() {
     
             {!isMySummaryEmpty && !isLoading &&
                 <ListOfButtonsTags margin='2% 8%'>
-                    {Array.from(myFilterSummariesTags).map( (tag) => {
+                    {Array.from(myFilterSummariesTags).map((tag, index) => {
                         return (
-                            <TagsButton key={tag} padding="5px 10px" text={tag} 
+                            <TagsButton key={index} keyId={index} padding="5px 10px" text={tag} 
                             link={'/myHome/mySummaries/filter/tags/' + tag }/>
                     )}) 
                     }

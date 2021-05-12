@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import {SummariesContext} from '../../../utils/context/SummariesContext';
 import parse from 'html-react-parser';
-import VeiwSummaryApi from './ViewSummary.Api';
+import VeiwSummaryLogic from './VeiwSummary.logic';
 
 import Loading from '../Loading';
 import AttributText from '../../../components/atoms/Texts/AttributText';
@@ -12,9 +12,15 @@ import {VeiwSummaryContainer, VeiwSummaryHeaderContainer, VeiwSummaryH1,
     LinksContainer, VideoLink, ViewSummaryContext, ListNotes, ItemNote, SpaceAroundContainer,
     TimeTag, TitleTag, ContextText, ViewSummaryFooter } from './VeiwSummary.style';
 
+
+import {faShare, faTrash , faEdit, faPrint } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+
+
+
 function VeiwSummary() {
     const {isLoading, setLoading , mySummaries } = useContext(SummariesContext);
-    const {notes, viewSummary} = VeiwSummaryApi(setLoading , mySummaries);
+    const {notes, viewSummary} = VeiwSummaryLogic(setLoading , mySummaries);
     
     return (
         <VeiwSummaryContainer>
@@ -29,12 +35,12 @@ function VeiwSummary() {
                         <LinksContainer>
                             <VideoLink href={viewSummary.url} target="_blank" rel="noopener noreferrer">Link to Video!</VideoLink>
                             <ListOfButtonsTags>
-                            {viewSummary.tags.map((tag, index) => {
-                                return(
-                                    <TagsButton key={index} text={tag}
-                                    link={'/myHome/mySummaries/filter/tags/' + tag } />
-                                );
-                            })}
+                                {viewSummary.tags.map((tag, index) => {
+                                    return(
+                                        <TagsButton key={index} keyId={index} text={tag}
+                                        link={'/myHome/mySummaries/filter/tags/' + tag } />
+                                    );
+                                })}
                             </ListOfButtonsTags>
                         </LinksContainer>
                     </VeiwSummaryHeaderContainer>
@@ -63,7 +69,13 @@ function VeiwSummary() {
 
                             <AttributText attribution='Last Change:'
                                 textValue={viewSummary.editTime} color='black'></AttributText>
-                        </SpaceAroundContainer >
+                        </SpaceAroundContainer>
+
+                        <FontAwesomeIcon color="black" icon={faPrint}></FontAwesomeIcon>
+                        <FontAwesomeIcon color="black" icon={faShare}></FontAwesomeIcon>
+                        <FontAwesomeIcon color="black" icon={faEdit}></FontAwesomeIcon>
+                        <FontAwesomeIcon color="black" icon={faTrash}></FontAwesomeIcon>
+
                     </ViewSummaryFooter>
                 </>
             }
