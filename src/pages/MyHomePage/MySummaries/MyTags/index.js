@@ -25,7 +25,7 @@ function MyTags() {
                 <ListOfButtonsTags margin='2% 8%'>
                     {Array.from(myFilterSummariesTags).map((tag, index) => {
                         return (
-                            <TagsButton key={index} keyId={index} padding="5px 10px" text={tag} 
+                            <TagsButton fontSize="22px" key={index} keyId={index} padding="5px 10px" text={tag} 
                             link={'/myHome/mySummaries/filter/tags/' + tag }/>
                     )}) 
                     }

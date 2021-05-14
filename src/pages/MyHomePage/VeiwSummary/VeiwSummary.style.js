@@ -47,8 +47,9 @@ export const VideoLink = styled.a`
 
 
 export const ViewSummaryContext = styled.section`
-    display: flex;
-    padding: 20px 8%;
+    display: block;
+    padding: 0 8%;
+    text-align: start;
 `;
 
 export const TimeTag = styled.p`
@@ -122,6 +123,7 @@ export const SpaceAroundContainer  = styled.div`
     /* border-bottom: 1px solid black; */
     justify-content: space-around;
     padding: 15px 30px;
+    
 
 
 `;

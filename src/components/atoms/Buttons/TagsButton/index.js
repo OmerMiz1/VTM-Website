@@ -14,9 +14,9 @@ export const ButtonTag = styled.button`
     width: 100%;
     cursor: pointer;
     padding: ${({padding}) => padding ? padding : "5px 10px"};
-    background: none;
+    background-color: ${({backColor}) => backColor ? backColor : "#fff"};
     color: black;
-    font-size: ${(props) => props.theme.fontSizes.medium};
+    font-size: ${({fontSize}) => fontSize ? fontSize : '100%'};
     font-weight: 600;
     line-height: 1;
     border: 1.5px solid;
@@ -38,14 +38,26 @@ export const LinkTag = styled(Link)`
     list-style-type: none;
 `;
 
-function TagsButton({keyId, link, text ,padding}) {
+function TagsButton({keyId, link, text ,padding, fontSize, backColor, fun}) {
     return (
-        <ItemButtonTag key={keyId}>
+        <ItemButtonTag key={keyId} onClick={() => fun? fun(text) : NaN}>
             <LinkTag to={link}>
-            <ButtonTag padding={padding}>{text}</ButtonTag>
+            <ButtonTag fontSize={fontSize} padding={padding}
+            backColor= {backColor} >{text}</ButtonTag>
             </LinkTag>
         </ItemButtonTag>
     )
 }
 
 export default TagsButton
+
+
+
+// {
+//     link ? <LinkTag to={link}>
+//     <ButtonTag fontSize={fontSize} padding={padding}
+//     backColor= {backColor} >{text}</ButtonTag>
+//     </LinkTag> :
+//     <ButtonTag fontSize={fontSize} padding={padding}
+//     backColor= {backColor} >{text}</ButtonTag>
+// }
