@@ -15,7 +15,7 @@ function ContentSection({notes, tags, filterTags, toggleTags}) {
         <ViewSummaryContext>
             <ListOfButtonsTags>
                     {tags.map((tag, index) => {
-                        const color = filterTags.includes(tag) ? '#aee2ae' : '#fff';
+                        const color = filterTags.includes(tag) ? '#aee2ae' : '#fff'; //TODO change colors
                         return(
                             <TagsButton fontSize='75%' key={index}
                             backColor={color} keyId={index} text={tag}

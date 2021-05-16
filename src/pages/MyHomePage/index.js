@@ -15,6 +15,8 @@ import Discover from './Discover';
 import MyTags from './MySummaries/MyTags';
 import ViewSummary from './VeiwSummary';
 
+import EditSummary from '../../components/EditForm';
+
 
 function MyHomePage() {
     const {page} = useParams();
@@ -42,8 +44,8 @@ function MyHomePage() {
                     <SideNavBar/>
                     
                     <Switch>
-                        <Route exact path={`${path}/view/:id`} component={ViewSummary}>
-                        </Route> 
+                        <Route exact path={`${path}/view/:id`} component={ViewSummary}/>
+                        <Route exact path={`${path}/edit/:id`} component={EditSummary}/>
                         <Route exact path='/myHome/:page/:attribute' component={MyTags}/>
                         <Route exact path='/myHome/:page/:action/:attribute/:name' component={MySummaries}/>                    
                         <Route exact path='/myHome/:page'>

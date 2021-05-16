@@ -7,6 +7,9 @@ import AttributText from '../../../../components/atoms/Texts/AttributText';
 import ListOfButtonsTags from '../../../../containers/ListOfButtonsTag';
 import TagsButton from '../../../../components/atoms/Buttons/TagsButton';
 
+import HeaderIconsData from './HeaderIcons.data';
+import Icon from '../../../../components/atoms/Icon';
+import IconContainer from '../../../../containers/IconContainer';
 
 function HeaderSection({viewSummary}) {
     return (
@@ -24,7 +27,17 @@ function HeaderSection({viewSummary}) {
                         );
                     })}
                 </ListOfButtonsTags>
+                <IconContainer justContent="flex-end">
+                    {HeaderIconsData().map((data, index) => {
+                        return(
+                            <Icon key={index} margin={data.margin} funOnClick={ () => data.function(data.title)}
+                            color={data.color} icon={data.icon} />
+                        )
+                    })
+                    }
+                </IconContainer>
             </LinksContainer>
+        
         </VeiwSummaryHeaderContainer>
     )
 }
