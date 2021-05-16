@@ -12,7 +12,7 @@ const CardSummaryLogic = (favorites) => {
 
    //only frontend change here  
     const toggleIsFavorite = (summaryId) => {
-        console.log(`toggleIs Favorite... now summay id: ` + summaryId + ' is - ' + isFavorite);
+        console.log(`toggleIs Favorite... now summay id: ` + summaryId + ' is - ' + isFavorite); //TODO delete
         setIsFavorite(!isFavorite);
         toggleFavorite(summaryId);
     }

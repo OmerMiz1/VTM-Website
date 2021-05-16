@@ -2,7 +2,7 @@ import React from 'react'
 import OffNavbar from '../../../components/Navbar/OffNavbar'
 import {TopSectionContainer, TopSectionContent, TopSectionItems,
      TopSectionH1, TopSectionP, ContainerP} from './TopSection.style';
-import {SingUpBtn} from '../../../components/Buttons/Buttons.style';
+import {SingUpBtn} from '../../../components/atoms/Buttons/Buttons.style';
 import HomePageLogic from '../HomePage.logic'
 
 function TopSection() {

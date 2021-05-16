@@ -26,10 +26,10 @@ function SideNavBar() {
                         
                     <SideBarItem key={index} onClick={closeMobileMenu}>
                         <SideNavLink to={item.link}>
-                            {index === 4 ? <SpanSideBar>{item.spanText}</SpanSideBar> :
+                            {!item.icon ? <SpanSideBar>{item.spanText}</SpanSideBar> :
                             <FontAwesomeIcon className='icon' key={index} icon={item.icon}></FontAwesomeIcon> 
                             }
-                            {index === 4 ? <></> :
+                            {!item.icon ? <></> :
                             <TitleItem>{item.title}</TitleItem> }
                         </SideNavLink>
 

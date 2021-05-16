@@ -4,7 +4,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {MenuContainer, MenuList, MenuButton,
   MenuItem, ItemText} from '../DropDown.style';
 
-
 function DropDownSummary(props) {
     const summaryId = props.summaryId;
 

@@ -1,12 +1,12 @@
 import React, { useContext} from 'react';
 import {SummariesContext} from '../../../utils/context/SummariesContext';
 import MySummariesLogic from './MySummaries.logic';
+import LoadingComponent from '../Loading'
 
 import CardSummary from '../../../components/Card/CardSummary';
-import {MainPageContainer, MyHomePageH1, WarningText, CardSummariesContainers,
-    CardItemContainer, Lodaing, LodaingContanir, LoadingConainer,
-    BottomContainer, ViewMoreButton,
-    loadingCircleVariants, loadingCircleTransition, loadingContainerVariants} from '../MyHomePage.style';
+import {MainPageContainer, MyHomePageH1, CardSummariesContainers,
+    CardItemContainer,BottomContainer, ViewMoreButton,} from '../MyHomePage.style';
+
 
 
 function MySummaries() {
@@ -16,36 +16,11 @@ function MySummaries() {
     // context from api
     const {isMySummaryEmpty, isLoading, myFilterSummaries } = useContext(SummariesContext);
 
+
     return (
         <MainPageContainer>
             <MyHomePageH1>My Summary:</MyHomePageH1>
-
-            {isMySummaryEmpty && !isLoading && (
-                    <WarningText>No Summaries are published yet!</WarningText>
-                )}
-
-            {myFilterSummaries.length === 0 && !isLoading && (
-                    <WarningText>Not found!!</WarningText>
-                )}
-                {isLoading &&
-                <LoadingConainer>
-                    <WarningText>Loading</WarningText>
-                        <LodaingContanir
-                        variants={loadingContainerVariants}
-                        initial="start"
-                        animate="end">
-                            <Lodaing
-                            variants={loadingCircleVariants}
-                            transition={loadingCircleTransition}></Lodaing>
-                            <Lodaing
-                            variants={loadingCircleVariants}
-                            transition={loadingCircleTransition}></Lodaing>
-                            <Lodaing
-                            variants={loadingCircleVariants}
-                            transition={loadingCircleTransition}></Lodaing>
-
-                        </LodaingContanir>   
-                </LoadingConainer>}
+            <LoadingComponent></LoadingComponent>
 
             {!isMySummaryEmpty && !isLoading &&
                 <CardSummariesContainers>

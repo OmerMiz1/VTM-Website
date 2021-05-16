@@ -17,22 +17,7 @@ export const FooterConatainer = styled.nav`
     }
 `;
 
-// Footer icon - color  size and hover
-export const FooterIcon = styled.div`
-    cursor: pointer;
-    color: #3f423e;
-    font-size: ${props => props.theme.fontSizes.icon};
-    margin: 12px 6px;
-    text-align: center;
 
-    &:not(:last-of-type) {
-        margin-right: 7px;
-    }
-
-    &:hover {
-        filter: contrast(0.6)
-    }
-`;
 
 // Footer div of content style - display , size and margin
 export const FooterContent = styled.div`

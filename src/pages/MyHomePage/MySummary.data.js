@@ -1,14 +1,15 @@
 import {useState, useEffect} from 'react';
 
 const MyHomePageData = ()  => {
+    // state of all my summaries
     const [mySummaries, setMySummaries] = useState([]);
-    // const [display, setDisplay] = useState("");
+    // state of the filter summaries
     const [myFilterSummaries, setMyFilterSummaries] = useState([]);
 
-
     useEffect(() => {
-        console.log(`useEffect!!!!`, mySummaries);
-        setMyFilterSummaries(mySummaries);
+        if (myFilterSummaries.length < 1 ) {
+            setMyFilterSummaries(mySummaries);
+        }
     }, [mySummaries])
 
 

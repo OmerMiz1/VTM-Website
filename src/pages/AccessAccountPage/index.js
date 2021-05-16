@@ -6,6 +6,7 @@ import PageContainer from '../../containers/PageContainers';
 import { InnerPageContainer } from '../../containers/PageContainers/PageContainers.style';
 import { useParams } from 'react-router-dom';
 
+
 function AccessAccountPage() {
 
     const {action} = useParams();

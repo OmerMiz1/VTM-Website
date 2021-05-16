@@ -3,7 +3,11 @@ const theme = {
         main: '#2C7CD4',
         darkMain: '#2B2E7F',
         darkGary: '#262525',
-        header: "black",
+        header: 'black',
+        gray: '#8c8c8c',
+        second: '#55A1B2',
+        secondLite: '#bcd9e0',
+
     },
 
     fontSizes: {

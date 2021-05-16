@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
+
 
 export const CradContainer = styled.div`
     height: 345px;
@@ -72,6 +74,7 @@ export const TagItem = styled.li`
     margin: 0 ${props => props.theme.spacers.small};
     border-radius: 8px;
     cursor: pointer;
+    
     /* overflow: hidden;
     white-space: nowrap; */
 `;
@@ -97,24 +100,6 @@ export const RatingContainer = styled.div`
     color: red;
 
 `;
-export const AutorContainer = styled.div`
-    display: flex;
-    align-items: center;
-
-`;
-export const CreateBy = styled.p`
-    margin: 0;
-    color: rgb(161, 161, 161);
-    font-weight: 400;
-
-`;
-export const CardTextInput = styled.div`
-    margin-left: 3px;
-    color: ${({color}) => color? 'color': 'green'};
-
-    font-weight: 800;
-`;
-
 
 export const DateContainer = styled.div`
     display: flex;
@@ -129,4 +114,11 @@ export const LeftContainer = styled.div`
     margin-right: 20px;
     cursor: pointer;
     
+`;
+
+export const LinkTag = styled(Link)`
+    display: block;
+    cursor: pointer;
+    list-style-type: none;
+    text-decoration: none;
 `;

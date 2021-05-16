@@ -22,7 +22,12 @@ export const DataOperations = [
     {
         title:'My Frinds',
         icon: faUserFriends,
-        link: '/MyFrinds'
+        link: '/myHome/MyFrinds'
+    },
+    {
+        title:'Settings',
+        icon: faTools,
+        link: '/myHome/Settings'
     },
 
     {
@@ -30,31 +35,25 @@ export const DataOperations = [
         link: '#'
 
     },
-
-    {
-        title:'Settings',
-        icon: faTools,
-        link: '/Settings'
-    },
     
     {
         title:'My Tags',
         icon: faTags,
-        link: '/myHome/Mytags'
+        link: '/myHome/mySummaries/myTags'
     }, 
     {
         title:'Favorites',
         icon: faStar,
-        link: '/myHome/filter/Favorites'
+        link: '/myHome/mySummaries/filter/favorite/true'
     },
     {
         title:'Important',
         icon: faExclamationCircle,
-        link: '/myHome/filter/Important'
+        link: '/myHome/mySummaries/filter/tags/important'
     },
     {
         title:'To do',
         icon: faCheckSquare,
-        link: '/myHome/filter/Todo'
+        link: '/myHome/mySummaries/filter/tags/todo'
     }
 ]

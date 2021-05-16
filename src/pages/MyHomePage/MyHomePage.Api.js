@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import {MockData} from './MySummary.mock'
 
-const MyHomePageApi = (mySummaries, setMySummaries)  => {
+const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries)  => {
     
     const [isLoading, setLoading] = useState(true);
 
@@ -10,7 +10,10 @@ const MyHomePageApi = (mySummaries, setMySummaries)  => {
         console.log(`api - delete id`, id);
         // fronted delete -
         const newSummaries = [...mySummaries].filter(summary => summary.id !== id);
+        const newSummariesFilter = [...myFilterSummaries].filter(summary => summary.id !== id);
+        setMyFilterSummaries(newSummariesFilter);
         setMySummaries(newSummaries);
+
     }
 
     //MOCK update summary 
@@ -31,7 +34,7 @@ const MyHomePageApi = (mySummaries, setMySummaries)  => {
         console.log(`api - edit id`, id, ' to ' ,newSummary);
 
         setMySummaries(prev => prev.map(item => (item.id === id ? newSummary : item)));
-
+        setMyFilterSummaries(prev => prev.map(item => (item.id === id ? newSummary : item)));
 
     }
 
@@ -51,30 +54,31 @@ const MyHomePageApi = (mySummaries, setMySummaries)  => {
         });
 
         setMySummaries(updateSummaries);
+
     }
 
 
-
     // MOCK get all my summary and set it on the state
-    const fetchServices = () => {
+    const fetchSummaries = () => {
         setLoading(true);
-        console.log('fetch all my summaries...');
+        // console.log('fetch all my summaries...');
         // mock the loading time
         setTimeout(
             () => {
                 setMySummaries(MockData);
                 setLoading(false);
-            }, 100);
+            }, 200);
     }
 
     useEffect(() => {
-        fetchServices();
+        // console.log(`use effect fetchSummaries`);
+        fetchSummaries();
       },[]);
 
 
 
     return {
-        isLoading,
+        isLoading, setLoading,
         deleteSummary, editSummary, ShareSummary, toggleFavorite
     }
 } 

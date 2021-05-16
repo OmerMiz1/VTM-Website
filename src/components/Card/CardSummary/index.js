@@ -4,17 +4,18 @@ import {faStar, faHeart, faEllipsisV} from '@fortawesome/free-solid-svg-icons';
 import {stringLength} from '../../../utils/function/Strings';
 
 import DropDownSummary from '../../DropDown/DropDownSummay';
-import CardSummaryLogic from './CardSummary.logic'
+import CardSummaryLogic from './CardSummary.logic';
+import AttributText from '../../atoms/Texts/AttributText';
 
 import {CradContainer, TopContainer, CardH1, CardImgContainer, IconContaner,
-     DetailsContainer, Taglist, TagItem,DateSection, CradLink,
-     BottomContainer, RatingContainer, AutorContainer, CreateBy,
-     DateContainer, LeftContainer, CardTextInput} from './CardSummary.style';
+     DetailsContainer, Taglist, TagItem,DateSection, CradLink, LinkTag,
+     BottomContainer, RatingContainer,
+     DateContainer, LeftContainer} from './CardSummary.style';
 
 
 
 function CardSummary(props) {
-    const {summaryId ,imgUrl, title, createdTime,
+    const {summaryId ,imgUrl, title,
         editTime, likes, autorName, url, tags, favorite} = props;
 
     // all the component logic
@@ -42,19 +43,22 @@ function CardSummary(props) {
             <DetailsContainer>
                 <Taglist>
                     {tags.filter((_, i) => i < 4 ).map((tag, index) => {
-                        if (index == 3) {
+                        if (index === 3) {
                             tag = ' ... ';
                         }
                         return (
-                            <TagItem key={index}>{stringLength(tag, 10, true)}</TagItem>
+                            <LinkTag key={index} to={ tag === ' ... ' ? '/myHome/mySummaries/myTags' :
+                            '/myHome/mySummaries/filter/tags/' + tag }>
+                                <TagItem>{stringLength(tag, 10, true)}</TagItem>
+                            </LinkTag>
                         )
                     })}
                 </Taglist>
 
                 <DateSection >
                     <DateContainer>
-                        <CreateBy>Last Change:</CreateBy>
-                        <CardTextInput color='black'>{editTime}</CardTextInput>
+                        <AttributText attribution='Last Change'
+                         textValue={editTime} color ='black'></AttributText>
                         <LeftContainer ref={wrapperRef}>
                             <FontAwesomeIcon onClick={toggleDropDown} icon={faEllipsisV}/>
                             {isDropDown && <DropDownSummary summaryId={summaryId}/>}
@@ -69,10 +73,8 @@ function CardSummary(props) {
                    <FontAwesomeIcon icon={faHeart} size="sm" />
                    {likes}
                 </RatingContainer>
-                <AutorContainer>
-                    <CreateBy>Create By</CreateBy>
-                    <CardTextInput>{autorName}</CardTextInput>
-                </AutorContainer>
+                    <AttributText attribution='Create By'
+                    textValue={autorName}></AttributText>
             </BottomContainer>
         </CradContainer>
         )

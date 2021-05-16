@@ -14,7 +14,7 @@ const SearchNavBarLogic = () => {
     }
 
     const startSearch = () => {
-        console.log(`search.... `, searchText)
+        console.log(`search.... `, searchText) //TODO delete
         SearchFillterData(searchText);
     }   
     
