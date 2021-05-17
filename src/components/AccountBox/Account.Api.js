@@ -1,7 +1,18 @@
 import {useContext} from 'react';
-import {Auth} from 'aws-amplify';
+import Amplify, {Auth} from 'aws-amplify';
 import {UserContext} from '../../utils/context/UserContext';
 import {useHistory} from 'react-router-dom';
+
+const awsmobile = {
+  "aws_project_region": "eu-central-1",
+  "aws_cognito_identity_pool_id": "eu-central-1:086c2808-388a-4fa4-a4b6-187b9f7b2bec",
+  "aws_cognito_region": "eu-central-1",
+  "aws_user_pools_id": "eu-central-1_pry0ETHtR",
+  "aws_user_pools_web_client_id": "6mss0vu7320s4fk1onch4eosmr",
+  "oauth": {}
+};
+
+Amplify.configure(awsmobile)
 
 const AccountApi = () => {
   const {user, setUser} = useContext(UserContext);
@@ -35,15 +46,15 @@ const AccountApi = () => {
     // data.preventDefault();  // FIXME
 
     try {
-      await Auth.signIn(data.userName, data.password)
+      await Auth.signIn(data.email, data.password)
         .then(user => {
           setUser(user);
           console.log(user); //DELETEME
           alert("Logged in");
-          history.push("/myHome");
+          // history.push("/myHome");
         });
     } catch (e) {
-      alert(e.message);
+      alert('error loging in:', e.message);
     } 
   }
 
@@ -51,7 +62,7 @@ const AccountApi = () => {
     if(user == null) {
       console.log('error: not logged-in log-out is impossible');
     }
-    
+
     try {
       await Auth.signOut()
       .then(_ => {
@@ -65,6 +76,11 @@ const AccountApi = () => {
     }
 
   }
+
+  // TODO implement, use link below:
+  // https://aws-amplify.github.io/amplify-js/api/classes/authclass.html#configure
+  const AccountForgotPassword = async () => {} 
+  const AccountConfirmForgotPassword = async () => {} 
   return {AccountSignup, AccountLogin, AccountLogout};
 }
 
