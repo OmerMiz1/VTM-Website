@@ -24,6 +24,8 @@ export const VeiwSummaryH1 = styled.h1`
     color: ${props=> props.theme.colors.header};
     font-size: ${props=> props.theme.fontSizes.headerMobile};
     font-weight: 800;
+    display: unset;
+    margin-right: 10px;
     
 `;
 

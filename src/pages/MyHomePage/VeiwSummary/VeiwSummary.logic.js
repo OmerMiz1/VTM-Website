@@ -11,7 +11,13 @@ const VeiwSummaryLogic = (setLoading , mySummaries)  => {
     const [filterTagsNotes, setFilterTagsNotes] = useState([]);
 
     const [viewSummary, setViewSummary] = useState();
+
+    const [mode, setMode] = useState('view');
     const params = useParams();
+
+    const toggleMode = () =>  {
+        setMode( mode==='view' ? 'edit' : 'view');
+    };
 
 
 
@@ -53,7 +59,8 @@ const VeiwSummaryLogic = (setLoading , mySummaries)  => {
 
     return {
         notes, viewSummary, allTagsNotes, 
-        filterTagsNotes, toggleFilterNote
+        filterTagsNotes, toggleFilterNote,
+        toggleMode , mode
 
     }
 } 
