@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 
-import {VeiwSummaryHeaderContainer, VeiwSummaryH1,
+import {VeiwSummaryHeaderContainer, VeiwSummaryH1, VeiwSummaryH1Edit,
     LinksContainer, VideoLink} from '.././VeiwSummary.style';
 
 import AttributText from '../../../../components/atoms/Texts/AttributText';
@@ -11,18 +11,61 @@ import HeaderIconsData, { EditIcons} from './HeaderIcons.data';
 import Icon from '../../../../components/atoms/Icon';
 import IconContainer from '../../../../containers/IconContainer';
 
-function HeaderSection({viewSummary , mode}) {
+function HeaderSection({viewSummary, editSummary,  mode}) {
 
-    const IconData = HeaderIconsData(mode)
+    const titleInput = useRef();
+
+    const [editTitle, setEditTitle] = useState(false);
+    const [Title, setTitle] = useState(viewSummary.title);
+
+    const toggleEditTitle = () => {
+        if (mode.mode === 'edit') {
+            setEditTitle(!editTitle);
+        }
+    }
+
+    const modeToggle =  () => {
+        setEditTitle(false);
+        mode.toggleMode();
+    }
+
+    const updateTitle = () =>  {
+        console.log(`upadate!!!`, titleInput.current.value);
+        setTitle(titleInput.current.value);
+        // send the change!!!
+        let copySummary = {...viewSummary};
+        console.log(`copySummary`, copySummary);
+        copySummary.title = titleInput.current.value;
+        console.log(`copySummary2 --> `, copySummary);
+
+
+
+        editSummary(viewSummary.id, copySummary );
+        setEditTitle(false);           
+    }
+
+    const IconData = HeaderIconsData(mode.mode, modeToggle);
+
 
     return (
         <VeiwSummaryHeaderContainer>
-            <VeiwSummaryH1>{viewSummary.title}</VeiwSummaryH1>
                 {
-                    mode.mode === 'edit' &&
-                    <Icon color={ EditIcons.pen.color} icon={ EditIcons.pen.icon}
-                     funOnClick={() => EditIcons.pen.function( EditIcons.pen.title)}/>
+                    editTitle ?
+                    <VeiwSummaryH1Edit>
+                        <input ref={titleInput} type='text' defaultValue={Title}></input>
+                        <Icon margin={EditIcons.check.margin} color={ EditIcons.check.color} icon={EditIcons.check.icon} 
+                        funOnClick={updateTitle}/>
+                    </VeiwSummaryH1Edit>:
+                    <VeiwSummaryH1 onDoubleClick= {toggleEditTitle}>{Title}</VeiwSummaryH1>
                 }
+                {
+                    mode.mode === 'edit'  ? 
+                    <Icon color={ !editTitle ? EditIcons.pen.color : EditIcons.times.color} icon={ !editTitle ? EditIcons.pen.icon : EditIcons.times.icon} 
+                     funOnClick={toggleEditTitle }/>:
+                     <> </>
+                }
+                
+
                 <AttributText attribution='Create By'
                     textValue={viewSummary.autorName}></AttributText>
             <LinksContainer>

@@ -16,7 +16,7 @@ export const  fetchNotes = (id, setNotes, setLoading) => {
             });
             setNotes(dataNotes);
             setLoading(false);
-        }, 1500);
+        }, 200);
 };
 
 

@@ -18,8 +18,16 @@ export const VeiwSummaryHeaderContainer = styled.div`
     position: relative;
 `;
 
-//not change...
 export const VeiwSummaryH1 = styled.h1`
+    margin-top: ${props => props.theme.spacers.medium};
+    color: ${props=> props.theme.colors.header};
+    font-size: ${props=> props.theme.fontSizes.headerMobile};
+    font-weight: 800;
+    display: inline-flex;
+    margin-right: 10px;
+    
+`;
+export const VeiwSummaryH1Edit = styled.div`
     margin-top: ${props => props.theme.spacers.medium};
     color: ${props=> props.theme.colors.header};
     font-size: ${props=> props.theme.fontSizes.headerMobile};
