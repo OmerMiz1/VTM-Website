@@ -53,12 +53,12 @@ export const EditButton = styled.p`
 
 function TagsButton({keyId, link, text ,padding, fontSize, backColor, fun, editMode}) {
     return (
-        <ItemButtonTag key={keyId} onClick={() => fun? fun(text) : NaN}>
+        <ItemButtonTag key={keyId} onClick={() => fun && !editMode ? fun(text) : NaN}>
             <LinkTag to={link}>
             <ButtonTag fontSize={fontSize} padding={padding} cursor={editMode}
                 backColor= {backColor} >{text}
                 {
-                    editMode === 'edit' && <EditButton onClick={ () => console.log(`edit`)}>X</EditButton> 
+                    editMode === 'edit' && <EditButton onClick={fun}>X</EditButton> 
                 }      
             </ButtonTag>
             </LinkTag>

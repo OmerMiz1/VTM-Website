@@ -144,9 +144,41 @@ export const SpaceAroundContainer  = styled.div`
     /* border-bottom: 1px solid black; */
     justify-content: space-around;
     padding: 15px 30px;
-    
-
-
 `;
 
+
+export const AddContainer = styled.li`
+    position: relative;
+    display: inline-block;
+    margin: 0.5rem;
+    list-style-type: none;
+
+
+    input[type="text"] {
+    width: 200px;
+    height: 20px;
+    padding-right: 50px;
+    }
+
+    input[type="submit"] {
+    position:absolute;
+    height: 20px;
+    width: 50px;
+    background: #578457;
+    color: white;
+    border: 0;
+    -webkit-appearance: none;
+    top:45px;
+    right:0;
+    }    
+`;
+
+export const InputAddTag = styled.input`
+    display: block;
+    position:absolute;
+    top:45px;
+    right:0;
+    font-weight:700;
+    
+`;
 
