@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 
 import {VeiwSummaryHeaderContainer, VeiwSummaryH1, VeiwSummaryH1Edit,
-    LinksContainer, VideoLink} from '.././VeiwSummary.style';
+    InputH1,  LinksContainer, VideoLink} from '.././VeiwSummary.style';
 
 import AttributText from '../../../../components/atoms/Texts/AttributText';
 import ListOfButtonsTags from '../../../../containers/ListOfButtonsTag';
@@ -12,6 +12,8 @@ import Icon from '../../../../components/atoms/Icon';
 import IconContainer from '../../../../containers/IconContainer';
 
 function HeaderSection({viewSummary, editSummary,  mode}) {
+
+    //TODO FIX THIS (PUT ON LOGIC!)
 
     const titleInput = useRef();
 
@@ -52,7 +54,7 @@ function HeaderSection({viewSummary, editSummary,  mode}) {
                 {
                     editTitle ?
                     <VeiwSummaryH1Edit>
-                        <input ref={titleInput} type='text' defaultValue={Title}></input>
+                        <InputH1 ref={titleInput} type='text' defaultValue={Title}></InputH1>
                         <Icon margin={EditIcons.check.margin} color={ EditIcons.check.color} icon={EditIcons.check.icon} 
                         funOnClick={updateTitle}/>
                     </VeiwSummaryH1Edit>:

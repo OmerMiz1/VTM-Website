@@ -27,6 +27,17 @@ export const VeiwSummaryH1 = styled.h1`
     margin-right: 10px;
     
 `;
+export const InputH1 = styled.input`
+    margin-top: ${props => props.theme.spacers.medium};
+    color: ${props=> props.theme.colors.nav};
+    font-size: ${props=> props.theme.fontSizes.headerMobile};
+    font-weight: 600;
+    margin-right: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    
+`;
 export const VeiwSummaryH1Edit = styled.div`
     margin-top: ${props => props.theme.spacers.medium};
     color: ${props=> props.theme.colors.header};
