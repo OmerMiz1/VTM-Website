@@ -12,9 +12,9 @@ export const ItemButtonTag = styled.li`
 
 export const ButtonTag = styled.button`
     width: 100%;
-    cursor: pointer;
-    padding: ${({padding}) => padding ? padding : "5px 10px"};
-    background-color: ${({backColor}) => backColor ? backColor : "#fff"};
+    cursor: ${({cursor}) => cursor === 'edit' ? 'default': 'pointer' } ;
+    padding: ${({padding}) => padding ? padding : '5px 10px'};
+    background-color: ${({backColor}) => backColor ? backColor : '#fff'};
     color: black;
     font-size: ${({fontSize}) => fontSize ? fontSize : '100%'};
     font-weight: 600;
@@ -34,30 +34,36 @@ export const ButtonTag = styled.button`
 export const LinkTag = styled(Link)`
     display: block;
     color: gray;
-    cursor: pointer;
     list-style-type: none;
+    cursor: default;
+`;
+export const EditButton = styled.p`
+    display: inherit;
+    color: red;
+    font-size: 10px;
+    padding: 2px 2px;
+    margin: 0 0px 0 10px;
+    top: -6px;
+    position: relative;
+    border-radius: 30%;
+    font-weight: 700;
+    border: 1px solid gray;
+    cursor: pointer;
 `;
 
-function TagsButton({keyId, link, text ,padding, fontSize, backColor, fun}) {
+function TagsButton({keyId, link, text ,padding, fontSize, backColor, fun, editMode}) {
     return (
-        <ItemButtonTag key={keyId} onClick={() => fun? fun(text) : NaN}>
+        <ItemButtonTag key={keyId} onClick={() => fun && !editMode ? fun(text) : NaN}>
             <LinkTag to={link}>
-            <ButtonTag fontSize={fontSize} padding={padding}
-            backColor= {backColor} >{text}</ButtonTag>
+            <ButtonTag fontSize={fontSize} padding={padding} cursor={editMode}
+                backColor= {backColor} >{text}
+                {
+                    editMode === 'edit' && <EditButton onClick={fun}>X</EditButton> 
+                }      
+            </ButtonTag>
             </LinkTag>
         </ItemButtonTag>
     )
 }
 
 export default TagsButton
-
-
-
-// {
-//     link ? <LinkTag to={link}>
-//     <ButtonTag fontSize={fontSize} padding={padding}
-//     backColor= {backColor} >{text}</ButtonTag>
-//     </LinkTag> :
-//     <ButtonTag fontSize={fontSize} padding={padding}
-//     backColor= {backColor} >{text}</ButtonTag>
-// }

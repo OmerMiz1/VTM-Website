@@ -12,8 +12,11 @@ import HomePage from './pages/HomePage'
 import AccessAccountPage from './pages/AccessAccountPage';
 import MyHomePage from './pages/MyHomePage';
 
+<<<<<<< HEAD
 // Contexts
 import { UserContext } from './utils/context/UserContext';
+=======
+>>>>>>> main
 
 function App() {
   const [user, setUser] = useState(null);
@@ -21,6 +24,7 @@ function App() {
   return (
     <Router>
       <ThemeProvider theme= {Theme}>
+<<<<<<< HEAD
         <GlobalStyle/>
         <UserContext.Provider value={{user, setUser}}>
           <Switch>
@@ -35,6 +39,20 @@ function App() {
             <Redirect to="/notFound404" />
           </Switch>
         </UserContext.Provider>
+=======
+      <GlobalStyle/>
+        <Switch>
+          <Route exact path='/' component={HomePage}/>
+          <Route exact path='/home' component={HomePage}/>
+          <Route exact path='/about' component={HomePage}/>
+          <Route exact path='/getstart' component={HomePage}/>
+          <Route exact path='/download' component={HomePage}/>
+          <Route path='/myHome/:page' component={MyHomePage}/> 
+          <Route exact path='/access/:action' component={AccessAccountPage}/>
+          <Route exact path="/notFound404" component={NotFound404}/>
+          <Redirect to="/notFound404" />
+        </Switch>
+>>>>>>> main
       </ThemeProvider>
     </Router>
   );

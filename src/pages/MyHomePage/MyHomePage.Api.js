@@ -5,12 +5,22 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
     
     const [isLoading, setLoading] = useState(true);
 
-    //MOCK update summary 
-    const editSummary = (id) => {
-        console.log(`api - edit id`, id, ' to ' ,newSummary); // DELETEME
+    //MOCK delete summary and all the notes.. 
+    const deleteSummary = (id) => {
+        console.log(`api - delete id`, id);
+        // fronted delete -
+        const newSummaries = [...mySummaries].filter(summary => summary.id !== id);
+        const newSummariesFilter = [...myFilterSummaries].filter(summary => summary.id !== id);
+        setMyFilterSummaries(newSummariesFilter);
+        setMySummaries(newSummaries);
 
+    }
+
+    //MOCK update summary 
+    const editSummary = (id , updateSummary) => {
         //Mock edit summary
-        const newSummary = {
+        const newSummary = updateSummary ? updateSummary: 
+        {
             id: id,
             favorite: false,
             title: 'this is edit mock',
@@ -24,8 +34,6 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 
         setMySummaries(prev => prev.map(item => (item.id === id ? newSummary : item)));
         setMyFilterSummaries(prev => prev.map(item => (item.id === id ? newSummary : item)));
-
-    }
 
     //MOCK delete summary and all the notes.. 
     const deleteSummary = (id) => {
@@ -41,7 +49,6 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
     const ShareSummary = (id) => {
         console.log(`api - sharing id`, id)
     }
-
     //MOCK need add send to data the toggle
     const toggleFavorite = (id) => {
         console.log(`api - toggle Favorite id`, id);

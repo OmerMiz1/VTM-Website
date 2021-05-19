@@ -7,6 +7,7 @@ const IconItem = styled.div`
     margin: ${({margin}) => margin ? margin : '0'};
     font-size: ${({fontSize}) => fontSize ? fontSize : '25px'};
     cursor: pointer;
+    display: inline-table;
     &:hover {
         filter: contrast(0.6)
     }
