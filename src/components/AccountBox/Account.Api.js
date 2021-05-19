@@ -3,6 +3,7 @@ import Amplify, {Auth} from 'aws-amplify';
 import {UserContext} from '../../utils/context/UserContext';
 import {useHistory} from 'react-router-dom';
 
+// FIXME take out hardcoded config!
 const awsmobile = {
   "aws_project_region": "eu-central-1",
   "aws_cognito_identity_pool_id": "eu-central-1:086c2808-388a-4fa4-a4b6-187b9f7b2bec",
@@ -11,20 +12,20 @@ const awsmobile = {
   "aws_user_pools_web_client_id": "6mss0vu7320s4fk1onch4eosmr",
   "oauth": {}
 };
-
 Amplify.configure(awsmobile)
 
 const AccountApi = () => {
   const {user, setUser} = useContext(UserContext);
-  const {history} = useHistory();
+  const history = useHistory();
 
   const AccountSignup = async (data) => {
     console.log('sign up:' ,data); //DELETEME
     // data.preventDefault(); // FIXME
 
-    let username = data.email  // TODO change to username?
-    let password = data.password
-    let email = data.email
+    let username = data.email;  // TODO change to username?
+    let password = data.password;
+    let email = data.email;
+
     try {
       const { user } = await Auth.signUp({
           username,
@@ -34,6 +35,7 @@ const AccountApi = () => {
           },
       });
       console.log(user);  //DELETEME
+      history.push('/myHome');
     } catch (error) {
       console.log('error signing up:', error);
       return;
@@ -51,7 +53,7 @@ const AccountApi = () => {
           setUser(user);
           console.log(user); //DELETEME
           alert("Logged in");
-          // history.push("/myHome");
+          history.push("/myHome:mySummaries");
         });
     } catch (e) {
       alert('error loging in:', e.message);

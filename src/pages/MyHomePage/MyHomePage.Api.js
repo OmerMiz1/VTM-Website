@@ -5,19 +5,10 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
     
     const [isLoading, setLoading] = useState(true);
 
-    //MOCK delete summary and all the notes.. 
-    const deleteSummary = (id) => {
-        console.log(`api - delete id`, id);
-        // fronted delete -
-        const newSummaries = [...mySummaries].filter(summary => summary.id !== id);
-        const newSummariesFilter = [...myFilterSummaries].filter(summary => summary.id !== id);
-        setMyFilterSummaries(newSummariesFilter);
-        setMySummaries(newSummaries);
-
-    }
-
     //MOCK update summary 
     const editSummary = (id) => {
+        console.log(`api - edit id`, id, ' to ' ,newSummary); // DELETEME
+
         //Mock edit summary
         const newSummary = {
             id: id,
@@ -31,11 +22,20 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
             url: 'https://www.google.com/',
         }
 
-        console.log(`api - edit id`, id, ' to ' ,newSummary);
-
         setMySummaries(prev => prev.map(item => (item.id === id ? newSummary : item)));
         setMyFilterSummaries(prev => prev.map(item => (item.id === id ? newSummary : item)));
 
+    }
+
+    //MOCK delete summary and all the notes.. 
+    const deleteSummary = (id) => {
+        console.log(`api - delete id`, id); // DELETEME
+        
+        // fronted delete -
+        const newSummaries = [...mySummaries].filter(summary => summary.id !== id);
+        const newSummariesFilter = [...myFilterSummaries].filter(summary => summary.id !== id);
+        setMyFilterSummaries(newSummariesFilter);
+        setMySummaries(newSummaries);
     }
 
     const ShareSummary = (id) => {
