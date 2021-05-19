@@ -42,7 +42,6 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
     const ShareSummary = (id) => {
         console.log(`api - sharing id`, id)
     }
-
     //MOCK need add send to data the toggle
     const toggleFavorite = (id) => {
         console.log(`api - toggle Favorite id`, id);
