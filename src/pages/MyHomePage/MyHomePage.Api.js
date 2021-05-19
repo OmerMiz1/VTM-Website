@@ -31,7 +31,7 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
             autorName:'Shon Pozner',
             url: 'https://www.google.com/',
         }
-
+    }
         setMySummaries(prev => prev.map(item => (item.id === id ? newSummary : item)));
         setMyFilterSummaries(prev => prev.map(item => (item.id === id ? newSummary : item)));
 
