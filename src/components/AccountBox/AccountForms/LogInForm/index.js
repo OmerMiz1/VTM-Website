@@ -16,7 +16,7 @@ export function LoginForm(props) {
   const {swichToSingUp} = useContext(AccountContext)
 
   // account api - post login:
-  const {AccountLogin} = AccountApi();
+  const {Login} = AccountApi();
 
   // Valdation state from useSignupSchema (schema)
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -26,7 +26,7 @@ export function LoginForm(props) {
   return (
     <BoxContainer>
       <MrginSpanHeight height='30px'/>
-      <FormContainer onSubmit={handleSubmit(AccountLogin)}>
+      <FormContainer onSubmit={handleSubmit(Login)}>
         <Input type='email' placeholder='Email' name='email' {...register("email")}/>
         <ValidsionWarnnig> {errors.email?.message} </ValidsionWarnnig>
         <MrginSpanHeight height='12px'/>

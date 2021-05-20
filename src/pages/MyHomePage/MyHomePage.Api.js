@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
-import Amplify, {API, Storage} from 'aws-amplify';
+import Amplify, {API, Auth} from 'aws-amplify';
 import {MockData} from './MySummary.mock';
+import { string } from 'yup';
 
 // FIXME take out hardcoded config!
 const awsmobile = {
@@ -33,17 +34,35 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
     const partitionKey = 'sid';
     const sortKey = 'author';
 
-
     const [isLoading, setLoading] = useState(true);
-    // const [summaryId, setSummaryId] = useState('');
-    // const [summaryAuthor, setSummaryAuthor] = useState('');
+
+
+    // MOCK get all my summary and set it on the state
+    const fetchSummaries = () => {
+        setLoading(true);
+        // console.log('fetch all my summaries...');
+
+        // MOCK
+        setTimeout(() => {
+                setMySummaries(MockData);
+                setLoading(false);
+        }, 200);
+    }
+
+    const getSummaries = async () => {
+        return API.get(apiName, path, {
+            "queryStringParameters": {
+                author: "Shon Pozner"
+            }
+        });
+    }
 
     // TODO consider using PUT instead of POST
     const postSummary = async (sid, author, url, title, tags, summary) => {
         let msgBody = {
             body: {
                 sid: sid,
-                author: author,
+                author: author, //TODO change to user.userName
                 url: url,
                 title: title,
                 tags: tags,
@@ -53,8 +72,6 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 
         return await API.post(apiName, path, msgBody);
     }
-
-
 
     //MOCK update summary
     const editSummary = (id , updateSummary) => {
@@ -75,6 +92,7 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
         setMySummaries(prev => prev.map(item => (item.id === id ? newSummary : item)));
         setMyFilterSummaries(prev => prev.map(item => (item.id === id ? newSummary : item)));
     }
+
     //MOCK delete summary and all the notes.. 
     const deleteSummary = (id) => {
         console.log(`api - delete id`, id); // DELETEME
@@ -103,47 +121,19 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
         setMySummaries(updateSummaries);
     }
 
-
-    // MOCK get all my summary and set it on the state
-    const fetchSummaries = async () => {
-        setLoading(true);
-        // console.log('fetch all my summaries...');
-
-        // MOCK
-        setTimeout(() => {
-                setMySummaries(MockData);
-                setLoading(false);
-        }, 200);
-
-        API
-        .get(apiName, path+'/'+partitionKey).then((response) => console.log(response))
-        .then(response => console.log(response))
-        .catch(error => {
-            console.log('error get summary:', error)
-        });
-
-        let msgBody = {
-            body: {
-                sid: 'sid2',
-                author: 'author2',
-                url: 'url2',
-                summary: [
-                    [1, 'note1'],
-                    [2, 'note2']
-                ]
-            }
-        };
-
-        await postSummary('sid2', 'author2', 'url2', msgBody);
-    }
-
     //DELETEME
-    useEffect(() => {
+    useEffect(async () => {
+        //MOCK
         fetchSummaries();
-        postSummary('sid1', 'author1', 'url1', 'title1', ['tag1', 'tag2'], ['note1', 'note2']) // MOCK
+        // let user = await Auth.currentAuthenticatedUser();
+        // console.log(user);
+
+        getSummaries()
+        .then(response => console.log('Received summaries:', response))
+        .catch(error => console.log('Error getting summaries:', error));
+        
+        // postSummary('sid1', 'author1', 'url1', 'title1', ['tag1', 'tag2'], ['note1', 'note2']) // MOCK
     }, []);
-
-
 
     return {
         isLoading, setLoading,
