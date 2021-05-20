@@ -53,7 +53,7 @@ const AccountApi = () => {
           setUser(user);
           console.log(user); //DELETEME
           alert("Logged in");
-          history.push("/myHome:mySummaries");
+          history.push("/myHome/mySummaries");
         });
     } catch (e) {
       alert('error loging in:', e.message);
