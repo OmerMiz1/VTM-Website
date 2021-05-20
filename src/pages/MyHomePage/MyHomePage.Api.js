@@ -18,6 +18,7 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 
     //MOCK update summary 
     const editSummary = (id , updateSummary) => {
+
         //Mock edit summary
         const newSummary = updateSummary ? updateSummary: 
         {

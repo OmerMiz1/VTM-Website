@@ -61,7 +61,6 @@ function HeaderSection({viewSummary, editSummary,  mode}) {
                      funOnClick={toggleShowAddTagInput}/>
                      <SubmitButton visibility= {showAddTagInput} ref={addTagInputRef} 
                      placeHolder = 'Enter new tag' submitValue='Add' submitFun={() => addTag()} />
-                     
                     </AddContainer>
 
                 }
