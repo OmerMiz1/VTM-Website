@@ -25,7 +25,7 @@ function MyHomePage() {
     const {SearchFillterData, myFilterSummariesTags,
         FillterDataByAttribute, UnFillter} = MyHomePageFilters(mySummaries, setMyFilterSummaries);
     // api of my home page
-    const {isLoading, setLoading, deleteSummary, editSummary,
+    const {isLoading, setLoading, addSummary, deleteSummary, editSummary,
         ShareSummary, toggleFavorite} = MyHomePageApi(mySummaries, setMySummaries,
             myFilterSummaries, setMyFilterSummaries);
 
@@ -35,7 +35,7 @@ function MyHomePage() {
 
 
     return (
-        <SummariesContext.Provider value={{isMySummaryEmpty, mySummaries, isLoading, setLoading, myFilterSummaries,
+        <SummariesContext.Provider value={{isMySummaryEmpty, mySummaries, isLoading, setLoading, myFilterSummaries, addSummary,
             deleteSummary, editSummary, ShareSummary, toggleFavorite}}>
             <FilterMySummariesContext.Provider value= {{SearchFillterData, myFilterSummariesTags,
                  FillterDataByAttribute, UnFillter}} >

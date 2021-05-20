@@ -58,6 +58,14 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 
     }
 
+    // TODO add 
+    const addSummary = (newSummary) => {
+        console.log(`add summay -> `, newSummary );
+
+        setMySummaries([...mySummaries, newSummary]); 
+        setMyFilterSummaries( [...myFilterSummaries, newSummary]);
+    }
+
 
     // MOCK get all my summary and set it on the state
     const fetchSummaries = () => {
@@ -79,7 +87,7 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 
 
     return {
-        isLoading, setLoading,
+        isLoading, setLoading, addSummary,
         deleteSummary, editSummary, ShareSummary, toggleFavorite
     }
 } 

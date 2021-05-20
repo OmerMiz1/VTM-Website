@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import BrandLogo from '../../BrandLogo';
 import NavbarLogic from '../Navbar.logic';
 import SearchNavBar from '../SearchNavBar';
@@ -13,6 +13,11 @@ import ToolTip from '../../ToolTip'
 // icons
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
+
+//TODO DELETE:
+import AddForm from '../../../components/atoms/Forms/AddForm';
+
+
 function NavBar(props) {
     const {useTransparent, PositionMarker} = props;
     const {clickedOnMenu, closeMobileMenu} = NavbarLogic()
@@ -21,6 +26,13 @@ function NavBar(props) {
     // close when click outside
     useOutsideCloseMenu(wrapperRef);
 
+
+    //TODO DELETE
+    const [showForm, setShowForm] = useState(false);
+
+    const toggleShow  = () => {
+        setShowForm(!showForm);
+    }
 
     return (
         <NavbarSection useTransparent={useTransparent}>
@@ -56,7 +68,10 @@ function NavBar(props) {
                                             <FontAwesomeIcon onClick={ toggleUserDropDown} icon={item.icon}/>
                                             {isUseDropDown && <DropDownUser summaryId={1}/>}
                                         </SeparatorLine>:
-                                        <FontAwesomeIcon onClick={() => item.function(item.toolTipText)} icon={item.icon}/>
+                                        <>
+                                            <FontAwesomeIcon onClick={() => toggleShow()} icon={item.icon}/>
+                                            { item.toolTipText === 'Add' && showForm && <AddForm></AddForm>}
+                                        </>
                                         }
                                     </ToolTip>
                             </NavItem>
