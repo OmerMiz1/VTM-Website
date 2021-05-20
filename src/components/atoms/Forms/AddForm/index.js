@@ -68,14 +68,17 @@ function AddForm({close}) {
   return (
     <Contaner onSubmit={handleSubmit(onSubmit)}>
         <div>
+            {/* name of the filde is id -> not sid */}
             <LableText>Sid</LableText>
             <input defaultValue={Math.floor(Math.random() * 10000)} placeholder='1' type='number' name='id' {...register("id")} />
         </div>
         <div>
+              {/* name of the filde is autorName -> not author */}
              <LableText>author</LableText>
              <input  defaultValue='author' placeholder='author' type='text' name='autorName'  {...register("autorName")}></input>
          </div>
          <div>
+             {/* url -> if not valid open new window of this page */}
              <LableText>url</LableText>
              <input defaultValue='url' placeholder='url' type='text' name='url' {...register("url")}></input>
          </div>
@@ -84,15 +87,18 @@ function AddForm({close}) {
              <input  defaultValue='Title' placeholder='Title' type='text' name='title' {...register("title")}></input>
          </div>
          <div>
+            {/* tag - must be array...  -> split spase with createTagsArrays */}
              <LableText>tags</LableText>
              <input  placeholder='tags' type='text' defaultValue='tags' name='tages' {...register("tags")}></input>
          </div>
          <div>
+              {/* Likes - must be int */}
              <LableText>Likes</LableText>
              <input  placeholder='0' type='number' defaultValue={0} name='likes' {...register('likes')}></input>
          </div>
 
          <div>
+           {/* imgUrl - Choosing an image, in practice one should think about the method of preserving the image */}
             <LableText>imgUrl</LableText>
             <select {...register("imgUrl")}>
               <option value={img1}>MassesWisdom</option>
@@ -103,6 +109,7 @@ function AddForm({close}) {
          </div>
 
          <div>
+          {/* favorite true or false */}
              <LableText>favorite</LableText>
              <input type='checkbox' defaultValue={0} name='favorite' {...register("favorite")}></input>
          </div>
