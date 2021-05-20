@@ -70,7 +70,7 @@ function NavBar(props) {
                                         </SeparatorLine>:
                                         <>
                                             <FontAwesomeIcon onClick={() => toggleShow()} icon={item.icon}/>
-                                            { item.toolTipText === 'Add' && showForm && <AddForm></AddForm>}
+                                            { item.toolTipText === 'Add' && showForm && <AddForm close={toggleShow}/>}
                                         </>
                                         }
                                     </ToolTip>
