@@ -1,12 +1,12 @@
-import React, {useState, useRef} from 'react';
+import React from 'react';
 
 import {VeiwSummaryHeaderContainer, VeiwSummaryH1, VeiwSummaryH1Edit,
-    InputAddTag, AddContainer, InputH1,  LinksContainer, VideoLink} from '.././VeiwSummary.style';
+    AddContainer, InputH1,  LinksContainer, VideoLink} from '.././VeiwSummary.style';
 
 import AttributText from '../../../../components/atoms/Texts/AttributText';
 import ListOfButtonsTags from '../../../../containers/ListOfButtonsTag';
 import TagsButton from '../../../../components/atoms/Buttons/TagsButton';
-
+import {SubmitButton} from '../../../../components/atoms/Buttons/SubmitButton';
 import HeaderLogic from './Header.logic';
 
 import HeaderIconsData, { EditIcons} from './HeaderIcons.data';
@@ -15,27 +15,12 @@ import IconContainer from '../../../../containers/IconContainer';
 
 function HeaderSection({viewSummary, editSummary,  mode}) {
 
-    const {titleInputRef, Title, modeToggle, updateTitle, editTitle,  toggleEditTitle} = HeaderLogic(editSummary, mode, viewSummary)
+    const {titleInputRef, Title, modeToggle, updateTitle, editTitle,  toggleEditTitle,
+        addTagInputRef, toggleShowAddTagInput, deleteTag,
+        addTag, tags, showAddTagInput} = HeaderLogic(editSummary, mode, viewSummary);
+
 
     const IconData = HeaderIconsData(mode.mode, modeToggle);
-
-
-    const [tags, setTags] = useState(viewSummary.tags);
-
-    const deleteTag = (id, myTag) => {
-        console.log(`delet id: `,id , ' and tag -> ' , myTag);
-        const newTags = tags.filter(tag => tag !== myTag );
-        setTags(newTags);
-    }
-
-    const addTag = (newTag) => {
-        if (!tags.includes(newTag)) {
-            const newTags = [... tags , newTag];
-            setTags(newTags);
-        }
-
-    }
-
 
 
     return (
@@ -72,10 +57,11 @@ function HeaderSection({viewSummary, editSummary,  mode}) {
                 {
                     mode.mode === 'edit' &&
                     <AddContainer>
-                    <Icon color={ EditIcons.plus.color} icon={ EditIcons.plus.icon}
-                     funOnClick={() => addTag("neew")}/>
-                     <InputAddTag type="text" placeholder="fasdfa"></InputAddTag>
-                     <input value="Add" type="submit"></input>
+                    <Icon color={EditIcons.plus.color} icon={ showAddTagInput ? EditIcons.minus.icon: EditIcons.plus.icon }
+                     funOnClick={toggleShowAddTagInput}/>
+                     <SubmitButton visibility= {showAddTagInput} ref={addTagInputRef} 
+                     placeHolder = 'Enter new tag' submitValue='Add' submitFun={() => addTag()} />
+                     
                     </AddContainer>
 
                 }

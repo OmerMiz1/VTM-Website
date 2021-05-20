@@ -1,6 +1,6 @@
 // icons
 import {faEye,  faShare, faTrash , faEdit, faPrint,
-    faCheck, faPlus, faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
+    faCheck, faPlus, faPencilAlt, faTimes, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 const mockFunction = title => {
     console.log(`mock! ---> clicked on - `, title)
@@ -13,6 +13,14 @@ export const EditIcons = {
         color:'#578457', //TODO
         margin:'0 10px',
         title: 'add',
+        function: mockFunction
+    },
+    minus:
+    {
+        icon: faMinus,
+        color:'gray', //TODO
+        margin:'0 10px',
+        title: 'minus',
         function: mockFunction
     },
     pen:

@@ -164,21 +164,11 @@ export const AddContainer = styled.li`
     position:absolute;
     height: 20px;
     width: 50px;
-    background: #578457;
-    color: white;
-    border: 0;
-    -webkit-appearance: none;
+    
     top:45px;
     right:0;
     }    
 `;
 
-export const InputAddTag = styled.input`
-    display: block;
-    position:absolute;
-    top:45px;
-    right:0;
-    font-weight:700;
-    
-`;
+
 
