@@ -21,7 +21,7 @@ function VeiwSummary() {
             { (viewSummary !== undefined)  && !isLoading &&
                 <>
                     <HeaderSection viewSummary={viewSummary} editSummary={editSummary} mode={{toggleMode,  mode}}/>
-                    <ContentSection notes={notes} tags={allTagsNotes}
+                    <ContentSection notes={notes} tags={allTagsNotes} mode={{toggleMode,  mode}}
                     filterTags= {filterTagsNotes} toggleTags= {toggleFilterNote}/>
                     <FooterSection viewSummary={viewSummary}/>
 

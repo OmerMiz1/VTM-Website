@@ -14,10 +14,10 @@ const IconItem = styled.div`
 `
 
 
-function Icon({margin, color, icon, fontSize, funOnClick}) {
+function Icon({className, margin, color, icon, fontSize, funOnClick}) {
 
     return (
-    <IconItem margin ={margin} fontSize={fontSize} onClick={funOnClick}>
+    <IconItem className={className} margin ={margin} fontSize={fontSize} onClick={funOnClick}>
         <FontAwesomeIcon color={color} icon={icon}></FontAwesomeIcon>
     </IconItem>
     )
