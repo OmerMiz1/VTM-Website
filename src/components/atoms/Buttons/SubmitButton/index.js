@@ -11,7 +11,7 @@ const InputAddTag = styled.input`
 `;
 
 const InputContaner = styled.div`
-    visibility: ${({visibility}) => visibility ? 'visible': 'hidden'};
+    visibility: ${({visibility}) => visibility ? visibility: 'visible'};
 `;
 const SubmitInput = styled.input`
     display: block;

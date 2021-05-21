@@ -57,7 +57,7 @@ function HeaderSection({viewSummary, editSummary,  mode}) {
                 {
                     mode.mode === 'edit' &&
                     <AddContainer>
-                    <Icon color={EditIcons.plus.color} icon={ showAddTagInput ? EditIcons.minus.icon: EditIcons.plus.icon }
+                    <Icon color={EditIcons.plus.color} icon={ showAddTagInput == 'visible' ? EditIcons.minus.icon: EditIcons.plus.icon }
                      funOnClick={toggleShowAddTagInput}/>
                      <SubmitButton visibility= {showAddTagInput} ref={addTagInputRef} 
                      placeHolder = 'Enter new tag' submitValue='Add' submitFun={() => addTag()} />

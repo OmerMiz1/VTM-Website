@@ -10,7 +10,7 @@ const HeaderLogic = (editSummary, mode, viewSummary) => {
 
     // Add and Delete tags states
     const [tags, setTags] = useState(viewSummary.tags);
-    const [showAddTagInput, setShowAddTagInput] = useState(false);
+    const [showAddTagInput, setShowAddTagInput] = useState('hidden');
 
     // ************* Edit title function ************* //
     const toggleEditTitle = () => {
@@ -37,7 +37,7 @@ const HeaderLogic = (editSummary, mode, viewSummary) => {
     // ************* Add and Delete tags function ************* //
 
     const toggleShowAddTagInput = () => {
-        setShowAddTagInput(!showAddTagInput);
+        setShowAddTagInput(showAddTagInput === 'hidden' ? 'visible': 'hidden');
     }
 
     const deleteTag = (id, myTag) => {
@@ -61,7 +61,7 @@ const HeaderLogic = (editSummary, mode, viewSummary) => {
             editSummary(viewSummary.id, copySummary );
             setTags(newTags);
         }
-        setShowAddTagInput(false);
+        setShowAddTagInput('hidden');
     }
 
     return {
