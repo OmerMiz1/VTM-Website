@@ -24,7 +24,7 @@ const ViewSummaryApi = (setNotes, notes) =>  {
         const newNote = updateNote ? updateNote: 
         {
             nid : 1000,
-            sid : 3,
+            sid : '3',
             title: "Edit Note",
             content: "<p>Edit mock</p>",
             time: "00:00:00",

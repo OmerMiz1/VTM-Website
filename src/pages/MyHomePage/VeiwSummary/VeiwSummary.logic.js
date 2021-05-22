@@ -22,7 +22,7 @@ const VeiwSummaryLogic = (setLoading , mySummaries)  => {
 
 
     useEffect(() => {
-        const sid = parseInt(params.sid);
+        const sid = params.sid;
         setViewSummary(getSummaryById(sid));
         fetchNotes(sid, setNotes, setLoading);
     }, []);

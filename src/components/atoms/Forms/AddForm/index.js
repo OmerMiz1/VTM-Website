@@ -37,7 +37,8 @@ function AddForm({close}) {
   const onSubmit = (data) => {
       console.log('form data is -> ',data);
       data["uid"] = "uid";
-      data["sid"] = parseInt(data.sid);
+      //TODO change to backformat..
+      data["sid"] = data.sid;
       data["tags"] = createTagsArrays(data.tags);
       data["createdTime"] = getNowDate();
       data["editTime"] = getNowDate();
@@ -70,7 +71,7 @@ function AddForm({close}) {
     <Contaner onSubmit={handleSubmit(onSubmit)}>
         <div>
             <LableText>Sid</LableText>
-            <input defaultValue={Math.floor(Math.random() * 10000)} placeholder='1' type='number' name='sid' {...register("sid")} />
+            <input defaultValue={Math.floor(Math.random() * 10000).toString()} placeholder='1' type='text' name='sid' {...register("sid")} />
         </div>
         <div>
               {/* name of the filde is autorName -> not author */}
