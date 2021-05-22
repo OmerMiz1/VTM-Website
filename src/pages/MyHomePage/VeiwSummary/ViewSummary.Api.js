@@ -7,11 +7,16 @@ const ViewSummaryApi = (setNotes, notes) =>  {
 
         //TODO change set nid!
         updateNote.nid = Math.floor((Math.random() * 1000000) + 1)
-
         console.log(`api - add ` ,updateNote);
         setNotes([...notes, updateNote]); 
     };
 
+    //MOCK delete note
+    const deleteNote = (nid) => {
+        console.log(`api - delete nid`, nid);
+        const newNotes = [...notes].filter(note => note.nid !== nid);
+        setNotes(newNotes); 
+    };
 
     //MOCK edit note
     const editNote = (nid , updateNote) => {
@@ -33,7 +38,7 @@ const ViewSummaryApi = (setNotes, notes) =>  {
     };
 
     return {
-        editNote, addNote
+        editNote, addNote, deleteNote
 
     }
 }

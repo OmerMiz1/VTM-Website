@@ -16,7 +16,7 @@ function VeiwSummary() {
     const {notes, viewSummary, allTagsNotes, filterTagsNotes, toggleFilterNote,
         toggleMode , mode, setNotes} = VeiwSummaryLogic(setLoading , mySummaries);
 
-    const {editNote, addNote} = ViewSummaryApi(setNotes, notes);
+    const {editNote, addNote, deleteNote} = ViewSummaryApi(setNotes, notes);
     
     return (
         <VeiwSummaryContainer>
@@ -25,7 +25,8 @@ function VeiwSummary() {
                 <>
                     <HeaderSection viewSummary={viewSummary} editSummary={editSummary} mode={{toggleMode,  mode}}/>
                     <ContentSection notes={notes} tags={allTagsNotes} mode={{toggleMode,  mode}} sid={viewSummary.sid}
-                    filterTags= {filterTagsNotes} toggleTags= {toggleFilterNote} editNote={editNote} addNote={addNote}/>
+                    filterTags= {filterTagsNotes} toggleTags= {toggleFilterNote}
+                    editNote={editNote} addNote={addNote} deleteNote={deleteNote}/>
                     <FooterSection viewSummary={viewSummary}/>
 
                 </>

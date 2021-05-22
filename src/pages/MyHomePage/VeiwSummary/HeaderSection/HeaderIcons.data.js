@@ -46,6 +46,14 @@ export const EditIcons = {
         margin:'0 0 0 10px',
         title: 'check',
         function: mockFunction
+    },
+    trash:
+    {
+        icon: faTrash,
+        color:'#565656',
+        margin:'0 10px',
+        title: 'remove',
+        function: mockFunction
     }
 
 };

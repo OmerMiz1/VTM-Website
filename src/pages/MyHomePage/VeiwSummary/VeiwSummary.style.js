@@ -122,6 +122,7 @@ export const ItemNote = styled.li`
     display: flex;
     text-align: center;
     align-items: center;
+    position: relative;
 
 
 `;
@@ -136,6 +137,12 @@ export const ListNotes = styled.ul`
 export const ViewSummaryFooter = styled.footer`
     display: block;
     padding: 0 10%;
+    
+`;
+
+export const EditIconContainer = styled.div`
+    position: absolute;
+    left: -45px;
     
 `;
 export const SpaceAroundContainer  = styled.div`
