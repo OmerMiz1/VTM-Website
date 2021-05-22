@@ -1,3 +1,5 @@
+import { useHistory } from "react-router-dom";
+
 // icons
 import {faEye,  faShare, faTrash , faEdit, faPrint,
     faCheck, faPlus, faPencilAlt, faTimes, faMinus } from '@fortawesome/free-solid-svg-icons';
@@ -59,7 +61,22 @@ export const EditIcons = {
 };
     
 
-const HeaderIconsData = (mode, modeToggle) => {
+const HeaderIconsData = (mode, modeToggle, deleteSummary) => {
+
+    let history = useHistory();
+
+    //TODO ceate styled one and move to util *2
+    const confirmDelete = (sid) => {
+        var ans = window.confirm("Are you sure you want to delete this summary?");
+        if (ans === true) {
+            console.log(`deleteSummary`, sid);
+            deleteSummary(sid);
+            history.push('/myHome/mySummaries')
+
+        }
+    }
+
+
     
     if (mode === 'edit') {
         return [
@@ -99,7 +116,7 @@ const HeaderIconsData = (mode, modeToggle) => {
             color:'gray',
             margin:'0 10px',
             title: 'remove',
-            function: mockFunction
+            function: confirmDelete
         }
     ];
 

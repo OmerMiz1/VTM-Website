@@ -13,14 +13,15 @@ import HeaderIconsData, { EditIcons} from './HeaderIcons.data';
 import Icon from '../../../../components/atoms/Icon';
 import IconContainer from '../../../../containers/IconContainer';
 
-function HeaderSection({viewSummary, editSummary,  mode}) {
+function HeaderSection({viewSummary, deleteSummary, editSummary,  mode}) {
 
-    const {titleInputRef, Title, modeToggle, updateTitle, editTitle,  toggleEditTitle,
+    const {titleInputRef, Title, modeToggle, updateTitle, editTitle, toggleEditTitle,
         addTagInputRef, toggleShowAddTagInput, deleteTag,
         addTag, tags, showAddTagInput} = HeaderLogic(editSummary, mode, viewSummary);
+    
 
 
-    const IconData = HeaderIconsData(mode.mode, modeToggle);
+    const IconData = HeaderIconsData(mode.mode, modeToggle, deleteSummary);
 
 
     return (
@@ -57,7 +58,7 @@ function HeaderSection({viewSummary, editSummary,  mode}) {
                 {
                     mode.mode === 'edit' &&
                     <AddContainer>
-                    <Icon color={EditIcons.plus.color} icon={ showAddTagInput == 'visible' ? EditIcons.minus.icon: EditIcons.plus.icon }
+                    <Icon color={EditIcons.plus.color} icon={ showAddTagInput === 'visible' ? EditIcons.minus.icon: EditIcons.plus.icon }
                      funOnClick={toggleShowAddTagInput}/>
                      <SubmitButton visibility= {showAddTagInput} ref={addTagInputRef} 
                      placeHolder = 'Enter new tag' submitValue='Add' submitFun={() => addTag()} />
@@ -68,7 +69,7 @@ function HeaderSection({viewSummary, editSummary,  mode}) {
                 <IconContainer justContent="flex-end">
                     {IconData.map((data, index) => {
                         return(
-                            <Icon key={index} margin={data.margin} funOnClick={ () => data.function(data.title)}
+                            <Icon key={index} margin={data.margin} funOnClick={ () => data.function(viewSummary.sid)}
                             color={data.color} icon={data.icon}/>
                         )
                     })

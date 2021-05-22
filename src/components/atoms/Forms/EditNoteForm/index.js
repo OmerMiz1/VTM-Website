@@ -11,7 +11,7 @@ function EditNoteForm({ open, onClose, note, editNote, sid}) {
     const [title, setTitle] = useState(note ? note.title : '') ;
     const [tag, setTag] = useState(note ? note.tag : '');
 
-    const [formatedTime, setFormatedTime] = useState(note ?note.time : '');
+    const [formatedTime, setFormatedTime] = useState(note ?note.time : '00:00:00');
     const [content, setContent] = useState(note ? note.content : '');
 
 
@@ -56,7 +56,7 @@ function EditNoteForm({ open, onClose, note, editNote, sid}) {
                 onChange= {(e)=> setTitle(e.target.value)}></input>
             </li>
             <li>
-                <input className="field-style field-split align-left" defaultValue="00:00:00" value={formatedTime} step="2" id="time-input" type='time'
+                <input className="field-style field-split align-left" value={formatedTime} step="2" id="time-input" type='time'
                 onChange= {(e)=> setFormatedTime(e.target.value)}></input>
                 <input className="field-style field-split align-right" type='text'  name="tag" placeholder="Add Tag" value={tag}
                 onChange= {(e)=> setTag(e.target.value)} list="tags"></input> 

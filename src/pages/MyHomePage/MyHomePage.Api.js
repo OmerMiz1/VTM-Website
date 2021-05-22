@@ -13,6 +13,7 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
         const newSummariesFilter = [...myFilterSummaries].filter(summary => summary.sid !== sid);
         setMyFilterSummaries(newSummariesFilter);
         setMySummaries(newSummaries);
+        //add delete from server all relvent notes
 
     }
 
