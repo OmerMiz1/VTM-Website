@@ -13,8 +13,8 @@ const DropDownSummaryData = () => {
     let history = useHistory();
     let {page} = useParams();
 
-    const viewSummary = (id) => {
-        history.push('/myHome/' + page +'/view/' + id, id);    
+    const viewSummary = (sid) => {
+        history.push('/myHome/' + page +'/view/' + sid, sid);    
     }
 
     return [

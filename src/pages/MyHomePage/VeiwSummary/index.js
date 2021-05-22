@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import {SummariesContext} from '../../../utils/context/SummariesContext';
 import VeiwSummaryLogic from './VeiwSummary.logic';
+import ViewSummaryApi from './ViewSummary.Api'
 
 import Loading from '../Loading';
 
@@ -13,7 +14,9 @@ import {VeiwSummaryContainer} from './VeiwSummary.style';
 function VeiwSummary() {
     const {isLoading, setLoading , mySummaries, editSummary } = useContext(SummariesContext);
     const {notes, viewSummary, allTagsNotes, filterTagsNotes, toggleFilterNote,
-        toggleMode , mode} = VeiwSummaryLogic(setLoading , mySummaries);
+        toggleMode , mode, setNotes} = VeiwSummaryLogic(setLoading , mySummaries);
+
+    const {editNote, addNote} = ViewSummaryApi(setNotes, notes);
     
     return (
         <VeiwSummaryContainer>
@@ -21,8 +24,8 @@ function VeiwSummary() {
             { (viewSummary !== undefined)  && !isLoading &&
                 <>
                     <HeaderSection viewSummary={viewSummary} editSummary={editSummary} mode={{toggleMode,  mode}}/>
-                    <ContentSection notes={notes} tags={allTagsNotes} mode={{toggleMode,  mode}}
-                    filterTags= {filterTagsNotes} toggleTags= {toggleFilterNote}/>
+                    <ContentSection notes={notes} tags={allTagsNotes} mode={{toggleMode,  mode}} sid={viewSummary.sid}
+                    filterTags= {filterTagsNotes} toggleTags= {toggleFilterNote} editNote={editNote} addNote={addNote}/>
                     <FooterSection viewSummary={viewSummary}/>
 
                 </>

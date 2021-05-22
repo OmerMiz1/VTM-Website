@@ -6,23 +6,23 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
     const [isLoading, setLoading] = useState(true);
 
     //MOCK delete summary and all the notes.. 
-    const deleteSummary = (id) => {
-        console.log(`api - delete id`, id);
+    const deleteSummary = (sid) => {
+        console.log(`api - delete sid`, sid);
         // fronted delete -
-        const newSummaries = [...mySummaries].filter(summary => summary.id !== id);
-        const newSummariesFilter = [...myFilterSummaries].filter(summary => summary.id !== id);
+        const newSummaries = [...mySummaries].filter(summary => summary.sid !== sid);
+        const newSummariesFilter = [...myFilterSummaries].filter(summary => summary.sid !== sid);
         setMyFilterSummaries(newSummariesFilter);
         setMySummaries(newSummaries);
 
     }
 
     //MOCK update summary 
-    const editSummary = (id , updateSummary) => {
+    const editSummary = (sid , updateSummary) => {
 
         //Mock edit summary
         const newSummary = updateSummary ? updateSummary: 
         {
-            id: id,
+            sid: sid,
             favorite: false,
             title: 'this is edit mock',
             tags: ['edit', 'mock'],
@@ -32,23 +32,23 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
             autorName:'Shon Pozner',
             url: 'https://www.google.com/',
         }
-        console.log(`api - edit id`, id, ' to ' ,newSummary);
-        setMySummaries(prev => prev.map(item => (item.id === id ? newSummary : item)));
-        setMyFilterSummaries(prev => prev.map(item => (item.id === id ? newSummary : item)));
+        console.log(`api - edit sid`, sid, ' to ' ,newSummary);
+        setMySummaries(prev => prev.map(item => (item.sid === sid ? newSummary : item)));
+        setMyFilterSummaries(prev => prev.map(item => (item.sid === sid ? newSummary : item)));
 
         
 
     }
 
-    const ShareSummary = (id) => {
-        console.log(`api - sharing id`, id)
+    const ShareSummary = (sid) => {
+        console.log(`api - sharing sid`, sid)
     }
     //MOCK need add send to data the toggle
-    const toggleFavorite = (id) => {
-        console.log(`api - toggle Favorite id`, id);
+    const toggleFavorite = (sid) => {
+        console.log(`api - toggle Favorite sid`, sid);
 
         const updateSummaries = [...mySummaries].map((summary) => {
-            if (summary.id === id) {
+            if (summary.sid === sid) {
                 summary.favorite = !summary.favorite
             };
             return summary;
@@ -80,7 +80,7 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
     }
 
     useEffect(() => {
-        // console.log(`use effect fetchSummaries`);
+        console.log(`use effect fetchSummaries`);
         fetchSummaries();
       },[]);
 

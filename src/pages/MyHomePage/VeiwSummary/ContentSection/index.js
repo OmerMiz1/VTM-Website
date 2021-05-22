@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import parse from 'html-react-parser';
 
-
 import {ViewSummaryContext, ListNotes, ItemNote,
     TimeTag, TitleTag, ContextText} from '.././VeiwSummary.style';
 
@@ -12,14 +11,14 @@ import { EditIcons} from '../HeaderSection/HeaderIcons.data';
 
 import EditNoteForm from '../../../../components/atoms/Forms/EditNoteForm';
 import EditPopupForm from '../../../../components/Popups/EditPopupForm'
+import AddButton from '../../../../components/atoms/Buttons/AddButton';
 
 
 
 
-function ContentSection({notes, tags, filterTags, toggleTags, mode}) {
+function ContentSection({notes, tags, filterTags, toggleTags, mode, editNote, addNote, sid}) {
 
-    const [isOpen, setIsOpen] = useState(false);
-    const [showForm, setShowForm] = useState(false);
+    const [showEditNoteNumber, setShowEditNoteNumber] = useState(-1);
 
     return (
         <ViewSummaryContext>
@@ -39,13 +38,10 @@ function ContentSection({notes, tags, filterTags, toggleTags, mode}) {
                 {
                     notes.filter(item => filterTags.includes(item.tag)).map((note) => {
                         return(
-                            <ItemNote key={note.id}>
+                            <ItemNote key={note.nid}>
                                 {mode.mode == 'edit' &&
-                                <Icon fontSize="18px" margin={'0 5px 0 0'} color={ EditIcons.pen.color} icon={EditIcons.pen.icon} 
-                                funOnClick={() => {
-                                setIsOpen(true);
-                                setShowForm(true);}}
-                            ></Icon>}
+                                <Icon fontSize="18px" margin={'0 5px 0 0'} color={ EditIcons.pen.color}
+                                icon={EditIcons.pen.icon} funOnClick={() => setShowEditNoteNumber(note.nid)}></Icon>}
                                 <TimeTag>{note.time}</TimeTag>
                                 <TitleTag>{note.title} </TitleTag>
                                 <ContextText>{parse(note.content)}</ContextText>
@@ -54,14 +50,14 @@ function ContentSection({notes, tags, filterTags, toggleTags, mode}) {
                     })
                 }
             </ListNotes>
+            {mode.mode == 'edit' && <AddButton onClickFun={() => setShowEditNoteNumber(0)}>add note</AddButton>}
             {
-                showForm &&  
-                <EditPopupForm note={notes[0]} addNote={console.log(`add`)} open={isOpen} onClose={() => {
-                    setIsOpen(false);
-                    setShowForm(false);
-                }}>
-                    {/* <EditNoteForm></EditNoteForm> */}
-                </EditPopupForm>
+                showEditNoteNumber >= 0 ?  
+                <EditPopupForm title= {showEditNoteNumber ? 'Edit Note' : 'Add Note'} onClose={() => setShowEditNoteNumber(-1)}>
+                    <EditNoteForm note={notes.find(item => item.nid === showEditNoteNumber)}
+                    editNote={showEditNoteNumber? editNote: addNote} sid={sid}
+                    open={showEditNoteNumber} onClose={() => setShowEditNoteNumber(-1)}> </EditNoteForm>
+                </EditPopupForm> : <></>
             }
             
         </ViewSummaryContext>

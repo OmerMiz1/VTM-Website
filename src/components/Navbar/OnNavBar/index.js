@@ -66,7 +66,7 @@ function NavBar(props) {
                                         { item.separator ?
                                         <SeparatorLine ref={wrapperRef}>
                                             <FontAwesomeIcon onClick={ toggleUserDropDown} icon={item.icon}/>
-                                            {isUseDropDown && <DropDownUser summaryId={1}/>}
+                                            {isUseDropDown && <DropDownUser sid={1}/>}
                                         </SeparatorLine>:
                                         <>
                                             <FontAwesomeIcon onClick={() => toggleShow()} icon={item.icon}/>

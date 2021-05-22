@@ -9,7 +9,8 @@ import img4 from '../../images/illustrations/SendSummaries.png'
 
 export const MockData = [
     {
-        id: 1,
+        sid: 1,
+        uid: 'hashfdsafsad243543',
         favorite: false,
         imgUrl: img1,
         title: 'My first card!',
@@ -21,7 +22,8 @@ export const MockData = [
         url: 'https://www.google.com/',
     },
     {
-        id: 2,
+        sid: 2,
+        uid: 'hashfdsafsad243543',
         favorite: true,
         imgUrl: img2,
         title: 'Zoom',
@@ -33,7 +35,8 @@ export const MockData = [
         url: 'https://us02web.zoom.us/rec/play/E38eBi_rfsgGCYhh6YiiutEw4pcsdCsHF2jy0sOMCfEAEzoFrb4z0IBnQLf5jgsMRxqULz7h-5fpc5S3.tLHdrPTcTXQ2n0Tz?continueMode=true&_x_zm_rtaid=8E8g3kSeQMGVoTvDaygrrQ.1603012922993.2fcaba7a7c5cc81110b378f2474fb863&_x_zm_rhtaid=614',
     },
     {
-        id: 3,
+        sid: 3,
+        uid: 'hashfdsafsad243543',
         favorite: false,
         imgUrl: img3,
         title: 'My first card!',
@@ -46,7 +49,8 @@ export const MockData = [
     },
 
     {
-        id: 4,
+        sid: 4,
+        uid: 'hashfdsafsad243543',
         favorite: false,
         imgUrl: img4,
         title: 'My first card!',
@@ -58,7 +62,8 @@ export const MockData = [
         url: 'https://www.google.com/',
     },
     {
-        id: 5,
+        sid: 5,
+        uid: 'hashfdsafsad243543',
         favorite: true,
         imgUrl: img1,
         title: 'My first card!',
@@ -70,7 +75,8 @@ export const MockData = [
         url: 'https://www.google.com/',
     },
     {
-        id: 6,
+        sid: 6,
+        uid: 'hashfdsafsad243543',
         favorite: true,
         imgUrl: img2,
         title: 'Zoom',
@@ -82,7 +88,8 @@ export const MockData = [
         url: 'https://us02web.zoom.us/rec/play/E38eBi_rfsgGCYhh6YiiutEw4pcsdCsHF2jy0sOMCfEAEzoFrb4z0IBnQLf5jgsMRxqULz7h-5fpc5S3.tLHdrPTcTXQ2n0Tz?continueMode=true&_x_zm_rtaid=8E8g3kSeQMGVoTvDaygrrQ.1603012922993.2fcaba7a7c5cc81110b378f2474fb863&_x_zm_rhtaid=614',
     },
     {
-        id: 7,
+        sid: 7,
+        uid: 'hashfdsafsad243543',
         favorite: true,
         imgUrl: img3,
         title: 'My first card!',
@@ -95,7 +102,8 @@ export const MockData = [
     },
 
     {
-        id: 8,
+        sid: 8,
+        uid: 'hashfdsafsad243543',
         favorite: true,
         imgUrl: img4,
         title: 'My first card!',
@@ -107,7 +115,8 @@ export const MockData = [
         url: 'https://www.google.com/',
     },
     {
-        id: 9,
+        sid: 9,
+        uid: 'hashfdsafsad243543',
         favorite: true,
         imgUrl: img1,
         title: 'My first card!',
@@ -119,7 +128,8 @@ export const MockData = [
         url: 'https://www.google.com/',
     },
     {
-        id: 11,
+        sid: 11,
+        uid: 'hashfdsafsad243543',
         favorite: true,
         imgUrl: img2,
         title: 'Zoom',
@@ -131,7 +141,8 @@ export const MockData = [
         url: 'https://us02web.zoom.us/rec/play/E38eBi_rfsgGCYhh6YiiutEw4pcsdCsHF2jy0sOMCfEAEzoFrb4z0IBnQLf5jgsMRxqULz7h-5fpc5S3.tLHdrPTcTXQ2n0Tz?continueMode=true&_x_zm_rtaid=8E8g3kSeQMGVoTvDaygrrQ.1603012922993.2fcaba7a7c5cc81110b378f2474fb863&_x_zm_rhtaid=614',
     },
     {
-        id: 12,
+        sid: 12,
+        uid: 'hashfdsafsad243543',
         favorite: true,
         imgUrl: img3,
         title: 'My first card!',
@@ -144,7 +155,8 @@ export const MockData = [
     },
 
     {
-        id: 13,
+        sid: 13,
+        uid: 'hashfdsafsad243543',
         favorite: true,
         imgUrl: img4,
         title: 'My first card!',
@@ -156,7 +168,8 @@ export const MockData = [
         url: 'https://www.google.com/',
     },
     {
-        id: 14,
+        sid: 14,
+        uid: 'hashfdsafsad243543',
         favorite: true,
         imgUrl: img1,
         title: 'My first card!',
@@ -168,7 +181,8 @@ export const MockData = [
         url: 'https://www.google.com/',
     },
     {
-        id: 15,
+        sid: 15,
+        uid: 'hashfdsafsad243543',
         favorite: true,
         imgUrl: img2,
         title: 'Zoom',
@@ -180,7 +194,8 @@ export const MockData = [
         url: 'https://us02web.zoom.us/rec/play/E38eBi_rfsgGCYhh6YiiutEw4pcsdCsHF2jy0sOMCfEAEzoFrb4z0IBnQLf5jgsMRxqULz7h-5fpc5S3.tLHdrPTcTXQ2n0Tz?continueMode=true&_x_zm_rtaid=8E8g3kSeQMGVoTvDaygrrQ.1603012922993.2fcaba7a7c5cc81110b378f2474fb863&_x_zm_rhtaid=614',
     },
     {
-        id: 16,
+        sid: 16,
+        uid: 'hashfdsafsad243543',
         favorite: true,
         imgUrl: img3,
         title: 'My first card!',
@@ -193,7 +208,8 @@ export const MockData = [
     },
 
     {
-        id: 17,
+        sid: 17,
+        uid: 'hashfdsafsad243543',
         favorite: true,
         imgUrl: img4,
         title: 'My first card!',

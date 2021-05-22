@@ -51,7 +51,7 @@ function HeaderSection({viewSummary, editSummary,  mode}) {
                         return(
                             <TagsButton key={index} keyId={index} text={tag} editMode={mode.mode}
                             link={mode.mode === 'edit' ? '#' : '/myHome/mySummaries/filter/tags/' + tag }
-                            fun ={() => deleteTag(viewSummary.id, tag)} />
+                            fun ={() => deleteTag(viewSummary.sid, tag)} />
                         );
                     })}
                 {

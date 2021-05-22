@@ -26,9 +26,9 @@ function MySummaries() {
                 <CardSummariesContainers>
                     {myFilterSummaries.slice(0,amountSummariesShow).map((card) => {
                         return(
-                            <CardItemContainer key={card.id}>
+                            <CardItemContainer key={card.sid}>
                                 <CardSummary
-                                summaryId = {card.id}
+                                sid = {card.sid}
                                 imgUrl= {card.imgUrl}
                                 title= {card.title}
                                 createdTime= {card.createdTime}

@@ -5,7 +5,7 @@ import {MenuContainer, MenuList, MenuButton,
   MenuItem, ItemText} from '../DropDown.style';
 
 function DropDownSummary(props) {
-    const summaryId = props.summaryId;
+    const sid = props.sid;
 
  
 
@@ -15,7 +15,7 @@ function DropDownSummary(props) {
               {DropDownSummaryData().map((item, index) => {
                 return(
                   <MenuItem key={index}>
-                    <MenuButton onClick={ () => item.function(summaryId)}>
+                    <MenuButton onClick={ () => item.function(sid)}>
                       <FontAwesomeIcon className='icon' icon={item.icon}/>
                       <ItemText>{item.title}</ItemText>
                     </MenuButton>

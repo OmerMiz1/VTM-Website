@@ -1,19 +1,18 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
+import "./style.css";
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
-  
- 
+function EditNoteForm({ open, onClose, note, editNote, sid}) {
 
-function EditNoteForm({ open, onClose, note, addNote}) {
-    const [title, setTitle] = useState(note.title);
-    const [tag, setTag] = useState(note.tag);
 
-    const [formatedTime, setFormatedTime] = useState(note.time);
-    const [content, setContent] = useState(note.content);
+    const [title, setTitle] = useState(note ? note.title : '') ;
+    const [tag, setTag] = useState(note ? note.tag : '');
+
+    const [formatedTime, setFormatedTime] = useState(note ?note.time : '');
+    const [content, setContent] = useState(note ? note.content : '');
 
 
     const onSubmit = (e) => {
@@ -25,24 +24,28 @@ function EditNoteForm({ open, onClose, note, addNote}) {
         }
         // can add more cheacking format time or get default tag and so on...
 
-        const newNote = { 
+        // TODO note.nid change random 
+        console.log(`note`, note)
+        const newNote = {
+            nid: note ? note.nid : 0,
+            sid: sid,
             title: title,
             content: content,
             time: formatedTime,
             tag: tag,
-            // timeSec: getSecTime(),
+            timeSec: getSecTime(),
         }
-        addNote(newNote);
+        note ? editNote(newNote.nid ,newNote) : editNote(newNote)
         onClose();
     }
 
-    // const getSecTime = () => {
-    //     let tempSecTime = formatedTime.split(':'); 
-    //     // minutes are worth 60 seconds. Hours are worth 60 minutes.
-    //     let timeSecFormat = (+tempSecTime[0]) * 60 * 60 + (+tempSecTime[1]) * 60 + (+tempSecTime[2]); 
-    //     return(timeSecFormat)
-    // }
-    if (!open) return null;
+    const getSecTime = () => {
+        let tempSecTime = formatedTime.split(':'); 
+        // minutes are worth 60 seconds. Hours are worth 60 minutes.
+        let timeSecFormat = (+tempSecTime[0]) * 60 * 60 + (+tempSecTime[1]) * 60 + (+tempSecTime[2]); 
+        return(timeSecFormat)
+    }
+    if (open < 0) return null;
 
 
     return (
@@ -73,7 +76,6 @@ function EditNoteForm({ open, onClose, note, addNote}) {
 
                         onChange={ ( event, editor ) => {
                             const data = editor.getData();
-                            // console.log( { event, editor, data } );
                             setContent(data)
                         } }
                     />
