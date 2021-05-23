@@ -25,7 +25,7 @@ function MyHomePage() {
     const {SearchFillterData, myFilterSummariesTags,
         FillterDataByAttribute, UnFillter} = MyHomePageFilters(mySummaries, setMyFilterSummaries);
     // api of my home page
-    const {isLoading, setLoading, deleteSummary, updateSummary,
+    const {isLoading, setLoading, addSummary, deleteSummary, editSummary,
         ShareSummary, toggleFavorite} = MyHomePageApi(mySummaries, setMySummaries,
             myFilterSummaries, setMyFilterSummaries);
 
@@ -35,8 +35,8 @@ function MyHomePage() {
 
 
     return (
-        <SummariesContext.Provider value={{isMySummaryEmpty, mySummaries, isLoading, setLoading, myFilterSummaries,
-            deleteSummary, updateSummary, ShareSummary, toggleFavorite}}>
+        <SummariesContext.Provider value={{isMySummaryEmpty, mySummaries, isLoading, setLoading, myFilterSummaries, addSummary,
+            deleteSummary, editSummary, ShareSummary, toggleFavorite}}>
             <FilterMySummariesContext.Provider value= {{SearchFillterData, myFilterSummariesTags,
                  FillterDataByAttribute, UnFillter}} >
                 <OnNavbar useTransparent ={false} PositionMarker={page}/>
@@ -44,8 +44,8 @@ function MyHomePage() {
                     <SideNavBar/>
                     
                     <Switch>
-                        <Route exact path={`${path}/view/:id`} component={ViewSummary}/>
-                        <Route exact path={`${path}/edit/:id`} component={EditSummary}/>
+                        <Route exact path={`${path}/view/:sid`} component={ViewSummary}/>
+                        <Route exact path={`${path}/edit/:sid`} component={EditSummary}/>
                         <Route exact path='/myHome/:page/:attribute' component={MyTags}/>
                         <Route exact path='/myHome/:page/:action/:attribute/:name' component={MySummaries}/>                    
                         <Route exact path='/myHome/:page'>

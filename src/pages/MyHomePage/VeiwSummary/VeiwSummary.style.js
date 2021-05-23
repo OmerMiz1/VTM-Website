@@ -122,6 +122,7 @@ export const ItemNote = styled.li`
     display: flex;
     text-align: center;
     align-items: center;
+    position: relative;
 
 
 `;
@@ -136,6 +137,12 @@ export const ListNotes = styled.ul`
 export const ViewSummaryFooter = styled.footer`
     display: block;
     padding: 0 10%;
+    
+`;
+
+export const EditIconContainer = styled.div`
+    position: absolute;
+    left: -45px;
     
 `;
 export const SpaceAroundContainer  = styled.div`
@@ -164,21 +171,11 @@ export const AddContainer = styled.li`
     position:absolute;
     height: 20px;
     width: 50px;
-    background: #578457;
-    color: white;
-    border: 0;
-    -webkit-appearance: none;
+    
     top:45px;
     right:0;
     }    
 `;
 
-export const InputAddTag = styled.input`
-    display: block;
-    position:absolute;
-    top:45px;
-    right:0;
-    font-weight:700;
-    
-`;
+
 

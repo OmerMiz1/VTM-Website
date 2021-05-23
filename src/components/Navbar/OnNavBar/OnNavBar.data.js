@@ -6,7 +6,7 @@ import {faPlus, faUser, faBell} from '@fortawesome/free-solid-svg-icons'
 // Operations Data
 export const DataIcons = () => {
 
-    const fu = (item) => {
+    const mockFun = (item) => {
         console.log(`print item -> `, item)
     }
     
@@ -15,12 +15,12 @@ export const DataIcons = () => {
             {
                 toolTipText:'Add',
                 icon: faPlus,
-                function: fu,
+                function: mockFun,
             }, 
             {
                 toolTipText:'Notifications',
                 icon: faBell,
-                function: fu,
+                function: mockFun,
         
             },
             
@@ -28,7 +28,7 @@ export const DataIcons = () => {
                 icon: faUser,
                 toolTipText:'User',
                 separator:true, 
-                function: fu,
+                function: mockFun,
         
                 
             }

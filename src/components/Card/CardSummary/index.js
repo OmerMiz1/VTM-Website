@@ -15,7 +15,7 @@ import {CradContainer, TopContainer, CardH1, CardImgContainer, IconContaner,
 
 
 function CardSummary(props) {
-    const {summaryId ,imgUrl, title,
+    const {sid ,imgUrl, title,
         editTime, likes, autorName, url, tags, favorite} = props;
 
     // all the component logic
@@ -32,7 +32,7 @@ function CardSummary(props) {
                 <TopContainer>
                     <CardH1 href={url} target="_blank" rel="noopener noreferrer">{title}</CardH1>
                     <IconContaner favorite={isFavorite}>
-                        <FontAwesomeIcon onClick={() => toggleIsFavorite(summaryId)} icon={faStar}/>
+                        <FontAwesomeIcon onClick={() => toggleIsFavorite(sid)} icon={faStar}/>
                     </IconContaner>
                 
                 </TopContainer>
@@ -61,7 +61,7 @@ function CardSummary(props) {
                          textValue={editTime} color ='black'></AttributText>
                         <LeftContainer ref={wrapperRef}>
                             <FontAwesomeIcon onClick={toggleDropDown} icon={faEllipsisV}/>
-                            {isDropDown && <DropDownSummary summaryId={summaryId}/>}
+                            {isDropDown && <DropDownSummary sid={sid}/>}
 
                         </LeftContainer>
                     </DateContainer>

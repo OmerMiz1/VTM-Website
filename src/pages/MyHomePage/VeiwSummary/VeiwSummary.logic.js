@@ -22,9 +22,9 @@ const VeiwSummaryLogic = (setLoading , mySummaries)  => {
 
 
     useEffect(() => {
-        const id = parseInt(params.id);
-        setViewSummary(getSummaryById(id));
-        fetchNotes(id, setNotes, setLoading);
+        const sid = params.sid;
+        setViewSummary(getSummaryById(sid));
+        fetchNotes(sid, setNotes, setLoading);
     }, []);
 
     useEffect(() => {
@@ -51,17 +51,16 @@ const VeiwSummaryLogic = (setLoading , mySummaries)  => {
     }
 
 
-    // get the relevant summary from all summaries (by id)
-    const getSummaryById = id => {
-        return mySummaries.find(summary => summary.id === id);
+    // get the relevant summary from all summaries (by sid)
+    const getSummaryById = sid => {
+        return mySummaries.find(summary => summary.sid === sid);
     }
    
 
     return {
         notes, viewSummary, allTagsNotes, 
         filterTagsNotes, toggleFilterNote,
-        toggleMode , mode
-
+        toggleMode , mode, setNotes
     }
 } 
 

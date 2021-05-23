@@ -3,6 +3,7 @@ import {SummariesContext} from '../../../utils/context/SummariesContext';
 
 import { useHistory, useParams } from "react-router-dom";
 
+
 // icons
 import {faShare, faTrash , faEdit, faEye } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,8 +14,18 @@ const DropDownSummaryData = () => {
     let history = useHistory();
     let {page} = useParams();
 
-    const viewSummary = (id) => {
-        history.push('/myHome/' + page +'/view/' + id, id);    
+    
+    const viewSummary = (sid) => {
+        history.push('/myHome/' + page +'/view/' + sid, sid);    
+    }
+
+
+    //TODO ceate styled one and move to util *2
+    const confirmDelete = (sid) => {
+        var ans = window.confirm("Are you sure you want to delete this summary?");
+        if (ans === true) {
+            deleteSummary(sid);
+        }
     }
 
     return [
@@ -36,7 +47,7 @@ const DropDownSummaryData = () => {
         {
             title:'Delete',
             icon: faTrash,
-            function: deleteSummary
+            function: confirmDelete
         }
     ];
 
