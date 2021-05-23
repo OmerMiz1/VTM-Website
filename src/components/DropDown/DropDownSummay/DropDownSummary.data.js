@@ -8,7 +8,7 @@ import {faShare, faTrash , faEdit, faEye } from '@fortawesome/free-solid-svg-ico
 
 const DropDownSummaryData = () => {
 
-    const {deleteSummary, editSummary, ShareSummary} = useContext(SummariesContext);
+    const {deleteSummary, updateSummary, ShareSummary} = useContext(SummariesContext);
     
     let history = useHistory();
     let {page} = useParams();
@@ -31,7 +31,7 @@ const DropDownSummaryData = () => {
         {
             title:'Edit',
             icon: faEdit,
-            function: editSummary
+            function: updateSummary
         },
         {
             title:'Delete',

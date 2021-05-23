@@ -1,6 +1,6 @@
 import {useState, useRef} from 'react';
 
-const HeaderLogic = (editSummary, mode, viewSummary) => {
+const HeaderLogic = (updateSummary, mode, viewSummary) => {
     const titleInputRef = useRef();
 
     const [editTitle, setEditTitle] = useState(false);
@@ -29,7 +29,7 @@ const HeaderLogic = (editSummary, mode, viewSummary) => {
 
 
 
-        editSummary(viewSummary.id, copySummary );
+        updateSummary(viewSummary.id, copySummary );
         setEditTitle(false);           
     }
 

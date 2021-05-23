@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 
 //global style
@@ -12,17 +12,11 @@ import HomePage from './pages/HomePage'
 import AccessAccountPage from './pages/AccessAccountPage';
 import MyHomePage from './pages/MyHomePage';
 
-// Contexts
-import { UserContext } from './utils/context/UserContext';
-
 function App() {
-  const [user, setUser] = useState(null);
-
   return (
     <Router>
       <ThemeProvider theme= {Theme}>
         <GlobalStyle/>
-        <UserContext.Provider value={{user, setUser}}>
           <Switch>
             <Route exact path='/' component={HomePage}/>
             <Route exact path='/home' component={HomePage}/>
@@ -34,7 +28,6 @@ function App() {
             <Route exact path="/notFound404" component={NotFound404}/>
             <Redirect to="/notFound404" />
           </Switch>
-        </UserContext.Provider>
       </ThemeProvider>
     </Router>
   );

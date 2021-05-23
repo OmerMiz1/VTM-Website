@@ -25,7 +25,7 @@ function MyHomePage() {
     const {SearchFillterData, myFilterSummariesTags,
         FillterDataByAttribute, UnFillter} = MyHomePageFilters(mySummaries, setMyFilterSummaries);
     // api of my home page
-    const {isLoading, setLoading, deleteSummary, editSummary,
+    const {isLoading, setLoading, deleteSummary, updateSummary,
         ShareSummary, toggleFavorite} = MyHomePageApi(mySummaries, setMySummaries,
             myFilterSummaries, setMyFilterSummaries);
 
@@ -36,7 +36,7 @@ function MyHomePage() {
 
     return (
         <SummariesContext.Provider value={{isMySummaryEmpty, mySummaries, isLoading, setLoading, myFilterSummaries,
-            deleteSummary, editSummary, ShareSummary, toggleFavorite}}>
+            deleteSummary, updateSummary, ShareSummary, toggleFavorite}}>
             <FilterMySummariesContext.Provider value= {{SearchFillterData, myFilterSummariesTags,
                  FillterDataByAttribute, UnFillter}} >
                 <OnNavbar useTransparent ={false} PositionMarker={page}/>

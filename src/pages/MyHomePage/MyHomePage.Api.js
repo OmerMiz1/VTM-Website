@@ -10,14 +10,6 @@ const awsmobile = {
     "aws_cognito_region": "eu-central-1",
     "aws_user_pools_id": "eu-central-1_pry0ETHtR",
     "aws_user_pools_web_client_id": "6mss0vu7320s4fk1onch4eosmr",
-    "oauth": {},
-    "aws_dynamodb_all_tables_region": "eu-central-1",
-    "aws_dynamodb_table_schemas": [
-        {
-            "tableName": "SummaryDB-staging",
-            "region": "eu-central-1"
-        }
-    ],
     "aws_cloud_logic_custom": [
         {
             "name": "SummaryAPI",
@@ -27,6 +19,22 @@ const awsmobile = {
     ]
 };
 Amplify.configure(awsmobile)
+/*
+Summary: 
+{
+    sid: INT,
+    uid: STRING,
+    autorName: STRING,
+    url: STRING,
+    title: STRING,
+    createdTime: STRING,
+    editTime: STRING,
+    tags: [STRING],
+    imgUrl: STRING,
+    likes: INT,
+    favorite: BOOL,
+} 
+ */
 
 const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries)  => {
     const apiName = 'SummaryAPI';
@@ -44,41 +52,34 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 
         // MOCK
         setTimeout(() => {
-                setMySummaries(MockData);
-                setLoading(false);
+            //uid#time_stamp
+            setMySummaries(MockData);
+            setLoading(false);
         }, 200);
     }
 
     const getSummaries = async () => {
-        return API.get(apiName, path, {
+        return API.get(apiName, path+'/sid1', {
             "queryStringParameters": {
-                author: "Shon Pozner"
+                author: "author1"
             }
         });
     }
 
     // TODO consider using PUT instead of POST
-    const postSummary = async (sid, author, url, title, tags, summary) => {
-        let msgBody = {
-            body: {
-                sid: sid,
-                author: author, //TODO change to user.userName
-                url: url,
-                title: title,
-                tags: tags,
-                summary: summary
-            }
-        };
-
-        return await API.post(apiName, path, msgBody);
+    const createSummary = async (summary) => {
+        // TODO: set sid, createdTime, editTime
+        // summary['sid'] = generateSid(summary.uid);
+        
+        return await API.post(apiName, path, {body: summary});
     }
 
     //MOCK update summary
-    const editSummary = (id , updateSummary) => {
-        //Mock edit summary
+    const updateSummary = (sid , updateSummary) => {
+        //MOCK edit summary
         const newSummary = updateSummary ? updateSummary: 
         {
-            id: id,
+            sid: sid,
             favorite: false,
             title: 'this is edit mock',
             tags: ['edit', 'mock'],
@@ -89,30 +90,31 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
             url: 'https://www.google.com/',
         }
         
-        setMySummaries(prev => prev.map(item => (item.id === id ? newSummary : item)));
-        setMyFilterSummaries(prev => prev.map(item => (item.id === id ? newSummary : item)));
+        setMySummaries(prev => prev.map(item => (item.sid === sid ? newSummary : item)));
+        setMyFilterSummaries(prev => prev.map(item => (item.sid === sid ? newSummary : item)));
     }
 
     //MOCK delete summary and all the notes.. 
-    const deleteSummary = (id) => {
-        console.log(`api - delete id`, id); // DELETEME
+    const deleteSummary = (sid) => {
+        console.log(`api - delete sid`, sid); // DELETEME
         
         // fronted delete -
-        const newSummaries = [...mySummaries].filter(summary => summary.id !== id);
-        const newSummariesFilter = [...myFilterSummaries].filter(summary => summary.id !== id);
+        const newSummaries = [...mySummaries].filter(summary => summary.sid !== sid);
+        const newSummariesFilter = [...myFilterSummaries].filter(summary => summary.sid !== sid);
         setMyFilterSummaries(newSummariesFilter);
         setMySummaries(newSummaries);
     }
 
-    const ShareSummary = (id) => {
-        console.log(`api - sharing id`, id)
+    const ShareSummary = (sid) => {
+        console.log(`api - sharing sid`, sid)
     }
+
     //MOCK need add send to data the toggle
-    const toggleFavorite = (id) => {
-        console.log(`api - toggle Favorite id`, id);
+    const toggleFavorite = (sid) => {
+        console.log(`api - toggle Favorite sid`, sid);
 
         const updateSummaries = [...mySummaries].map((summary) => {
-            if (summary.id === id) {
+            if (summary.sid === sid) {
                 summary.favorite = !summary.favorite
             };
             return summary;
@@ -132,16 +134,28 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
         .then(response => console.log('Received summaries:', response))
         .catch(error => console.log('Error getting summaries:', error));
         
-        // postSummary('sid1', 'author1', 'url1', 'title1', ['tag1', 'tag2'], ['note1', 'note2']) // MOCK
+        // createSummary('sid1', 'author1', 'url1', 'title1', ['tag1', 'tag2'], ['note1', 'note2']) // MOCK
     }, []);
 
     return {
         isLoading, setLoading,
-        deleteSummary, editSummary, ShareSummary, toggleFavorite
+        deleteSummary, updateSummary, ShareSummary, toggleFavorite
     }
 
     // TODO implement
-    const addSummary = (id, summary) => {}
+    const addSummary = (sid, summary) => {}
+    const generateSid = (uid) => {
+        /**
+         * taken from: https://stackoverflow.com/questions/37072341/how-to-use-auto-increment-for-primary-key-id-in-dynamodb
+         */
+        const CUSTOMEPOCH = 1300000000000; // artificial epoch
+        let shardId = Math.floor(Math.random() * 64)
+        let ts = new Date().getTime() - CUSTOMEPOCH; // limit to recent
+        let randid = Math.floor(Math.random() * 512);
+        ts = (ts * 64);   // bit-shift << 6
+        ts = ts + shardId;
+        return (ts * 512) + randid;
+    }
 } 
 
 

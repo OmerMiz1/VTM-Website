@@ -13,9 +13,9 @@ import HeaderIconsData, { EditIcons} from './HeaderIcons.data';
 import Icon from '../../../../components/atoms/Icon';
 import IconContainer from '../../../../containers/IconContainer';
 
-function HeaderSection({viewSummary, editSummary,  mode}) {
+function HeaderSection({viewSummary, updateSummary,  mode}) {
 
-    const {titleInputRef, Title, modeToggle, updateTitle, editTitle,  toggleEditTitle} = HeaderLogic(editSummary, mode, viewSummary)
+    const {titleInputRef, Title, modeToggle, updateTitle, editTitle,  toggleEditTitle} = HeaderLogic(updateSummary, mode, viewSummary)
 
     const IconData = HeaderIconsData(mode.mode, modeToggle);
 
@@ -33,7 +33,6 @@ function HeaderSection({viewSummary, editSummary,  mode}) {
             const newTags = [... tags , newTag];
             setTags(newTags);
         }
-
     }
 
 
