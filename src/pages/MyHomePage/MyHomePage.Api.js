@@ -19,7 +19,8 @@ const awsmobile = {
     ]
 };
 Amplify.configure(awsmobile)
-/*
+
+/* DELETEME
 Summary: 
 {
     sid: INT,
@@ -35,46 +36,56 @@ Summary:
     favorite: BOOL,
 } 
  */
-
 const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries)  => {
     const apiName = 'SummaryAPI';
     const path = '/summary';
-    const partitionKey = 'sid';
-    const sortKey = 'author';
+    const partitionKey = 'uid';
+    const sortKey = 'createTime';
 
     const [isLoading, setLoading] = useState(true);
 
 
     // MOCK get all my summary and set it on the state
-    const fetchSummaries = () => {
+    const fetchSummaries = async () => {
+        console.log('fetchSummaries'); //DELETEME
+        let userId = undefined;
+        let uid = (await Auth.currentAuthenticatedUser()).getUsername();
+        console.log("username: ", uid); // DELETEME
+        
+        
         setLoading(true);
-        // console.log('fetch all my summaries...');
-
-        // MOCK
-        setTimeout(() => {
-            //uid#time_stamp
-            setMySummaries(MockData);
+        API.get(apiName, `${path}/${partitionKey}`)
+        .then(summaries => {
+            setMySummaries(summaries);
             setLoading(false);
-        }, 200);
+        })
+        .catch(error => {
+            console.log('error fetching summaries:' + error)
+        });
     }
 
     const getSummaries = async () => {
-        return API.get(apiName, path+'/sid1', {
-            "queryStringParameters": {
-                author: "author1"
-            }
-        });
+        return ;
+    }
+
+    const getSummary = async () => {
+        console.log('getSummary');
+        API.get(apiName, `${path}/`)
     }
 
     // TODO consider using PUT instead of POST
     const createSummary = async (summary) => {
-        // TODO: set sid, createdTime, editTime
-        // summary['sid'] = generateSid(summary.uid);
-        
-        return await API.post(apiName, path, {body: summary});
+        let createTime = new Date().getTime();
+        let uid = (await Auth.currentAuthenticatedUser()).getUsername();
+        let sid = `${uid}#${createTime}`;
+        summary['uid'] = uid;
+        summary['createTime'] = createTime;
+        summary['sid'] = sid;
+
+        let response = await API.post(apiName, path, {body: summary});
+        console.log(`post response: ${response}`);
     }
 
-    //MOCK update summary
     const updateSummary = (sid , updateSummary) => {
         //MOCK edit summary
         const newSummary = updateSummary ? updateSummary: 
@@ -139,22 +150,13 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 
     return {
         isLoading, setLoading,
-        deleteSummary, updateSummary, ShareSummary, toggleFavorite
+        deleteSummary, updateSummary, ShareSummary, toggleFavorite, createSummary
     }
 
     // TODO implement
     const addSummary = (sid, summary) => {}
-    const generateSid = (uid) => {
-        /**
-         * taken from: https://stackoverflow.com/questions/37072341/how-to-use-auto-increment-for-primary-key-id-in-dynamodb
-         */
-        const CUSTOMEPOCH = 1300000000000; // artificial epoch
-        let shardId = Math.floor(Math.random() * 64)
-        let ts = new Date().getTime() - CUSTOMEPOCH; // limit to recent
-        let randid = Math.floor(Math.random() * 512);
-        ts = (ts * 64);   // bit-shift << 6
-        ts = ts + shardId;
-        return (ts * 512) + randid;
+    const generateSid = (summary) => {
+        return `$(summary.uid)#$()`
     }
 } 
 
