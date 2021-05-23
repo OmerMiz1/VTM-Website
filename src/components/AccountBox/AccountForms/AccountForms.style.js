@@ -79,7 +79,7 @@ export const Input = styled.input`
 // submit button style - size clor padding...
 export const SubmitButton = styled.button`
   width: 100%;
-  padding: 11px 40%;
+  padding: 11px 30%;
   color: #fff;
   font-size: ${props => props.theme.fontSizes.medium};
   font-weight: 600;

@@ -9,12 +9,18 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {useSignupSchema} from '../../../../validation/SignupValidation'
 
-export function SignupForm(props) {
+export function SignupForm({setIsConfirm}) {
     // context - swich to signup
-    const {swichToSignup} = useContext(AccountContext)
+    const {swichToSignup} = useContext(AccountContext);
 
     // account api - post:
     const {PostSingupForm} = AccountApi();
+
+    const submitSingUp = (data) => {
+      console.log('submitSingUp -> confirm!');
+      PostSingupForm(data);
+      setIsConfirm(true);
+    }
     
     // Valdation state from useSignupSchema (schema)
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -24,7 +30,7 @@ export function SignupForm(props) {
     return (
         <BoxContainer>
           <MrginSpanHeight height='15px'/>
-          <FormContainer  onSubmit={handleSubmit(PostSingupForm)}>
+          <FormContainer  onSubmit={handleSubmit(submitSingUp)}>
             <Input type='text' placeholder='User Name' name='userName' {...register("userName")} />
             <ValidsionWarnnig> {errors.userName?.message} </ValidsionWarnnig>
             <MrginSpanHeight height='6px'/>

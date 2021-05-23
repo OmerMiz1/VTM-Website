@@ -62,7 +62,6 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
     // TODO add 
     const addSummary = (newSummary) => {
         console.log(`add summay -> `, newSummary );
-
         setMySummaries([...mySummaries, newSummary]); 
         setMyFilterSummaries( [...myFilterSummaries, newSummary]);
     }

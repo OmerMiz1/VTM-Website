@@ -4,13 +4,19 @@ import {BoxContainer, BackDrop, TopContainer, ContentContainer,
     backdropVariants, expandingTransition } from './AccountBox.style';
 import {LoginForm} from './AccountForms/LogInForm';
 import {SignupForm} from './AccountForms/SignupForm';
-import  HeaderContext from './HeaderContext'
+import {ConfirmSignUp} from './AccountForms/ConfirmSignUp';
+
+
+
+import  HeaderContext from './HeaderContext';
 
 
 function AccountBox(props) {
     // logic of the animation and the Context (context and values)
-    const {expandedAnimation,
+    const {expandedAnimation, isConfirm, setIsConfirm,
          constextValue, isRegistered} = AccountBoxLogic(props);
+
+
 
     return (
         <AccountContext.Provider value={constextValue}>
@@ -24,7 +30,8 @@ function AccountBox(props) {
                     <HeaderContext isRegistered={isRegistered}/>                 
                 </TopContainer>
                 <ContentContainer>
-                    {isRegistered ? <LoginForm/>: <SignupForm/>}
+                    {isRegistered ? <LoginForm/> :
+                    isConfirm ? <ConfirmSignUp/> : <SignupForm setIsConfirm={setIsConfirm}/>}
                 </ContentContainer>
             </BoxContainer>
         </AccountContext.Provider>
