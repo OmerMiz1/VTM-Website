@@ -1,11 +1,18 @@
 // icons
 import {faUserCircle ,faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import AccountApi from '../../AccountBox/Account.Api';
 
 const DropDownSummaryData = () => {
-    const mockFunction = title => {
-        console.log(`mock! ---> clicked on - `, title)
+    const {Logout} = AccountApi();
+
+    const mockFunction = () => {
+        console.log(`mock! ---> clicked on - `)
     }
 
+    const logout = () => {
+        console.log('logout');
+        Logout();
+    }
 
     return [
         {
@@ -21,7 +28,7 @@ const DropDownSummaryData = () => {
         {
             title:'Log Out',
             icon: faSignOutAlt,
-            function: mockFunction
+            function: logout
         }
     ];
 

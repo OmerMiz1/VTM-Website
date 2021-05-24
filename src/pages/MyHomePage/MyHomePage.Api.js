@@ -39,81 +39,83 @@ Summary:
 const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries)  => {
     const apiName = 'SummaryAPI';
     const path = '/summary';
-    const partitionKey = 'uid';
-    const sortKey = 'createTime';
+    const partitionKeyName = 'uid';
+    const sortKeyName = 'createTime';
 
     const [isLoading, setLoading] = useState(true);
 
-
-    // MOCK get all my summary and set it on the state
-    const fetchSummaries = async () => {
+    const fetchSummaries = (pk=partitionKeyName) => {
         console.log('fetchSummaries'); //DELETEME
-        let userId = undefined;
-        let uid = (await Auth.currentAuthenticatedUser()).getUsername();
-        console.log("username: ", uid); // DELETEME
-        
-        
         setLoading(true);
-        API.get(apiName, `${path}/${partitionKey}`)
+
+        API.get(apiName, `${path}/${pk}`)
         .then(summaries => {
+            console.log(`summaries: ${summaries}`)
             setMySummaries(summaries);
             setLoading(false);
         })
         .catch(error => {
-            console.log('error fetching summaries:' + error)
+            console.log('error fetching summaries:' + error.message)
         });
     }
 
-    const getSummaries = async () => {
-        return ;
+    const getSummaries = (pk=partitionKeyName) => {
     }
 
-    const getSummary = async () => {
-        console.log('getSummary');
-        API.get(apiName, `${path}/`)
+    const getSummary = (sk, pk=partitionKeyName) => {
+        console.log('getSummary'); //DELETEME
+        API.get(apiName, `${path}/${pk}/${sk}`)
     }
 
-    // TODO consider using PUT instead of POST
-    const createSummary = async (summary) => {
-        let createTime = new Date().getTime();
-        let uid = (await Auth.currentAuthenticatedUser()).getUsername();
-        let sid = `${uid}#${createTime}`;
-        summary['uid'] = uid;
-        summary['createTime'] = createTime;
-        summary['sid'] = sid;
+    const addSummary = (summary) => {
+        console.log('addSummary') //DELETEME
 
-        let response = await API.post(apiName, path, {body: summary});
-        console.log(`post response: ${response}`);
+        API.post(apiName, `${path}/${partitionKeyName}`, {body: summary})
+        .then(response => {
+            console.log(`post response: ${response}`)
+            setMySummaries([...mySummaries, summary]);
+            setMyFilterSummaries([...myFilterSummaries, summary]);
+        })
+        .catch(error => console.log(`error adding summary: ${error.message}`))        
     }
 
-    const updateSummary = (sid , updateSummary) => {
+    const updateSummary = (sid='1e0f0d03-515a-4257-8ea5-2165dbae8485/1621788711255' , updatedSummary) => {
         //MOCK edit summary
-        const newSummary = updateSummary ? updateSummary: 
-        {
+        let splitRes = sid.split('/');
+        let uid = splitRes[0]
+        let timeCreate = splitRes[1]
+
+        //TODO fix mock values
+        const newSummary = updatedSummary ? updatedSummary : {
             sid: sid,
             favorite: false,
-            title: 'this is edit mock',
-            tags: ['edit', 'mock'],
-            createdTime:'16/11/2021',
+            title: 'title changed',
+            tags: ['tag changed'],
+            createdTime: 1621788711255,
             editTime: 'Now',
             likes: 0,
             autorName:'Shon Pozner',
             url: 'https://www.google.com/',
-        }
+        };
         
+        API.put(apiName, path)
         setMySummaries(prev => prev.map(item => (item.sid === sid ? newSummary : item)));
         setMyFilterSummaries(prev => prev.map(item => (item.sid === sid ? newSummary : item)));
     }
 
-    //MOCK delete summary and all the notes.. 
     const deleteSummary = (sid) => {
         console.log(`api - delete sid`, sid); // DELETEME
-        
-        // fronted delete -
-        const newSummaries = [...mySummaries].filter(summary => summary.sid !== sid);
-        const newSummariesFilter = [...myFilterSummaries].filter(summary => summary.sid !== sid);
-        setMyFilterSummaries(newSummariesFilter);
-        setMySummaries(newSummaries);
+        API.del(apiName, sid)
+        .then(response => {
+            console.log(`delete response: ${response}`)//DELETEME
+
+            // Fronted delete
+            const newSummaries = [...mySummaries].filter(summary => summary.sid !== sid);
+            const newSummariesFilter = [...myFilterSummaries].filter(summary => summary.sid !== sid);
+            setMyFilterSummaries(newSummariesFilter);
+            setMySummaries(newSummaries);
+        })
+        .catch(error => console.log(error))
     }
 
     const ShareSummary = (sid) => {
@@ -134,29 +136,13 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
         setMySummaries(updateSummaries);
     }
 
-    //DELETEME
     useEffect(async () => {
-        //MOCK
         fetchSummaries();
-        // let user = await Auth.currentAuthenticatedUser();
-        // console.log(user);
-
-        getSummaries()
-        .then(response => console.log('Received summaries:', response))
-        .catch(error => console.log('Error getting summaries:', error));
-        
-        // createSummary('sid1', 'author1', 'url1', 'title1', ['tag1', 'tag2'], ['note1', 'note2']) // MOCK
     }, []);
 
     return {
         isLoading, setLoading,
-        deleteSummary, updateSummary, ShareSummary, toggleFavorite, createSummary
-    }
-
-    // TODO implement
-    const addSummary = (sid, summary) => {}
-    const generateSid = (summary) => {
-        return `$(summary.uid)#$()`
+        deleteSummary, updateSummary, ShareSummary, toggleFavorite, addSummary
     }
 } 
 

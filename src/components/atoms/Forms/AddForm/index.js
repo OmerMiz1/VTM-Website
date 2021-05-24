@@ -36,14 +36,9 @@ function AddForm({close}) {
 
   const onSubmit = (data) => {
       console.log('form data is -> ',data);
-      data["uid"] = "uid";
-      //TODO change to backformat..
-      data["sid"] = data.sid;
       data["tags"] = createTagsArrays(data.tags);
-      data["createdTime"] = getNowDate();
-      data["editTime"] = getNowDate();
       data["likes"] = parseInt(data.likes);
-
+      
       addSummary(data);
       close(); 
   }
@@ -51,7 +46,6 @@ function AddForm({close}) {
   const createTagsArrays = (str) => {
     let tags = str.split(" ");
     return tags
-
   }
 
 

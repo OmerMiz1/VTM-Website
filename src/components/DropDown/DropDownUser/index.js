@@ -13,7 +13,7 @@ function DropDownUser(props) {
               {DropDownSummaryData().map((item, index) => {
                 return(
                   <MenuItem key={index}>
-                    <MenuButton onClick={ () => item.function(item.title)}>
+                    <MenuButton onClick={ () => item.function()}>
                       <FontAwesomeIcon className='icon' icon={item.icon}/>
                       <ItemText>{item.title}</ItemText>
                     </MenuButton>
