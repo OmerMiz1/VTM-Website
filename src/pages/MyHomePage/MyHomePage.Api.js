@@ -79,33 +79,63 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
         .catch(error => console.log(`error adding summary: ${error.message}`))        
     }
 
-    const updateSummary = (sid='1e0f0d03-515a-4257-8ea5-2165dbae8485/1621788711255' , updatedSummary) => {
-        //MOCK edit summary
+    //MOCK remove all mock details
+    const updateSummary = (sid='1e0f0d03-515a-4257-8ea5-2165dbae8485/1621788711255' , updatedSummary={}) => {
+        console.log('updateSummary')//DELETEME
+
         let splitRes = sid.split('/');
         let uid = splitRes[0]
-        let timeCreate = splitRes[1]
+        let createTime = splitRes[1]
 
         //TODO fix mock values
-        const newSummary = updatedSummary ? updatedSummary : {
+        let newSummary = {
+            sid: sid,
+            uid: uid,
+            favourite: false,
+            title: 'title changed',
+            tags: ['tag changed'],
+            createTime: createTime,
+            editTime: 'Now',
+            likes: 0,
+            authorName:'Shon Pozner',
+            url: 'https://www.google.com/',
+        };
+        
+        API.put(apiName, path, {body: newSummary})
+        .then(response => {
+            console.log(`update summary response: ${response}`) //DELETEME
+            
+            // Update Frontend
+            setMySummaries(prev => prev.map(item => (item.sid === sid ? newSummary : item)));
+            setMyFilterSummaries(prev => prev.map(item => (item.sid === sid ? newSummary : item)));
+        })
+        .catch(error => console.log(`error update summary: ${error}`))
+
+        newSummary = {
             sid: sid,
             favorite: false,
             title: 'title changed',
             tags: ['tag changed'],
-            createdTime: 1621788711255,
+            createdTime: createTime,
             editTime: 'Now',
             likes: 0,
             autorName:'Shon Pozner',
             url: 'https://www.google.com/',
         };
-        
-        API.put(apiName, path)
-        setMySummaries(prev => prev.map(item => (item.sid === sid ? newSummary : item)));
-        setMyFilterSummaries(prev => prev.map(item => (item.sid === sid ? newSummary : item)));
     }
 
-    const deleteSummary = (sid) => {
-        console.log(`api - delete sid`, sid); // DELETEME
-        API.del(apiName, sid)
+    //MOCK remove all mock details
+    const deleteSummary = (sid='1e0f0d03-515a-4257-8ea5-2165dbae8485/1621788711255') => {
+        console.log('deleteSummary')//DELETEME
+
+        let splitRes = sid.split('/');
+        let msgBody = {
+            body: {
+                uid: splitRes[0],
+                createTime: splitRes[1]
+                }
+        }
+        API.del(apiName, `${path}/${sid}`)
         .then(response => {
             console.log(`delete response: ${response}`)//DELETEME
 
@@ -137,7 +167,8 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
     }
 
     useEffect(async () => {
-        fetchSummaries();
+        fetchSummaries(); //TODO uncomment
+        deleteSummary();
     }, []);
 
     return {
