@@ -45,6 +45,13 @@ export const ContainerSearchBar = styled.div`
         };
 
     };
+
+
+    input:not(:placeholder-shown) {
+        width: 240px;
+        padding: 0 30px;
+        font-weight: 600;
+    }
     
 `;
 

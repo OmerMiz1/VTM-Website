@@ -45,7 +45,6 @@ function NavBar(props) {
                 })}
             
             </NavLeftList>
-            
 
         
             <NavRightList position='end' width='auto'>

@@ -15,9 +15,6 @@ import Discover from './Discover';
 import MyTags from './MySummaries/MyTags';
 import ViewSummary from './VeiwSummary';
 
-import EditSummary from '../../components/EditForm';
-
-
 function MyHomePage() {
     const {page} = useParams();
     const {mySummaries, setMySummaries, isMySummaryEmpty, myFilterSummaries,
@@ -44,8 +41,7 @@ function MyHomePage() {
                     <SideNavBar/>
                     
                     <Switch>
-                        <Route exact path={`${path}/view/:sid`} component={ViewSummary}/>
-                        <Route exact path={`${path}/edit/:sid`} component={EditSummary}/>
+                        <Route exact path={`${path}/:mode/:sid`} component={ViewSummary} />
                         <Route exact path='/myHome/:page/:attribute' component={MyTags}/>
                         <Route exact path='/myHome/:page/:action/:attribute/:name' component={MySummaries}/>                    
                         <Route exact path='/myHome/:page'>
