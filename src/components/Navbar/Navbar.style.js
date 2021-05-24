@@ -13,7 +13,7 @@ export const NavbarSection = styled.nav`
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     border-bottom: 1px solid #d9d9d9;
    
-    ${({useTransparent}) => useTransparent && css`
+    ${({usetransparent}) => usetransparent && css`
         background-color: transparent;
         border-bottom: none;
         box-shadow: none;
@@ -49,7 +49,7 @@ export const NavMenu = styled.div`
         left: 40px;
         transform: translate(-100%, 60%);
         cursor: pointer;
-        color: ${({useTransparent}) => useTransparent? '#dfdce2': 'black'};
+        color: ${({usetransparent}) => usetransparent? '#dfdce2': 'black'};
 
     };
 `
@@ -77,7 +77,7 @@ export const NavLeftList = styled.ul`
         transition: all 1s ease;
 
         ${({active}) => active && css`
-            background: ${({useTransparent}) => useTransparent? 'rgba(113, 113, 114, 0.7)': 'rgba(238, 238, 238, 0.9)'};
+            background: ${({usetransparent}) => usetransparent? 'rgba(113, 113, 114, 0.7)': 'rgba(238, 238, 238, 0.9)'};
             font-weight: 800;
             left: 0;
             opacity: 1;
@@ -100,7 +100,7 @@ export const NavItem = styled.li`
 export const NavLink = styled(Link)`
 
     /* border-bottom: 2px solid #2C7CD4; */
-    color: ${({useTransparent}) => useTransparent? '#efefef': 'black'};
+    color: ${({usetransparent}) => usetransparent? '#efefef': 'black'};
     font-size: ${props => props.theme.fontSizes.nav};
     display: flex;
     text-decoration: none;
@@ -110,7 +110,7 @@ export const NavLink = styled(Link)`
     border-bottom: ${({border}) => border ? '2px solid #55A1B2' : 'none' };
     
     &:hover {
-        filter: ${({useTransparent}) => useTransparent? 'contrast(2)': 'contrast(0.4)'};
+        filter: ${({usetransparent}) => usetransparent? 'contrast(2)': 'contrast(0.4)'};
         color:${props => props.theme.colors.main};
         font-weight:800;
 

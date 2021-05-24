@@ -90,7 +90,7 @@ export const NavMenu = styled.div`
         left: 40px;
         transform: translate(-100%, 60%);
         cursor: pointer;
-        color: ${({useTransparent}) => useTransparent? '#dfdce2': 'black'};
+        color: ${({usetransparent}) => usetransparent? '#dfdce2': 'black'};
 
     };
 `

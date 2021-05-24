@@ -11,10 +11,10 @@ const AccountApi = () => {
     console.log('login:' ,data);
   }
 
-   //MOCK ->post to the server (signup) 
-   const PostConfirmForm = (data) => {
-    console.log('confirm:' ,data);
-  }
+  //  //MOCK ->post to the server (signup) 
+  //  const PostConfirmForm = (data) => {
+  //   console.log('confirm:' ,data);
+  // }
 
   return {PostSingupForm, PostLoginForm};
 }

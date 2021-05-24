@@ -35,10 +35,8 @@ function AddForm({close}) {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-      console.log('form data is -> ',data);
       data["uid"] = "uid";
       //TODO change to backformat..
-      data["sid"] = data.sid;
       data["tags"] = createTagsArrays(data.tags);
       data["createdTime"] = getNowDate();
       data["editTime"] = getNowDate();

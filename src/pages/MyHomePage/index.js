@@ -39,7 +39,7 @@ function MyHomePage() {
             deleteSummary, editSummary, ShareSummary, toggleFavorite}}>
             <FilterMySummariesContext.Provider value= {{SearchFillterData, myFilterSummariesTags,
                  FillterDataByAttribute, UnFillter}} >
-                <OnNavbar useTransparent ={false} PositionMarker={page}/>
+                <OnNavbar usetransparent ={0} PositionMarker={page}/>
                 <MyHomePageContainer>
                     <SideNavBar/>
                     

@@ -13,7 +13,7 @@ function AccessAccountPage() {
     
     return (
         <PageContainer>
-            <OffNavbar useTransparent ={false} />
+            <OffNavbar usetransparent ={0} />
             <InnerPageContainer>
                 <AccountBox initRegistered = {action === 'login'? true: false}/>
             </InnerPageContainer>
