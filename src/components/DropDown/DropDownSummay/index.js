@@ -15,7 +15,7 @@ function DropDownSummary(props) {
               {DropDownSummaryData().map((item, index) => {
                 return(
                   <MenuItem key={index}>
-                    <MenuButton onClick={ () => item.function(sid)}>
+                    <MenuButton onClick={ () => item.function(sid, item.title)}>
                       <FontAwesomeIcon className='icon' icon={item.icon}/>
                       <ItemText>{item.title}</ItemText>
                     </MenuButton>

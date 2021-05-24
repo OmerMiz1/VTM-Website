@@ -5,7 +5,7 @@ import {MenuContainer, MenuList, MenuButton,
   MenuItem, ItemText} from '../DropDown.style';
 
 
-function DropDownUser(props) {
+function DropDownUser() {
 
     return (
         <MenuContainer bottom='-94px' right='-30px'>

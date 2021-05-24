@@ -35,7 +35,9 @@ function AddForm({close}) {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-      console.log('form data is -> ',data);
+      console.log('form data is -> ',data); //FIXME below came from merge, i kept incoming change.
+      data["uid"] = "uid";
+      //TODO change to backformat..
       data["tags"] = createTagsArrays(data.tags);
       data["likes"] = parseInt(data.likes);
       

@@ -9,14 +9,14 @@ import {faShare, faTrash , faEdit, faEye } from '@fortawesome/free-solid-svg-ico
 
 const DropDownSummaryData = () => {
 
-    const {deleteSummary, updateSummary, ShareSummary} = useContext(SummariesContext);
+    const {deleteSummary, ShareSummary} = useContext(SummariesContext);
     
     let history = useHistory();
     let {page} = useParams();
 
     
-    const viewSummary = (sid) => {
-        history.push('/myHome/' + page +'/view/' + sid, sid);    
+    const viewSummary = (sid, title) => {
+        history.push('/myHome/' + page +'/'+ title + '/' + sid, sid);    
     }
 
 
@@ -35,14 +35,14 @@ const DropDownSummaryData = () => {
             function: ShareSummary
         }, 
         {
-            title:'View',
+            title:'view',
             icon: faEye,
             function: viewSummary
         },
         {
-            title:'Edit',
+            title:'edit',
             icon: faEdit,
-            function: updateSummary
+            function: viewSummary
         },
         {
             title:'Delete',

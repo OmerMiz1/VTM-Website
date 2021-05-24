@@ -12,7 +12,7 @@ import {faTimes, faBars} from '@fortawesome/free-solid-svg-icons';
 
 
 function OffNavBar(props) {
-    const {useTransparent} = props;
+    const {usetransparent} = props;
     const {clickedOnMenu, toggleMenuClicked,
         closeMobileMenu, useOutsideCloseMenu ,wrapperRef} = NavbarLogic()
 
@@ -21,20 +21,20 @@ function OffNavBar(props) {
 
 
     return (
-        <NavbarSection useTransparent={useTransparent} ref={wrapperRef}>
+        <NavbarSection usetransparent={usetransparent} ref={wrapperRef}>
             <NavLogoContainer onClick={closeMobileMenu}>
-                <BrandLogo size={40} color={useTransparent? '#fff' : 'black'}></BrandLogo>
+                <BrandLogo size={40} color={usetransparent? '#fff' : 'black'}></BrandLogo>
             </NavLogoContainer>
-            <NavMenu onClick={toggleMenuClicked} useTransparent={useTransparent}>
+            <NavMenu onClick={toggleMenuClicked} usetransparent={usetransparent}>
                 {clickedOnMenu ? <FontAwesomeIcon icon={faTimes}/>: <FontAwesomeIcon icon={faBars}/>}
             </NavMenu>
 
-            <NavLeftList active={clickedOnMenu} useTransparent={useTransparent}>
+            <NavLeftList active={clickedOnMenu} usetransparent={usetransparent}>
                 {DataLinks.map((item, index) => {
                     return(
                         <NavItem key={index}>
                             <NavLink onClick={closeMobileMenu} to={item.link}
-                             useTransparent={useTransparent}>{item.title}</NavLink>
+                             usetransparent={usetransparent}>{item.title}</NavLink>
                         </NavItem>
                     )
                 })}    
@@ -44,7 +44,7 @@ function OffNavBar(props) {
                 {DataRightLinks.map((item, index) => {
                     return (
                         <NavItem key={index}>
-                            <NavLink to={item.link} useTransparent={useTransparent}>{item.title}</NavLink>
+                            <NavLink to={item.link} usetransparent={usetransparent}>{item.title}</NavLink>
                         </NavItem>
                     );
                 })}

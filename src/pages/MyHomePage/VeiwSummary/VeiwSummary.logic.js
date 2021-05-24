@@ -5,15 +5,15 @@ import {fetchNotes} from './ViewSummary.Api';
 
 
 
-const VeiwSummaryLogic = (setLoading , mySummaries)  => {
+const VeiwSummaryLogic = (setLoading , mySummaries, viewMode)  => {
     const [notes, setNotes] = useState([]);
     const [allTagsNotes, setAllTagsNotes] = useState([]);
     const [filterTagsNotes, setFilterTagsNotes] = useState([]);
 
     const [viewSummary, setViewSummary] = useState();
-
-    const [mode, setMode] = useState('view');
     const params = useParams();
+
+    const [mode, setMode] = useState(params.mode);
 
     const toggleMode = () =>  {
         setMode( mode==='view' ? 'edit' : 'view');

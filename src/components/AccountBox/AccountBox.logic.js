@@ -4,6 +4,8 @@ import {expandingTransition } from './AccountBox.style';
 
 const AccountBoxLogic = (props) => {
     const {initRegistered} = props;
+    
+    const [isConfirm, setIsConfirm] = useState(false)
 
     // use state if expanded the animation
     const [expandedAnimation, setExpandedAnimation] = useState(false);
@@ -39,11 +41,15 @@ const AccountBoxLogic = (props) => {
         }, 500);
     };
 
+
+
     const constextValue = {swichToSignup, swichToSingUp}
     return {
         expandedAnimation,
         constextValue,
-        isRegistered
+        isRegistered,
+        isConfirm,
+        setIsConfirm
     };
 
 }

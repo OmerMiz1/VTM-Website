@@ -12,7 +12,7 @@ function TopSection() {
    
     return (
         <TopSectionContainer>
-            <OffNavbar useTransparent ={true}/>
+            <OffNavbar usetransparent ={1}/>
             <TopSectionContent>
                 <TopSectionItems>
                     <TopSectionH1>Strat Tags Your Videos!</TopSectionH1>
