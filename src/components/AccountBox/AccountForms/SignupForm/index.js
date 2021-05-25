@@ -11,13 +11,14 @@ import {useSignupSchema} from '../../../../validation/SignupValidation'
 
 export function SignupForm({setIsConfirm}) {
     // context - swich to signup
-    const {swichToSignup} = useContext(AccountContext);
+    const {swichToLogIn, swichToSingUp} = useContext(AccountContext);
 
     // account api - post:
     const {PostSingupForm} = AccountApi();
 
     const submitSingUp = (data) => {
       console.log('submitSingUp -> confirm!');
+      swichToSingUp()
       PostSingupForm(data);
       setIsConfirm(true);
     }
@@ -48,7 +49,7 @@ export function SignupForm({setIsConfirm}) {
           <MrginSpanHeight height='5px'/>
           <MutedLink href='#'>
             Already have an account?
-            <BoldLink onClick={swichToSignup}>
+            <BoldLink onClick={swichToLogIn}>
               Sign in
             </BoldLink>
           </MutedLink>

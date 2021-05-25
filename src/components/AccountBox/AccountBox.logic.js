@@ -26,7 +26,7 @@ const AccountBoxLogic = (props) => {
     };
 
     // taggle to Signup
-    const swichToSignup = () => {
+    const swichToLogIn = () => {
         playAnimation();
         setTimeout(() => {
             setIsRegistered(true);
@@ -43,7 +43,7 @@ const AccountBoxLogic = (props) => {
 
 
 
-    const constextValue = {swichToSignup, swichToSingUp}
+    const constextValue = {swichToSingUp, swichToLogIn}
     return {
         expandedAnimation,
         constextValue,

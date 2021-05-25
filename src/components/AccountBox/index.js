@@ -27,7 +27,7 @@ function AccountBox(props) {
                     animate={expandedAnimation ? 'expanded': 'collapsed'}
                     variants= {backdropVariants}
                     transition= {expandingTransition}/>
-                    <HeaderContext isRegistered={isRegistered}/>                 
+                    <HeaderContext isRegistered={isRegistered} isConfirm={isConfirm}/>                 
                 </TopContainer>
                 <ContentContainer>
                     {isRegistered ? <LoginForm/> :
