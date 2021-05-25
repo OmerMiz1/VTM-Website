@@ -28,6 +28,7 @@ export function ConfirmSignUp(props) {
   }
 
   const submitConfirm = (data) => {
+    console.log('ccccccccc');
     PostConfirmForm(data)
   }
 
