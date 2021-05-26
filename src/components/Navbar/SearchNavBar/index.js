@@ -8,10 +8,10 @@ import SearchNavBarLogic from './SearchNavBar.logic';
 function SearchNavBar() {
 
 
-    const {handelChnge, startSearch} = SearchNavBarLogic();
+    const {handelChnge, startSearch, isHidden} = SearchNavBarLogic();
 
     return (
-        <ContainerSearchBar>
+        <ContainerSearchBar hidden={isHidden}>
             <SearchBar onChange={e => handelChnge(e.target.value)} className="input" type="text" placeholder=" search !" />
             <SearcLink onClick={startSearch} className="link">
                 <FontAwesomeIcon  className="icon" icon={faSearch}/>

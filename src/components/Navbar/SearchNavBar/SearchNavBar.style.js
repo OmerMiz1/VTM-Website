@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 export const SearchBar = styled.input`
     border: none;
@@ -16,21 +16,33 @@ export const SearchBar = styled.input`
 `;
 
 export const ContainerSearchBar = styled.div`
+    
     position: absolute;
     top:10px;
     z-index:10;
     float:left;
     display:flex;
-
-
+    z-index: 1;
     /* top: 50%;
     left: 50%; */
     transform: translate(-100%, 0%);
     background: ${(props) => props.theme.colors.secondLite };
-
     height: 40px;
     border-radius: 40px;
     padding: 0;
+    opacity: 1;
+    /* transition: visibility 0s, opacity 0.5s linear; */
+
+    
+    ${({hidden}) => hidden && css`
+        visibility: hidden;
+        z-index: 0;
+        opacity: 0;
+
+    `};
+    
+   
+    
     &:hover {
         & .input {
             width: 240px;
@@ -45,7 +57,6 @@ export const ContainerSearchBar = styled.div`
         };
 
     };
-
 
     input:not(:placeholder-shown) {
         width: 240px;
