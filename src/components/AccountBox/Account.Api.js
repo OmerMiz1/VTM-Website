@@ -16,7 +16,12 @@ const AccountApi = () => {
     console.log('confirm:' ,data);
   }
 
-    return {PostSingupForm, PostLoginForm, PostConfirmForm};
+   //MOCK ->edit profile (signup) 
+   const EditUesrProfile = (data) => {
+    console.log('confirm:' ,data);
+  }
+
+    return {PostSingupForm, PostLoginForm, PostConfirmForm, EditUesrProfile};
 }
 
 

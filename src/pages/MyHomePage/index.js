@@ -14,6 +14,7 @@ import {MyHomePageContainer}from './MyHomePage.style';
 import Discover from './Discover';
 import MyTags from './MySummaries/MyTags';
 import ViewSummary from './VeiwSummary';
+import ProfilePage from './Profile'
 
 function MyHomePage() {
     const {page} = useParams();
@@ -50,7 +51,8 @@ function MyHomePage() {
                             page === 'Discover' ? <Discover/> :
                             page === 'SharedWithMe' ? <h1>Shared With Me</h1> :
                             page === 'MyFrinds' ? <h1>My Frinds</h1> :
-                            page === 'Settings' ? <h1>Settings</h1> :
+                            page === 'Settings' ? <ProfilePage/> :
+                            page === 'Profile' ? <ProfilePage/> :
                             <h1>ELSE</h1>
 
                         }

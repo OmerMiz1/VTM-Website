@@ -35,7 +35,7 @@ export const ContainerSearchBar = styled.div`
 
     
     ${({hidden}) => hidden && css`
-        visibility: hidden;
+        visibility: hidden ;
         z-index: 0;
         opacity: 0;
 

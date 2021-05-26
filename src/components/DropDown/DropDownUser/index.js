@@ -5,7 +5,7 @@ import {MenuContainer, MenuList, MenuButton,
   MenuItem, ItemText} from '../DropDown.style';
 
 
-function DropDownUser() {
+function DropDownUser({close}) {
 
     return (
         <MenuContainer bottom='-94px' right='-30px'>
@@ -13,7 +13,10 @@ function DropDownUser() {
               {DropDownSummaryData().map((item, index) => {
                 return(
                   <MenuItem key={index}>
-                    <MenuButton onClick={ () => item.function(item.title)}>
+                    <MenuButton onClick={ () => {
+                      item.function(item.title)
+                      close()}
+                      }>
                       <FontAwesomeIcon className='icon' icon={item.icon}/>
                       <ItemText>{item.title}</ItemText>
                     </MenuButton>
