@@ -1,9 +1,7 @@
 import React from 'react';
-// import { useContext } from 'react';
-// import {AccountContext} from '../../AccountBox.logic'
-import {BoldLink, BoxContainer, FormContainer, ValidsionWarnnig,
-  Input, MutedLink, SubmitButton, MrginSpanHeight} from '../../../AccountForms.style';
-import AccountApi from '../../../../Account.Api';
+
+import {BoxContainer, FormContainer, ValidsionWarnnig,
+  Input, SubmitButton, MrginSpanHeight} from '../../../AccountForms.style';
 
 //validastion 
 import { useForm } from "react-hook-form";
@@ -14,36 +12,32 @@ import {ChangePasswordSchema} from '../../../../../../validation/ChangePasswordV
 
 export default function ChangePassword() {
   
-  // account api - confirm:
-  const {SendNewPsswordToEmail} = AccountApi();
-
   // Valdation state from useSignupSchema (schema)
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(ChangePasswordSchema),
   })
 
-  // const resendPassword = () => {
-  //   console.log(`resend password`);
-  // }
+
 
   const submitConfirm = (data) => {
-    console.log('post reset passwod (send to mail confirm password)');
-    SendNewPsswordToEmail(data);
+    console.log('Change password');
   }
 
-  
   
   return (
     <BoxContainer>
       <MrginSpanHeight height='30px'/>
       <FormContainer onSubmit={handleSubmit(submitConfirm)}>
-        <Input type='text' placeholder='user name' name='user' {...register("user")}/>
-        <ValidsionWarnnig> {errors.user?.message} </ValidsionWarnnig>
+        <Input type='password' placeholder='Verification code' name='password' {...register("password")}/>
+        <ValidsionWarnnig> {errors.password?.message} </ValidsionWarnnig>
         <MrginSpanHeight height='6px'/>
-        <Input type='email' placeholder='email' name='email' {...register("email")}/>
-        <ValidsionWarnnig> {errors.email?.message} </ValidsionWarnnig>
+        <Input type='password' placeholder='new password' name='newPassword' {...register("newPassword")}/>
+        <ValidsionWarnnig> {errors.newPassword?.message} </ValidsionWarnnig>
+        <MrginSpanHeight height='6px'/>
+        <Input type='confirm' placeholder='confirm password' name='confirm' {...register("confirm")}/>
+        <ValidsionWarnnig> {errors.confirm?.message} </ValidsionWarnnig>
         <MrginSpanHeight height='20px'/>
-        <SubmitButton type='submit'>Send Password</SubmitButton>
+        <SubmitButton type='submit'>Change Password</SubmitButton>
       </FormContainer>
         <MrginSpanHeight height='10px'/>
         {/* <MutedLink href='#'>

@@ -5,8 +5,6 @@ import {BoxContainer, FormContainer, ValidsionWarnnig, BoldLink,
   Input, SubmitButton, MrginSpanHeight} from '../../../AccountForms.style';
 import AccountApi from '../../../../Account.Api';
 
-import { useHistory } from 'react-router-dom';
-
 
 //validastion 
 import { useForm } from "react-hook-form";
@@ -14,7 +12,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {RestPasswordSchema} from '../../../../../../validation/LoginValidation';
 
 
-export default function RestPassword({setResetPassword}) {
+export default function RestPassword({setResetPassword, setChangePassword}) {
   
   // account api - confirm:
   const {SendNewPsswordToEmail} = AccountApi();
@@ -25,29 +23,16 @@ export default function RestPassword({setResetPassword}) {
   })
 
 
-  const submitConfirm = (data) => {
+  const submitSendPassword = (data) => {
     console.log('post reset passwod (send to mail confirm password)');
+    setChangePassword(1);
     SendNewPsswordToEmail(data);
   }
 
-
-  
-  const history = useHistory() 
-  // change the state to login when route from login 
-  useEffect(() => {
-      return history.listen((location) => { 
-        setResetPassword(0);
-        console.log(`You changed the page to: ${location.pathname}`) 
-      }) 
-  },[history]) 
-  
-
-  
-  
   return (
     <BoxContainer>
       <MrginSpanHeight height='30px'/>
-      <FormContainer onSubmit={handleSubmit(submitConfirm)}>
+      <FormContainer onSubmit={handleSubmit(submitSendPassword)}>
         <Input type='text' placeholder='user name' name='user' {...register("user")}/>
         <ValidsionWarnnig> {errors.user?.message} </ValidsionWarnnig>
         <MrginSpanHeight height='6px'/>

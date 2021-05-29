@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState , useEffect} from 'react';
 import {BoxContainer} from '../../AccountForms.style';
+
+import { useHistory } from 'react-router-dom';
 
 
 import ChangePassword from './ChangePassword';
@@ -8,17 +10,27 @@ import RestPassword from './RestPassword';
 
 
 
+
 export default function ForgetPassword({setResetPassword}) {
 
   const [isChangePasswordPage, setIsChangePasswordPage] = useState(0);
+
+  const history = useHistory() 
+  // change the state to login when route from login 
+  useEffect(() => {
+      return history.listen((location) => { 
+        setResetPassword(0);
+        console.log(`You changed the page to: ${location.pathname}`) 
+      }) 
+  },[history]) 
 
 
   return (
     <BoxContainer>
       {
         isChangePasswordPage ?
-        <ChangePassword setIsChange={setIsChangePasswordPage} /> :
-        <RestPassword setIsChange={setIsChangePasswordPage} setResetPassword={setResetPassword}/>
+        <ChangePassword setChangePassword={setIsChangePasswordPage} /> :
+        <RestPassword setChangePassword={setIsChangePasswordPage} setResetPassword={setResetPassword}/>
       }
     </BoxContainer>
   );
