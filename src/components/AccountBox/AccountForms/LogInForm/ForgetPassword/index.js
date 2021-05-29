@@ -18,11 +18,12 @@ export default function ForgetPassword({setResetPassword}) {
   const history = useHistory() 
   // change the state to login when route from login 
   useEffect(() => {
-      return history.listen((location) => { 
-        setResetPassword(0);
-        console.log(`You changed the page to: ${location.pathname}`) 
-      }) 
-  },[history]) 
+    const unlisten = history.listen(location => {
+      setResetPassword(0);
+      console.log(`You changed the page to: ${location.pathname}`)
+    });
+    return unlisten;
+  }, [history]);
 
 
   return (
