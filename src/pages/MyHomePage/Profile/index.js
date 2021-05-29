@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 
 import EditProfileForm from '../../../components/atoms/Forms/EditProfileForm';
+import ChangePasswordForm from '../../../components/atoms/Forms/ChangePasswordForm';
 import {ProfileContainer} from './ProfilePage.style';
 
 
@@ -12,7 +13,8 @@ function ProfilePage() {
     return (
         <ProfileContainer>
             {isChangePassword ?
-            <h1>bla</h1> : <EditProfileForm setChangePassword={setIsChangePassword}/>}
+            <ChangePasswordForm setChangePassword={setIsChangePassword}/> 
+            : <EditProfileForm setChangePassword={setIsChangePassword}/>}
                 
         </ProfileContainer>
     )
