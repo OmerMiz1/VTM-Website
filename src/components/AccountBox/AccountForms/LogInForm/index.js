@@ -11,9 +11,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {useLoginSchema} from '../../../../validation/LoginValidation'
 
 
-export function LoginForm(props) {
+export default function LoginForm({setResetPassword}) {
     // context - swich to signup
-  const {swichToSingUp} = useContext(AccountContext)
+  const {swichToLogIn, swichToSingUp} = useContext(AccountContext)
 
   // account api - post login:
   const {PostLoginForm} = AccountApi();
@@ -22,6 +22,12 @@ export function LoginForm(props) {
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(useLoginSchema),
   })
+
+
+  const restPasswordConfirm = () => {
+    console.log('restPasswordConfirm -> confirm!');
+    setResetPassword(1);
+  }
   
   return (
     <BoxContainer>
@@ -33,7 +39,7 @@ export function LoginForm(props) {
         <Input type='password' placeholder='Password' name='password' {...register("password")}/>
         <ValidsionWarnnig> {errors.password?.message} </ValidsionWarnnig>
         <MrginSpanHeight height='4px'/>
-        <MutedLink href='#'>Forget your password?</MutedLink>
+        <MutedLink onClick={() => restPasswordConfirm()} href='#'>Forget your password?</MutedLink>
         <MrginSpanHeight height='15px'/>
         <SubmitButton type='submit'>Sign In</SubmitButton>
       </FormContainer>

@@ -16,7 +16,7 @@ export function ConfirmSignUp(props) {
   // const {} = useContext(AccountContext)
 
   // account api - confirm:
-  const {PostConfirmForm} = AccountApi();
+  const {PostConfirmSignUpForm} = AccountApi();
 
   // Valdation state from useSignupSchema (schema)
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -28,8 +28,8 @@ export function ConfirmSignUp(props) {
   }
 
   const submitConfirm = (data) => {
-    console.log('ccccccccc');
-    PostConfirmForm(data)
+    console.log('Post Confirm SignUpForm');
+    PostConfirmSignUpForm(data)
   }
 
   

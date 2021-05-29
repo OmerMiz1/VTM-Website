@@ -6,6 +6,7 @@ const AccountBoxLogic = (props) => {
     const {initRegistered} = props;
     
     const [isConfirm, setIsConfirm] = useState(false)
+    const [isRestPassword, setIsRestPassword] = useState(0)
 
     // use state if expanded the animation
     const [expandedAnimation, setExpandedAnimation] = useState(false);
@@ -42,14 +43,21 @@ const AccountBoxLogic = (props) => {
     };
 
 
+    const setRestPassword = (data) => {
+        playAnimation();
+        setIsRestPassword(data)
+    }
 
     const constextValue = {swichToSingUp, swichToLogIn}
+    
     return {
         expandedAnimation,
         constextValue,
         isRegistered,
         isConfirm,
-        setIsConfirm
+        setIsConfirm,
+        isRestPassword,
+        setRestPassword
     };
 
 }
