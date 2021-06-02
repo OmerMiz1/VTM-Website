@@ -3,17 +3,14 @@ import {BoxContainer} from '../../AccountForms.style';
 
 import { useHistory } from 'react-router-dom';
 
-
 import ChangePassword from './ChangePassword';
 import RestPassword from './RestPassword';
-
-
-
 
 
 export default function ForgetPassword({setResetPassword}) {
 
   const [isChangePasswordPage, setIsChangePasswordPage] = useState(0);
+  const [userData, setUserData] = useState([]);
 
   const history = useHistory() 
   // change the state to login when route from login 
@@ -30,8 +27,9 @@ export default function ForgetPassword({setResetPassword}) {
     <BoxContainer>
       {
         isChangePasswordPage ?
-        <ChangePassword setChangePassword={setIsChangePasswordPage} /> :
-        <RestPassword setChangePassword={setIsChangePasswordPage} setResetPassword={setResetPassword}/>
+        <ChangePassword setChangePassword={setIsChangePasswordPage} userData={userData}/> :
+        <RestPassword setChangePassword={setIsChangePasswordPage}
+         setUserData={setUserData} setResetPassword={setResetPassword}/>
       }
     </BoxContainer>
   );

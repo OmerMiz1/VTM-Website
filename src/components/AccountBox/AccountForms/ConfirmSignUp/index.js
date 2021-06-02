@@ -11,7 +11,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {useConfirmSignupSchema} from '../../../../validation/SignupValidation';
 
 
-export function ConfirmSignUp(props) {
+export function ConfirmSignUp({userData}) {
   //   // context - swich to signup
   // const {} = useContext(AccountContext)
 
@@ -24,7 +24,7 @@ export function ConfirmSignUp(props) {
   })
 
   const resendConfirmCode = () => {
-    console.log(`resend`);
+    console.log(`resend to this email`, userData);
   }
 
   const submitConfirm = (data) => {
@@ -32,7 +32,6 @@ export function ConfirmSignUp(props) {
     PostConfirmSignUpForm(data)
   }
 
-  
   
   return (
     <BoxContainer>

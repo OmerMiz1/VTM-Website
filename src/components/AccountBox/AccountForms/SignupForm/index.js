@@ -9,16 +9,16 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {useSignupSchema} from '../../../../validation/SignupValidation'
 
-export function SignupForm({setIsConfirm}) {
+export function SignupForm({setIsConfirm , setUserData }) {
     // context - swich to signup
-    const {swichToLogIn, swichToSingUp} = useContext(AccountContext);
+    const {swichToLogIn} = useContext(AccountContext);
 
     // account api - post:
     const {PostSingupForm} = AccountApi();
 
     const submitSingUp = (data) => {
       console.log('submitSingUp -> confirm!');
-      swichToSingUp()
+      setUserData(data);
       PostSingupForm(data);
       setIsConfirm(true);
     }

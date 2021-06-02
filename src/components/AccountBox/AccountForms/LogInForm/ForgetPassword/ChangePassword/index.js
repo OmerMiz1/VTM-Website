@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {BoxContainer, FormContainer, ValidsionWarnnig,
+import {BoxContainer, FormContainer, ValidsionWarnnig, MutedLink, BoldLink,
   Input, SubmitButton, MrginSpanHeight} from '../../../AccountForms.style';
 
 //validastion 
@@ -10,14 +10,18 @@ import {ChangePasswordSchema} from '../../../../../../validation/ChangePasswordV
 
 
 
-export default function ChangePassword() {
+export default function ChangePassword({userData}) {
   
   // Valdation state from useSignupSchema (schema)
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(ChangePasswordSchema),
   })
 
+  const resendPassword = () => {
+    console.log(`resend to : `, userData);
 
+
+  }
 
   const submitConfirm = (data) => {
     console.log('Change password');
@@ -40,12 +44,12 @@ export default function ChangePassword() {
         <SubmitButton type='submit'>Change Password</SubmitButton>
       </FormContainer>
         <MrginSpanHeight height='10px'/>
-        {/* <MutedLink href='#'>
-        Lost your password? 
+        <MutedLink href='#'>
+        You did not receive a verification code? 
         <BoldLink onClick={ () => resendPassword()}>
-          Resend Password
+          Resend verification code
         </BoldLink>
-      </MutedLink> */}
+      </MutedLink>
     </BoxContainer>
   );
 }

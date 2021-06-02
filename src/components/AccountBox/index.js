@@ -2,10 +2,9 @@ import React from 'react';
 import AccountBoxLogic, {AccountContext} from './AccountBox.logic'
 import {BoxContainer, BackDrop, TopContainer, ContentContainer,
     backdropVariants, expandingTransition } from './AccountBox.style';
-import LoginForm from './AccountForms/LogInForm';
-import {SignupForm} from './AccountForms/SignupForm';
-import {ConfirmSignUp} from './AccountForms/ConfirmSignUp';
-import ForgetPassword from './AccountForms/LogInForm/ForgetPassword';
+
+import SingnUpMannger from './Mannger/SingnUp';
+import LoginMannger from './Mannger/Login';
 
 
 
@@ -33,9 +32,8 @@ function AccountBox(props) {
                 <ContentContainer>
                    {
                        isRegistered ?
-                        isRestPassword ? <ForgetPassword setResetPassword={setRestPassword}/>
-                            : <LoginForm setResetPassword={setRestPassword}/>
-                        : isConfirm ? <ConfirmSignUp/> : <SignupForm setIsConfirm={setIsConfirm}/>
+                        <LoginMannger isRestPassword={isRestPassword} setResetPassword={setRestPassword}/>
+                        : <SingnUpMannger isConfirm={isConfirm} setIsConfirm={setIsConfirm}/>   
                    }
                 </ContentContainer>
             </BoxContainer>

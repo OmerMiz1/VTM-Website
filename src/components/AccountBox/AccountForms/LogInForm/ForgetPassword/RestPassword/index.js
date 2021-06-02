@@ -12,7 +12,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {RestPasswordSchema} from '../../../../../../validation/LoginValidation';
 
 
-export default function RestPassword({setResetPassword, setChangePassword}) {
+export default function RestPassword({setResetPassword, setChangePassword, setUserData}) {
   
   // account api - confirm:
   const {SendNewPsswordToEmail} = AccountApi();
@@ -25,6 +25,7 @@ export default function RestPassword({setResetPassword, setChangePassword}) {
 
   const submitSendPassword = (data) => {
     console.log('post reset passwod (send to mail confirm password)');
+    setUserData(data);
     setChangePassword(1);
     SendNewPsswordToEmail(data);
   }
@@ -33,9 +34,9 @@ export default function RestPassword({setResetPassword, setChangePassword}) {
     <BoxContainer>
       <MrginSpanHeight height='30px'/>
       <FormContainer onSubmit={handleSubmit(submitSendPassword)}>
-        <Input type='text' placeholder='user name' name='user' {...register("user")}/>
+        {/* <Input type='text' placeholder='user name' name='user' {...register("user")}/>
         <ValidsionWarnnig> {errors.user?.message} </ValidsionWarnnig>
-        <MrginSpanHeight height='6px'/>
+        <MrginSpanHeight height='6px'/> */}
         <Input type='email' placeholder='email' name='email' {...register("email")}/>
         <ValidsionWarnnig> {errors.email?.message} </ValidsionWarnnig>
         <MrginSpanHeight height='20px'/>

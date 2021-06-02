@@ -13,7 +13,7 @@ import {useLoginSchema} from '../../../../validation/LoginValidation'
 
 export default function LoginForm({setResetPassword}) {
     // context - swich to signup
-  const {swichToLogIn, swichToSingUp} = useContext(AccountContext)
+  const {swichToSingUp} = useContext(AccountContext);
 
   // account api - post login:
   const {PostLoginForm} = AccountApi();
