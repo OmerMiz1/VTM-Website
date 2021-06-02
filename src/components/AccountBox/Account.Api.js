@@ -102,13 +102,6 @@ const AccountApi = () => {
 			})
 		})
 		.catch(error => console.log('currentAuthUser error:', error));
-
-		
-		
-		
-				
-		
-		
 	}
 	
 	const ForgotPassword = (username) => {
@@ -146,6 +139,10 @@ const AccountApi = () => {
 		.catch(err => console.log(err));
 	}
 
+	// FIXME
+	// return {PostSingupForm, PostLoginForm,
+	// 	PostConfirmRestPasswordForm: SendNewPsswordToEmail, PostConfirmSignUpForm,
+	// 	EditUesrProfile};
 	return {Signup, Login, Logout, ConfirmSignUpSubmit, ForgotPassword, ConfirmForgotPassword};
 }
 

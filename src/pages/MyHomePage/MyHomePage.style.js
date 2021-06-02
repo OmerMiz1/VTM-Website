@@ -17,6 +17,11 @@ export const MyHomePageContainer = styled.section`
     grid-row-gap: 10px; // Fix
     grid-template-columns: repeat(12,1fr); // 12 or 10?
     grid-auto-flow: dense;
+
+
+    @media screen and (max-width: 700px) {
+        grid-template-columns: none;
+    }
 `;
 
 

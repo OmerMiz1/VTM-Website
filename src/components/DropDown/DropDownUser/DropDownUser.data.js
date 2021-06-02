@@ -1,9 +1,11 @@
 // icons
 import {faUserCircle ,faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import AccountApi from '../../AccountBox/Account.Api';
+import {useHistory} from 'react-router-dom';
 
 const DropDownSummaryData = () => {
     const {Logout} = AccountApi();
+    let history = useHistory();
 
     const mockFunction = () => {
         console.log(`mock! ---> clicked on - `)
@@ -18,7 +20,7 @@ const DropDownSummaryData = () => {
         {
             title:'Profile',
             icon: faUserCircle,
-            function: mockFunction
+            function: () => history.push('/myHome/Profile')
         }, 
         {
             title:'Setting',

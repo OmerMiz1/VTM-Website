@@ -14,3 +14,9 @@ export const useLoginSchema = yup.object().shape({
       "Invalid password"
     )
 });
+
+
+export const RestPasswordSchema = yup.object().shape({
+  email: yup.string().email("Email not valid").required("Please Enter your Email")
+  // user: yup.string().required("Please Enter User Name"),
+});

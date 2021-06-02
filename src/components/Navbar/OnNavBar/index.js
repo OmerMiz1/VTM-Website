@@ -59,7 +59,7 @@ function NavBar(props) {
                                         { item.separator ?
                                         <SeparatorLine ref={wrapperRef}>
                                             <FontAwesomeIcon onClick={ toggleUserDropDown} icon={item.icon}/>
-                                            {isUseDropDown && <DropDownUser/>}
+                                            {isUseDropDown && <DropDownUser close={toggleUserDropDown} />}
                                         </SeparatorLine>:
                                         <>
                                             <FontAwesomeIcon onClick={() => item.function()} icon={item.icon}/>

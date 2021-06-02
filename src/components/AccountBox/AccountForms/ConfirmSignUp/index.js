@@ -12,7 +12,7 @@ import {useConfirmSignupSchema} from '../../../../validation/SignupValidation';
 import {Auth} from 'aws-amplify'
 
 
-export function ConfirmSignUp(props) {
+export function ConfirmSignUp({userData}) {
   //   // context - swich to signup
   // const {} = useContext(AccountContext)
 
@@ -25,16 +25,16 @@ export function ConfirmSignUp(props) {
   })
 
   const resendConfirmCode = () => {
-	console.log(`resend`);
+    console.log(`resend to this email`, userData);
   }
 
   const submitConfirm = (data) => {
-	console.log(`data`, data)
-	ConfirmSignUpSubmit(data.confirm)
+    console.log(`data`, data)
+    ConfirmSignUpSubmit(data.confirm)
   }
 
 
-
+  
   return (
 	<BoxContainer>
 	  <MrginSpanHeight height='30px'/>

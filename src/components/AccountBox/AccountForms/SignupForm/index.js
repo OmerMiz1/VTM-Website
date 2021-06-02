@@ -9,9 +9,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {useSignupSchema} from '../../../../validation/SignupValidation'
 
-export function SignupForm({setIsConfirm}) {
+export function SignupForm({setIsConfirm , setUserData }) {
     // context - swich to signup
-    const {swichToSignup} = useContext(AccountContext);
+    const {swichToLogIn} = useContext(AccountContext);
 
     // account api - post:
     const {Signup} = AccountApi();
@@ -19,6 +19,8 @@ export function SignupForm({setIsConfirm}) {
     const submitSingUp = (data) => {
       console.log(`submitSingUp`);
       Signup(data, setIsConfirm);
+      setUserData(data);
+      setIsConfirm(true);
     }
     
     // Valdation state from useSignupSchema (schema)
@@ -47,7 +49,7 @@ export function SignupForm({setIsConfirm}) {
           <MrginSpanHeight height='5px'/>
           <MutedLink href='#'>
             Already have an account?
-            <BoldLink onClick={swichToSignup}>
+            <BoldLink onClick={swichToLogIn}>
               Sign in
             </BoldLink>
           </MutedLink>
