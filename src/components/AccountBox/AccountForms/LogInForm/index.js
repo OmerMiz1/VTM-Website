@@ -27,7 +27,7 @@ export function LoginForm(props) {
     <BoxContainer>
       <MrginSpanHeight height='30px'/>
       <FormContainer onSubmit={handleSubmit(Login)}>
-        <Input type='email' placeholder='Email' name='email' {...register("email")}/>
+        <Input type='text' placeholder='Email' name='email' {...register("email")}/>
         <ValidsionWarnnig> {errors.email?.message} </ValidsionWarnnig>
         <MrginSpanHeight height='12px'/>
         <Input type='password' placeholder='Password' name='password' {...register("password")}/>

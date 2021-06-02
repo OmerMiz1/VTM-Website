@@ -1,5 +1,8 @@
 import * as yup from 'yup';
 
+/** RX FROM:
+ * https://stackoverflow.com/questions/58767980/aws-cognito-password-regex-specific-to-aws-cognito
+*/
 
 // Schema validation - username required , valid email, confirmPassword
 // and password Contain 6 characters one Uppercase and One Lowercase..
@@ -9,9 +12,9 @@ export const useSignupSchema = yup.object().shape({
     password: yup
     .string()
     .required('Please Enter your Password')
-    .min('6')
+    .min('8')
     .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]/,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\^$*.\[\]{}\(\)?\-“!@#%&\/,><\’:;|_~`])\S{8,99}$/,
       "Must Contain Uppercase and Lowercase!"
     ),
     confirmPassword: yup

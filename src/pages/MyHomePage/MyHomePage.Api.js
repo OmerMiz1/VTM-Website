@@ -6,10 +6,17 @@ import { string } from 'yup';
 // FIXME take out hardcoded config!
 const awsmobile = {
     "aws_project_region": "eu-central-1",
-    "aws_cognito_identity_pool_id": "eu-central-1:086c2808-388a-4fa4-a4b6-187b9f7b2bec",
+    "aws_cognito_identity_pool_id": "eu-central-1:37578e1c-c060-4359-9096-d7a534c07a84",
     "aws_cognito_region": "eu-central-1",
-    "aws_user_pools_id": "eu-central-1_pry0ETHtR",
-    "aws_user_pools_web_client_id": "6mss0vu7320s4fk1onch4eosmr",
+    "aws_user_pools_id": "eu-central-1_gxX97wEqr",
+    "aws_user_pools_web_client_id": "fe7d5qhf1c1difm5mqq9j279o",
+    "aws_dynamodb_all_tables_region": "eu-central-1",
+    "aws_dynamodb_table_schemas": [
+        {
+            "tableName": "SummaryDB-staging",
+            "region": "eu-central-1"
+        }
+    ],
     "aws_cloud_logic_custom": [
         {
             "name": "SummaryAPI",
@@ -38,106 +45,93 @@ Summary:
  */
 const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries)  => {
     const apiName = 'SummaryAPI';
-    const path = '/summary';
+    // const path = '/summary';
+    const path = '';
     const partitionKeyName = 'uid';
     const sortKeyName = 'createTime';
+    const summaryIdName = 'sid';
+    // const uidAttributeName = 'website';
+    const uidAttributeName = 'sub';
 
     const [isLoading, setLoading] = useState(true);
+    let curError = null
 
-    const fetchSummaries = (pk=partitionKeyName) => {
-        console.log('fetchSummaries'); //DELETEME
+    const fetchSummaries = (uid) => {
+        console.log('fetchSummaries, path:', `/${uid}`); //DELETEME
         setLoading(true);
-
-        API.get(apiName, `${path}/${pk}`)
+        let libPath = '/' + uid
+        API.get(apiName, libPath)
         .then(summaries => {
-            console.log(`summaries: ${summaries}`)
+            console.log(`summaries:`,  summaries) //DELETEME
             setMySummaries(summaries);
             setLoading(false);
         })
         .catch(error => {
-            console.log('error fetching summaries:' + error.message)
+            console.log('error fetching summaries:', error)
+            curError = error
         });
     }
 
-    const getSummaries = (pk=partitionKeyName) => {
+    const getSummaries = (uid) => {
     }
 
-    const getSummary = (sk, pk=partitionKeyName) => {
+    const getSummary = (sid) => {
         console.log('getSummary'); //DELETEME
-        API.get(apiName, `${path}/${pk}/${sk}`)
+
+        //TODO finish implementation
+        API.get(apiName, `${path}/${sid}`)
     }
 
-    const addSummary = (summary) => {
-        console.log('addSummary') //DELETEME
-
-        API.post(apiName, `${path}/${partitionKeyName}`, {body: summary})
+    const addSummary = async (summary) => {
+        console.log('addSummary:', summary) //DELETEME
+        
+        const uid = (await Auth.currentAuthenticatedUser()).attributes[uidAttributeName];
+        console.log(`${path}/${JSON.stringify(uid)}`)//DELETEME
+        
+        API.post(apiName, `${path}/${uid}`, {body: summary})
         .then(response => {
-            console.log(`post response: ${response}`)
+            console.log('post response: ', response)
             setMySummaries([...mySummaries, summary]);
             setMyFilterSummaries([...myFilterSummaries, summary]);
         })
-        .catch(error => console.log(`error adding summary: ${error.message}`))        
+        .catch(error => console.log('error adding summary:', error))    
     }
 
-    //MOCK remove all mock details
-    const updateSummary = (sid='1e0f0d03-515a-4257-8ea5-2165dbae8485/1621788711255' , updatedSummary={}) => {
+    //TODO Remove sid (its already in summary's body)
+    const updateSummary = (sid, summary) => {
         console.log('updateSummary')//DELETEME
 
-        let splitRes = sid.split('/');
-        let uid = splitRes[0]
-        let createTime = splitRes[1]
+        if (!summary[summaryIdName]) {
+            console.log('error: invalid summary data', summary)//DELETEME
+            return;
+        }
 
-        //TODO fix mock values
-        let newSummary = {
-            sid: sid,
-            uid: uid,
-            favourite: false,
-            title: 'title changed',
-            tags: ['tag changed'],
-            createTime: createTime,
-            editTime: 'Now',
-            likes: 0,
-            authorName:'Shon Pozner',
-            url: 'https://www.google.com/',
-        };
-        
-        API.put(apiName, path, {body: newSummary})
+        API.put(apiName, path, {body: summary})
         .then(response => {
-            console.log(`update summary response: ${response}`) //DELETEME
+            console.log('update summary response:', response) //DELETEME
             
             // Update Frontend
-            setMySummaries(prev => prev.map(item => (item.sid === sid ? newSummary : item)));
-            setMyFilterSummaries(prev => prev.map(item => (item.sid === sid ? newSummary : item)));
+            setMySummaries(prev => prev.map(item => (item[summaryIdName] === summary[summaryIdName] ? summary : item)));
+            setMyFilterSummaries(prev => prev.map(item => (item[summaryIdName] === summary[summaryIdName] ? summary : item)));
         })
-        .catch(error => console.log(`error update summary: ${error}`))
-
-        newSummary = {
-            sid: sid,
-            favorite: false,
-            title: 'title changed',
-            tags: ['tag changed'],
-            createdTime: createTime,
-            editTime: 'Now',
-            likes: 0,
-            autorName:'Shon Pozner',
-            url: 'https://www.google.com/',
-        };
+        .catch(error => console.log('error update summary:', error))
     }
 
-    //MOCK remove all mock details
-    const deleteSummary = (sid='1e0f0d03-515a-4257-8ea5-2165dbae8485/1621788711255') => {
+    const deleteSummary = (sid) => {
         console.log('deleteSummary')//DELETEME
-
-        let splitRes = sid.split('/');
+        console.log('requesting to delete sid =', sid);
+        if(!sid) {
+            console.log('error: invalid summary id', sid)
+            return;
+        }
         let msgBody = {
             body: {
-                uid: splitRes[0],
-                createTime: splitRes[1]
-                }
+                sid: sid
+            }
         }
-        API.del(apiName, `${path}/${sid}`)
+        API.del(apiName, path, msgBody)
         .then(response => {
-            console.log(`delete response: ${response}`)//DELETEME
+            console.log(`delete response:`, response)//DELETEME
 
             // Fronted delete
             const newSummaries = [...mySummaries].filter(summary => summary.sid !== sid);
@@ -148,13 +142,14 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
         .catch(error => console.log(error))
     }
 
+    //TODO implement
     const ShareSummary = (sid) => {
-        console.log(`api - sharing sid`, sid)
+        console.log(`ShareSummary`, sid)//DELETEME
     }
 
     //MOCK need add send to data the toggle
     const toggleFavorite = (sid) => {
-        console.log(`api - toggle Favorite sid`, sid);
+        console.log(`toggleFavorite`, sid); //DELETEME
 
         const updateSummaries = [...mySummaries].map((summary) => {
             if (summary.sid === sid) {
@@ -166,9 +161,13 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
         setMySummaries(updateSummaries);
     }
 
-    useEffect(async () => {
-        fetchSummaries(); //TODO uncomment
-        deleteSummary();
+    useEffect(() => {
+        Auth.currentAuthenticatedUser()
+        .then(response => {
+            let uid = response['attributes'][uidAttributeName];
+            fetchSummaries(uid);
+        })
+        .catch(error => console.log('error geting auth user:', error))
     }, []);
 
     return {

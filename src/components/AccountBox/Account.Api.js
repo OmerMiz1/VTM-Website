@@ -1,30 +1,11 @@
 import Amplify, {Auth} from 'aws-amplify';
 import {useHistory} from 'react-router-dom';
 
-// FIXME take out hardcoded config!
-const awsmobile = {
-	"aws_project_region": "eu-central-1",
-	"aws_cognito_identity_pool_id": "eu-central-1:086c2808-388a-4fa4-a4b6-187b9f7b2bec",
-	"aws_cognito_region": "eu-central-1",
-	"aws_user_pools_id": "eu-central-1_pry0ETHtR",
-	"aws_user_pools_web_client_id": "6mss0vu7320s4fk1onch4eosmr",
-	"oauth": {},
-	"aws_dynamodb_all_tables_region": "eu-central-1",
-	"aws_dynamodb_table_schemas": [
-		{
-			"tableName": "SummaryDB-staging",
-			"region": "eu-central-1"
-		}
-	],
-	"aws_cloud_logic_custom": [
-		{
-			"name": "SummaryAPI",
-			"endpoint": "https://smzqyqgrt0.execute-api.eu-central-1.amazonaws.com/staging",
-			"region": "eu-central-1"
-		}
-	]
-};
-Amplify.configure(awsmobile)
+const crypto = require('crypto');
+Amplify.configure({
+    "aws_user_pools_id": "eu-central-1_gxX97wEqr",
+    "aws_user_pools_web_client_id": "fe7d5qhf1c1difm5mqq9j279o"
+})
 
 const AccountApi = () => {
 	const history = useHistory();
@@ -32,77 +13,106 @@ const AccountApi = () => {
 	const homePath = "/home";
 	const newPasswordChallenge = 'NEW_PASSWORD_REQUIRED';
 
-	const Signup =  (data) => {
+	const Signup =  (data, setSuccess) => {
 		console.log('sign up:' ,data); //DELETEME
-		// data.preventDefault(); // FIXME
-		
-		let username = data.email;  // TODO change to username?
-		let password = data.password;
-		let email = data.email;
-		
-		Auth
-		.signUp({
-			username,
-			password,
+		if (data.password !== data.confirmPassword) {
+			console.log('error: password confirmation must match')
+			return
+		}
+
+		const params = {
+			username: data.userName,
+			password: data.password,
 			attributes: {
-				email,
-			},
-		})
+				email: data.email,
+			}
+		}
+		Auth
+		.signUp(params)
 		.then(user => {
 			console.log('signup response:', user); // DELETEME
-			//TODO history.push('/confirmSignUp')
+			if (user.challengeName === newPasswordChallenge)
+				CompleteNewPassword(user, data.username, data.pass)
+			setSuccess(true);
 		})
 		.catch(error => {
-			alert('Error:\n' + error.message);
-			console.log('Signup Error:', error); // DELETEME
+			alert('error:', error.code);
+			console.log('error signup:', error); // DELETEME
 		})
 	}
 	
 	const Login = (data) => {
 		console.log('request data:' ,data);  // DELETEME
-		let email = data.email;
+		let username = data.email;
 		let password = data.password;
 		
-		Auth.signIn(email, password)
+		Auth.signIn(username, password)
 		.then(user => {
-			alert("Logged in");
+			alert("Logged in"); //DELETEME
 			console.log('response data:', user); //DELETEME
 
 			if(user.challengeName === newPasswordChallenge) {
-				CompleteNewPassword(user, email, password);
+				console.log('complete new password challenge')
+				CompleteNewPassword(user, username, password);
 			}
 
 			history.push(mySummariesPath);
 		})
 		.catch(e => {
-			alert('Error:\n' + e.message);
+			alert('Error:' + e.message);
 			console.log('Login Error:', e); // DELETEME
+			if (e.code == "UserNotConfirmedException") {
+				//TODO redirect to "account confirm page"
+			}
 		}) 
 	}
 	
 	const Logout = () => {
-		if(Auth.currentUserInfo == undefined) {
-			console.log('error: not logged-in log-out is impossible');
-		}
+		if(Auth.currentUserInfo == undefined)
+			console.log('error: you must login first');
 		
 		Auth.signOut()
 		.then(_ => {
-			console.log('logout successfull');
-			alert("Logged out successfully");
+			alert("Logged out successfully"); //DELETEME
 			history.push(homePath);
 		})
 		.catch(e => {
-			alert('Logout Error:\n' + e.message);
+			alert('Logout Error:\n' + e.message); //DELETEME
 		})
 	}
 	
-	const ConfirmSignUp = (username, code) => {
-		Auth.confirmSignUp(username, code)
-		.then(history.push(mySummariesPath))
-		.catch(error => console.log(`error confirm signup: ${error.message}`));
+	const ConfirmSignUpSubmit = (code) => { //FIXME username
+		console.log('ConfirmSignup: code:', code)
+		
+		Auth.currentUserCredentials()
+		.then(credentials => {
+			console.log('currentUserCredentials:', credentials)
+			// Auth.confirmSignUp(credentials.attributes.username, code)
+			Auth.confirmSignUp('omermiz', code) // FIXME
+			.then(response => {
+				console.log('confirm sign up response:', response)
+				history.push(mySummariesPath)
+			})
+			.catch(error => {
+				console.log(`error confirm signup:`, error);
+				if (error.code === "ExpiredCodeException") {
+					alert('Verification code resent to your username')
+					Auth.resendSignUp(credentials.attributes.username)
+				}
+			})
+		})
+		.catch(error => console.log('currentAuthUser error:', error));
+
+		
+		
+		
+				
+		
+		
 	}
 	
 	const ForgotPassword = (username) => {
+		Auth.
 		Auth.forgotPassword(username)
 		.then(data => console.log(data))
 		.catch(err => console.log(err));
@@ -114,15 +124,14 @@ const AccountApi = () => {
 		.catch(err => console.log(err));
 	}
 
-	//======= Helper Methods =======//
-	const CompleteNewPassword = (user, email, newPassword) => {
+	const CompleteNewPassword = (user, username, newPassword) => {
 		console.log('CompleteNewPassword'); //DELETEME
-
+	
 		Auth.completeNewPassword(
 			user,
 			newPassword,
 			{
-				email: email,
+				username: username,
 			}
 		).then(user => {
 			console.log(user);
@@ -137,7 +146,7 @@ const AccountApi = () => {
 		.catch(err => console.log(err));
 	}
 
-	return {Signup, Login, Logout, ConfirmSignUp, ForgotPassword, ConfirmForgotPassword};
+	return {Signup, Login, Logout, ConfirmSignUpSubmit, ForgotPassword, ConfirmForgotPassword};
 }
 
 export default AccountApi;

@@ -26,10 +26,7 @@ function MyHomePage() {
         ShareSummary, toggleFavorite} = MyHomePageApi(mySummaries, setMySummaries,
             myFilterSummaries, setMyFilterSummaries);
 
-
-
     const {path} = useRouteMatch();
-
 
     return (
         <SummariesContext.Provider value={{isMySummaryEmpty, mySummaries, isLoading, setLoading, myFilterSummaries, addSummary,

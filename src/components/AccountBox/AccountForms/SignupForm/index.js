@@ -14,13 +14,11 @@ export function SignupForm({setIsConfirm}) {
     const {swichToSignup} = useContext(AccountContext);
 
     // account api - post:
-    // const {Signup} = AccountApi(); //FIXME below came from merge, i kept incoming change.
-    const {PostSingupForm} = AccountApi();
+    const {Signup} = AccountApi();
 
     const submitSingUp = (data) => {
-      console.log('submitSingUp -> confirm!');
-      PostSingupForm(data);
-      setIsConfirm(true);
+      console.log(`submitSingUp`);
+      Signup(data, setIsConfirm);
     }
     
     // Valdation state from useSignupSchema (schema)
@@ -31,7 +29,6 @@ export function SignupForm({setIsConfirm}) {
     return (
         <BoxContainer>
           <MrginSpanHeight height='15px'/>
-          {/* <FormContainer  onSubmit={handleSubmit(Signup)}> *//*FIXME below came from merge, i kept incoming change. */}
           <FormContainer  onSubmit={handleSubmit(submitSingUp)}>
             <Input type='text' placeholder='User Name' name='userName' {...register("userName")} />
             <ValidsionWarnnig> {errors.userName?.message} </ValidsionWarnnig>
