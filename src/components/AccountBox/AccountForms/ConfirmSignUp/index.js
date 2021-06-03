@@ -29,8 +29,11 @@ export function ConfirmSignUp({userData}) {
   }
 
   const submitConfirm = (data) => {
-    console.log(`data`, data)
-    ConfirmSignUpSubmit(data.confirm)
+    console.log(`data`, data, userData)
+    ConfirmSignUpSubmit({
+		code: data.confirm,
+		username: userData.userName
+	})
   }
 
 

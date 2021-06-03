@@ -10,6 +10,7 @@ Amplify.configure({
 const AccountApi = () => {
 	const history = useHistory();
 	const mySummariesPath = "/myHome/mySummaries";
+	const loginPath = "/access/login"
 	const homePath = "/home";
 	const newPasswordChallenge = 'NEW_PASSWORD_REQUIRED';
 
@@ -56,7 +57,7 @@ const AccountApi = () => {
 				CompleteNewPassword(user, username, password);
 			}
 
-			history.push(mySummariesPath);
+			history.push(mySummariesPath); // TODO debug
 		})
 		.catch(e => {
 			alert('Error:' + e.message);
@@ -81,27 +82,22 @@ const AccountApi = () => {
 		})
 	}
 	
-	const ConfirmSignUpSubmit = (code) => { //FIXME username
-		console.log('ConfirmSignup: code:', code)
-		
-		Auth.currentUserCredentials()
-		.then(credentials => {
-			console.log('currentUserCredentials:', credentials)
-			// Auth.confirmSignUp(credentials.attributes.username, code)
-			Auth.confirmSignUp('omermiz', code) // FIXME
-			.then(response => {
-				console.log('confirm sign up response:', response)
-				history.push(mySummariesPath)
-			})
-			.catch(error => {
-				console.log(`error confirm signup:`, error);
-				if (error.code === "ExpiredCodeException") {
-					alert('Verification code resent to your username')
-					Auth.resendSignUp(credentials.attributes.username)
-				}
-			})
+	const ConfirmSignUpSubmit = (data) => { //FIXME username
+		console.log('ConfirmSignup: data:', data)
+
+		Auth.confirmSignUp(data.username, data.code) // FIXME
+		.then(response => {
+			console.log('confirm sign up response:', response)
+			history.push(mySummariesPath)
 		})
-		.catch(error => console.log('currentAuthUser error:', error));
+		.catch(error => {
+			console.log(`error confirm signup:`, error);
+			if (error.code === "ExpiredCodeException") {
+				alert('Verification code resent to your username')
+				Auth.resendSignUp(data.username)
+			}
+		})
+
 	}
 	
 	const ForgotPassword = (username) => {

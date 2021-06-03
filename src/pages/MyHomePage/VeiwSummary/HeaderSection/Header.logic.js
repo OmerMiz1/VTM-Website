@@ -30,7 +30,7 @@ const HeaderLogic = (updateSummary, mode, viewSummary) => {
         // send the change!!!
         let copySummary = {...viewSummary};
         copySummary.title = titleInputRef.current.value;
-        updateSummary(viewSummary.sid, copySummary );
+        updateSummary(copySummary );
         setEditTitle(false);           
     }
 
@@ -45,7 +45,7 @@ const HeaderLogic = (updateSummary, mode, viewSummary) => {
         const newTags = tags.filter(tag => tag !== myTag );
         let copySummary = {...viewSummary};
         copySummary.tags = newTags;
-        updateSummary(viewSummary.sid, copySummary );
+        updateSummary(copySummary );
         setTags(newTags);
 
     }
@@ -58,7 +58,8 @@ const HeaderLogic = (updateSummary, mode, viewSummary) => {
             const newTags = [... tags , newTag];
             let copySummary = {...viewSummary};
             copySummary.tags = newTags;
-            updateSummary(viewSummary.sid, copySummary );
+            console.log(copySummary)
+            updateSummary(copySummary);
             setTags(newTags);
         }
         setShowAddTagInput('hidden');
