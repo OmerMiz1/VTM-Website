@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 import Amplify, {API, Auth} from 'aws-amplify';
-import {MockData} from './MySummary.mock';
-import { string } from 'yup';
+
 // TODO no user -> logout, homepage
 
 // FIXME
@@ -11,13 +10,6 @@ const awsmobile = {
 	"aws_cognito_region": "eu-central-1",
 	"aws_user_pools_id": "eu-central-1_gxX97wEqr",
 	"aws_user_pools_web_client_id": "fe7d5qhf1c1difm5mqq9j279o",
-	"aws_dynamodb_all_tables_region": "eu-central-1",
-	"aws_dynamodb_table_schemas": [
-		{
-			"tableName": "SummaryDB-staging",
-			"region": "eu-central-1"
-		}
-	],
 	"aws_cloud_logic_custom": [
 		{
 			"name": "SummaryAPI",
@@ -31,7 +23,7 @@ Amplify.configure(awsmobile)
 /* DELETEME
 Summary: 
 {
-	sid: INT,
+	sid: STRING,
 	uid: STRING,
 	autorName: STRING,
 	url: STRING,
@@ -88,8 +80,6 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 
 	const addSummary = async (summary) => {
 		console.log('addSummary:', summary) //DELETEME
-		const uid = (await Auth.currentAuthenticatedUser()).attributes[uidKeyName];
-		console.log(`${uid}`)//DELETEME
 		
 		//TODO lid (summary.lid)
 		API.post(apiName, summaryPath, {body: summary})
@@ -102,11 +92,10 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 			setMyFilterSummaries([...myFilterSummaries, summary]);
 		})
 		.catch(error => {
-			console.log('error adding summary:', error) // DELETEME
+			console.log(error) // DELETEME
 		})
 	}
 
-	//TODO remove sid param
 	const updateSummary = (summary) => {
 		console.log('updateSummary')//DELETEME
 
@@ -114,9 +103,9 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 			console.log('error: sid missing', summary)//DELETEME
 			return;
 		}
-		// summary[summaryIdKeyName] = JSON.stringify(summary[summaryIdKeyName])
+		summary[summaryIdKeyName] = JSON.stringify(summary[summaryIdKeyName])
 		
-		API.put(apiName, summaryPath, {body: summary})
+		API.patch(apiName, summaryPath, {body: summary})
 		.then(response => {
 			console.log('update summary response:', response) //DELETEME
 			
@@ -125,7 +114,7 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 			setMyFilterSummaries(prev => prev.map(item => (item[summaryIdKeyName] === summary[summaryIdKeyName] ? summary : item)));
 		})
 		.catch(error => {
-			console.log('error update summary:', error) //DELETEME
+			console.log(error) //DELETEME
 		})
 	}
 
@@ -156,7 +145,7 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 		.catch(error => console.log(error))
 	}
 
-	//TODO implement
+	//TODO
 	const ShareSummary = (sid) => {
 		console.log(`ShareSummary`, sid)//DELETEME
 	}
@@ -191,18 +180,8 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 	}
 
 	useEffect(async () =>  {
-		// Auth.currentAuthenticatedUser()
-		// .then(response => {
-		//     let uid = response['attributes'][uidKeyName];
-		//     getSummaries(uid);
-		// })
-		// .catch(error => console.log('error geting auth user:', error))
-
-		// let getResult = await getSummary("U2FsdGVkX18SNWCRj19ypy5s6uaqOUtGMmAw/AqZzjGVHfWtglDZkV25/kzUFt7P1fO16yvE9xKR8C7tzv+R1cckGoNOnYNUAaz8qx0rKgVTgf2k7Il8XY7MEGAC3ZMG")
-		// console.log(getResult)
-
 		let libraryResult = await getMyLibraries();
-		console.log(libraryResult)
+		console.log(`library:`, libraryResult)
 	}, []);
 
 	return {

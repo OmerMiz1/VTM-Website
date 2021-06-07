@@ -12,18 +12,18 @@ import {VeiwSummaryContainer} from './VeiwSummary.style';
 
 
 function VeiwSummary() {
-    const {isLoading, setLoading , mySummaries, editSummary, deleteSummary} = useContext(SummariesContext);
+    const {isLoading, setLoading , mySummaries, updateSummary, deleteSummary} = useContext(SummariesContext);
     const {notes, viewSummary, allTagsNotes, filterTagsNotes, toggleFilterNote,
         toggleMode , mode, setNotes} = VeiwSummaryLogic(setLoading , mySummaries);
 
-    const {editNote, addNote, deleteNote} = ViewSummaryApi(setNotes, notes);
+    const {editNote, addNote, deleteNote, fetchNotes} = ViewSummaryApi(setNotes, notes);
     
     return (
         <VeiwSummaryContainer>
             <Loading/> 
             { (viewSummary !== undefined)  && !isLoading &&
                 <>
-                    <HeaderSection viewSummary={viewSummary} deleteSummary={deleteSummary} editSummary={editSummary} mode={{toggleMode,  mode}}/>
+                    <HeaderSection viewSummary={viewSummary} deleteSummary={deleteSummary} updateSummary={updateSummary} mode={{toggleMode,  mode}}/>
                     <ContentSection notes={notes} tags={allTagsNotes} mode={{toggleMode,  mode}} sid={viewSummary.sid}
                     filterTags= {filterTagsNotes} toggleTags= {toggleFilterNote}
                     editNote={editNote} addNote={addNote} deleteNote={deleteNote}/>

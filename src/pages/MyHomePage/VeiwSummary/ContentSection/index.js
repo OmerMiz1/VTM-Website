@@ -18,17 +18,17 @@ import AddButton from '../../../../components/atoms/Buttons/AddButton';
 
 function ContentSection({notes, tags, filterTags, toggleTags, mode, editNote, addNote, deleteNote, sid}) {
 
-    // showEditNoteNumber < 0 : none,
-    // showEditNoteNumber =  0 : newNote,
-    // showEditNoteNumber >  0 : editNote
-    const [showEditNoteNumber, setShowEditNoteNumber] = useState(-1);
+    // showEditNoteNumber < null : none,
+    // showEditNoteNumber =  "NEW_NOTE" : newNote,
+    // showEditNoteNumber >  string : editNote
+    const [showEditNoteNumber, setShowEditNoteNumber] = useState(null);
 
 
     //TODO ceate styled one and move to util
-    const confirmDelete = (nid) => {
+    const confirmDelete = (note) => {
         var ans = window.confirm("Are you sure you want to delete this note?");
         if (ans === true) {
-            deleteNote(nid);
+            deleteNote(note);
         }
     }
 
@@ -55,7 +55,7 @@ function ContentSection({notes, tags, filterTags, toggleTags, mode, editNote, ad
                             <ItemNote key={note.nid}>
                                 {mode.mode === 'edit' && <EditIconContainer>
                                     <Icon fontSize="18px" margin={'0 5px 0 0'} color={ EditIcons.trash.color}
-                                        icon={EditIcons.trash.icon} funOnClick={() => confirmDelete(note.nid)}></Icon>
+                                        icon={EditIcons.trash.icon} funOnClick={() => confirmDelete(note)}></Icon>
                                 
                                     <Icon fontSize="18px" margin={'0 5px 0 0'} color={ EditIcons.pen.color}
                                         icon={EditIcons.pen.icon} funOnClick={() => setShowEditNoteNumber(note.nid)}></Icon>
@@ -68,13 +68,13 @@ function ContentSection({notes, tags, filterTags, toggleTags, mode, editNote, ad
                     })
                 }
             </ListNotes>
-            {mode.mode === 'edit' && <AddButton onClickFun={() => setShowEditNoteNumber(0)}>add note</AddButton>}
+            {mode.mode === 'edit' && <AddButton onClickFun={() => setShowEditNoteNumber("NEW_NOTE")}>add note</AddButton>}
             {
-                showEditNoteNumber >= 0 ?  
-                <EditPopupForm title= {showEditNoteNumber ? 'Edit Note' : 'Add Note'} onClose={() => setShowEditNoteNumber(-1)}>
+                showEditNoteNumber ?
+                <EditPopupForm title= {showEditNoteNumber === "NEW_NOTE" ? 'Add Note': 'Edit Note'} onClose={() => setShowEditNoteNumber(null)}>
                     <EditNoteForm note={notes.find(item => item.nid === showEditNoteNumber)}
-                    editNote={showEditNoteNumber? editNote: addNote} sid={sid}
-                    open={showEditNoteNumber} onClose={() => setShowEditNoteNumber(-1)}> </EditNoteForm>
+                    editNote={showEditNoteNumber === "NEW_NOTE" ? addNote : editNote} sid={sid}
+                    open={showEditNoteNumber} onClose={() => setShowEditNoteNumber(null)}> </EditNoteForm>
                 </EditPopupForm> : <></>
             }
             

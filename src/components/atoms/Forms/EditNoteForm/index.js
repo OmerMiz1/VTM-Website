@@ -6,8 +6,6 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
 function EditNoteForm({ open, onClose, note, editNote, sid}) {
-
-
     const [title, setTitle] = useState(note ? note.title : '') ;
     const [tag, setTag] = useState(note ? note.tag : '');
 
@@ -18,6 +16,7 @@ function EditNoteForm({ open, onClose, note, editNote, sid}) {
     const onSubmit = (e) => {
         e.preventDefault();
         
+        // TODO shouldnt be this kind of condition IMO
         if (!content) {
             alert('please add Content')
             return
@@ -35,7 +34,7 @@ function EditNoteForm({ open, onClose, note, editNote, sid}) {
             tag: tag,
             timeSec: getSecTime(),
         }
-        note ? editNote(newNote.nid ,newNote) : editNote(newNote)
+        note ? editNote(newNote) : editNote(newNote)
         onClose();
     }
 

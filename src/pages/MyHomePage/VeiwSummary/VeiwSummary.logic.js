@@ -1,8 +1,9 @@
 import {useState, useEffect} from 'react';
 import { useParams } from "react-router-dom";
 
-import {fetchNotes} from './ViewSummary.Api'; 
+import ViewSummaryApi from './ViewSummary.Api';
 
+const {fetchNotes} = ViewSummaryApi()
 
 
 const VeiwSummaryLogic = (setLoading , mySummaries, viewMode)  => {
@@ -18,8 +19,6 @@ const VeiwSummaryLogic = (setLoading , mySummaries, viewMode)  => {
     const toggleMode = () =>  {
         setMode( mode==='view' ? 'edit' : 'view');
     };
-
-
 
     useEffect(() => {
         const sid = params.sid;
@@ -49,7 +48,6 @@ const VeiwSummaryLogic = (setLoading , mySummaries, viewMode)  => {
             setFilterTagsNotes(prev => [...prev, tag]);            
         }
     }
-
 
     // get the relevant summary from all summaries (by sid)
     const getSummaryById = sid => {

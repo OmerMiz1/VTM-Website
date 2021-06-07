@@ -13,11 +13,11 @@ import HeaderIconsData, { EditIcons} from './HeaderIcons.data';
 import Icon from '../../../../components/atoms/Icon';
 import IconContainer from '../../../../containers/IconContainer';
 
-function HeaderSection({viewSummary, deleteSummary, editSummary,  mode}) {
+function HeaderSection({viewSummary, deleteSummary, updateSummary,  mode}) {
 
     const {titleInputRef, Title, modeToggle, updateTitle, editTitle, toggleEditTitle,
         addTagInputRef, toggleShowAddTagInput, deleteTag,
-        addTag, tags, showAddTagInput} = HeaderLogic(editSummary, mode, viewSummary);
+        addTag, tags, showAddTagInput} = HeaderLogic(updateSummary, mode, viewSummary);
     
 
 
