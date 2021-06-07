@@ -48,7 +48,7 @@ function MyHomePage() {
                             page === 'Discover' ? <Discover/> :
                             page === 'SharedWithMe' ? <h1>Shared With Me</h1> :
                             page === 'MyFrinds' ? <h1>My Frinds</h1> :
-                            page === 'Settings' ? <ProfilePage/> :
+                            page === 'Settings' ? <h1>setting</h1> :
                             page === 'Profile' ? <ProfilePage/> :
                             <h1>ELSE</h1>
 
