@@ -1,49 +1,40 @@
-import {useState, useContext, useEffect} from 'react';
-import {FilterMySummariesContext} from '../../../utils/context/FilterMySummariesContext';
-import {useParams} from 'react-router-dom';
+import { useState, useContext, useEffect } from 'react';
+import { FilterMySummariesContext } from '../../../utils/context/FilterMySummariesContext';
+import { useParams } from 'react-router-dom';
 
 
 const SearchNavBarLogic = () => {
-    const params = useParams()
+	const params = useParams();
+	const { SearchFillterData } = useContext(FilterMySummariesContext);
+	const [isHidden, setIsHidden] = useState(0);
+	const [searchText, setSearchText] = useState('');
 
-    const {SearchFillterData} = useContext(FilterMySummariesContext)
+	useEffect(() => {
+		setIsHidden(['settings', 'profile'].includes(params.page) ? 1 : 0)
+	}, [params]);
 
-    const [isHidden, seIsHidden] = useState(0);
-    const [searchText, setSearchText] = useState('');
+	const handleChange = value => setSearchText(value);
 
-    useEffect(() => {
-        seIsHidden(['Settings', 'Profile'].includes(params.page)? 1 : 0)
-    },[params])
+	const startSearch = () => {
+		console.log(`startSearch`, params); //DELETEME
 
+		switch (params.page) {
+			case 'mySummaries':
+				console.log(`search.... `, searchText); //DELETEME
+				SearchFillterData(searchText);
+				break;
+			case 'sharedWithMe':
+				console.log(`search.... in sharedWithMe`, searchText); //DELETEME
+				break;
+			case 'discover':
+				console.log(`search.... in discover`, searchText); //DELETEME
+				break;
+		}
+	}
 
-    const handelChnge = value => {
-        setSearchText(value);
-    }
-
-    const startSearch = () => {
-        console.log(`params`, params); //TODO delete
-
-
-        switch(params.page) {
-            case 'mySummaries':
-                console.log(`search.... `, searchText); //TODO delete
-                SearchFillterData(searchText);
-                break;
-            case 'SharedWithMe':
-                console.log(`search.... in SharedWithMe`, searchText); //TODO delete
-                break;
-            case 'Discover':
-                console.log(`search.... in Discover`, searchText); //TODO delete
-                break;
-        } 
-    }   
-    
-
-  
-    return{
-        searchText, handelChnge, startSearch, isHidden
-       
-    }
+	return {
+		searchText, handleChange, startSearch, isHidden
+	}
 };
 
 export default SearchNavBarLogic;

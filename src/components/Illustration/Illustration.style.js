@@ -9,8 +9,8 @@ export const IllustrationImage = styled.div`
     margin-left: auto;
     margin-right:auto;
 
-    width: ${({size}) => size ? size + "px": "1erm"};
-    height: ${({size}) => size ? size + "px": "1erm"};
+    width: ${({ size }) => size ? size + "px" : "1erm"};
+    height: ${({ size }) => size ? size + "px" : "1erm"};
 
     img {
         width:100%;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export const WarningText = styled.h2`
   color: black;
@@ -40,31 +40,31 @@ export const LoadingConainer = styled.div`
 //  *** animation style loading***//
 
 export const loadingContainerVariants = {
-  start: {
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-  end: {
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
+	start: {
+		transition: {
+			staggerChildren: 0.2,
+		},
+	},
+	end: {
+		transition: {
+			staggerChildren: 0.2,
+		},
+	},
 };
 
 
 export const loadingCircleVariants = {
-  start: {
-    y: "0%",
-  },
-  end: {
-    y: "100%",
-  },
+	start: {
+		y: "0%",
+	},
+	end: {
+		y: "100%",
+	},
 };
 
 
 export const loadingCircleTransition = {
-  duration: 0.5,
-  yoyo: Infinity,
-  ease: "easeInOut",
+	duration: 0.5,
+	yoyo: Infinity,
+	ease: "easeInOut",
 };

@@ -57,8 +57,8 @@ export const TopSectionP = styled.p`
     display:inline;
     font-size: ${props => props.theme.fontSizes.autoFitMedium};
 
-    cursor: ${({cursor}) => (cursor? cursor: "default")};
-    margin-left: ${({marginleft}) => (marginleft? marginleft: "0px")};
+    cursor: ${({ cursor }) => (cursor ? cursor : "default")};
+    margin-left: ${({ marginleft }) => (marginleft ? marginleft : "0px")};
     font-weight: 700;
 
     /* margin-bottom: 2rem; */

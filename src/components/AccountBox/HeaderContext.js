@@ -1,15 +1,15 @@
 import React from 'react'
-import {HeaderContainer, SmallText, HeaderText} from './AccountBox.style';
+import { HeaderContainer, SmallText, HeaderText } from './AccountBox.style';
 
-function HeaderContext({isRegistered, isConfirm, isRestPassword}) {
-    return (
-        <HeaderContainer>
-            <HeaderText>{isRegistered? isRestPassword ? 'Rest' : 'Welcome' : 'Create'}</HeaderText>
-            <HeaderText>{isRegistered ? isRestPassword ? 'Password' :'Back' : 'Account'}</HeaderText>
-            <SmallText>{ isRegistered ? isRestPassword ? 'Please select email': 'Please sign-in to continue!'
-             : isConfirm ? 'Please confirm to continue!': 'Please sign-up to continue!'}</SmallText>
-        </HeaderContainer>     
-    )
+function HeaderContext({ isRegistered, isConfirm, isResetPassword }) {
+	return (
+		<HeaderContainer>
+			<HeaderText>{isRegistered ? isResetPassword ? 'Reset' : 'Welcome' : 'Create'}</HeaderText>
+			<HeaderText>{isRegistered ? isResetPassword ? 'Password' : 'Back' : 'Account'}</HeaderText>
+			<SmallText>{isRegistered ? isResetPassword ? 'Enter email' : 'Please sign-in to continue!'
+				: isConfirm ? 'Confirm your account to continue!' : 'Sign up to continue!'}</SmallText>
+		</HeaderContainer>
+	)
 }
 
 export default HeaderContext

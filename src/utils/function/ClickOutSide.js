@@ -2,7 +2,7 @@
 
 // const ClickOutSide = (ClickOutSide) => {
 
- 
+
 
 
 //     //Hook that close menu clicks outside of the passed ref
@@ -36,8 +36,7 @@
 
 // export default ClickOutSide;
 
-    
 
-    
 
-   
+
+

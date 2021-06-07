@@ -1,83 +1,82 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faStar, faHeart, faEllipsisV} from '@fortawesome/free-solid-svg-icons';
-import {stringLength} from '../../../utils/function/Strings';
-
+import { faStar, faHeart, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { stringLength } from '../../../utils/function/Strings';
 import DropDownSummary from '../../DropDown/DropDownSummay';
 import CardSummaryLogic from './CardSummary.logic';
-import AttributText from '../../atoms/Texts/AttributText';
-
-import {CradContainer, TopContainer, CardH1, CardImgContainer, IconContaner,
-     DetailsContainer, Taglist, TagItem,DateSection, CradLink, LinkTag,
-     BottomContainer, RatingContainer,
-     DateContainer, LeftContainer} from './CardSummary.style';
-
+import AuthorName from '../../atoms/Texts/AttributeText';
+import {
+	CradContainer, TopContainer, CardH1, CardImgContainer, IconContainer,
+	DetailsContainer, Taglist, TagItem, DateSection, CradLink, LinkTag,
+	BottomContainer, RatingContainer,
+	DateContainer, LeftContainer
+} from './CardSummary.style';
 
 
 function CardSummary(props) {
-    const {sid ,imgUrl, title,
-        editTime, likes, autorName, url, tags, favorite} = props;
+	const { sid, imgUrl, title, editTime,
+		 likes, authorName, url, tags, favorite } = props;
 
-    // all the component logic
-    const {isDropDown, toggleDropDown,
-        useOutsideCloseMenu, wrapperRef,
-        toggleIsFavorite, isFavorite} = CardSummaryLogic(favorite);
+	// all the component logic
+	const { isDropDown, toggleDropDown,
+		useOutsideCloseMenu, wrapperRef,
+		toggleIsFavorite, isFavorite } = CardSummaryLogic(favorite);
 
-    // close when click outside
-    useOutsideCloseMenu(wrapperRef);
+	// close when click outside
+	useOutsideCloseMenu(wrapperRef);
 
-    return (
-        <CradContainer>
-            <CradLink>
-                <TopContainer>
-                    <CardH1 href={url} target="_blank" rel="noopener noreferrer">{title}</CardH1>
-                    <IconContaner favorite={isFavorite}>
-                        <FontAwesomeIcon onClick={() => toggleIsFavorite(sid)} icon={faStar}/>
-                    </IconContaner>
-                
-                </TopContainer>
-                <CardImgContainer href={url} target="_blank" rel="noopener noreferrer">
-                    <img src={imgUrl} alt={title}></img>
-                </CardImgContainer>
-            </CradLink>
-            <DetailsContainer>
-                <Taglist>
-                    {tags.filter((_, i) => i < 4 ).map((tag, index) => {
-                        if (index === 3) {
-                            tag = ' ... ';
-                        }
-                        return (
-                            <LinkTag key={index} to={ tag === ' ... ' ? '/myHome/mySummaries/myTags' :
-                            '/myHome/mySummaries/filter/tags/' + tag }>
-                                <TagItem>{stringLength(tag, 10, true)}</TagItem>
-                            </LinkTag>
-                        )
-                    })}
-                </Taglist>
+	return (
+		<CradContainer>
+			<CradLink>
+				<TopContainer>
+					<CardH1 href={url} target="_blank" rel="noopener noreferrer">{title}</CardH1>
+					<IconContainer favorite={isFavorite}>
+						<FontAwesomeIcon onClick={() => toggleIsFavorite(sid)} icon={faStar} />
+					</IconContainer>
+				</TopContainer>
+				<CardImgContainer href={url} target="_blank" rel="noopener noreferrer">
+					<img src={imgUrl} alt={title}/>
+				</CardImgContainer>
+			</CradLink>
+			
+			<DetailsContainer>
+				<Taglist>
+					{
+						tags.filter((_, i) => i < 4).map((tag, index) => {
+							if (index === 3) {
+								tag = ' ... ';
+							}
+							return (
+								<LinkTag key={index} to={tag === ' ... ' ? '/myHome/mySummaries/myTags' :
+									'/myHome/mySummaries/filter/tags/' + tag}>
+									<TagItem>{stringLength(tag, 10, true)}</TagItem>
+								</LinkTag>
+							)
+						})
+					}
+				</Taglist>
+				<DateSection >
+					<DateContainer>
+						<AuthorName attribution='Last Change'
+							textValue={editTime} color='black'></AuthorName>
+						<LeftContainer ref={wrapperRef}>
+							<FontAwesomeIcon onClick={toggleDropDown} icon={faEllipsisV} />
+							{isDropDown && <DropDownSummary sid={sid} />}
+						</LeftContainer>
+					</DateContainer>
+				</DateSection>
+			</DetailsContainer>
 
-                <DateSection >
-                    <DateContainer>
-                        <AttributText attribution='Last Change'
-                         textValue={editTime} color ='black'></AttributText>
-                        <LeftContainer ref={wrapperRef}>
-                            <FontAwesomeIcon onClick={toggleDropDown} icon={faEllipsisV}/>
-                            {isDropDown && <DropDownSummary sid={sid}/>}
-
-                        </LeftContainer>
-                    </DateContainer>
-
-                </DateSection>
-            </DetailsContainer>
-            <BottomContainer>
-                <RatingContainer>
-                   <FontAwesomeIcon icon={faHeart} size="sm" />
-                   {likes}
-                </RatingContainer>
-                    <AttributText attribution='Create By'
-                    textValue={autorName}></AttributText>
-            </BottomContainer>
-        </CradContainer>
-        )
+			<BottomContainer>
+				<RatingContainer>
+					<FontAwesomeIcon icon={faHeart} size="sm" />
+					{likes}
+				</RatingContainer>
+				<AuthorName attribution='Created By'
+					textValue={AuthorName}></AuthorName>
+			</BottomContainer>
+		</CradContainer>
+	);
 }
 
-export default CardSummary
+export default CardSummary;

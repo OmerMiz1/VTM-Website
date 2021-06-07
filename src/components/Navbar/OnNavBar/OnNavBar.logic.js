@@ -1,47 +1,39 @@
-import {useState, useEffect, useRef} from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function OnNavBarLogic() {
-    const [isUseDropDown, setIsUserDropDown] = useState(false);
+	const [isUserDropDown, setIsUserDropDown] = useState(false);
 
-    const toggleUserDropDown = () => {
-        setIsUserDropDown(!isUseDropDown);
-    }
+	const toggleUserDropDown = () => setIsUserDropDown(!isUserDropDown);
+	const closeDropDown = () => setIsUserDropDown(false); 	// close mobile menu
 
-    // close mobile menu
-    const closeDropDwon = () => {
-        setIsUserDropDown(false);
-    }
+	// TODO Create global hook
+	// Hook that close menu clicks outside of the passed ref
+	const useOutsideCloseMenu = (ref) => {
+		useEffect(() => {
+			function handleClickOutside(event) {
+				if (ref.current && !ref.current.contains(event.target)) {
+					closeDropDown();
+				}
+			}
 
-    //TODO CRETE GLOBAL HOOk..
-    //Hook that close menu clicks outside of the passed ref
-    const useOutsideCloseMenu = (ref) => {
-        useEffect(() => {
-            function handleClickOutside(event) {
-                if (ref.current && !ref.current.contains(event.target)) {
-                    closeDropDwon();
-                }
-            }
-            // Bind the event listener
-            document.addEventListener("mousedown", handleClickOutside);
-            return () => {
-                // Unbind the event listener on clean up
-                document.removeEventListener("mousedown", handleClickOutside);
-            };
-        }, [ref]);
-    }
+			// Bind the event listener
+			document.addEventListener("mousedown", handleClickOutside);
+			return () => {
+				document.removeEventListener("mousedown", handleClickOutside);
+			};
+		}, [ref]);
+	}
 
-    // ref click out of the navbar
-    const wrapperRef = useRef(null);
+	// ref click out of the navbar
+	const wrapperRef = useRef(null);
 
-
-
-    return {
-        isUseDropDown, toggleUserDropDown,
-        useOutsideCloseMenu,
-        wrapperRef,
-    }
+	return {
+		isUserDropDown, toggleUserDropDown,
+		useOutsideCloseMenu,
+		wrapperRef,
+	};
 }
 
-export default OnNavBarLogic
+export default OnNavBarLogic;
 
 

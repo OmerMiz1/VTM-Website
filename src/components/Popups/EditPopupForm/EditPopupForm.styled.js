@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Icon from '../../atoms/Icon';
 
 
-export const ContanerPopUpForm = styled.div`
+export const ContainerPopupForm = styled.div`
 
     //popup style
     /* transform: translate(-50%, -50%);
@@ -21,12 +21,12 @@ export const ContanerPopUpForm = styled.div`
     border-radius: 10px;
 `;
 
-export const CloseIcon = styled(Icon) `
+export const CloseIcon = styled(Icon)`
     right: 20px;
     position: absolute;
     top: 8px;
 `;
-export const Title = styled.h1 `
+export const Title = styled.h1`
     font-weight: 800;
     font-size: 20px;
     text-align: center;

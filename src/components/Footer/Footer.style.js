@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {NavLink as Link} from 'react-router-dom';
+import { NavLink as Link } from 'react-router-dom';
 
 // Footer Conatainer - display, size 
 export const FooterConatainer = styled.nav`
@@ -23,8 +23,8 @@ export const FooterConatainer = styled.nav`
 export const FooterContent = styled.div`
     display: flex;
     font-weight: 600;
-    float: ${({float}) => float ? float: "left"};
-    margin-top: ${({ marginTop}) => marginTop ? marginTop: "0px"};
+    float: ${({ float }) => float ? float : "left"};
+    margin-top: ${({ marginTop }) => marginTop ? marginTop : "0px"};
     margin-right: 22px;
 `;
 

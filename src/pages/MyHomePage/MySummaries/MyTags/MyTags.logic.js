@@ -1,10 +1,10 @@
 
-const MyTagsLogic = ()  => {
-   
+const MyTagsLogic = () => {
 
-    return {
-    }
-} 
+
+	return {
+	}
+}
 
 
 export default MyTagsLogic;

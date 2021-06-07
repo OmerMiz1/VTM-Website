@@ -1,15 +1,14 @@
+//FIXME? atoms
+
 import React from 'react';
 import { IllustrationImage } from './Illustration.style';
 
-function index(props) {
-
-    const {size, src} = props
-    return (
-            <IllustrationImage size={size} src={src}>
-                <img src={src} alt='Illustration'></img>
-            </IllustrationImage>
-
-    );
+function index({ size, src }) {
+	return (
+		<IllustrationImage size={size} src={src}>
+			<img src={src} alt='Illustration'/>
+		</IllustrationImage>
+	);
 
 }
 

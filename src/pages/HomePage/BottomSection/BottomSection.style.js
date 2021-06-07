@@ -44,7 +44,7 @@ export const BottomItems = styled.div`
     padding: 3rem 1.46rem;
 `;
 
-export const  BottomItem = styled.div`
+export const BottomItem = styled.div`
     margin: 0 2rem;
     line-height: 2;
     width: 330px;

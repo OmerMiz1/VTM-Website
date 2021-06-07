@@ -6,16 +6,16 @@ import LetStartSection from './letStartSection'
 import BottomSection from './BottomSection'
 
 function HomePage() {
-    
-    return (
-        <>
-            <TopSection></TopSection>
-            <InfoSection></InfoSection>
-            <SupportSection></SupportSection>
-            <LetStartSection></LetStartSection>
-            <BottomSection></BottomSection>
-       </>
-    )
+
+	return (
+		<>
+			<TopSection></TopSection>
+			<InfoSection></InfoSection>
+			<SupportSection></SupportSection>
+			<LetStartSection></LetStartSection>
+			<BottomSection></BottomSection>
+		</>
+	)
 }
 
 export default HomePage;

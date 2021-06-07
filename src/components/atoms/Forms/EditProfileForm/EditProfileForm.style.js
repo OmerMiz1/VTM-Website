@@ -1,9 +1,9 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 export const TiltleProfile = styled.h1`
     margin-top: ${props => props.theme.spacers.medium};
-    color: ${props=> props.theme.colors.header};
-    font-size: ${props=> props.theme.fontSizes.large};
+    color: ${props => props.theme.colors.header};
+    font-size: ${props => props.theme.fontSizes.large};
     font-weight: 800;
     border-bottom: 1px solid #cacaca;
 `;
@@ -11,8 +11,8 @@ export const TiltleProfile = styled.h1`
 export const SectionForm = styled.div`
     margin-bottom: ${props => props.theme.spacers.medium};
     margin-top: ${props => props.theme.spacers.medium};
-    font-size: ${props=> props.theme.fontSizes.medium};
-    border-bottom: ${({border}) =>  border ? '1px solid #cacaca': 'none'};
+    font-size: ${props => props.theme.fontSizes.medium};
+    border-bottom: ${({ border }) => border ? '1px solid #cacaca' : 'none'};
     display: flex;
     text-align: center;
     text-align: left;
@@ -56,7 +56,7 @@ export const SectionForm = styled.div`
 
 
 
-    ${({displayFlexColume}) => displayFlexColume && css`
+    ${({ displayFlexColume }) => displayFlexColume && css`
         flex-direction: column;
         -webkit-flex-direction: column;
         text-align: start;
@@ -66,7 +66,7 @@ export const SectionForm = styled.div`
 
     a {
         color: blue;
-        font-size: ${props=> props.theme.fontSizes.small};
+        font-size: ${props => props.theme.fontSizes.small};
         margin-left: ${props => props.theme.spacers.medium};
         cursor: pointer;
         width: fit-content;
@@ -81,7 +81,7 @@ export const SectionForm = styled.div`
 export const ColumeFrom = styled.div`
     padding:  0  0 0 15px ;
     width: 50%;
-    margin: ${({margin}) => margin ? margin : '0'};
+    margin: ${({ margin }) => margin ? margin : '0'};
 
 `;
 
@@ -101,14 +101,14 @@ input {
     font-weight: 800;
 
     :hover {
-        background-color: ${props=> props.theme.colors.secondLite};
+        background-color: ${props => props.theme.colors.secondLite};
     };
 
 };
 
 `;
 
-export const ValidsionWarnnig = styled.p`
+export const ValidationWarning = styled.p`
     color:red;
     font-weight:600;
     font-size: ${props => props.theme.fontSizes.smallMobile};

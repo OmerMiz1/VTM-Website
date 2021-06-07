@@ -14,11 +14,10 @@ const Button = styled.button`
     background-color: #eee;
 `
 
-function AddButton({children, onClickFun}) {
-    return (
-        <Button onClick={onClickFun}>{children}</Button>
-    )
+function AddButton({ children, onClickFun }) {
+	return (
+		<Button onClick={onClickFun}>{children}</Button>
+	)
 }
 
-
-export default AddButton
+export default AddButton;

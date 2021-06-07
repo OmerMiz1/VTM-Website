@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const SearchBar = styled.input`
     border: none;
@@ -26,7 +26,7 @@ export const ContainerSearchBar = styled.div`
     /* top: 50%;
     left: 50%; */
     transform: translate(-100%, 0%);
-    background: ${(props) => props.theme.colors.secondLite };
+    background: ${(props) => props.theme.colors.secondLite};
     height: 40px;
     border-radius: 40px;
     padding: 0;
@@ -34,7 +34,7 @@ export const ContainerSearchBar = styled.div`
     /* transition: visibility 0s, opacity 0.5s linear; */
 
     
-    ${({hidden}) => hidden && css`
+    ${({ hidden }) => hidden && css`
         visibility: hidden ;
         z-index: 0;
         opacity: 0;
@@ -53,7 +53,7 @@ export const ContainerSearchBar = styled.div`
 
         & .link {
             background: #eee;
-            color:${(props) => props.theme.colors.second };
+            color:${(props) => props.theme.colors.second};
         };
 
     };
@@ -67,12 +67,12 @@ export const ContainerSearchBar = styled.div`
 `;
 
 
-export const SearcLink = styled.a`
+export const SearchLink = styled.a`
     color: #e84118;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: ${(props) => props.theme.colors.second };
+    background: ${(props) => props.theme.colors.second};
     display: flex;
     justify-content: center;
     align-items: center;

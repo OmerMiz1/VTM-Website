@@ -1,5 +1,5 @@
-import styled, {css} from 'styled-components';
-import {NavLink as Link} from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import { NavLink as Link } from 'react-router-dom';
 
 
 export const SideBarContainer = styled.section`
@@ -32,7 +32,7 @@ export const SideBarList = styled.ul`
         opacity: 1;
         transition: all 1s ease;
 
-        ${({active}) => active && css`
+        ${({ active }) => active && css`
             background: #fff;
             left: 0;
             transition: all 1s ease;
@@ -62,7 +62,7 @@ export const SideBarItem = styled.li`
         flex: 30%;
         display: grid;
         place-items: center;
-        font-size: ${props=> props.theme.fontSizes.nav};     
+        font-size: ${props => props.theme.fontSizes.nav};     
     }
 
     & h2 {
@@ -90,13 +90,13 @@ export const NavMenu = styled.div`
         left: 40px;
         transform: translate(-100%, 60%);
         cursor: pointer;
-        color: ${({usetransparent}) => usetransparent? '#dfdce2': 'black'};
+        color: ${({ usetransparent }) => usetransparent ? '#dfdce2' : 'black'};
 
     };
 `
 
 export const SpanSideBar = styled.span`
-    font-size: ${props=> props.theme.fontSizes.medium};
+    font-size: ${props => props.theme.fontSizes.medium};
     display:flex;
     width:100%;
     height:50px;

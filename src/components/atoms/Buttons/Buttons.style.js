@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 // Sing Up Button style -> get padding, font size, color, bg-color
-export const SingUpBtn = styled.button`
-font-size: ${({fontSize}) => fontSize ? fontSize: '1.4rem'};
-padding: ${({padding}) => padding ? padding: '0.7rem 2.8rem'};
-color: ${({color}) => color? color: props => props.theme.colors.main};
-background-color: ${({backgroundColor}) => backgroundColor? backgroundColor:'#d1d5e8'};
+export const SignUpBtn = styled.button`
+font-size: ${({ fontSize }) => fontSize ? fontSize : '1.4rem'};
+padding: ${({ padding }) => padding ? padding : '0.7rem 2.8rem'};
+color: ${({ color }) => color ? color : props => props.theme.colors.main};
+background-color: ${({ backgroundColor }) => backgroundColor ? backgroundColor : '#d1d5e8'};
 border: none;
 font-weight: bold;
 display:block;
@@ -19,7 +19,7 @@ cursor: pointer;
 margin-bottom: 6px;
 
 &:hover {
-    background-color: ${({backgroundColorHover}) => backgroundColorHover? backgroundColorHover:'#b3b7c8'};
+    background-color: ${({ backgroundColorHover }) => backgroundColorHover ? backgroundColorHover : '#b3b7c8'};
     transition: 0.2s ease-in;
     outline: none;
 

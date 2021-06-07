@@ -4,8 +4,8 @@ import styled from 'styled-components';
 export const MenuContainer = styled.section`
     display: block;
     position: absolute;
-    bottom: ${({bottom}) => bottom ? bottom : '0'};
-    right: ${({right}) => right ? right : '0'};
+    bottom: ${({ bottom }) => bottom ? bottom : '0'};
+    right: ${({ right }) => right ? right : '0'};
     z-index: 10;
     font-size: 15px;
 `;
@@ -38,7 +38,7 @@ export const MenuItem = styled.li`
         flex: 30%;
         display: grid;
         place-items: center;
-        font-size: ${props=> props.theme.fontSizes.medium}; 
+        font-size: ${props => props.theme.fontSizes.medium}; 
     }    
     }
 
@@ -53,7 +53,7 @@ export const MenuItem = styled.li`
 export const ItemText = styled.p`
     line-height: 1.5rem;
     font-weight: 800;
-    font-size: ${props=> props.theme.fontSizes.medium}
+    font-size: ${props => props.theme.fontSizes.medium}
 
 
 `;

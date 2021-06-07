@@ -1,4 +1,4 @@
-import styled  from "styled-components";
+import styled from "styled-components";
 
 export const ProfileContainer = styled.section`
     padding: 2% 10%;

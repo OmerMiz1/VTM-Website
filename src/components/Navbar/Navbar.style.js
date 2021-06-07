@@ -1,5 +1,5 @@
-import styled, {css} from 'styled-components';
-import {NavLink as Link} from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import { NavLink as Link } from 'react-router-dom';
 
 // NavbarSection style - color border display.. 
 export const NavbarSection = styled.nav`
@@ -13,7 +13,7 @@ export const NavbarSection = styled.nav`
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     border-bottom: 1px solid #d9d9d9;
    
-    ${({usetransparent}) => usetransparent && css`
+    ${({ usetransparent }) => usetransparent && css`
         background-color: transparent;
         border-bottom: none;
         box-shadow: none;
@@ -49,7 +49,7 @@ export const NavMenu = styled.div`
         left: 40px;
         transform: translate(-100%, 60%);
         cursor: pointer;
-        color: ${({usetransparent}) => usetransparent? '#dfdce2': 'black'};
+        color: ${({ usetransparent }) => usetransparent ? '#dfdce2' : 'black'};
 
     };
 `
@@ -60,8 +60,8 @@ export const NavLeftList = styled.ul`
     grid-gap: 10px;
     list-style: none;
     text-align: center;
-    width: ${({width}) => width? width : '70vw'};
-    justify-content: ${({position}) => position? 'position': 'start'};
+    width: ${({ width }) => width ? width : '70vw'};
+    justify-content: ${({ position }) => position ? 'position' : 'start'};
     margin-right: ${props => props.theme.spacers.large};
 
 
@@ -76,8 +76,8 @@ export const NavLeftList = styled.ul`
         opacity: 1;
         transition: all 1s ease;
 
-        ${({active}) => active && css`
-            background: ${({usetransparent}) => usetransparent? 'rgba(113, 113, 114, 0.7)': 'rgba(238, 238, 238, 0.9)'};
+        ${({ active }) => active && css`
+            background: ${({ usetransparent }) => usetransparent ? 'rgba(113, 113, 114, 0.7)' : 'rgba(238, 238, 238, 0.9)'};
             font-weight: 800;
             left: 0;
             opacity: 1;
@@ -100,17 +100,17 @@ export const NavItem = styled.li`
 export const NavLink = styled(Link)`
 
     /* border-bottom: 2px solid #2C7CD4; */
-    color: ${({usetransparent}) => usetransparent? '#efefef': 'black'};
+    color: ${({ usetransparent }) => usetransparent ? '#efefef' : 'black'};
     font-size: ${props => props.theme.fontSizes.nav};
     display: flex;
     text-decoration: none;
     cursor: pointer;
     margin: 4px 0px 0px 10px;
     transition: all 200ms ease-in-out;
-    border-bottom: ${({border}) => border ? '2px solid #55A1B2' : 'none' };
+    border-bottom: ${({ border }) => border ? '2px solid #55A1B2' : 'none'};
     
     &:hover {
-        filter: ${({usetransparent}) => usetransparent? 'contrast(2)': 'contrast(0.4)'};
+        filter: ${({ usetransparent }) => usetransparent ? 'contrast(2)' : 'contrast(0.4)'};
         color:${props => props.theme.colors.main};
         font-weight:800;
 
@@ -137,8 +137,8 @@ export const NavRightList = styled.ul`
     grid-gap: 5px;
     list-style: none;
     text-align: center;
-    width: ${({width}) => width? width : '80vw'};
-    justify-content: ${({position}) => position? 'position': 'start'};
+    width: ${({ width }) => width ? width : '80vw'};
+    justify-content: ${({ position }) => position ? 'position' : 'start'};
     margin-right: 2rem;
 
     
@@ -153,9 +153,9 @@ export const NavRightList = styled.ul`
 `;
 
 
-export const SeparatorLine = styled.div`
+export const LineSeparator = styled.div`
     border-left: 4px solid;
-    border-color: ${({color}) => color? color: props => props.theme.colors.darkGray};
+    border-color: ${({ color }) => color ? color : props => props.theme.colors.darkGray};
     padding-left: 10px;
 `;
 

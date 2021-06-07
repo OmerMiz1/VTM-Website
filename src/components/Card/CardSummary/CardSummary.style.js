@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 export const CradContainer = styled.div`
@@ -61,10 +61,10 @@ export const Taglist = styled.ul`
     margin: 0 auto;
 `;
 
-export const IconContaner = styled.div`
+export const IconContainer = styled.div`
     cursor:pointer;
     z-index:9;
-    color: ${({favorite}) => favorite? '#F7D300' : 'rgba(219, 219, 208, 0.7)'};
+    color: ${({ favorite }) => favorite ? '#F7D300' : 'rgba(219, 219, 208, 0.7)'};
 
 `;
 export const TagItem = styled.li`

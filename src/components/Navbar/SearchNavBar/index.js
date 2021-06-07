@@ -1,23 +1,21 @@
 import React from 'react';
-import {SearcLink, ContainerSearchBar, SearchBar} from './SearchNavBar.style';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import { SearchLink, ContainerSearchBar, SearchBar } from './SearchNavBar.style';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import SearchNavBarLogic from './SearchNavBar.logic';
 
 
 function SearchNavBar() {
+	const { handleChange, startSearch, isHidden } = SearchNavBarLogic();
 
-
-    const {handelChnge, startSearch, isHidden} = SearchNavBarLogic();
-
-    return (
-        <ContainerSearchBar hidden={isHidden}>
-            <SearchBar onChange={e => handelChnge(e.target.value)} className="input" type="text" placeholder=" search !" />
-            <SearcLink onClick={startSearch} className="link">
-                <FontAwesomeIcon  className="icon" icon={faSearch}/>
-            </SearcLink>
-        </ContainerSearchBar>
-    )
+	return (
+		<ContainerSearchBar hidden={isHidden}>
+			<SearchBar onChange={e => handleChange(e.target.value)} className="input" type="text" placeholder=" search !" />
+			<SearchLink onClick={startSearch} className="link">
+				<FontAwesomeIcon className="icon" icon={faSearch} />
+			</SearchLink>
+		</ContainerSearchBar>
+	);
 }
 
-export default SearchNavBar
+export default SearchNavBar;

@@ -13,15 +13,15 @@ export const VeiwSummaryContainer = styled.section`
 
 export const VeiwSummaryHeaderContainer = styled.div`
     line-height: 1.5;
-    font-size: ${props=> props.theme.fontSizes.medium};
+    font-size: ${props => props.theme.fontSizes.medium};
     padding: 0 10% 1em;
     position: relative;
 `;
 
 export const VeiwSummaryH1 = styled.h1`
     margin-top: ${props => props.theme.spacers.medium};
-    color: ${props=> props.theme.colors.header};
-    font-size: ${props=> props.theme.fontSizes.headerMobile};
+    color: ${props => props.theme.colors.header};
+    font-size: ${props => props.theme.fontSizes.headerMobile};
     font-weight: 800;
     display: inline-flex;
     margin-right: 10px;
@@ -29,8 +29,8 @@ export const VeiwSummaryH1 = styled.h1`
 `;
 export const InputH1 = styled.input`
     margin-top: ${props => props.theme.spacers.medium};
-    color: ${props=> props.theme.colors.nav};
-    font-size: ${props=> props.theme.fontSizes.headerMobile};
+    color: ${props => props.theme.colors.nav};
+    font-size: ${props => props.theme.fontSizes.headerMobile};
     font-weight: 600;
     margin-right: 10px;
     border: 1px solid black;
@@ -40,8 +40,8 @@ export const InputH1 = styled.input`
 `;
 export const VeiwSummaryH1Edit = styled.div`
     margin-top: ${props => props.theme.spacers.medium};
-    color: ${props=> props.theme.colors.header};
-    font-size: ${props=> props.theme.fontSizes.headerMobile};
+    color: ${props => props.theme.colors.header};
+    font-size: ${props => props.theme.fontSizes.headerMobile};
     font-weight: 800;
     display: unset;
     margin-right: 10px;
@@ -57,8 +57,8 @@ export const LinksContainer = styled.div`
 `;
 
 export const VideoLink = styled.a`
-    color: ${props=> props.theme.colors.second};
-    font-size: ${props=> props.theme.fontSizes.nav};
+    color: ${props => props.theme.colors.second};
+    font-size: ${props => props.theme.fontSizes.nav};
     cursor: pointer;
     text-decoration: none;
 
@@ -145,7 +145,7 @@ export const EditIconContainer = styled.div`
     left: -45px;
     
 `;
-export const SpaceAroundContainer  = styled.div`
+export const SpaceAroundContainer = styled.div`
     display: flex;
     border-top: 1px solid black;
     /* border-bottom: 1px solid black; */

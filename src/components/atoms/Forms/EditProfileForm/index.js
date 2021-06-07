@@ -1,105 +1,95 @@
 import React from 'react';
-import {TiltleProfile, ColumeFrom, SectionForm, ValidsionWarnnig, SectionFormSubmit } from './EditProfileForm.style';
+import { TiltleProfile, ColumeFrom, SectionForm, ValidationWarning, SectionFormSubmit } from './EditProfileForm.style';
+import AccountApi from '../../../AccountBox/Account.Api';
 
-//validastion 
+// Validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ProfileUserSchema } from '../../../../validation/ProfileEditValidation';
 
-import {ProfileUserSchema} from '../../../../validation/ProfileEditValidation';
-
-
-
-
-
-function EditProfileForm({setChangePassword}) {
-    
-    //TODO post to server...( edit user api and content)
-    const submitEditProfile = (data) => {
-        console.log('pProfile', data);
-    }
-
-    // Valdation state from ProfileUserSchema (schema)
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: yupResolver(ProfileUserSchema),
-    })
+function EditProfileForm({ setChangePassword }) {
+	const { EditProfile } = AccountApi();
+	const { register, handleSubmit, formState: { errors } } = useForm({
+		resolver: yupResolver(ProfileUserSchema),
+	})
 
 
-    return (
-        <form onSubmit={handleSubmit(submitEditProfile)}>
-            <TiltleProfile>My Profile</TiltleProfile>
+	const submitEditProfile = (data) => {
+		console.log('submitEditProfile', data);
+		EditProfile(data); //FIXME
+	}
 
+	return (
+		<form onSubmit={handleSubmit(submitEditProfile)}>
+			<TiltleProfile>Profile</TiltleProfile>
 
-                <SectionForm displayFlexColume={1} border={1}>
-                    <p>Your Account Email is: <strong>shon4me@gmail.com</strong></p>
-                    <p>Your User Name is: <strong>shon4me</strong></p>
-                    <a onClick={() => setChangePassword(1)}>Change you password</a>
-                </SectionForm>
+			<SectionForm displayFlexColume={1} border={1}>
+				<p>Email: <strong>shon4me@gmail.com</strong></p>
+				<p>Username: <strong>shon4me</strong></p>
+				<a onClick={() => setChangePassword(1)}>Change password</a>
+			</SectionForm>
 
+			<SectionForm>
+				<ColumeFrom margin='0 -15px'>
+					<label>First Name</label>
+					<input defaultValue="temp" type="text" name='firstName' {...register('firstName')}></input>
+					<ValidationWarning> {errors.firstName?.message} </ValidationWarning>
+				</ColumeFrom>
 
-                <SectionForm>
-                    <ColumeFrom margin='0 -15px'>
-                        <label>First Name</label>
-                        <input defaultValue="temp" type="text" name='firstName' {...register('firstName')}></input>
-                        <ValidsionWarnnig> {errors.firstName?.message} </ValidsionWarnnig>
-                    </ColumeFrom>
+				<ColumeFrom margin='0 0 0 30px'>
+					<label>Last Name</label>
+					<input defaultValue="temp" type="text" name='lastName' {...register('lastName')}></input>
+					<ValidationWarning> {errors.lastName?.message} </ValidationWarning>
+				</ColumeFrom>
+			</SectionForm>
 
-                    <ColumeFrom margin='0 0 0 30px'>
-                        <label>Last Name</label>
-                        <input defaultValue="temp" type="text" name='lastName' {...register('lastName')}></input>
-                        <ValidsionWarnnig> {errors.lastName?.message} </ValidsionWarnnig>
-                    </ColumeFrom>
+			<SectionForm>
+				<label>Age</label>
+				<input defaultValue="temp" type="number" name='age' {...register('age')}></input>
+				<ValidationWarning> {errors.age?.message} </ValidationWarning>
+			</SectionForm>
 
-                </SectionForm>
+			<SectionForm>
+				<ColumeFrom margin='0 -15px'>
+					<label>Country</label>
+					<input defaultValue="temp" type="text" name='country' {...register('country')}></input>
+					<ValidationWarning> {errors.country?.message} </ValidationWarning>
+				</ColumeFrom>
 
-                <SectionForm>
-                    <ColumeFrom margin='0 -15px'>
-                        <label>Country</label>
-                        <input defaultValue="temp" type="text" name='country' {...register('country')}></input>
-                        <ValidsionWarnnig> {errors.country?.message} </ValidsionWarnnig>
-                    </ColumeFrom>
+				<ColumeFrom margin='0 0 0 30px'>
+					<label>City</label>
+					<input defaultValue="temp" type="text" name='city' {...register('city')}></input>
+					<ValidationWarning> {errors.city?.message} </ValidationWarning>
+				</ColumeFrom>
+			</SectionForm>
 
-                    <ColumeFrom margin='0 0 0 30px'>
-                        <label>City</label>
-                        <input defaultValue="temp" type="text" name='city' {...register('city')}></input>
-                        <ValidsionWarnnig> {errors.city?.message} </ValidsionWarnnig>
-                    </ColumeFrom>
+			<SectionForm>
+				{/* TODO change to select list */}
+				<label>Education</label>
+				<input defaultValue="temp" type="text" name='education' {...register('education')}></input>
+				<ValidationWarning> {errors.education?.message} </ValidationWarning>
+			</SectionForm>
+			
 
-                </SectionForm>
+			{/* TODO change to select list */}
+			<SectionForm>
+				<label>Interests</label>
+				<select name='interests' {...register('interests')}>
+					<option> Sport</option>
+					<option> Cs</option>
+					<option> sdaf sadf</option>
+				</select>
+				<ValidationWarning> {errors.interests?.message} </ValidationWarning>
+			</SectionForm>
 
-                <SectionForm>
-                    {/* TODO change to select list */}
-                    <label>Education</label>
-                    <input defaultValue="temp" type="text" name='education' {...register('education')}></input>
-                    <ValidsionWarnnig> {errors.education?.message} </ValidsionWarnnig>
-
-                </SectionForm>
-                <SectionForm>
-                    <label>Age</label>
-                    <input defaultValue="temp" type="number" name='age' {...register('age')}></input>
-                    <ValidsionWarnnig> {errors.age?.message} </ValidsionWarnnig>
-                </SectionForm>
-                
-                {/* TODO change to select list */}
-                <SectionForm>
-                    <label>Interests</label>
-                    <select name='interests' {...register('interests')}>
-                        <option> Sport</option>
-                        <option> Cs</option>
-                        <option> sdaf sadf</option>
-                    </select>
-                    <ValidsionWarnnig> {errors.interests?.message} </ValidsionWarnnig>
-
-
-                </SectionForm>
-
-                <>
-                    <SectionFormSubmit>
-                        {/* <input type="submit" value="Reset All" name="reset"/> */}
-                        <input type="submit" value="Save Changes" name="reset"/>
-                    </SectionFormSubmit>
-                </>
-            </form>
-    )
+			<>
+				<SectionFormSubmit>
+					{/* <input type="submit" value="Reset All" name="reset"/> */}
+					<input type="submit" value="Save Changes" name="reset" />
+				</SectionFormSubmit>
+			</>
+		</form>
+	)
 }
 
-export default EditProfileForm
+export default EditProfileForm;

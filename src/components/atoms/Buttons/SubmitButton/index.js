@@ -10,8 +10,8 @@ const InputAddTag = styled.input`
     
 `;
 
-const InputContaner = styled.div`
-    visibility: ${({visibility}) => visibility ? visibility: 'visible'};
+const InputContainer = styled.div`
+    visibility: ${({ visibility }) => visibility ? visibility : 'visible'};
 `;
 const SubmitInput = styled.input`
     display: block;
@@ -24,14 +24,14 @@ const SubmitInput = styled.input`
 `;
 
 
-export const SubmitButton = React.forwardRef(({visibility,
-    submitFun, submitValue, placeHolder}, ref)  =>  {
-    return (
-        <InputContaner visibility={visibility}>
-            <InputAddTag ref={ref} type="text" placeholder={placeHolder}></InputAddTag>
-            <SubmitInput value={submitValue} type="submit" onClick={submitFun}></SubmitInput>
-        </InputContaner>
-    )
+export const SubmitButton = React.forwardRef(({ visibility,
+	submitFun, submitValue, placeHolder }, ref) => {
+	return (
+		<InputContainer visibility={visibility}>
+			<InputAddTag ref={ref} type="text" placeholder={placeHolder}></InputAddTag>
+			<SubmitInput value={submitValue} type="submit" onClick={submitFun}></SubmitInput>
+		</InputContainer>
+	)
 })
 
 

@@ -28,13 +28,12 @@ const ToolTipContainer = styled.div`
         visibility: visible;
     };
 `
- 
 
 const ToolTip = ({ children, toolTipText }) => (
-  <ToolTipContainer>
-    {children}
-    <ToolTipText>{toolTipText}</ToolTipText>
-  </ToolTipContainer>
+	<ToolTipContainer>
+		{children}
+		<ToolTipText>{toolTipText}</ToolTipText>
+	</ToolTipContainer>
 );
 
 export default ToolTip;

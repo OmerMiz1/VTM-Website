@@ -1,32 +1,30 @@
-
 export const DataLinks = [
-    {
-        title:'Home',
-        link: '/',
-    },
-    {
-        title:'About',
-        link: '/about',
-    }, 
-    {
-        title:'Get Start',
-        link: '/getStart',
-    }, 
-    {
-        title:'My Home',
-        link: '/myHome/mySummaries',
-    } 
+	{
+		title: 'Home',
+		link: '/',
+	},
+	{
+		title: 'About',
+		link: '/about',
+	},
+	{
+		title: 'Get Started',
+		link: '/getStarted',
+	},
+	{ 
+		title: 'My Home', //DELETEME
+		link: '/myHome/mySummaries',
+	}
 ]
- //  TODO CHANGE TO download
+// TODO download
 
-
- export const DataRightLinks = [
-    {
-        title:'Log In',
-        link: '/access/login',
-    },
-    {
-        title:'Sign Up',
-        link: '/access/signup',
-    }
+export const DataRightLinks = [
+	{
+		title: 'Login',
+		link: '/access/login',
+	},
+	{
+		title: 'Sign Up',
+		link: '/access/signup',
+	}
 ]

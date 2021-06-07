@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const IconItem = styled.div`
-    margin: ${({margin}) => margin ? margin : '0'};
-    font-size: ${({fontSize}) => fontSize ? fontSize : '25px'};
+    margin: ${({ margin }) => margin ? margin : '0'};
+    font-size: ${({ fontSize }) => fontSize ? fontSize : '25px'};
     cursor: pointer;
     display: inline-table;
     &:hover {
@@ -14,13 +14,13 @@ const IconItem = styled.div`
 `
 
 
-function Icon({className, margin, color, icon, fontSize, funOnClick}) {
+function Icon({ className, margin, color, icon, fontSize, funOnClick }) {
 
-    return (
-    <IconItem className={className} margin ={margin} fontSize={fontSize} onClick={funOnClick}>
-        <FontAwesomeIcon color={color} icon={icon}></FontAwesomeIcon>
-    </IconItem>
-    )
+	return (
+		<IconItem className={className} margin={margin} fontSize={fontSize} onClick={funOnClick}>
+			<FontAwesomeIcon color={color} icon={icon}></FontAwesomeIcon>
+		</IconItem>
+	)
 }
 
 export default Icon

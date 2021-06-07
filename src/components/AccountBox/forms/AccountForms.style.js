@@ -24,7 +24,7 @@ export const MutedLink = styled.div`
   font-weight: 590;
   text-decoration: none;
   cursor:pointer;
-  @media ${({theme}) => theme.mediaQueries.bellow500} {
+  @media ${({ theme }) => theme.mediaQueries.bellow500} {
     font-size: ${props => props.theme.fontSizes.smallMobile};
   }
 
@@ -38,7 +38,7 @@ export const BoldLink = styled.a`
   text-decoration: none;
   margin: 0 8px;
   cursor:pointer;
-  @media ${({theme}) => theme.mediaQueries.bellow500} {
+  @media ${({ theme }) => theme.mediaQueries.bellow500} {
     font-size: ${props => props.theme.fontSizes.smallMobile};
   }
 `;
@@ -56,7 +56,7 @@ export const Input = styled.input`
   transition: all 200ms ease-in-out;
   font-size: ${props => props.theme.fontSizes.medium};
   font-weight:600;
-  margin: ${({margin})=> margin? margin: "0" };
+  margin: ${({ margin }) => margin ? margin : "0"};
   border-bottom: 1.5px solid rgba(200, 200, 200, 0.4);
 
   &::placeholder {
@@ -70,7 +70,7 @@ export const Input = styled.input`
     border-bottom: 2px solid ${props => props.theme.colors.main};
   }
 
-  @media ${({theme}) => theme.mediaQueries.bellow500} {
+  @media ${({ theme }) => theme.mediaQueries.bellow500} {
     font-size: ${props => props.theme.fontSizes.mediumMubile};
     height: 42px;
   }
@@ -100,11 +100,11 @@ export const SubmitButton = styled.button`
 
 
 
-export const MrginSpanHeight= styled.span`
-    height: ${({height}) => height? height: '0px'};
+export const MarginSpanHeight = styled.span`
+    height: ${({ height }) => height ? height : '0px'};
 `;
 
-export const ValidsionWarnnig = styled.p`
+export const ValidationWarning = styled.p`
   color:red;
   font-weight:600;
   font-size: ${props => props.theme.fontSizes.smallMobile};

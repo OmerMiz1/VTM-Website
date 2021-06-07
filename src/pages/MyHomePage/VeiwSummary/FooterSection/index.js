@@ -1,21 +1,21 @@
 import React from 'react';
 
-import {ViewSummaryFooter, SpaceAroundContainer} from '../VeiwSummary.style'
+import { ViewSummaryFooter, SpaceAroundContainer } from '../VeiwSummary.style'
 
-import AttributText from '../../../../components/atoms/Texts/AttributText';
+import AuthorName from '../../../../components/atoms/Texts/AttributeText';
 
-function FooterSection({viewSummary}) {
-    return (
-        <ViewSummaryFooter>
-            <SpaceAroundContainer >
-                <AttributText attribution='Create At:'
-                    textValue={viewSummary.createdTime} color='black'></AttributText>
+function FooterSection({ viewSummary }) {
+	return (
+		<ViewSummaryFooter>
+			<SpaceAroundContainer >
+				<authorName attribution='Create At:'
+					textValue={viewSummary.createdTime} color='black'></authorName>
 
-                <AttributText attribution='Last Change:'
-                    textValue={viewSummary.editTime} color='black'></AttributText>
-            </SpaceAroundContainer>
-        </ViewSummaryFooter>
-    )
+				<authorName attribution='Last Change:'
+					textValue={viewSummary.editTime} color='black'></authorName>
+			</SpaceAroundContainer>
+		</ViewSummaryFooter>
+	)
 }
 
 export default FooterSection

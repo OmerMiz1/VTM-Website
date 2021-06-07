@@ -8,19 +8,18 @@ import { useParams } from 'react-router-dom';
 
 
 function AccessAccountPage() {
+	const { action } = useParams();
 
-    const {action} = useParams();
-    
-    return (
-        <PageContainer>
-            <OffNavbar usetransparent ={0} />
-            <InnerPageContainer>
-                <AccountBox initRegistered = {action === 'login'? true: false}/>
-            </InnerPageContainer>
-            <Footer/>
-        </PageContainer>
-            
-    )
+	return (
+		<PageContainer>
+			<OffNavbar usetransparent={0} />
+			<InnerPageContainer>
+				<AccountBox initRegistered={action === 'login' ? true : false} />
+			</InnerPageContainer>
+			<Footer />
+		</PageContainer>
+
+	)
 }
 
 export default AccessAccountPage

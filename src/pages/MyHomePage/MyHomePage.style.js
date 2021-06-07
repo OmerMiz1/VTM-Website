@@ -35,8 +35,8 @@ export const MainPageContainer = styled.div`
 export const MyHomePageH1 = styled.h1`
     margin-left: ${props => props.theme.spacers.medium};
     margin-top: ${props => props.theme.spacers.medium};
-    color: ${props=> props.theme.colors.header};
-    font-size: ${props=> props.theme.fontSizes.large};
+    color: ${props => props.theme.colors.header};
+    font-size: ${props => props.theme.fontSizes.large};
     font-weight: 800;
 `;
 

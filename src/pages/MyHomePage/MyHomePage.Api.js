@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react';
-import Amplify, {API, Auth} from 'aws-amplify';
+import { useState, useEffect } from 'react';
+import Amplify, { API } from 'aws-amplify';
 
 // TODO no user -> logout, homepage
 
@@ -25,7 +25,7 @@ Summary:
 {
 	sid: STRING,
 	uid: STRING,
-	autorName: STRING,
+	authorName: STRING,
 	url: STRING,
 	title: STRING,
 	createdTime: STRING,
@@ -36,30 +36,29 @@ Summary:
 	favorite: BOOL,
 } 
  */
-const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries)  => {
+const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries) => {
 	const apiName = 'SummaryAPI';
 	const summaryPath = '/summary';
 	const libraryPath = '/library';
 	const myLibraries = 'mylibraries'
 	const summaryIdKeyName = 'sid';
-	const uidKeyName = 'sub';
 
 	const [isLoading, setLoading] = useState(true);
-	
+
 	//TODO lid
 	const getSummaries = async (uid) => {
 		console.log('fetchSummaries, path:', `/${uid}`); //DELETEME
 		setLoading(true);
 
 		API.get(apiName, `${libraryPath}/${uid}`)
-		.then(summaries => {
-			console.log(`summaries:`,  summaries) //DELETEME
-			setMySummaries(summaries);
-			setLoading(false);
-		})
-		.catch(error => {
-			console.log('error fetching summaries:', error) //DELETEME
-		});
+			.then(summaries => {
+				console.log(`summaries:`, summaries) //DELETEME
+				setMySummaries(summaries);
+				setLoading(false);
+			})
+			.catch(error => {
+				console.log('error fetching summaries:', error) //DELETEME
+			});
 	}
 
 	const getSummary = async (sid) => {
@@ -71,29 +70,29 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 		}
 		console.log(`path: ${summaryPath}\nQueryParams: ${JSON.stringify(myInit.queryStringParameters)}`)
 		API.get(apiName, summaryPath, myInit)
-		.then(response => {
-			console.log(`response`, response) //DELETEME
-			return response;
-		})
-		.catch(error => console.log(error))
+			.then(response => {
+				console.log(`response`, response) //DELETEME
+				return response;
+			})
+			.catch(error => console.log(error))
 	}
 
 	const addSummary = async (summary) => {
 		console.log('addSummary:', summary) //DELETEME
-		
+
 		//TODO lid (summary.lid)
-		API.post(apiName, summaryPath, {body: summary})
-		.then(response => {
-			console.log('post response: ', response) //DELETEME
-			
-			// Update front-end
-			summary[summaryIdKeyName] = response.data
-			setMySummaries([...mySummaries, summary]);
-			setMyFilterSummaries([...myFilterSummaries, summary]);
-		})
-		.catch(error => {
-			console.log(error) // DELETEME
-		})
+		API.post(apiName, summaryPath, { body: summary })
+			.then(response => {
+				console.log('post response: ', response) //DELETEME
+
+				// Update front-end
+				summary[summaryIdKeyName] = response.data
+				setMySummaries([...mySummaries, summary]);
+				setMyFilterSummaries([...myFilterSummaries, summary]);
+			})
+			.catch(error => {
+				console.log(error) // DELETEME
+			})
 	}
 
 	const updateSummary = (summary) => {
@@ -104,25 +103,25 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 			return;
 		}
 		summary[summaryIdKeyName] = JSON.stringify(summary[summaryIdKeyName])
-		
-		API.patch(apiName, summaryPath, {body: summary})
-		.then(response => {
-			console.log('update summary response:', response) //DELETEME
-			
-			// Update Frontend
-			setMySummaries(prev => prev.map(item => (item[summaryIdKeyName] === summary[summaryIdKeyName] ? summary : item)));
-			setMyFilterSummaries(prev => prev.map(item => (item[summaryIdKeyName] === summary[summaryIdKeyName] ? summary : item)));
-		})
-		.catch(error => {
-			console.log(error) //DELETEME
-		})
+
+		API.patch(apiName, summaryPath, { body: summary })
+			.then(response => {
+				console.log('update summary response:', response) //DELETEME
+
+				// Update Frontend
+				setMySummaries(prev => prev.map(item => (item[summaryIdKeyName] === summary[summaryIdKeyName] ? summary : item)));
+				setMyFilterSummaries(prev => prev.map(item => (item[summaryIdKeyName] === summary[summaryIdKeyName] ? summary : item)));
+			})
+			.catch(error => {
+				console.log(error) //DELETEME
+			})
 	}
 
 	const deleteSummary = (sid) => {
 		console.log('delete summary sid: ', sid); //DELETEME
 
-		if(typeof(sid) !== 'string') {
-			console.log('error: invalid sid.\nExpected: string\tFound:', typeof(sid)) //DELETEME
+		if (typeof (sid) !== 'string') {
+			console.log('error: invalid sid.\nExpected: string\tFound:', typeof (sid)) //DELETEME
 			return;
 		}
 
@@ -133,16 +132,16 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 		}
 
 		API.del(apiName, summaryPath, queryParams)
-		.then(response => {
-			console.log(`delete response:`, response)//DELETEME
+			.then(response => {
+				console.log(`delete response:`, response)//DELETEME
 
-			// Fronted delete
-			const newSummaries = [...mySummaries].filter(summary => summary.sid !== sid);
-			const newSummariesFilter = [...myFilterSummaries].filter(summary => summary.sid !== sid);
-			setMyFilterSummaries(newSummariesFilter);
-			setMySummaries(newSummaries);
-		})
-		.catch(error => console.log(error))
+				// Fronted delete
+				const newSummaries = [...mySummaries].filter(summary => summary.sid !== sid);
+				const newSummariesFilter = [...myFilterSummaries].filter(summary => summary.sid !== sid);
+				setMyFilterSummaries(newSummariesFilter);
+				setMySummaries(newSummaries);
+			})
+			.catch(error => console.log(error))
 	}
 
 	//TODO
@@ -169,17 +168,18 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 		setLoading(true);
 
 		API.get(apiName, `${libraryPath}/${myLibraries}`)
-		.then(summaries => {
-			console.log(`summaries:`,  summaries) //DELETEME
-			setMySummaries(summaries);
-			setLoading(false);
-		})
-		.catch(error => {
-			console.log('error getting libraries:', error) //DELETEME
-		});
+			.then(summaries => {
+				console.log(`summaries:`, summaries) //DELETEME
+				setMySummaries(summaries);
+				setLoading(false);
+			})
+			.catch(error => {
+				console.log('error getting libraries:', error) //DELETEME
+				setLoading(false);
+			});
 	}
 
-	useEffect(async () =>  {
+	useEffect(async () => {
 		let libraryResult = await getMyLibraries();
 		console.log(`library:`, libraryResult)
 	}, []);
@@ -188,7 +188,7 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 		isLoading, setLoading,
 		deleteSummary, updateSummary, ShareSummary, toggleFavorite, addSummary
 	}
-} 
+}
 
 
 export default MyHomePageApi;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 
 // Box conatainer style - size color..
 export const BoxContainer = styled.section`
@@ -50,9 +50,9 @@ export const BackDrop = styled(motion.div)`
     rgba(56,33,120,1) 100%);
 
 
-     ${props=> props.theme.mediaQueries.smallScreen};
+     ${props => props.theme.mediaQueries.smallScreen};
 
-     @media ${({theme}) => theme.mediaQueries.bellow500} {
+     @media ${({ theme }) => theme.mediaQueries.bellow500} {
         /* height: 500px; */
     }
 `
@@ -65,15 +65,15 @@ export const HeaderContainer = styled.div`
 
 // Header Text style - size color ..
 export const HeaderText = styled.h2`
-  font-size: ${props=> props.theme.fontSizes.header};
+  font-size: ${props => props.theme.fontSizes.header};
   font-weight: 800;
   line-height: 1.28;
   color: #fff;
   z-index: 10;
   margin: 0;
 
-  @media ${({theme}) => theme.mediaQueries.bellow500} {
-        font-size: ${props=> props.theme.fontSizes.headerMobile};
+  @media ${({ theme }) => theme.mediaQueries.bellow500} {
+        font-size: ${props => props.theme.fontSizes.headerMobile};
     }
 `;
 
@@ -81,25 +81,25 @@ export const HeaderText = styled.h2`
 export const SmallText = styled.h5`
   color: #fff;
   font-weight: 550;
-  font-size: ${props=> props.theme.fontSizes.small};
+  font-size: ${props => props.theme.fontSizes.small};
   z-index: 10;
   margin: 0;
   margin-top: 7px;
 
-  @media ${({theme}) => theme.mediaQueries.bellow500} {
-        font-size: ${props=> props.theme.fontSizes.smallMobile};
+  @media ${({ theme }) => theme.mediaQueries.bellow500} {
+        font-size: ${props => props.theme.fontSizes.smallMobile};
         margin-top: 5px;
     }
 `;
- 
-export const ContentContainer =styled.div`
+
+export const ContentContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
     padding: 0 3em;
     margin-top: 25%;
     
-    @media ${({theme}) => theme.mediaQueries.bellow500} {
+    @media ${({ theme }) => theme.mediaQueries.bellow500} {
         margin-top: 25%;
     }
      
@@ -109,22 +109,22 @@ export const ContentContainer =styled.div`
 
 // style befor and affter the animation
 export const backdropVariants = {
-    expanded: {
-      width: "233%",
-      height: "1050px",
-      borderRadius: "20%",
-    },
-    collapsed: {
-      width: "100%",
-      borderRadius: "50%",
-    },
-  };
+	expanded: {
+		width: "233%",
+		height: "1050px",
+		borderRadius: "20%",
+	},
+	collapsed: {
+		width: "100%",
+		borderRadius: "50%",
+	},
+};
 
 
 // Set the duration of the animation
 export const expandingTransition = {
-    type: "spring",
-    duration: 2.3,
-    stiffness: 20,
+	type: "spring",
+	duration: 2.3,
+	stiffness: 20,
 };
 

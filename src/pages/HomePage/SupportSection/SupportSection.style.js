@@ -51,7 +51,7 @@ export const SupportH1 = styled.h1`
 
 // Support P style - choose size and place in table 
 // fix to small screen 
-export const SupportP= styled.p`
+export const SupportP = styled.p`
     grid-column-start: 1;
     grid-row-start: 2; 
     font-size: ${props => props.theme.fontSizes.autoFitMedium};
@@ -105,8 +105,8 @@ export const SupportImg = styled.div`
     right: 0;
     text-align: center;
 
-    top: ${({top}) => top ? top: "0"};
-    left: ${({left}) => left ? left: "0"};
+    top: ${({ top }) => top ? top : "0"};
+    left: ${({ left }) => left ? left : "0"};
     z-index: 1;
 
     img{
@@ -118,10 +118,10 @@ export const SupportImg = styled.div`
 
 // Support icon all over the image -> prop the posision (marging) and size 
 export const SupportIcon = styled.div`
-        font-size: ${({size}) => size ? size: "30px"};
+        font-size: ${({ size }) => size ? size : "30px"};
         position: absolute;
-        top: ${({top}) => top ? top: "10px"};
-        left: ${({left}) => left ? left: "10px"};
+        top: ${({ top }) => top ? top : "10px"};
+        left: ${({ left }) => left ? left : "10px"};
         z-index: 2;
 `
 

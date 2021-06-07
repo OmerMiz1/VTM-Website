@@ -1,5 +1,5 @@
-import {MockData} from './VeiwSummary.mock';
-import Amplify, {API, Auth} from 'aws-amplify';
+import { MockData } from './VeiwSummary.mock';
+import Amplify, { API, Auth } from 'aws-amplify';
 
 const awsmobile = {
 	"aws_project_region": "eu-central-1",
@@ -17,102 +17,102 @@ const awsmobile = {
 };
 Amplify.configure(awsmobile)
 
-const ViewSummaryApi = (setNotes, notes) =>  {
-    const apiName =  "SummaryAPI";
-    const notesPath = "/note";
-    const notePkName = "sid";
-    const noteSkName = "timeSec";
-    const noteIdKeyName = "nid";
+const ViewSummaryApi = (setNotes, notes) => {
+	const apiName = "SummaryAPI";
+	const notesPath = "/note";
+	const notePkName = "sid";
+	const noteSkName = "timeSec";
+	const noteIdKeyName = "nid";
 
-    const fetchNotes = (sid, setNotes, setLoading) => {
-        console.log(`fetchNotes`, sid);
-        setLoading(true);
+	const fetchNotes = (sid, setNotes, setLoading) => {
+		console.log(`fetchNotes`, sid);
+		setLoading(true);
 
-        let queryParams = {
-            queryStringParameters: {
-                sid: JSON.stringify(sid)
-            }
-        }
-    
-        API.get(apiName, notesPath, queryParams)
-        .then(notes => {
-            console.log(`notes:`,  notes) //DELETEME
-            setNotes(notes);
-            setLoading(false);
-        })
-        .catch(error => {
-            console.log('error getting notes:', error) //DELETEME
-        });
-    };
-
-    const addNote = async (note) => {
-        console.log(`addNote` ,note);
-
-        // // TODO change set nid!
-        // note[noteIdKeyName] = Math.floor((Math.random() * 1000000) + 1)
-
-        API.post(apiName, notesPath, {body: note})
-        .then(response => {
-            console.log('post response: ', response) //DELETEME
-            
-            // Update front-end
-            note[noteIdKeyName] = response.data
-            setNotes([...notes, note]); 
-        })
-        .catch(error => {
-            console.log(error) // DELETEME
-        })
-        .finally(response => {
-            console.log(`response`, response)
-        })
-        
-		
-    };
-
-    const deleteNote = (note) => {
-        console.log(`deleteNote`, note);
-
-        const queryParams = {
+		let queryParams = {
 			queryStringParameters: {
-				[notePkName]: JSON.stringify(note[notePkName]),
-                [noteSkName]: JSON.stringify(note[noteSkName])
+				sid: JSON.stringify(sid)
 			}
 		}
-        console.log(`queryParams:`, queryParams)
 
-        API.del(apiName, notesPath, queryParams)
-        .then(response => {
-            console.log(response);
-            
-            // Update front-end
-            const newNotes = [...notes].filter(n => n.nid !== note.nid);
-            setNotes(newNotes); 
-        })
-        .catch(err => console.log(err))
-    };
+		API.get(apiName, notesPath, queryParams)
+			.then(notes => {
+				console.log(`notes:`, notes) //DELETEME
+				setNotes(notes);
+				setLoading(false);
+			})
+			.catch(error => {
+				console.log('error getting notes:', error) //DELETEME
+			});
+	};
 
-    const editNote = (note) => {
-        console.log(`editNote`, note);
+	const addNote = async (note) => {
+		console.log(`addNote`, note);
 
-        if(!note[notePkName] || typeof(note[noteSkName]) !== typeof(1)) {
-            console.log('invalid note object', note)//DELETEME
+		// // TODO change set nid!
+		// note[noteIdKeyName] = Math.floor((Math.random() * 1000000) + 1)
+
+		API.post(apiName, notesPath, { body: note })
+			.then(response => {
+				console.log('post response: ', response) //DELETEME
+
+				// Update front-end
+				note[noteIdKeyName] = response.data
+				setNotes([...notes, note]);
+			})
+			.catch(error => {
+				console.log(error) // DELETEME
+			})
+			.finally(response => {
+				console.log(`response`, response)
+			})
+
+
+	};
+
+	const deleteNote = (note) => {
+		console.log(`deleteNote`, note);
+
+		const queryParams = {
+			queryStringParameters: {
+				[notePkName]: JSON.stringify(note[notePkName]),
+				[noteSkName]: JSON.stringify(note[noteSkName])
+			}
+		}
+		console.log(`queryParams:`, queryParams)
+
+		API.del(apiName, notesPath, queryParams)
+			.then(response => {
+				console.log(response);
+
+				// Update front-end
+				const newNotes = [...notes].filter(n => n.nid !== note.nid);
+				setNotes(newNotes);
+			})
+			.catch(err => console.log(err))
+	};
+
+	const editNote = (note) => {
+		console.log(`editNote`, note);
+
+		if (!note[notePkName] || typeof (note[noteSkName]) !== typeof (1)) {
+			console.log('invalid note object', note)//DELETEME
 			return;
-        }
+		}
 
-        API.patch(apiName, notesPath, {body: note})
-        .then(response => {
-            console.log(`update note response:`, response)
+		API.patch(apiName, notesPath, { body: note })
+			.then(response => {
+				console.log(`update note response:`, response)
 
-            // Update front-end
-            setNotes(prev => prev.map(item => (item.nid === note.nid ? note : item)));
-        })
-        .catch(error => console.log(error))
-        
-    };
+				// Update front-end
+				setNotes(prev => prev.map(item => (item.nid === note.nid ? note : item)));
+			})
+			.catch(error => console.log(error))
 
-    return {
-        editNote, addNote, deleteNote, fetchNotes
-    }
+	};
+
+	return {
+		editNote, addNote, deleteNote, fetchNotes
+	}
 }
 
 export default ViewSummaryApi

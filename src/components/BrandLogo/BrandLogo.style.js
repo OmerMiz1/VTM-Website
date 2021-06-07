@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {NavLink as Link} from 'react-router-dom';
+import { NavLink as Link } from 'react-router-dom';
 
 
 // Container of the logo style
@@ -20,8 +20,8 @@ export const LogoImage = styled(Link)`
     align-items: center;
     justify-content: center;
 
-    width: ${({size}) => size ? size + "px": "1erm"};
-    height: ${({size}) => size ? size + "px": "1erm"};
+    width: ${({ size }) => size ? size + "px" : "1erm"};
+    height: ${({ size }) => size ? size + "px" : "1erm"};
 
     img {
         width:100%;
