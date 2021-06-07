@@ -35,7 +35,6 @@ function AddForm({ close }) {
 		
 		data["tags"] = createTagsArrays(data.tags);
 		data["likes"] = parseInt(data.likes);
-
 		addSummary(data);
 		close();
 	}

@@ -1,14 +1,10 @@
 import { useHistory } from "react-router-dom";
-
-// icons
 import {
 	faEye, faShare, faTrash, faEdit, faPrint,
 	faCheck, faPlus, faPencilAlt, faTimes, faMinus
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/free-solid-svg-icons'; // Icons
 
-const mockFunction = title => {
-	console.log(`mock! ---> clicked on - `, title)
-}
+const mockFunction = title => console.log(`MOCK`, title) //DELETEME
 
 export const EditIcons = {
 	plus:
@@ -17,7 +13,6 @@ export const EditIcons = {
 		color: '#578457', //TODO
 		margin: '0 10px',
 		title: 'add',
-		function: mockFunction
 	},
 	minus:
 	{
@@ -25,7 +20,6 @@ export const EditIcons = {
 		color: 'gray', //TODO
 		margin: '0 10px',
 		title: 'minus',
-		function: mockFunction
 	},
 	pen:
 	{
@@ -33,7 +27,6 @@ export const EditIcons = {
 		color: 'darkslategrey', //TODO
 		margin: '0 0 0 10px',
 		title: 'pen',
-		function: mockFunction
 	},
 	times:
 	{
@@ -41,7 +34,6 @@ export const EditIcons = {
 		color: '#f25457',
 		margin: '0 0 0 10px',
 		title: 'Times',
-		function: mockFunction
 	},
 	check:
 	{
@@ -49,7 +41,6 @@ export const EditIcons = {
 		color: 'darkslategrey',
 		margin: '0 0 0 10px',
 		title: 'check',
-		function: mockFunction
 	},
 	trash:
 	{
@@ -57,15 +48,12 @@ export const EditIcons = {
 		color: '#565656',
 		margin: '0 10px',
 		title: 'remove',
-		function: mockFunction
 	}
-
 };
 
 
 const HeaderIconsData = (mode, modeToggle, deleteSummary) => {
-
-	let history = useHistory();
+	const history = useHistory();
 
 	//TODO ceate styled one and move to util *2
 	const confirmDelete = (sid) => {
@@ -77,8 +65,6 @@ const HeaderIconsData = (mode, modeToggle, deleteSummary) => {
 
 		}
 	}
-
-
 
 	if (mode === 'edit') {
 		return [
@@ -121,9 +107,8 @@ const HeaderIconsData = (mode, modeToggle, deleteSummary) => {
 			function: confirmDelete
 		}
 	];
-
 }
 
-export default HeaderIconsData
+export default HeaderIconsData;
 
 

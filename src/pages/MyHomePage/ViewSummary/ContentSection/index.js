@@ -1,29 +1,23 @@
 import React, { useState } from 'react';
 import parse from 'html-react-parser';
-
 import {
 	ViewSummaryContext, ListNotes, ItemNote, EditIconContainer,
 	TimeTag, TitleTag, ContextText
-} from '.././VeiwSummary.style';
-
+} from '.././ViewSummary.style';
 import ListOfButtonsTags from '../../../../containers/ListOfButtonsTag';
 import TagsButton from '../../../../components/atoms/Buttons/TagsButton';
 import Icon from '../../../../components/atoms/Icon';
 import { EditIcons } from '../HeaderSection/HeaderIcons.data';
-
 import EditNoteForm from '../../../../components/atoms/forms/EditNoteForm';
 import EditPopupForm from '../../../../components/Popups/EditPopupForm'
 import AddButton from '../../../../components/atoms/Buttons/AddButton';
 
 
-
-
-function ContentSection({ notes, tags, filterTags, toggleTags, mode, editNote, addNote, deleteNote, sid }) {
+function ContentSection({ notes, tags, filterTags, toggleTags, mode, updateNote, addNote, deleteNote, sid }) {
 	// showEditNoteNumber === null : none,
 	// showEditNoteNumber ===  "NEW_NOTE" : newNote,
-	// else : editNote
+	// else : updateNote
 	const [showEditNoteNumber, setShowEditNoteNumber] = useState(null);
-
 
 	//TODO ceate styled one and move to util
 	const confirmDelete = (note) => {
@@ -32,8 +26,6 @@ function ContentSection({ notes, tags, filterTags, toggleTags, mode, editNote, a
 			deleteNote(note);
 		}
 	}
-
-
 
 	return (
 		<ViewSummaryContext>
@@ -74,14 +66,12 @@ function ContentSection({ notes, tags, filterTags, toggleTags, mode, editNote, a
 				showEditNoteNumber ?
 					<EditPopupForm title={showEditNoteNumber === "NEW_NOTE" ? 'Add Note' : 'Edit Note'} onClose={() => setShowEditNoteNumber(null)}>
 						<EditNoteForm note={notes.find(item => item.nid === showEditNoteNumber)}
-							editNote={showEditNoteNumber === "NEW_NOTE" ? addNote : editNote} sid={sid}
+							updateNote={showEditNoteNumber === "NEW_NOTE" ? addNote : updateNote} sid={sid}
 							open={showEditNoteNumber} onClose={() => setShowEditNoteNumber(null)}> </EditNoteForm>
 					</EditPopupForm> : <></>
 			}
-
 		</ViewSummaryContext>
-
 	)
 }
 
-export default ContentSection
+export default ContentSection;

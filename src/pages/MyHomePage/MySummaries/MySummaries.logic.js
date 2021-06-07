@@ -3,43 +3,25 @@ import { useParams } from 'react-router-dom';
 import { FilterMySummariesContext } from '../../../utils/context/FilterMySummariesContext';
 
 
-
-
 const MySummariesLogic = () => {
-	const { FillterDataByAttribute, UnFillter } = useContext(FilterMySummariesContext);
-
-
-	// State how much summaries to show in the page..
+	const { FilterDataByAttribute, UnFilter } = useContext(FilterMySummariesContext);
 	const [amountSummariesShow, setAmountSummariesShow] = useState(9);
-
-	// Add more 9 summaries to the page
-	const ShowMoreSummaries = () => {
-		setAmountSummariesShow((prevValue) => prevValue + 9);
-	};
-
 	const { attribute, name } = useParams();
 
-	// const {url, path} = useRouteMatch();
-	// console.log(`display, filter, name ->  `, display, filter, name); //TODO delet 
-	// console.log(`111111111url , path ,->  `, url, path); //TODO delet
-
+	// Shows 9 more summaries to the page
+	const ShowMoreSummaries = () => setAmountSummariesShow((prevValue) => prevValue + 9);
 
 	useEffect(() => {
 		if (attribute && name) {
 			try {
-				console.log(`FillterDataByAttribute!!!!!!!!`, attribute, name); //TODO delete
-				FillterDataByAttribute(attribute, name);
+				FilterDataByAttribute(attribute, name);
 			} catch (err) {
-				UnFillter()
+				UnFilter();
 			}
 		} else {
-			// console.log(`un fillter`) //TODO delete
-			UnFillter()
+			UnFilter();
 		}
 	}, [attribute, name])
-
-
-
 
 	return {
 		ShowMoreSummaries, amountSummariesShow,

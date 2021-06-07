@@ -2,7 +2,7 @@ import React from 'react'
 import TopSection from './TopSection'
 import InfoSection from './InfoSection'
 import SupportSection from './SupportSection'
-import LetStartSection from './letStartSection'
+import LetsStartSection from './LetsStartSection'
 import BottomSection from './BottomSection'
 
 function HomePage() {
@@ -12,7 +12,7 @@ function HomePage() {
 			<TopSection></TopSection>
 			<InfoSection></InfoSection>
 			<SupportSection></SupportSection>
-			<LetStartSection></LetStartSection>
+			<LetsStartSection></LetsStartSection>
 			<BottomSection></BottomSection>
 		</>
 	)

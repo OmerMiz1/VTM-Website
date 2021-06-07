@@ -6,14 +6,10 @@ const constTop = 0;
 const constLeft = 0;
 
 // Calculates the distance to the left and converts to the required format
-const setLeft = (num) => {
-	return (num + constLeft + '%')
-}
+const setLeft = (num) => (num + constLeft + '%');
 
 // Calculates the distance to the top and converts to the required format
-const setTop = (num) => {
-	return (num + constTop + 'px')
-}
+const setTop = (num) => (num + constTop + 'px');
 
 // all the icons that added to the photo
 export const SupportFaData = [
@@ -66,6 +62,3 @@ export const SupportSvgData = {
 	top: setTop(-85),
 	size: '100px'
 }
-
-
-

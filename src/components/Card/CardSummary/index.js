@@ -73,7 +73,7 @@ function CardSummary(props) {
 					{likes}
 				</RatingContainer>
 				<AuthorName attribution='Created By'
-					textValue={AuthorName}></AuthorName>
+					textValue={authorName}></AuthorName>
 			</BottomContainer>
 		</CradContainer>
 	);

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const VeiwSummaryContainer = styled.section`
+export const ViewSummaryContainer = styled.section`
     display: block;
     line-height: 1.5;
     width: 100%;
@@ -11,14 +11,14 @@ export const VeiwSummaryContainer = styled.section`
 
 `;
 
-export const VeiwSummaryHeaderContainer = styled.div`
+export const ViewSummaryHeaderContainer = styled.div`
     line-height: 1.5;
     font-size: ${props => props.theme.fontSizes.medium};
     padding: 0 10% 1em;
     position: relative;
 `;
 
-export const VeiwSummaryH1 = styled.h1`
+export const ViewSummaryH1 = styled.h1`
     margin-top: ${props => props.theme.spacers.medium};
     color: ${props => props.theme.colors.header};
     font-size: ${props => props.theme.fontSizes.headerMobile};
@@ -38,7 +38,7 @@ export const InputH1 = styled.input`
     text-align: center;
     
 `;
-export const VeiwSummaryH1Edit = styled.div`
+export const ViewSummaryH1Edit = styled.div`
     margin-top: ${props => props.theme.spacers.medium};
     color: ${props => props.theme.colors.header};
     font-size: ${props => props.theme.fontSizes.headerMobile};

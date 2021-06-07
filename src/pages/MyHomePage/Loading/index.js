@@ -1,45 +1,44 @@
 import React, { useContext } from 'react';
 import { SummariesContext } from '../../../utils/context/SummariesContext';
-
 import {
 	WarningText,
-	Lodaing, LodaingContanirMotion, LoadingConainer,
+	Loading, LoadingContainerMotion, LoadingContainer,
 	loadingCircleVariants, loadingCircleTransition, loadingContainerVariants
-} from './Loading.style'
-function LoadingComponent() {
+} from './Loading.style';
 
-	// context from api
+
+function LoadingComponent() {
 	const { isMySummaryEmpty, isLoading, myFilterSummaries } = useContext(SummariesContext);
+
 	return (
 		<div>
 			{isMySummaryEmpty && !isLoading && (
-				<WarningText>No Summaries are published yet!</WarningText>
+				<WarningText>No summaries found!</WarningText>
 			)}
 
 			{myFilterSummaries.length === 0 && !isLoading && (
-				<WarningText>Not found!!</WarningText>
+				<WarningText>Summary not found!</WarningText>
 			)}
 			{isLoading &&
-				<LoadingConainer>
+				<LoadingContainer>
 					<WarningText>Loading</WarningText>
-					<LodaingContanirMotion
+					<LoadingContainerMotion
 						variants={loadingContainerVariants}
 						initial="start"
 						animate="end">
-						<Lodaing
+						<Loading
 							variants={loadingCircleVariants}
-							transition={loadingCircleTransition}></Lodaing>
-						<Lodaing
+							transition={loadingCircleTransition}></Loading>
+						<Loading
 							variants={loadingCircleVariants}
-							transition={loadingCircleTransition}></Lodaing>
-						<Lodaing
+							transition={loadingCircleTransition}></Loading>
+						<Loading
 							variants={loadingCircleVariants}
-							transition={loadingCircleTransition}></Lodaing>
-
-					</LodaingContanirMotion>
-				</LoadingConainer>}
+							transition={loadingCircleTransition}></Loading>
+					</LoadingContainerMotion>
+				</LoadingContainer>}
 		</div>
 	)
 }
 
-export default LoadingComponent
+export default LoadingComponent;

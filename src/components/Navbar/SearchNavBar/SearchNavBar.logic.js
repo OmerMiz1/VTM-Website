@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 const SearchNavBarLogic = () => {
 	const params = useParams();
-	const { SearchFillterData } = useContext(FilterMySummariesContext);
+	const { SearchFilterData } = useContext(FilterMySummariesContext);
 	const [isHidden, setIsHidden] = useState(0);
 	const [searchText, setSearchText] = useState('');
 
@@ -21,7 +21,7 @@ const SearchNavBarLogic = () => {
 		switch (params.page) {
 			case 'mySummaries':
 				console.log(`search.... `, searchText); //DELETEME
-				SearchFillterData(searchText);
+				SearchFilterData(searchText);
 				break;
 			case 'sharedWithMe':
 				console.log(`search.... in sharedWithMe`, searchText); //DELETEME

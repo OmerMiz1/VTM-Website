@@ -24,7 +24,6 @@ export const MyHomePageContainer = styled.section`
     }
 `;
 
-
 export const MainPageContainer = styled.div`
     grid-column: span 10;
     display: block;
@@ -68,13 +67,11 @@ export const CardSummariesContainers = styled.div`
     }
 `;
 
-
 export const CardItemContainer = styled.div`
     height: 345px;
     grid-column: span 4;
     margin: auto;
 `;
-
 
 export const ViewMoreButton = styled.button`
     /* background-color: ${props => props.theme.colors.main}; */

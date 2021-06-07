@@ -7,9 +7,8 @@ import {
 import { SignUpBtn } from '../../../components/atoms/Buttons/Buttons.style';
 import HomePageLogic from '../HomePage.logic'
 
-function TopSection() {
 
-	// Routing to SignUp and Login
+function TopSection() {
 	const { routeToSignUp, routeToLogin } = HomePageLogic()
 
 	return (
@@ -17,11 +16,11 @@ function TopSection() {
 			<OffNavbar usetransparent={1} />
 			<TopSectionContent>
 				<TopSectionItems>
-					<TopSectionH1>Strat Tags Your Videos!</TopSectionH1>
-					<SignUpBtn onClick={routeToSignUp} >Sing Up Now</SignUpBtn>
+					<TopSectionH1>Start Tagging Your Videos!</TopSectionH1>
+					<SignUpBtn onClick={routeToSignUp} >Sign Up Now</SignUpBtn>
 					<ContainerP>
 						<TopSectionP marginleft="0px">Already have an account?</TopSectionP>
-						<TopSectionP marginleft="30px" cursor="pointer"><u onClick={routeToLogin}>Log In</u></TopSectionP>
+						<TopSectionP marginleft="30px" cursor="pointer"><u onClick={routeToLogin}>Login</u></TopSectionP>
 					</ContainerP>
 				</TopSectionItems>
 			</TopSectionContent>
@@ -29,4 +28,4 @@ function TopSection() {
 	)
 }
 
-export default TopSection
+export default TopSection;

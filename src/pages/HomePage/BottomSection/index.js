@@ -3,18 +3,15 @@ import {
 	BottomSectionContainer, BottomSectionContent, BottomItems, BottomItem,
 	BottomSectionP, Border
 } from './BottomSection.style';
-
 import Footer from '../../../components/Footer'
 
 
-
-
-// BottomSection - container, contextSection, footer  
+// BottomSection - container, contextSection, footer  // DELETEME
 function BottomSection() {
 	return (
 		<BottomSectionContainer>
 			<BottomSectionContent>
-				{/* <BottomSectionH1>ADD... </BottomSectionH1> */}
+				{/* <BottomSectionH1>ADD... </BottomSectionH1> // DELETEME */}
 				<BottomItems>
 					<BottomItem>
 						<BottomSectionP>Item 1</BottomSectionP>
@@ -35,4 +32,4 @@ function BottomSection() {
 	)
 }
 
-export default BottomSection
+export default BottomSection;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-// Support Section Containe style - 350px screen 
+// Support Section Container style - 350px screen 
 // fixed small screens bugs
 export const SupportSectionContainer = styled.section`
     background-color: #f8f8f8f8;
@@ -75,7 +75,7 @@ export const SupportP = styled.p`
 `;
 
 // Support Container Imge style -  place in table and make it relative
-export const SupportContainerImge = styled.div`
+export const SupportContainerImg = styled.div`
     grid-column-start: 2;
     grid-row-start: 1; 
     grid-row-end: 3; 

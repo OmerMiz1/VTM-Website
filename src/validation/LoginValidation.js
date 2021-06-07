@@ -15,8 +15,10 @@ export const useLoginSchema = yup.object().shape({
 		)
 });
 
-
 export const ResetPasswordSchema = yup.object().shape({
+	// At least one required (yup):
+	// https://github.com/jquense/yup/issues/248
+	
 	email: yup.string().email("Email not valid").required("Please Enter your Email")
 	// user: yup.string().required("Please Enter User Name"),
 });

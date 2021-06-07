@@ -10,7 +10,7 @@ export const WarningText = styled.h2`
 `;
 
 
-export const Lodaing = styled(motion.span)`
+export const Loading = styled(motion.span)`
     display: block;
     width: 0.5rem;
     height: 0.5rem;
@@ -19,7 +19,7 @@ export const Lodaing = styled(motion.span)`
 `;
 
 
-export const LodaingContanirMotion = styled(motion.span)`
+export const LoadingContainerMotion = styled(motion.span)`
     display: flex;
     width: 2rem;
     height: 2rem;
@@ -28,7 +28,7 @@ export const LodaingContanirMotion = styled(motion.span)`
 
 `;
 
-export const LoadingConainer = styled.div`
+export const LoadingContainer = styled.div`
     display: flex;
     width: 4rem;
     height: 4rem;

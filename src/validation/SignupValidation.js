@@ -7,15 +7,15 @@ import * as yup from 'yup';
 // Schema validation - username required , valid email, confirmPassword
 // and password Contain 6 characters one Uppercase and One Lowercase..
 export const useSignupSchema = yup.object().shape({
-	userName: yup.string().required("Please Enter User Name"),
-	email: yup.string().email("Email not valid").required("Please Enter your Email"),
+	userName: yup.string().required("Please enter username"),
+	email: yup.string().email("Email not valid").required("Please enter your email"),
 	password: yup
 		.string()
-		.required('Please Enter your Password')
+		.required('Please enter your password')
 		.min('8')
 		.matches(
 			/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\^$*.\[\]{}\(\)?\-“!@#%&\/,><\’:;|_~`])\S{8,99}$/,
-			"Must Contain Uppercase and Lowercase!"
+			"Password must contain uppercase, lowercase, a number and a special character!"
 		),
 	confirmPassword: yup
 		.string()
@@ -25,5 +25,5 @@ export const useSignupSchema = yup.object().shape({
 
 
 export const useConfirmSignupSchema = yup.object().shape({
-	confirm: yup.string().required("Please Enter Confirm code ")
+	confirm: yup.string().required("Please enter confirmation code")
 });

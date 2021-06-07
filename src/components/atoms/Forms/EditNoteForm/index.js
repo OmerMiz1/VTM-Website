@@ -4,7 +4,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
-function EditNoteForm({ open, onClose, note, editNote, sid }) {
+function EditNoteForm({ open, onClose, note, updateNote, sid }) {
 	const [title, setTitle] = useState(note ? note.title : '');
 	const [tag, setTag] = useState(note ? note.tag : '');
 	const [formatedTime, setFormatedTime] = useState(note ? note.time : '00:00:00');
@@ -22,9 +22,10 @@ function EditNoteForm({ open, onClose, note, editNote, sid }) {
 			content: content,
 			time: formatedTime,
 			tag: tag,
-			timeSec: getTimeSec(),
+			timeSec: getTimeSec()
 		}
-		note ? editNote(newNote) : editNote(newNote)
+		console.log(`newNote`, newNote); //DELETEME
+		updateNote(newNote);
 		onClose();
 	}
 
@@ -34,8 +35,9 @@ function EditNoteForm({ open, onClose, note, editNote, sid }) {
 		let timeSecFormat = (+tempSecTime[0]) * 60 * 60 + (+tempSecTime[1]) * 60 + (+tempSecTime[2]);
 		return timeSecFormat;
 	}
-
-	if (!open) return null;
+	
+	console.log(`open`, open)
+	if (open === null) return null;
 
 	return (
 		<form className="form-style-9" onSubmit={onSubmit}>

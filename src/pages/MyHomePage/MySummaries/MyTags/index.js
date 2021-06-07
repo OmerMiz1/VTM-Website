@@ -1,24 +1,19 @@
 import React, { useContext } from 'react';
 import { SummariesContext } from '../../../../utils/context/SummariesContext';
 import { FilterMySummariesContext } from '../../../../utils/context/FilterMySummariesContext';
-
 import LoadingComponent from '../../Loading';
 import ListOfButtonsTags from '../../../../containers/ListOfButtonsTag';
 import TagsButton from '../../../../components/atoms/Buttons/TagsButton';
-
 import { MainPageContainer, MyHomePageH1 } from '../../MyHomePage.style';
 
 
-
 function MyTags() {
-
 	const { isMySummaryEmpty, isLoading } = useContext(SummariesContext);
 	const { myFilterSummariesTags } = useContext(FilterMySummariesContext);
 
-
 	return (
 		<MainPageContainer>
-			<MyHomePageH1>My Tags:</MyHomePageH1>
+			<MyHomePageH1>My Tags</MyHomePageH1>
 			<LoadingComponent />
 
 			{!isMySummaryEmpty && !isLoading &&
@@ -37,5 +32,3 @@ function MyTags() {
 }
 
 export default MyTags;
-
-

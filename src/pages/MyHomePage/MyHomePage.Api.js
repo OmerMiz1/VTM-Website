@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Amplify, { API } from 'aws-amplify';
 
+// TODO split -> SummaryApi, NoteApi, LibraryApi
+
 // TODO no user -> logout, homepage
 
 // FIXME
@@ -28,7 +30,7 @@ Summary:
 	authorName: STRING,
 	url: STRING,
 	title: STRING,
-	createdTime: STRING,
+	createTime: STRING,
 	editTime: STRING,
 	tags: [STRING],
 	imgUrl: STRING,
@@ -42,7 +44,7 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 	const libraryPath = '/library';
 	const myLibraries = 'mylibraries'
 	const summaryIdKeyName = 'sid';
-
+	const editTimeKeyName = "editTime";
 	const [isLoading, setLoading] = useState(true);
 
 	//TODO lid
@@ -96,12 +98,13 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 	}
 
 	const updateSummary = (summary) => {
-		console.log('updateSummary')//DELETEME
+		console.log('updateSummary') //DELETEME
 
 		if (!summary[summaryIdKeyName]) {
 			console.log('error: sid missing', summary)//DELETEME
 			return;
 		}
+
 		summary[summaryIdKeyName] = JSON.stringify(summary[summaryIdKeyName])
 
 		API.patch(apiName, summaryPath, { body: summary })
@@ -185,8 +188,13 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 	}, []);
 
 	return {
-		isLoading, setLoading,
-		deleteSummary, updateSummary, ShareSummary, toggleFavorite, addSummary
+		isLoading,
+		setLoading,
+		deleteSummary,
+		updateSummary,
+		ShareSummary,
+		toggleFavorite,
+		addSummary
 	}
 }
 

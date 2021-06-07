@@ -5,7 +5,7 @@ import imageBackground from '../../../images/backgrounds/b2.jpg'
 
 // let start Section Container style- color and size
 // small screen 400px
-export const LetStartSectionContainer = styled.section`
+export const LetsStartSectionContainer = styled.section`
     background: linear-gradient(to left, rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(${imageBackground});
     /* background: url(${imageBackground}); */
     width: 100%;

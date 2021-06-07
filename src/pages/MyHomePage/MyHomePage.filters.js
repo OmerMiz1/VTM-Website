@@ -2,16 +2,15 @@ import { useState, useEffect } from 'react';
 
 
 const MyHomePageFilters = (mySummaries, setMyFilterSummaries) => {
-
 	const [myFilterSummariesTags, setMyFilterSummariesTags] = useState([]);
 
 	useEffect(() => {
-		// console.log(`use effect getAllFilterTags`);
 		getAllFilterTags(mySummaries);
 	}, [mySummaries])
 
 	const getAllFilterTags = (summaries) => {
 		const allTags = new Set();
+
 		summaries.forEach((summary) => {
 			summary.tags.forEach((tag) => {
 				allTags.add(tag)
@@ -20,37 +19,30 @@ const MyHomePageFilters = (mySummaries, setMyFilterSummaries) => {
 		setMyFilterSummariesTags(allTags)
 	}
 
-
-	const UnFillter = () => {
-		setMyFilterSummaries(mySummaries);
-	}
-
-
-
+	const UnFilter = () => setMyFilterSummaries(mySummaries);
 
 	// Filter summaries by all the data in the object
-	const SearchFillterData = value => {
-
+	const SearchFilterData = value => {
 		const lowerCaseValue = value.toLowerCase().trim();
+
 		if (!lowerCaseValue) {
-			UnFillter();
+			UnFilter();
 		} else {
 			const fillteredData = mySummaries.filter(item => {
 				return Object.keys(item).some(key => {
 					return item[key].toString().toLowerCase().includes(lowerCaseValue);
 				});
 			});
-			// save
-			setMyFilterSummaries(fillteredData);
+			setMyFilterSummaries(fillteredData); // save
 		}
 	}
 
 	// Filter summaries by attribute and value
-	const FillterDataByAttribute = (attribute, value) => {
-
+	const FilterDataByAttribute = (attribute, value) => {
 		const lowerCaseValue = value.toLowerCase().trim();
+		
 		if (!lowerCaseValue) {
-			UnFillter()
+			UnFilter()
 		} else {
 			const fillteredData = mySummaries.filter(item => {
 				return Object.keys(item).some(_ => {
@@ -61,9 +53,11 @@ const MyHomePageFilters = (mySummaries, setMyFilterSummaries) => {
 		}
 	}
 
-
 	return {
-		SearchFillterData, myFilterSummariesTags, FillterDataByAttribute, UnFillter
+		SearchFilterData,
+		myFilterSummariesTags,
+		FilterDataByAttribute,
+		UnFilter
 	}
 }
 

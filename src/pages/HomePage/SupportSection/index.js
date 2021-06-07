@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ZoomIcon from '../../../components/icons/ZoomIcon'
 import {
 	SupportSectionContainer, SupportH1, SupportP, SupportImg,
-	SupportIcon, SupportContainerImge
+	SupportIcon, SupportContainerImg
 } from './SupportSection.style'
 import ImgScreenApp from './ImgScreenApp.jpg';
 import { SupportFaData, SupportSvgData } from './Support.data'
@@ -16,7 +16,7 @@ function SupportSection() {
             Manage and organize all your video content in one place.
             Not related to the site where it was published.
             </SupportP>
-			<SupportContainerImge>
+			<SupportContainerImg>
 				{SupportFaData.map((data, index) => {
 					return (
 						<SupportIcon key={index} left={data.left} top={data.top} size={data.size}>
@@ -31,9 +31,9 @@ function SupportSection() {
 				<SupportImg>
 					<img src={ImgScreenApp} alt="ImgScreenApp"></img>
 				</SupportImg>
-			</SupportContainerImge>
+			</SupportContainerImg>
 		</SupportSectionContainer>
 	)
 }
 
-export default SupportSection
+export default SupportSection;

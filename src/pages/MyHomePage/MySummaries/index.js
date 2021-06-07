@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { SummariesContext } from '../../../utils/context/SummariesContext';
 import MySummariesLogic from './MySummaries.logic';
 import LoadingComponent from '../Loading'
-
 import CardSummary from '../../../components/Card/CardSummary';
 import {
 	MainPageContainer, MyHomePageH1, CardSummariesContainers,
@@ -10,18 +9,13 @@ import {
 } from '../MyHomePage.style';
 
 
-
 function MySummaries() {
-	// logic of my home page
 	const { ShowMoreSummaries, amountSummariesShow } = MySummariesLogic();
-
-	// context from api
 	const { isMySummaryEmpty, isLoading, myFilterSummaries } = useContext(SummariesContext);
-
 
 	return (
 		<MainPageContainer>
-			<MyHomePageH1>My Summary:</MyHomePageH1>
+			<MyHomePageH1>My Summaries</MyHomePageH1>
 			<LoadingComponent></LoadingComponent>
 
 			{!isMySummaryEmpty && !isLoading &&
@@ -33,7 +27,7 @@ function MySummaries() {
 									sid={card.sid}
 									imgUrl={card.imgUrl}
 									title={card.title}
-									createdTime={card.createdTime}
+									createTime={card.createTime}
 									editTime={card.editTime}
 									likes={card.likes}
 									authorName={card.authorName}
@@ -51,11 +45,8 @@ function MySummaries() {
 					<ViewMoreButton onClick={ShowMoreSummaries}>View More</ViewMoreButton>
 				)}
 			</BottomContainer>
-
 		</MainPageContainer>
 	)
 }
 
 export default MySummaries;
-
-

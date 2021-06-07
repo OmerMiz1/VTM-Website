@@ -7,11 +7,11 @@ import InfoData from './Info.data';
 import Illustration from '../../../components/Illustration'
 
 
-// InfoSection - container, header, imge and text  
+// InfoSection - container, header, imge and text //DELETEME
 function InfoSection() {
 	return (
 		<InfoSectionContainer>
-			<InfoSectionH1>What do we give?</InfoSectionH1>
+			<InfoSectionH1>What we provide</InfoSectionH1>
 			<InfoSectionContent>
 				{InfoData.map((data, index) => {
 					return (
@@ -26,4 +26,4 @@ function InfoSection() {
 	)
 }
 
-export default InfoSection
+export default InfoSection;
