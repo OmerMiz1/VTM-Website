@@ -7,11 +7,10 @@ const Container = styled.div`
     display:flex;
 `
 
-
-function IconContainer(props) {
+function IconContainer({justContent, children}) {
 	return (
-		<Container justContent={props.justContent}>{props.children}</Container>
+		<Container justContent={justContent}>{children}</Container>
 	)
 }
 
-export default IconContainer
+export default IconContainer;

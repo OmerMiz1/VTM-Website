@@ -8,10 +8,10 @@ export const ListButtons = styled.ul`
 
 `;
 
-function ListOfButtonsTags(props) {
+function ListOfButtonsTags({margin, children}) {
 	return (
-		<ListButtons margin={props.margin}>{props.children}</ListButtons>
+		<ListButtons margin={margin}>{children}</ListButtons>
 	)
 }
 
-export default ListOfButtonsTags
+export default ListOfButtonsTags;

@@ -2,9 +2,10 @@ import React from 'react'
 import { PageWrapper } from './PageContainers.style'
 
 
-function PageContainer(props) {
+function PageContainer({children}) {
 	return (
-		<PageWrapper>{props.children}</PageWrapper>
+		<PageWrapper>{children}</PageWrapper>
 	)
 }
-export default PageContainer
+
+export default PageContainer;
