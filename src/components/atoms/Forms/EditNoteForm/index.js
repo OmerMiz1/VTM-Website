@@ -24,6 +24,10 @@ function EditNoteForm({ open, onClose, note, updateNote, sid }) {
 			tag: tag,
 			timeSec: getTimeSec()
 		}
+
+		if(note.nid)
+			newNote["nid"] = note.nid
+		
 		console.log(`newNote`, newNote); //DELETEME
 		updateNote(newNote);
 		onClose();
@@ -36,7 +40,6 @@ function EditNoteForm({ open, onClose, note, updateNote, sid }) {
 		return timeSecFormat;
 	}
 	
-	console.log(`open`, open)
 	if (open === null) return null;
 
 	return (
@@ -53,7 +56,7 @@ function EditNoteForm({ open, onClose, note, updateNote, sid }) {
 						onChange={(e) => setTag(e.target.value)} list="tags"></input>
 					<datalist id="tags">
 						{/* TODO add tags... */}
-						<option>Summary</option>
+						<option>Note</option>
 						<option>Important</option>
 						<option>Definition</option>
 						<option>Example</option>

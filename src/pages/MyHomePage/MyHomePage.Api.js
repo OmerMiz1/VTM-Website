@@ -45,6 +45,7 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 	const myLibraries = 'mylibraries'
 	const summaryIdKeyName = 'sid';
 	const editTimeKeyName = "editTime";
+	const createTimeKeyName = "createTime";
 	const [isLoading, setLoading] = useState(true);
 
 	//TODO lid
@@ -88,7 +89,9 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 				console.log('post response: ', response) //DELETEME
 
 				// Update front-end
-				summary[summaryIdKeyName] = response.data
+				summary[summaryIdKeyName] = response.data[summaryIdKeyName];
+				summary[editTimeKeyName] = response.data[editTimeKeyName];
+				
 				setMySummaries([...mySummaries, summary]);
 				setMyFilterSummaries([...myFilterSummaries, summary]);
 			})
@@ -105,13 +108,15 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 			return;
 		}
 
-		summary[summaryIdKeyName] = JSON.stringify(summary[summaryIdKeyName])
-
+		summary[summaryIdKeyName] = JSON.stringify(summary[summaryIdKeyName]);
+		summary[editTimeKeyName] = new Date().getTime();
+		
 		API.patch(apiName, summaryPath, { body: summary })
 			.then(response => {
 				console.log('update summary response:', response) //DELETEME
 
 				// Update Frontend
+				summary[summaryIdKeyName] = JSON.parse(summary[summaryIdKeyName]);
 				setMySummaries(prev => prev.map(item => (item[summaryIdKeyName] === summary[summaryIdKeyName] ? summary : item)));
 				setMyFilterSummaries(prev => prev.map(item => (item[summaryIdKeyName] === summary[summaryIdKeyName] ? summary : item)));
 			})

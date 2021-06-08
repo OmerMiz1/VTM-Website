@@ -49,8 +49,8 @@ function MyHomePage() {
 								page === 'mySummaries' ? <MySummaries /> :
 								page === 'discover' ? <Discover /> :
 								page === 'sharedWithMe' ? <h1>Shared With Me</h1> :
-								page === 'myFriends' ? <h1>My Frinds</h1> :
-								page === 'settings' ? <h1>setting</h1> :
+								page === 'myFriends' ? <h1>My Friends</h1> :
+								page === 'settings' ? <h1>Setting</h1> :
 								page === 'profile' ? <ProfilePage /> :
 								<h1>ELSE</h1> //DELETEME
 							}

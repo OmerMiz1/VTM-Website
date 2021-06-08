@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faHeart, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { stringLength } from '../../../utils/function/Strings';
@@ -11,6 +11,7 @@ import {
 	BottomContainer, RatingContainer,
 	DateContainer, LeftContainer
 } from './CardSummary.style';
+import { TimeStringFormat } from '../../../utils/function/TimeFormat';
 
 
 function CardSummary(props) {
@@ -58,7 +59,7 @@ function CardSummary(props) {
 				<DateSection >
 					<DateContainer>
 						<AuthorName attribution='Last Change'
-							textValue={editTime} color='black'></AuthorName>
+							textValue={TimeStringFormat(editTime)} color='black'></AuthorName>
 						<LeftContainer ref={wrapperRef}>
 							<FontAwesomeIcon onClick={toggleDropDown} icon={faEllipsisV} />
 							{isDropDown && <DropDownSummary sid={sid} />}

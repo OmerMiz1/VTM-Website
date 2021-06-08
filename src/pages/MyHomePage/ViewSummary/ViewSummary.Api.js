@@ -46,7 +46,7 @@ const ViewSummaryApi = (notes, setNotes, setLoading) => {
 
 	const addNote = async (note) => {
 		console.log(`addNote`, note);
-
+		//TODO default tag: "Note"
 		// // TODO change set nid!
 		// note[noteIdKeyName] = Math.floor((Math.random() * 1000000) + 1)
 
@@ -64,8 +64,6 @@ const ViewSummaryApi = (notes, setNotes, setLoading) => {
 		.finally(response => {
 			console.log(`response`, response)
 		})
-
-
 	};
 
 	const deleteNote = (note) => {

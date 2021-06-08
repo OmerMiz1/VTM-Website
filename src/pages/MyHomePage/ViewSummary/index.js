@@ -13,7 +13,7 @@ function ViewSummary() {
 	const { isLoading, setLoading, mySummaries, updateSummary, deleteSummary } = useContext(SummariesContext);
 	const { notes, viewSummary, allTagsNotes, filterTagsNotes, toggleFilterNote,
 		toggleMode, mode, setNotes } = ViewSummaryLogic(setLoading, mySummaries);
-	const { updateNote, addNote, deleteNote } = ViewSummaryApi(setNotes, notes);
+	const { updateNote, addNote, deleteNote } = ViewSummaryApi(notes, setNotes, setLoading);
 	
 	return (
 		<ViewSummaryContainer>
