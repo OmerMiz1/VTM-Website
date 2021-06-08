@@ -9,10 +9,10 @@ import {
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ChangePasswordSchema } from '../../../../../../validation/ChangePasswordValidation';
-import AccountApi from '../../../../Account.Api';
+import UserApi from '../../../../../../api/User';
 
 export default function ChangePassword({ userData }) {
-	const { ChangePassword, ResendResetPassword } = AccountApi()
+	const { ChangePassword, ResendResetPassword } = UserApi()
 
 	// Valdation state from useSignupSchema (schema)
 	const { register, handleSubmit, formState: { errors } } = useForm({

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TiltleProfile, SectionForm, ValidationWarning, SectionFormSubmit } from '../EditProfileForm/EditProfileForm.style';
-import AccountApi from '../../../AccountBox/Account.Api'
+import UserApi from '../../../../api/User';
 // Validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,7 +8,7 @@ import { ChangePasswordSchema } from '../../../../validation/ChangePasswordValid
 
 
 function EditProfileForm({ setChangePassword }) {
-	const { ChangePassword } = AccountApi()
+	const { ChangePassword } = UserApi()
 	// Valdation state from ProfileUserSchema (schema)
 	const { register, handleSubmit, formState: { errors } } = useForm({
 		resolver: yupResolver(ChangePasswordSchema),

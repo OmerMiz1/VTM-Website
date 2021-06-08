@@ -1,10 +1,10 @@
 // icons
 import { faUserCircle, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import AccountApi from '../../AccountBox/Account.Api';
+import UserApi from '../../../api/User';
 import { useHistory } from 'react-router-dom';
 
 const DropDownSummaryData = () => {
-	const { Logout } = AccountApi();
+	const { Logout } = UserApi();
 	let history = useHistory();
 
 	const mockFunction = () => {

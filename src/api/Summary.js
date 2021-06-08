@@ -38,11 +38,11 @@ Summary:
 	favorite: BOOL,
 } 
  */
-const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries) => {
+const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries) => {
 	const apiName = 'SummaryAPI';
 	const summaryPath = '/summary';
 	const libraryPath = '/library';
-	const myLibraries = 'mylibraries'
+	const myLibraries = 'mylibraries';
 	const summaryIdKeyName = 'sid';
 	const editTimeKeyName = "editTime";
 	const createTimeKeyName = "createTime";
@@ -90,6 +90,7 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 
 				// Update front-end
 				summary[summaryIdKeyName] = response.data[summaryIdKeyName];
+				summary[createTimeKeyName] = response.data[editTimeKeyName];
 				summary[editTimeKeyName] = response.data[editTimeKeyName];
 				
 				setMySummaries([...mySummaries, summary]);
@@ -203,5 +204,4 @@ const MyHomePageApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilt
 	}
 }
 
-
-export default MyHomePageApi;
+export default SummaryApi;

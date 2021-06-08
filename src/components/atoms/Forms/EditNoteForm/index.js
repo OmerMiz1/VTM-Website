@@ -14,7 +14,6 @@ function EditNoteForm({ open, onClose, note, updateNote, sid }) {
 	const onSubmit = (e) => {
 		e.preventDefault();
 
-		// TODO note.nid change random
 		console.log(`note`, note) //DELETEME
 		const newNote = {
 			sid: sid,
@@ -25,8 +24,8 @@ function EditNoteForm({ open, onClose, note, updateNote, sid }) {
 			timeSec: getTimeSec()
 		}
 
-		if(note.nid)
-			newNote["nid"] = note.nid
+		if(note?.nid)
+			newNote["nid"] = note.nid;
 		
 		console.log(`newNote`, newNote); //DELETEME
 		updateNote(newNote);

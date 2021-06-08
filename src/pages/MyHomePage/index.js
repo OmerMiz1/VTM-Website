@@ -7,7 +7,7 @@ import SideNavBar from '../../components/SideNavBar';
 import MySummaries from './MySummaries'
 import Footer from '../../components/Footer'
 import MyHomePageData from './MySummary.data'
-import MyHomePageApi from './MyHomePage.Api';
+import SummaryApi from '../../api/Summary';
 import MyHomePageFilters from './MyHomePage.filters';
 import { MyHomePageContainer } from './MyHomePage.style';
 import Discover from './Discover';
@@ -24,7 +24,7 @@ function MyHomePage() {
 	const { SearchFilterData, myFilterSummariesTags,
 		FilterDataByAttribute, UnFilter } = MyHomePageFilters(mySummaries, setMyFilterSummaries);
 	const { isLoading, setLoading, addSummary, deleteSummary, updateSummary,
-		ShareSummary, toggleFavorite } = MyHomePageApi(mySummaries, setMySummaries,
+		ShareSummary, toggleFavorite } = SummaryApi(mySummaries, setMySummaries,
 			myFilterSummaries, setMyFilterSummaries);
 
 	return (

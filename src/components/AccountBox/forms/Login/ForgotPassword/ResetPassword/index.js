@@ -3,7 +3,7 @@ import {
 	BoxContainer, FormContainer, ValidationWarning, BoldLink,
 	Input, SubmitButton, MarginSpanHeight
 } from '../../../AccountForms.style';
-import AccountApi from '../../../../Account.Api';
+import UserApi from '../../../../../../api/User';
 
 // Validation
 import { useForm } from "react-hook-form";
@@ -12,7 +12,7 @@ import { ResetPasswordSchema } from '../../../../../../validation/LoginValidatio
 
 
 export default function ResetPassword({ setResetPassword, setChangePassword, setUserData }) {
-	const { ResetPassword } = AccountApi();
+	const { ResetPassword } = UserApi();
 
 	// Valdation state from useSignupSchema (schema)
 	const { register, handleSubmit, formState: { errors } } = useForm({

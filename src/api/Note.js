@@ -16,7 +16,7 @@ const awsmobile = {
 };
 Amplify.configure(awsmobile)
 
-const ViewSummaryApi = (notes, setNotes, setLoading) => {
+const NoteApi = (notes, setNotes, setLoading) => {
 	const apiName = "SummaryAPI";
 	const notesPath = "/note";
 	const notePkName = "sid";
@@ -112,4 +112,4 @@ const ViewSummaryApi = (notes, setNotes, setLoading) => {
 	}
 }
 
-export default ViewSummaryApi
+export default NoteApi

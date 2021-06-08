@@ -4,7 +4,7 @@ import {
 	Input, MutedLink, SubmitButton, MarginSpanHeight
 } from '../AccountForms.style'
 import { AccountContext } from '../../AccountBox.logic'
-import AccountApi from '../../Account.Api';
+import UserApi from '../../../../api/User';
 
 // Validation 
 import { useForm } from "react-hook-form";
@@ -14,7 +14,7 @@ import { useSignupSchema } from '../../../../validation/SignupValidation'
 
 export function SignupForm({ setIsConfirm, setUserData }) {
 	const { switchToLogin } = useContext(AccountContext);
-	const { Signup } = AccountApi();
+	const { Signup } = UserApi();
 
 	// Valdation state from useSignupSchema (schema)
 	const { register, handleSubmit, formState: { errors } } = useForm({

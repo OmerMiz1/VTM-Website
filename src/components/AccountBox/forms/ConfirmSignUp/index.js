@@ -3,7 +3,7 @@ import {
 	BoldLink, BoxContainer, FormContainer, ValidationWarning,
 	Input, MutedLink, SubmitButton, MarginSpanHeight
 } from '../AccountForms.style';
-import AccountApi from '../../Account.Api';
+import UserApi from '../../../../api/User';
 
 //validastion
 import { useForm } from "react-hook-form";
@@ -12,7 +12,7 @@ import { useConfirmSignupSchema } from '../../../../validation/SignupValidation'
 
 
 export function ConfirmSignUp({ userData }) {
-	const { ConfirmSignUpSubmit, ResendConfirmSignUp } = AccountApi();
+	const { ConfirmSignUpSubmit, ResendConfirmSignUp } = UserApi();
 
 	// Valdation state from useSignupSchema (schema)
 	const { register, handleSubmit, formState: { errors } }

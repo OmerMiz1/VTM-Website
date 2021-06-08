@@ -5,7 +5,7 @@ import {
 	BoldLink, BoxContainer, FormContainer, ValidationWarning,
 	Input, MutedLink, SubmitButton, MarginSpanHeight
 } from '../AccountForms.style';
-import AccountApi from '../../Account.Api';
+import UserApi from '../../../../api/User';
 
 // Validation
 import { useForm } from "react-hook-form";
@@ -15,7 +15,7 @@ import { useLoginSchema } from '../../../../validation/LoginValidation'
 
 export default function LoginForm({ setResetPassword }) {
 	const { switchToSignUp } = useContext(AccountContext);
-	const { Login } = AccountApi();
+	const { Login } = UserApi();
 
 	// Valdation state from useSignUpSchema (schema)
 	const { register, handleSubmit, formState: { errors } } = useForm({

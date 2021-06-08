@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { SummariesContext } from '../../../utils/context/SummariesContext';
 import ViewSummaryLogic from './ViewSummary.logic';
-import ViewSummaryApi from './ViewSummary.Api'
+import NoteApi from '../../../api/Note';
 import Loading from '../Loading';
 import HeaderSection from './HeaderSection';
 import ContentSection from './ContentSection';
@@ -13,7 +13,7 @@ function ViewSummary() {
 	const { isLoading, setLoading, mySummaries, updateSummary, deleteSummary } = useContext(SummariesContext);
 	const { notes, viewSummary, allTagsNotes, filterTagsNotes, toggleFilterNote,
 		toggleMode, mode, setNotes } = ViewSummaryLogic(setLoading, mySummaries);
-	const { updateNote, addNote, deleteNote } = ViewSummaryApi(notes, setNotes, setLoading);
+	const { updateNote, addNote, deleteNote } = NoteApi(notes, setNotes, setLoading);
 	
 	return (
 		<ViewSummaryContainer>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import ViewSummaryApi from './ViewSummary.Api';
+import NoteApi from '../../../api/Note';
 
 
 const ViewSummaryLogic = (setLoading, mySummaries) => {
@@ -10,7 +10,7 @@ const ViewSummaryLogic = (setLoading, mySummaries) => {
 	const [viewSummary, setViewSummary] = useState();
 	const params = useParams();
 	const [mode, setMode] = useState(params.mode);
-	const { fetchNotes } = ViewSummaryApi(notes, setNotes, setLoading);
+	const { fetchNotes } = NoteApi(notes, setNotes, setLoading);
 
 	const toggleMode = () => setMode(mode === 'view' ? 'edit' : 'view');
 

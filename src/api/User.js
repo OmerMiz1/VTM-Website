@@ -6,7 +6,7 @@ Amplify.configure({
 	"aws_userPools_web_client_id": "fe7d5qhf1c1difm5mqq9j279o"
 })
 
-const AccountApi = () => {
+const UserApi = () => {
 	const history = useHistory();
 	const mySummariesPath = "/myHome/mySummaries";
 	const loginPath = "/access/login"
@@ -160,4 +160,4 @@ const AccountApi = () => {
 	};
 }
 
-export default AccountApi;
+export default UserApi;
