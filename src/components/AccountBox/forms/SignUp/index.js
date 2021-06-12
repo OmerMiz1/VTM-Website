@@ -19,13 +19,13 @@ export function SignupForm({ setIsConfirm, setUserData }) {
 	// Valdation state from useSignupSchema (schema)
 	const { register, handleSubmit, formState: { errors } } = useForm({
 		resolver: yupResolver(useSignupSchema),
-	})
+	});
 
 	const submitSignup = (data) => {
 		console.log(`submitSingUp`);
 		Signup(data, setIsConfirm);
 		setUserData(data);
-		setIsConfirm(true);
+		// setIsConfirm(true); // DELETEME: 'User' incharge
 	}
 
 

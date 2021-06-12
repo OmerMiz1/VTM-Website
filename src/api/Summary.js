@@ -90,8 +90,8 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 
 				// Update front-end
 				summary[summaryIdKeyName] = response.data[summaryIdKeyName];
-				summary[createTimeKeyName] = response.data[editTimeKeyName];
-				summary[editTimeKeyName] = response.data[editTimeKeyName];
+				summary[createTimeKeyName] = response.data[createTimeKeyName];
+				summary[editTimeKeyName] = response.data[createTimeKeyName];
 				
 				setMySummaries([...mySummaries, summary]);
 				setMyFilterSummaries([...myFilterSummaries, summary]);
@@ -188,9 +188,16 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 			});
 	}
 
+	const getLibrary = async (lid) => {
+
+	}
+
 	useEffect(async () => {
 		let libraryResult = await getMyLibraries();
-		console.log(`library:`, libraryResult)
+		console.log(`library:`, libraryResult);
+		
+		// let externalSummary = await getSummary("U2FsdGVkX18CkdIsCBablBjUIiNLIucpcam%2FeyqUSFmojPDoMICGN7u2X6vDZ2PGsWa95VdkiWcrIW0WbSsDj%2FtpGexlcljQuNu4XEV3zY63EnJD8BEcLE0s6e5E9%2BQp")
+		// console.log(`externalSummary:`, externalSummary);
 	}, []);
 
 	return {

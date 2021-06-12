@@ -19,8 +19,9 @@ Amplify.configure(awsmobile)
 const NoteApi = (notes, setNotes, setLoading) => {
 	const apiName = "SummaryAPI";
 	const notesPath = "/note";
-	const notePkName = "sid";
-	const noteSkName = "timeSec";
+	const summaryIdKeyName = "sid";
+	const createdKeyName = "createTime";
+	const editedKeyName = "editTime";
 	const noteIdKeyName = "nid";
 
 	const fetchNotes = (sid) => {
@@ -46,24 +47,21 @@ const NoteApi = (notes, setNotes, setLoading) => {
 
 	const addNote = async (note) => {
 		console.log(`addNote`, note);
-		//TODO default tag: "Note"
-		// // TODO change set nid!
-		// note[noteIdKeyName] = Math.floor((Math.random() * 1000000) + 1)
 
 		API.post(apiName, notesPath, { body: note })
-		.then(response => {
-			console.log('post response: ', response) //DELETEME
+			.then(response => {
+				console.log('post response: ', response) //DELETEME
 
-			// Update front-end
-			note[noteIdKeyName] = response.data
-			setNotes([...notes, note]);
-		})
-		.catch(error => {
-			console.log(error) // DELETEME
-		})
-		.finally(response => {
-			console.log(`response`, response)
-		})
+				// Update front-end
+				note[noteIdKeyName] = response.data[noteIdKeyName];
+				note[createdKeyName] = response.data[createdKeyName];
+				note[editedKeyName] = response.data[createdKeyName];
+				console.log('added note:', note)
+				setNotes([...notes, note]);
+			})
+			.catch(error => {
+				console.log(error) // DELETEME
+			});
 	};
 
 	const deleteNote = (note) => {
@@ -71,8 +69,8 @@ const NoteApi = (notes, setNotes, setLoading) => {
 
 		const queryParams = {
 			queryStringParameters: {
-				[notePkName]: JSON.stringify(note[notePkName]),
-				[noteSkName]: JSON.stringify(note[noteSkName])
+				[summaryIdKeyName]: JSON.stringify(note[summaryIdKeyName]),
+				[createdKeyName]: JSON.stringify(note[createdKeyName])
 			}
 		}
 		console.log(`queryParams:`, queryParams)
@@ -91,7 +89,7 @@ const NoteApi = (notes, setNotes, setLoading) => {
 	const updateNote = (note) => {
 		console.log(`updateNote`, note); //DELETEME
 
-		if (!note[notePkName] || typeof (note[noteSkName]) !== typeof (1)) {
+		if (!note[summaryIdKeyName] || typeof (note[createdKeyName]) !== typeof (1)) {
 			console.log('invalid note object', note)//DELETEME
 			return;
 		}

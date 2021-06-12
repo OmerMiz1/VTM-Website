@@ -21,11 +21,13 @@ function EditNoteForm({ open, onClose, note, updateNote, sid }) {
 			content: content,
 			time: formatedTime,
 			tag: tag,
-			timeSec: getTimeSec()
+			timeSec: getTimeSec(),
+			nid: note?.nid,
+			createTime: note?.createTime
 		}
 
-		if(note?.nid)
-			newNote["nid"] = note.nid;
+		// if(note?.nid)
+		// 	newNote["nid"] = note.nid;
 		
 		console.log(`newNote`, newNote); //DELETEME
 		updateNote(newNote);

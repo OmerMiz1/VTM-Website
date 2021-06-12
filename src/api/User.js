@@ -36,7 +36,7 @@ const UserApi = () => {
 				setSuccess(true);
 			})
 			.catch(error => {
-				alert('error:', error.code);
+				alert('error:', error.message);
 				console.log('error signup:', error); // DELETEME
 			})
 	}
