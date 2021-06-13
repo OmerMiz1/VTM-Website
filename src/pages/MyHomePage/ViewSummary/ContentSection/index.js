@@ -11,6 +11,7 @@ import { EditIcons } from '../HeaderSection/HeaderIcons.data';
 import EditNoteForm from '../../../../components/atoms/forms/EditNoteForm';
 import EditPopupForm from '../../../../components/Popups/EditPopupForm'
 import AddButton from '../../../../components/atoms/Buttons/AddButton';
+import EditAccessForm from '../../../../components/atoms/forms/EditAccess';
 
 
 function ContentSection({ notes, tags, filterTags, toggleTags, mode, updateNote, addNote, deleteNote, sid }) {
@@ -29,6 +30,12 @@ function ContentSection({ notes, tags, filterTags, toggleTags, mode, updateNote,
 
 	return (
 		<ViewSummaryContext>
+            
+            {/* TODO fix style and accces */}
+            {
+                mode.mode === "access" && <EditAccessForm sid={sid} access={['public']}></EditAccessForm>
+            }
+
 			<ListOfButtonsTags>
 				{tags.map((tag, index) => {
 					const color = filterTags.includes(tag) ? '#aee2ae' : '#fff'; //TODO change colors

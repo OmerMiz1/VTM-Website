@@ -16,9 +16,11 @@ const HeaderLogic = (updateSummary, mode, viewSummary) => {
 		}
 	}
 
-	const modeToggle = () => {
+	const modeToggle = (next) => {
+        console.log(`mode`, mode.mode);
+        console.log(`next`, next);
 		setEditTitle(false);
-		mode.toggleMode();
+		mode.toggleMode(next);
 	}
 
 	const updateTitle = () => {

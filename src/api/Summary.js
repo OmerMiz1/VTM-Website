@@ -189,8 +189,14 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 	}
 
 	const getLibrary = async (lid) => {
+        console.log(`Delete me`);
 
 	}
+
+    //TODO ADD
+    const editAccess = (sid, access) => {
+        console.log(`Edit Access to summary id->  `, sid , " to ->" , access);
+    }
 
 	useEffect(async () => {
 		let libraryResult = await getMyLibraries();
@@ -207,7 +213,8 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 		updateSummary,
 		ShareSummary,
 		toggleFavorite,
-		addSummary
+		addSummary,
+        editAccess
 	}
 }
 

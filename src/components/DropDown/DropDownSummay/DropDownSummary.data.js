@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { SummariesContext } from '../../../utils/context/SummariesContext';
 import { useHistory, useParams } from "react-router-dom";
-import { faShare, faTrash, faEdit, faEye } from '@fortawesome/free-solid-svg-icons'; // Icons
+import { faShare, faTrash, faEdit, faEye, faLock } from '@fortawesome/free-solid-svg-icons'; // Icons
 
 const DropDownSummaryData = () => {
 	const { deleteSummary, ShareSummary } = useContext(SummariesContext);
@@ -21,11 +21,7 @@ const DropDownSummaryData = () => {
 	}
 
 	return [
-		{
-			title: 'Share',
-			icon: faShare,
-			function: ShareSummary
-		},
+		
 		{
 			title: 'view',
 			icon: faEye,
@@ -35,6 +31,16 @@ const DropDownSummaryData = () => {
 			title: 'edit',
 			icon: faEdit,
 			function: viewSummary
+		},
+        {
+			title: 'access',
+			icon: faLock,
+			function: viewSummary
+		},
+        {
+			title: 'Share',
+			icon: faShare,
+			function: ShareSummary
 		},
 		{
 			title: 'Delete',

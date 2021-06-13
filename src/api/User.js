@@ -160,7 +160,8 @@ const UserApi = () => {
 		ResendConfirmSignUp,
 		ResendResetPassword,
 		ChangePassword,
-		EditProfile
+		EditProfile,
+        IsLoggedIn
 	};
 }
 

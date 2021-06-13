@@ -12,7 +12,8 @@ const ViewSummaryLogic = (setLoading, mySummaries) => {
 	const [mode, setMode] = useState(params.mode);
 	const { fetchNotes } = NoteApi(notes, setNotes, setLoading);
 
-	const toggleMode = () => setMode(mode === 'view' ? 'edit' : 'view');
+	const toggleMode = (nextState) => setMode(mode === 'view' ? nextState : 'view');
+
 
 	useEffect(() => {
 		const sid = params.sid;
