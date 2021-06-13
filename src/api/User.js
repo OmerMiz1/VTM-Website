@@ -140,7 +140,11 @@ const UserApi = () => {
 	const ResendResetPassword = (data) => { };
 	const ChangePassword = () => { }; // TODO & confirm it
 	const CurrentUserAttributes = () => { };
-	const IsLoggedIn = () => {};
+	const IsLoggedIn = () => {
+		Auth.currentAuthenticatedUser()
+			.then(response => true)
+			.catch(error => false);
+	};
 
 	// FIXME
 	// return {PostSingupForm, PostLoginForm,
