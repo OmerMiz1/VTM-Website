@@ -71,6 +71,7 @@ export const ViewSummaryContext = styled.section`
     display: block;
     padding: 0 8%;
     text-align: start;
+    position: relative;
 `;
 
 export const TimeTag = styled.p`

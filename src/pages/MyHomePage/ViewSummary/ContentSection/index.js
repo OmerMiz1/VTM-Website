@@ -9,7 +9,8 @@ import TagsButton from '../../../../components/atoms/Buttons/TagsButton';
 import Icon from '../../../../components/atoms/Icon';
 import { EditIcons } from '../HeaderSection/HeaderIcons.data';
 import EditNoteForm from '../../../../components/atoms/forms/EditNoteForm';
-import EditPopupForm from '../../../../components/Popups/EditPopupForm'
+import EditPopupForm from '../../../../components/Popups/EditPopupForm';
+import AccessPopup from '../../../../components/Popups/Access';
 import AddButton from '../../../../components/atoms/Buttons/AddButton';
 import EditAccessForm from '../../../../components/atoms/forms/EditAccess';
 
@@ -33,7 +34,12 @@ function ContentSection({ notes, tags, filterTags, toggleTags, mode, updateNote,
             
             {/* TODO fix style and accces */}
             {
-                mode.mode === "access" && <EditAccessForm sid={sid} access={['public']}></EditAccessForm>
+                mode.mode === "access" && 
+                <AccessPopup title="Edit Access" onClose={() => mode.toggleMode("access")}>
+						<EditAccessForm close={ () => mode.toggleMode("access")}
+                         sid={sid} access={['public']}></EditAccessForm>
+				</AccessPopup>
+                
             }
 
 			<ListOfButtonsTags>
