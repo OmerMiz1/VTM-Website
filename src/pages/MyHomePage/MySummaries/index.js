@@ -17,7 +17,7 @@ function MySummaries() {
 		<MainPageContainer>
 			<MyHomePageH1>My Summaries</MyHomePageH1>
 			<LoadingComponent></LoadingComponent>
-
+            
 			{!isMySummaryEmpty && !isLoading &&
 				<CardSummariesContainers>
 					{myFilterSummaries.slice(0, amountSummariesShow).map((card) => {
@@ -34,6 +34,7 @@ function MySummaries() {
 									url={card.url}
 									tags={card.tags}
 									favorite={card.favorite}
+                                    page= 'mySummaries'
 								></CardSummary>
 							</CardItemContainer>
 						)

@@ -12,11 +12,14 @@ import {
 	DateContainer, LeftContainer
 } from './CardSummary.style';
 import { TimeStringFormat } from '../../../utils/function/TimeFormat';
+import SummaryApi from '../../../api/Summary';
 
 
 function CardSummary(props) {
-	const { sid, imgUrl, title, editTime,
-		 likes, authorName, url, tags, favorite } = props;
+	const { sid, imgUrl, title, editTime, likes,
+        authorName, url, tags, favorite, page } = props;
+
+    const {toggleLike} = SummaryApi();
 
 	// all the component logic
 	const { isDropDown, toggleDropDown,
@@ -26,14 +29,22 @@ function CardSummary(props) {
 	// close when click outside
 	useOutsideCloseMenu(wrapperRef);
 
+    
+
 	return (
 		<CradContainer>
 			<CradLink>
 				<TopContainer>
 					<CardH1 href={url} target="_blank" rel="noopener noreferrer">{title}</CardH1>
-					<IconContainer favorite={isFavorite}>
-						<FontAwesomeIcon onClick={() => toggleIsFavorite(sid)} icon={faStar} />
-					</IconContainer>
+                    {
+                        page === 'mySummaries' &&
+                        <IconContainer favorite={isFavorite}>
+						    <FontAwesomeIcon onClick={() => toggleIsFavorite(sid)} icon={faStar} />
+					    </IconContainer>
+
+
+                    }
+					
 				</TopContainer>
 				<CardImgContainer href={url} target="_blank" rel="noopener noreferrer">
 					<img src={imgUrl} alt={title}/>
@@ -48,8 +59,8 @@ function CardSummary(props) {
 								tag = ' ... ';
 							}
 							return (
-								<LinkTag key={index} to={tag === ' ... ' ? '/myHome/mySummaries/myTags' :
-									'/myHome/mySummaries/filter/tags/' + tag}>
+								<LinkTag key={index} to={tag === ' ... ' ? `/myHome/${page}/myTags` :
+									`/myHome/${page}/filter/tags/${tag}`}>
 									<TagItem>{stringLength(tag, 10, true)}</TagItem>
 								</LinkTag>
 							)
@@ -69,8 +80,9 @@ function CardSummary(props) {
 			</DetailsContainer>
 
 			<BottomContainer>
-				<RatingContainer>
-					<FontAwesomeIcon icon={faHeart} size="sm" />
+				<RatingContainer pointer={page !== 'mySummaries' ? 1 : 0}>
+					<FontAwesomeIcon icon={faHeart} size="sm"
+                    onClick={page !== 'mySummaries' ? () => toggleLike(sid) : () => {}} />
 					{likes}
 				</RatingContainer>
 				<AuthorName attribution='Created By'

@@ -20,8 +20,28 @@ const DropDownSummaryData = () => {
 		}
 	}
 
+    if (page === 'discover'){
+        return [
+            {
+                title: 'view',
+                icon: faEye,
+                function: viewSummary
+            },
+            {
+                //TODO
+                title: 'clone',
+                icon: faEdit,
+                function: viewSummary
+            },
+            {
+                title: 'share',
+                icon: faShare,
+                function: ShareSummary
+            }
+        ]
+    };
+
 	return [
-		
 		{
 			title: 'view',
 			icon: faEye,

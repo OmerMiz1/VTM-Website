@@ -98,7 +98,7 @@ export const BottomContainer = styled.div`
 export const RatingContainer = styled.div`
     display: flex;
     color: red;
-
+    cursor: ${({ pointer }) => pointer ? 'pointer' : 'default'};
 `;
 
 export const DateContainer = styled.div`

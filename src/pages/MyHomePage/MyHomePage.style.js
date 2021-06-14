@@ -76,6 +76,7 @@ export const CardItemContainer = styled.div`
 export const ViewMoreButton = styled.button`
     /* background-color: ${props => props.theme.colors.main}; */
     background-color: #5d7793;
+    border-radius:30px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
     color: white;
     font-size: ${props => props.theme.fontSizes.large};

@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 // import { ChangePasswordSchema } from '../../../../validation/ChangePasswordValidation';
 import styled from 'styled-components';
 
-
 const SectionForm = styled.div`
     padding: 5px 15px 0px 15px;
     justify-content: space-between;
@@ -26,14 +25,11 @@ const TextInput = styled.input`
     width: -webkit-fill-available;
     font-weight: 900;
     color: black;
-    
 `;
 
 
 function EditAccessForm ({sid, access, close}) {
     const [acc, setAcc] = useState(access)
-
-
 
     const  {editAccess} = SummaryApi();
 
@@ -53,8 +49,8 @@ function EditAccessForm ({sid, access, close}) {
 
             <SectionForm>
                 <label><input checked={acc[0] === "private" ? "checked" : ""}  onClick={() => setAcc(['private'])}
-                type="radio" name="access" value="private"{...register("access")} />Private</label>
-                <label><input type="checkbox" name="frinds" value={true} {...register("frinds")} />Frinds</label>
+                type="radio" name="access" value="private"{...register("access")} />private</label>
+                <label><input type="checkbox" name="frinds" value={true} {...register("frinds")} />friends</label>
 
             </SectionForm>
 
@@ -66,11 +62,11 @@ function EditAccessForm ({sid, access, close}) {
 
             <SectionForm>
             <label><input checked={acc[0] === "custom" ? "checked" : ""} onClick={() => setAcc(['custom'])}
-             type="radio" name="access" value="custom" {...register("access")} />Custom</label>
+             type="radio" name="access" value="custom" {...register("access")} />custom</label>
             <TextInput name="customText" placeholder="Enter Names " defaultValue={acc[0] === "custom" && acc.length > 1 ? {acc} : ""} {...register("customText")} />
             </SectionForm>
 
-			<ButtonInput value="Save Changes" type="submit"/>
+			<ButtonInput value="Save" type="submit"/>
 
 		</form>
 	)

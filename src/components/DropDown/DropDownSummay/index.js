@@ -7,8 +7,7 @@ import {
 } from '../DropDown.style';
 
 
-function DropDownSummary(props) {
-	const sid = props.sid;
+function DropDownSummary({sid}) {
 
 	return (
 		<MenuContainer bottom='95px' right='10px'>

@@ -198,6 +198,13 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
         console.log(`Edit Access to summary id->  `, sid , " to ->" , access);
     }
 
+    //TODO ADD
+    const toggleLike = (sid) => {
+        console.log(`toggle like ->  `, sid );
+        //need check if already liked this item if not increse else down by 1  
+    };
+  
+
 	useEffect(async () => {
 		let libraryResult = await getMyLibraries();
 		console.log(`library:`, libraryResult);
@@ -214,8 +221,11 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 		ShareSummary,
 		toggleFavorite,
 		addSummary,
-        editAccess
+        editAccess,
+        toggleLike
 	}
 }
 
 export default SummaryApi;
+
+

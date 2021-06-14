@@ -14,7 +14,6 @@ function AccountBox(props) {
 	const { expandedAnimation, contextValue, isRegistered,
 		isConfirm, setIsConfirm, isResetPassword, setResetPassword } = AccountBoxLogic(props);
 
-	console.log(props)
 	return (
 		<AccountContext.Provider value={contextValue}>
 			<BoxContainer>
