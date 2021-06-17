@@ -39,7 +39,7 @@ function ContentSection({ notes, tags, filterTags, toggleTags, mode, updateNote,
                 mode.mode === "access" && 
                 <AccessPopup title="Access Settings" onClose={() => mode.toggleMode("access")}>
 						<EditAccessForm close={ () => mode.toggleMode("access")}
-                         sid={sid} access={['public']} editAccess={editAccess}></EditAccessForm>
+                         sid={sid} access={{access: 1, allowFriends: false, allowedUsers: []}} editAccess={editAccess}></EditAccessForm>
 				</AccessPopup>
                 
             }

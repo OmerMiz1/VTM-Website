@@ -8,7 +8,6 @@ const SummaryData = () => {
 		if (myFilterSummaries.length < 1) {
 			setMyFilterSummaries(mySummaries);
 		}
-		
 	}, [mySummaries])
 
 	const isMySummaryEmpty =

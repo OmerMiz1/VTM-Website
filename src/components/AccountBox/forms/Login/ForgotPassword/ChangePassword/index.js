@@ -14,6 +14,8 @@ import { UserContext } from '../../../../../../utils/context/UserContext';
 export default function ChangePassword({ userData }) {
 	const { ConfirmResetPassword, ResendResetPassword } = useContext(UserContext);
 
+	//TODO show username reffering to the reset (userData.username)
+	
 	// Valdation state from useSignupSchema (schema)
 	const { register, handleSubmit, formState: { errors } } = useForm({
 		resolver: yupResolver(ConfirmResetPasswordSchema),

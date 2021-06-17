@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { TiltleProfile, SectionForm, ValidationWarning, SectionFormSubmit } from '../EditProfileForm/EditProfileForm.style';
 import { UserContext } from '../../../../utils/context/UserContext';
+
 // Validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ChangePasswordSchema } from '../../../../validation/ChangePasswordValidation';
+
 
 
 function EditProfileForm({ setChangePassword }) {
@@ -12,13 +14,25 @@ function EditProfileForm({ setChangePassword }) {
 	// Valdation state from ProfileUserSchema (schema)
 	const { register, handleSubmit, formState: { errors } } = useForm({
 		resolver: yupResolver(ChangePasswordSchema),
-	})
+	});
 
+	const incorrectPasswordError = "Incorrect username or password";
 
-	// TODO
-	const submitChangePassword = (data) => {
+	const submitChangePassword = async (data) => {
 		console.log('submitChangePassword', data);
-		ChangePassword(data); //FIXME username, password
+		
+		const error = await ChangePassword(data);
+		
+		if (error) {
+			//TODO fix error not showing in alert
+			error = (error === incorrectPasswordError) ? "Incorrect password" : error;
+			alert(error);
+			return;
+		}
+		
+
+		alert("Password successfully changed");
+		setChangePassword(0);
 	}
 
 	return (

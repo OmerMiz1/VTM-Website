@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
-import SummaryApi from '../../../../api/Summary';
+
 // Validation
 import { useForm } from "react-hook-form";
+
 // import { yupResolver } from "@hookform/resolvers/yup";
 // import { ChangePasswordSchema } from '../../../../validation/ChangePasswordValidation';
 import styled from 'styled-components';
+import { StringToNumber } from '../../../../utils/function/AccessTypeConverter';
 
 const SectionForm = styled.div`
     padding: 5px 15px 0px 15px;
@@ -31,42 +33,82 @@ function EditAccessForm ({ sid, access, close, editAccess }) {
     const [acc, setAcc] = useState(access)
 	const {register, handleSubmit} = useForm(); // Valdation state from ProfileUserSchema (schema)
 
-	const accessTypeKey = "accessType";
-	const friendsKey = "allowFriend";
+	console.log(`acc UP`, acc);
 
-	// Access Types
-	const privateType = 1;
-	const friendsType = 2;
-	const customType = 3;
-	const publicType = 4;
-	
+	const accessKey = "access";
+	const friendsKey = "allowFriends";
+	const allowedUsersKey = "allowedUsers";
+
+	const changeAccessType = (accessType) => {
+		acc[accessKey] = accessType;
+		let newAccess = acc;
+		setAcc(newAccess);
+		console.log('acc:', acc); //DELETEME
+		// setAcc(prev => prev[accessKey] = accessType)
+	}
 
 	// TODO
 	const submitEditAccess = (data) => {
-		console.log('submitEditAccess', data);
+		console.log('submitEditAccess', data); //DELETEME
+		console.log('StringToNumber(data[accessTypeKey]):', StringToNumber(data[accessKey]));
+		
+		data[accessKey] = StringToNumber(data[accessKey]);
+
 		editAccess(sid, data);
         close();
 	}
 
 	return (
 		<form onSubmit={handleSubmit(submitEditAccess)}>
-
 			<SectionForm>
-                <label><input checked={acc[0] === "private" ? "checked" : ""}  onClick={() => setAcc(['private'])}
-                type="radio" name="access" value="private"{...register("access")} />private</label>
-                <label><input type="checkbox" name="friends" value={true} {...register("friends")} />friends</label>
-
+                <label>
+					<input 
+					checked={(acc[accessKey] === 1)}
+					onClick={() => changeAccessType(1)}
+                	type="radio"
+					name={accessKey}
+					value={1}
+					{...register(accessKey)}/>
+					private
+				</label>
+                <label>
+					<input 
+					type="checkbox"
+					name={friendsKey} 
+					value={true} //FIXME
+					{...register(friendsKey)}>
+					</input>
+					friends
+				</label>
             </SectionForm>
 
             <SectionForm>
-            <label><input checked={acc[0] === "public" ? "checked" : ""}   onClick={() => setAcc(['public'])}
-            type="radio" name="access" value="public" {...register("access")}/>public</label>
+            <label>
+				<input checked={acc[accessKey] === 3}
+				onClick={() => changeAccessType(3)}
+            	type="radio"
+				name={accessKey}
+				value={3}
+				{...register(accessKey)}>
+				</input>
+				public
+			</label>
             </SectionForm>
 
             <SectionForm>
-            <label><input checked={acc[0] === "custom" ? "checked" : ""} onClick={() => setAcc(['custom'])}
-             type="radio" name="access" value="custom" {...register("access")} />custom</label>
-            <TextInput name="customText" placeholder="Enter Names " defaultValue={acc[0] === "custom" && acc.length > 1 ? {acc} : ""} {...register("customText")} />
+            <label>
+				<input 
+				checked={acc[accessKey] === 2}
+				onClick={() => changeAccessType(2)}
+             	type="radio"
+				name={accessKey}
+				value={2}
+			    {...register(accessKey)}>
+				</input>
+				custom
+			</label>
+            <TextInput name={allowedUsersKey} placeholder="Enter Names "
+			 defaultValue={acc[accessKey] === 2 && acc[allowedUsersKey].length > 0 ? acc[accessKey] : ""} {...register(allowedUsersKey)} />
             </SectionForm>
 
 			<ButtonInput value="Save" type="submit"/>

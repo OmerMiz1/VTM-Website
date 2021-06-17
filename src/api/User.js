@@ -57,7 +57,7 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 		} catch (error) {
 			alert('Error:' + error.message);
 			console.log(error); //DELETEME
-			return handleError(error.code);
+			return handleError(error);
 		}
 
 		alert("Logged in"); //DELETEME
@@ -118,6 +118,7 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 			console.log(error); //DELETEME
 		}
 
+		console.log(`response:`, response);
 		return success;
 	}
 
@@ -210,16 +211,16 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 			var user = await Auth.currentAuthenticatedUser();
 		} catch (error) {
 			console.log(error); //DELETEME
-			return handleError(error.code);
+			return handleError(error);
 		}
 		
 		try {
 			var response = await Auth.changePassword(user, data.password, data.newPassword);
 		} catch (error) {
 			console.log(error); //DELETEME
-			return handleError(error.code);
+			return handleError(error);
 		}
-
+		
 		console.log(`response:`, response); //DELETEME
 		return OK;
 	};
@@ -228,14 +229,14 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 	const ResendResetPassword = (data) => { };
 	
 	// ========== HELPER FUNCTIONS ==========
-	const handleError = (errorCode) => {
-		switch (errorCode) {
+	const handleError = (error) => {
+		switch (error.code) {
 			case "UserNotConfirmedException":
 				// TODO
 				// history.push(confirmSignupPath)
 				break;
 		}
-		return !OK;
+		return error.message;
 	}
 
 	const handleChallenge = (user, data) => {

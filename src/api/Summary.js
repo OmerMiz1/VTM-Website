@@ -98,9 +98,7 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 				summary[summaryIdKeyName] = response.data[summaryIdKeyName];
 				summary[createTimeKeyName] = response.data[createTimeKeyName];
 				summary[editTimeKeyName] = response.data[createTimeKeyName];
-				console.log(`response:`, response);
-				console.log(`summary:`, summary);
-				console.log(`typeof(summary[editTimeKeyName])`, typeof(summary[editTimeKeyName]));
+				
 				setMySummaries([...mySummaries, summary]);
 				setMyFilterSummaries([...myFilterSummaries, summary]);
 			})
@@ -219,7 +217,9 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 	}
 
     //TODO ADD
-    const editAccess = async (sid, access) => { }
+    const editAccess = async (sid, access) => {
+
+	}
 	const ShareSummary = (sid) => {	}
 	const getLibrary = async (lid) => {	}
     
