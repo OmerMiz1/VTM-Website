@@ -1,24 +1,28 @@
 import Amplify, { Auth } from 'aws-amplify';
-import { useHistory } from 'react-router-dom';
+import { objectStr } from '../utils/function/Strings';
 
 Amplify.configure({
 	"aws_userPools_id": "eu-central-1_gxX97wEqr",
 	"aws_userPools_web_client_id": "fe7d5qhf1c1difm5mqq9j279o"
 })
 
-const UserApi = () => {
-	const history = useHistory();
+const UserApi = (userAttributes, setUserAttributes, history) => {
 	const mySummariesPath = "/myHome/mySummaries";
-	const loginPath = "/access/login"
+	const loginPath = "/access/login";
 	const homePath = "/home";
-	const newPasswordChallenge = 'NEW_PASSWORD_REQUIRED';
-
-	// FIXME name: SignUp
-	const Signup = (data, setSuccess) => {
+	const OK = false;
+	
+	/**
+	 * 
+	 * @param {*} data expecting userName, password and email fields (these names)
+	 * @returns true if error, false if not
+	 */
+	const Signup = async (data) => {
 		console.log('sign up:', data); //DELETEME
+
 		if (data.password !== data.confirmPassword) {
 			console.log('error: password confirmation must match')
-			return
+			return !OK;
 		}
 
 		const params = {
@@ -28,43 +32,48 @@ const UserApi = () => {
 				email: data.email,
 			}
 		}
-		Auth.signUp(params)
-			.then(user => {
-				console.log('signup response:', user); // DELETEME
-				if (user.challengeName === newPasswordChallenge)
-					CompleteNewPassword(user, data.username, data.pass)
-				setSuccess(true);
-			})
-			.catch(error => {
-				alert('error:', error.message);
-				console.log('error signup:', error); // DELETEME
-			})
+
+		try {
+			var user = await Auth.signUp(params);
+			console.log('signup response:', user); // DELETEME
+		}
+		catch (error) {
+			console.log('error signup:', error); // DELETEME
+			alert('error:', error.message);
+			return !OK;
+		}
+
+		if (user.challengeName) return handleChallenge(user, data);
+
+		return OK;
 	}
 
-	const Login = (data) => {
+	const Login = async (data) => {
 		console.log('request data:', data);  // DELETEME
-		let username = data.email;
-		let password = data.password;
+		
+		try {
+			//FIXME username (not email), other files ("useLoginSchema")
+			var user = await Auth.signIn(data.email, data.password);
+		} catch (error) {
+			alert('Error:' + error.message);
+			console.log(error); //DELETEME
+			return handleError(error.code);
+		}
 
-		Auth.signIn(username, password)
-			.then(user => {
-				alert("Logged in"); //DELETEME
-				console.log('response data:', user); //DELETEME
+		alert("Logged in"); //DELETEME
+		console.log('response data:', user); //DELETEME
 
-				if (user.challengeName === newPasswordChallenge) {
-					console.log('complete new password challenge')
-					CompleteNewPassword(user, username, password);
-				}
+		const attributes = user.attributes; 
+		attributes.username = user.username; // Add username to attrs
+		delete attributes.sub; // Remove UID
+		delete attributes.email_verified; // Remove bool
 
-				history.push(mySummariesPath); // TODO debug
-			})
-			.catch(e => {
-				alert('Error:' + e.message);
-				console.log('Login Error:', e); // DELETEME
-				if (e.code == "UserNotConfirmedException") {
-					//TODO redirect to "account confirm page"
-				}
-			})
+		setUserAttributes(attributes);
+		history.push(mySummariesPath); //FIXME should be done from front if result was OK?
+
+		if (user.challengeName)
+			return handleChallenge(user, data);
+		return OK;
 	}
 
 	const Logout = () => {
@@ -87,7 +96,7 @@ const UserApi = () => {
 		Auth.confirmSignUp(data.username, data.code) // FIXME ?
 			.then(response => {
 				console.log('confirm sign up response:', response) //DELETEME
-				history.push(mySummariesPath)
+				history.push(loginPath)
 			})
 			.catch(error => {
 				console.log(`error confirm signup:`, error); //DELETEME
@@ -95,37 +104,48 @@ const UserApi = () => {
 					alert('Verification code resent to your username')
 					Auth.resendSignUp(data.username)
 				}
-			})
-
+			});
 	}
 
-	const ResetPassword = (username) => {
-		Auth.forgotPassword(username)
-			.then(data => console.log(data)) //DELETEME
-			.catch(err => console.log(err));//DELETEME
+	const ResetPassword = async (username) => {
+		console.log(`ResetPassword, username:`, username)
+		let success = false;
+
+		try {
+			var response = await Auth.forgotPassword(username);
+			success = true;
+		} catch (error) {
+			console.log(error); //DELETEME
+		}
+
+		return success;
 	}
 
-	const ConfirmResetPassword = (username, code, newPassword) => {
-		Auth.forgotPasswordSubmit(username, code, newPassword)
-			.then(data => console.log(data)) //DELETEME
-			.catch(err => console.log(err)); //DELETEME
+	const ConfirmResetPassword = async (username, code, newPassword) => {
+		console.log(`ConfirmResetPassword, username: ${username}, code: ${code}, newPassword: ${newPassword}`); //DELETEME
+
+		try {
+			let response = await Auth.forgotPasswordSubmit(username, code, newPassword);
+			history.push(loginPath);
+		} catch (error) {
+			console.log(error);
+			alert(error.message); //DELETEME
+		}
 	}
 
 	// FIXME Complete -> Confirm
-	const CompleteNewPassword = (user, username, newPassword) => {
+	const CompleteNewPassword = async (user, username, newPassword) => {
 		console.log('CompleteNewPassword'); //DELETEME
 
-		Auth.completeNewPassword(
-			user,
-			newPassword,
-			{
-				username: username,
-			}
-		).then(user => {
-			console.log(user); //DELETEME
-		}).catch(e => {
-			console.log(e); //DELETEME
-		});
+		try {
+			var user = await Auth.completeNewPassword(user, newPassword, { username: username });
+		} catch (error) {
+			console.log(error); //DELETEME
+			return !OK;
+		}
+
+		console.log(user); //DELETEME
+		return OK;
 	}
 
 	const RefreshUserSession = () => {
@@ -134,22 +154,117 @@ const UserApi = () => {
 			.catch(err => console.log(err)); //DELETEME
 	}
 
-	// TODO
-	const ResendConfirmSignUp = () => { };
-	const EditProfile = () => { }; // const UpdateUserAttributes = () => {}; //TODO disable email change (for now)
-	const ResendResetPassword = (data) => { };
-	const ChangePassword = () => { }; // TODO & confirm it
-	const CurrentUserAttributes = () => { };
 	const IsLoggedIn = () => {
 		Auth.currentAuthenticatedUser()
 			.then(response => true)
 			.catch(error => false);
 	};
 
-	// FIXME
-	// return {PostSingupForm, PostLoginForm,
-	// 	PostConfirmRestPasswordForm: SendNewPsswordToEmail, PostConfirmSignUpForm,
-	// 	EditUesrProfile};
+	const ResendConfirmSignUp = async (username) => {
+		console.log(`ResendConfirmSignUp, username:`, username);
+
+		try {
+			let response = await Auth.resendSignUp(username);
+			console.log(`resend confirm signup response:`, response);
+			return true;
+		} catch (error) {
+			console.log(`error resending confirmation code:`, error); //DELETEME
+			return true;
+		}
+	};
+
+	const EditProfile = async (data) => {
+		console.log(`EditProfile, data:`, data); //DELETEME
+
+		try {
+			var curUser = await Auth.currentAuthenticatedUser();
+		} catch (error) {
+			console.log(error); //DELETEME
+			return !OK;
+		}
+
+		delete data.username;
+		delete data.email;
+
+		try {
+			var response = await Auth.updateUserAttributes(curUser, data);
+		} catch (error) {
+			console.log(error); //DELETEME
+			return !OK;
+		}
+		setUserAttributes(data);
+		console.log(`response:`, response); //DELETEME
+		
+		return OK;
+	}
+
+	const ChangePassword = async (data) => {
+		console.log(`ChangePassword, data:`, data); //DELETEME
+
+		if (data.newPassword !== data.confirm) {
+			console.log("Password confirmation mismatch!"); //DELETEME
+			return !OK;
+		}
+
+		try {
+			var user = await Auth.currentAuthenticatedUser();
+		} catch (error) {
+			console.log(error); //DELETEME
+			return handleError(error.code);
+		}
+		
+		try {
+			var response = await Auth.changePassword(user, data.password, data.newPassword);
+		} catch (error) {
+			console.log(error); //DELETEME
+			return handleError(error.code);
+		}
+
+		console.log(`response:`, response); //DELETEME
+		return OK;
+	};
+
+	// TODO
+	const ResendResetPassword = (data) => { };
+	
+	// ========== HELPER FUNCTIONS ==========
+	const handleError = (errorCode) => {
+		switch (errorCode) {
+			case "UserNotConfirmedException":
+				// TODO
+				// history.push(confirmSignupPath)
+				break;
+		}
+		return !OK;
+	}
+
+	const handleChallenge = (user, data) => {
+		console.log(`handleChallenge, user: ${objectStr(user)}, data: ${objectStr(data)}`) //DELETEME
+		try {
+			switch (user.challenge) {
+				case "NEW_PASSWORD_REQUIRED":
+					// history.push(changePasswordPath)
+					// break;
+					CompleteNewPassword(user, data.username, data.password); //FIXME change password page (no confirmation code)
+					return OK;
+					break;
+				// case "SELECT_MFA_TYPE":
+				// 	break;
+				// case "PASSWORD_VERIFIER":
+				// 	break;
+				// case "SMS_MFA":
+				// 	break;
+				// default:
+				// 	break;
+			}
+		} catch (error) {
+			console.log(error);
+			return !OK;
+		}
+
+		return !OK;
+	}
+
 	return {
 		Signup,
 		Login,
@@ -160,8 +275,10 @@ const UserApi = () => {
 		ResendConfirmSignUp,
 		ResendResetPassword,
 		ChangePassword,
+		IsLoggedIn,
 		EditProfile,
-        IsLoggedIn
+		userAttributes,
+		setUserAttributes
 	};
 }
 

@@ -27,15 +27,19 @@ const TextInput = styled.input`
     color: black;
 `;
 
-
-function EditAccessForm ({sid, access, close}) {
+function EditAccessForm ({ sid, access, close, editAccess }) {
     const [acc, setAcc] = useState(access)
+	const {register, handleSubmit} = useForm(); // Valdation state from ProfileUserSchema (schema)
 
-    const  {editAccess} = SummaryApi();
+	const accessTypeKey = "accessType";
+	const friendsKey = "allowFriend";
 
-	// Valdation state from ProfileUserSchema (schema)
-	const {register, handleSubmit} = useForm()
-
+	// Access Types
+	const privateType = 1;
+	const friendsType = 2;
+	const customType = 3;
+	const publicType = 4;
+	
 
 	// TODO
 	const submitEditAccess = (data) => {
@@ -47,17 +51,16 @@ function EditAccessForm ({sid, access, close}) {
 	return (
 		<form onSubmit={handleSubmit(submitEditAccess)}>
 
-            <SectionForm>
+			<SectionForm>
                 <label><input checked={acc[0] === "private" ? "checked" : ""}  onClick={() => setAcc(['private'])}
                 type="radio" name="access" value="private"{...register("access")} />private</label>
-                <label><input type="checkbox" name="frinds" value={true} {...register("frinds")} />friends</label>
+                <label><input type="checkbox" name="friends" value={true} {...register("friends")} />friends</label>
 
             </SectionForm>
 
             <SectionForm>
             <label><input checked={acc[0] === "public" ? "checked" : ""}   onClick={() => setAcc(['public'])}
             type="radio" name="access" value="public" {...register("access")}/>public</label>
-            {/* <label><input type="radio" name="access" value="frinds" />Frinds</label> */}
             </SectionForm>
 
             <SectionForm>

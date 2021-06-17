@@ -41,7 +41,7 @@ function OnNavBarData() {
 		},
 		{
 			icon: faUser,
-			toolTipText: 'UserApi',
+			toolTipText: 'Account',
 			separator: true,
 			function: mockFun,
 		}

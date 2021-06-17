@@ -12,15 +12,13 @@ import {
 	DateContainer, LeftContainer
 } from './CardSummary.style';
 import { TimeStringFormat } from '../../../utils/function/TimeFormat';
-import SummaryApi from '../../../api/Summary';
+// import SummaryApi from '../../../api/Summary';
 
 
 function CardSummary(props) {
 	const { sid, imgUrl, title, editTime, likes,
-        authorName, url, tags, favorite, page } = props;
-
-    const {toggleLike} = SummaryApi();
-
+        authorName, url, tags, favorite, page, toggleLike } = props;
+	
 	// all the component logic
 	const { isDropDown, toggleDropDown,
 		useOutsideCloseMenu, wrapperRef,
@@ -28,8 +26,6 @@ function CardSummary(props) {
 
 	// close when click outside
 	useOutsideCloseMenu(wrapperRef);
-
-    
 
 	return (
 		<CradContainer>
@@ -41,8 +37,6 @@ function CardSummary(props) {
                         <IconContainer favorite={isFavorite}>
 						    <FontAwesomeIcon onClick={() => toggleIsFavorite(sid)} icon={faStar} />
 					    </IconContainer>
-
-
                     }
 					
 				</TopContainer>
@@ -83,7 +77,7 @@ function CardSummary(props) {
 				<RatingContainer pointer={page !== 'mySummaries' ? 1 : 0}>
 					<FontAwesomeIcon icon={faHeart} size="sm"
                     onClick={page !== 'mySummaries' ? () => toggleLike(sid) : () => {}} />
-					{likes}
+					{Object.keys(likes).length}
 				</RatingContainer>
 				<AuthorName attribution='Created By'
 					textValue={authorName}></AuthorName>

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TiltleProfile, SectionForm, ValidationWarning, SectionFormSubmit } from '../EditProfileForm/EditProfileForm.style';
-import UserApi from '../../../../api/User';
+import { UserContext } from '../../../../utils/context/UserContext';
 // Validation
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,7 +8,7 @@ import { ChangePasswordSchema } from '../../../../validation/ChangePasswordValid
 
 
 function EditProfileForm({ setChangePassword }) {
-	const { ChangePassword } = UserApi()
+	const { ChangePassword } = useContext(UserContext);
 	// Valdation state from ProfileUserSchema (schema)
 	const { register, handleSubmit, formState: { errors } } = useForm({
 		resolver: yupResolver(ChangePasswordSchema),

@@ -1,10 +1,12 @@
+import { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../../utils/context/UserContext';
+
 // icons
 import { faUserCircle, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import UserApi from '../../../api/User';
-import { useHistory } from 'react-router-dom';
 
 const DropDownSummaryData = () => {
-	const { Logout } = UserApi();
+	const { Logout } = useContext(UserContext);
 	let history = useHistory();
 
 	const mockFunction = () => {

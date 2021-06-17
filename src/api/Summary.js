@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
-import Amplify, { API } from 'aws-amplify';
-
-// TODO split -> SummaryApi, NoteApi, LibraryApi
+import Amplify, { API, Auth } from 'aws-amplify';
+import { waitFor } from '@testing-library/react';
 
 // TODO no user -> logout, homepage
-
 // FIXME
 const awsmobile = {
 	"aws_project_region": "eu-central-1",
@@ -38,6 +36,8 @@ Summary:
 	favorite: BOOL,
 } 
  */
+
+//TODO move out all params to calling components (!)
 const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries) => {
 	const apiName = 'SummaryAPI';
 	const summaryPath = '/summary';
@@ -46,6 +46,12 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 	const summaryIdKeyName = 'sid';
 	const editTimeKeyName = "editTime";
 	const createTimeKeyName = "createTime";
+	const authorKeyName = "authorName";
+	const favoriteKeyName = "favorite";
+
+	const likeValue = 1;
+	const dislikeValue = -1;
+
 	const [isLoading, setLoading] = useState(true);
 
 	//TODO lid
@@ -81,18 +87,20 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 	}
 
 	const addSummary = async (summary) => {
-		console.log('addSummary:', summary) //DELETEME
+		console.log('addSummary:', summary); //DELETEME
 
 		//TODO lid (summary.lid)
 		API.post(apiName, summaryPath, { body: summary })
-			.then(response => {
+			.then(async (response) => {
 				console.log('post response: ', response) //DELETEME
-
+				
 				// Update front-end
 				summary[summaryIdKeyName] = response.data[summaryIdKeyName];
 				summary[createTimeKeyName] = response.data[createTimeKeyName];
 				summary[editTimeKeyName] = response.data[createTimeKeyName];
-				
+				console.log(`response:`, response);
+				console.log(`summary:`, summary);
+				console.log(`typeof(summary[editTimeKeyName])`, typeof(summary[editTimeKeyName]));
 				setMySummaries([...mySummaries, summary]);
 				setMyFilterSummaries([...myFilterSummaries, summary]);
 			})
@@ -101,9 +109,9 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 			})
 	}
 
-	const updateSummary = (summary) => {
+	const updateSummary = async (summary) => {
 		console.log('updateSummary') //DELETEME
-
+	
 		if (!summary[summaryIdKeyName]) {
 			console.log('error: sid missing', summary)//DELETEME
 			return;
@@ -152,25 +160,47 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 			})
 			.catch(error => console.log(error))
 	}
-
-	//TODO
-	const ShareSummary = (sid) => {
-		console.log(`ShareSummary`, sid)//DELETEME
-	}
-
-	//MOCK need add send to data the toggle
+	
 	const toggleFavorite = (sid) => {
 		console.log(`toggleFavorite`, sid); //DELETEME
 
-		const updateSummaries = [...mySummaries].map((summary) => {
+		var toUpdate = {};
+		var response = undefined;
+
+		// FIXME editTime shouldnt be changed becuase of this call!!!!
+		[...mySummaries].map((summary) => {
 			if (summary.sid === sid) {
-				summary.favorite = !summary.favorite
+				summary[favoriteKeyName] = !summary[favoriteKeyName];
+				toUpdate = summary;
+				updateSummary(toUpdate); // Updates Back & Front
 			};
 			return summary;
 		});
-
-		setMySummaries(updateSummaries);
 	}
+
+	const toggleLike = async (sid, likes) => {
+        console.log(`toggle like ->  `, sid );
+        
+		try {
+			var { username } = await Auth.currentAuthenticatedUser();
+		} catch (error) {
+			console.log(error); //DELETEME
+			return;
+		}
+
+		if (likes.includes(username)) {
+			delete likes[username]
+		} else {
+			likes[username] = likeValue;
+		}
+
+		const toUpdate = {
+			summaryIdKeyName: sid,
+			likes: likes
+		}
+
+		return updateSummary(toUpdate);
+    };
 
 	const getMyLibraries = async () => {
 		console.log('getMyLibraries'); //DELETEME
@@ -178,7 +208,7 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 
 		API.get(apiName, `${libraryPath}/${myLibraries}`)
 			.then(summaries => {
-				console.log(`summaries:`, summaries) //DELETEME
+				console.log(`library:`, summaries) //DELETEME
 				setMySummaries(summaries);
 				setLoading(false);
 			})
@@ -188,25 +218,13 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 			});
 	}
 
-	const getLibrary = async (lid) => {
-        console.log(`Delete me`);
-
-	}
-
     //TODO ADD
-    const editAccess = (sid, access) => {
-        console.log(`Edit Access to summary id->  `, sid , " to ->" , access);
-    }
-
-    //TODO ADD
-    const toggleLike = (sid) => {
-        console.log(`toggle like ->  `, sid );
-        //need check if already liked this item if not increse else down by 1  
-    };
-  
-
+    const editAccess = async (sid, access) => { }
+	const ShareSummary = (sid) => {	}
+	const getLibrary = async (lid) => {	}
+    
 	useEffect(async () => {
-		let libraryResult = await getMyLibraries();
+		const libraryResult = await getMyLibraries();
 		console.log(`library:`, libraryResult);
 		
 		// let externalSummary = await getSummary("U2FsdGVkX18CkdIsCBablBjUIiNLIucpcam%2FeyqUSFmojPDoMICGN7u2X6vDZ2PGsWa95VdkiWcrIW0WbSsDj%2FtpGexlcljQuNu4XEV3zY63EnJD8BEcLE0s6e5E9%2BQp")

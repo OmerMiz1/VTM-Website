@@ -26,15 +26,17 @@ const LableText = styled.label`
   margin: 10px;
 `;
 
-function AddForm({ close }) {
+function AddForm({ close, authorName }) {
 	const { addSummary } = useContext(SummariesContext);
 	const { register, handleSubmit } = useForm();
 
 	const onSubmit = (data) => {
 		console.log('form data is -> ', data); //DELETEME
-		
+
+		data["authorName"] = authorName;
 		data["tags"] = createTagsArrays(data.tags);
-		data["likes"] = parseInt(data.likes);
+		data["likes"] = {};
+
 		addSummary(data);
 		close();
 	}

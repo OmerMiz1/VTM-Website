@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
 	BoxContainer, FormContainer, ValidationWarning, BoldLink,
 	Input, SubmitButton, MarginSpanHeight
 } from '../../../AccountForms.style';
-import UserApi from '../../../../../../api/User';
+import { UserContext } from '../../../../../../utils/context/UserContext';
 
 // Validation
 import { useForm } from "react-hook-form";
@@ -12,7 +12,7 @@ import { ResetPasswordSchema } from '../../../../../../validation/LoginValidatio
 
 
 export default function ResetPassword({ setResetPassword, setChangePassword, setUserData }) {
-	const { ResetPassword } = UserApi();
+	const { ResetPassword } = useContext(UserContext);
 
 	// Valdation state from useSignupSchema (schema)
 	const { register, handleSubmit, formState: { errors } } = useForm({
@@ -20,25 +20,26 @@ export default function ResetPassword({ setResetPassword, setChangePassword, set
 	});
 
 	// FIXME data.username?
-	const submitSendPassword = (data) => {
-		console.log('submitSendPassword'); //DELETEME
+	const submitSendPassword = async (data) => {
+		console.log('submitSendPassword, data:', data); //DELETEME
+		
 		setUserData(data);
-		setChangePassword(1);
-		ResetPassword(data);
+
+		const isSuccess = await ResetPassword(data.username);
+		setChangePassword(isSuccess);
 	}
 
 	return (
 		<BoxContainer>
 			<MarginSpanHeight height='30px' />
 			<FormContainer onSubmit={handleSubmit(submitSendPassword)}>
-				{/* <Input type='text' placeholder='user name' name='user' {...register("user")}/>
-					<ValidationWarning> {errors.user?.message} </ValidationWarning>
-					<MarginSpanHeight height='6px'/> */}
-
-				{/* FIXME? type = email, username */}
-				<Input type='email' placeholder='email' name='email' {...register("email")} />
+				<Input type='text' placeholder='username' name='username' {...register("username")}/>
+					<ValidationWarning> {errors.username?.message} </ValidationWarning>
+					<MarginSpanHeight height='6px'/>
+					
+				{/* <Input type='text' placeholder='username' name='username' {...register("username")} />
 				<ValidationWarning> {errors.email?.message} </ValidationWarning>
-				<MarginSpanHeight height='20px' />
+				<MarginSpanHeight height='20px' /> */}
 				<SubmitButton type='submit'>Reset Password</SubmitButton>
 			</FormContainer>
 			<MarginSpanHeight height='10px' />

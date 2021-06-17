@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import BrandLogo from '../../BrandLogo';
 import NavbarLogic from '../Navbar.logic';
 import SearchNavBar from '../SearchNavBar';
@@ -12,6 +12,7 @@ import {
 
 import OnNavBarData, { DataLeftLinks } from './OnNavBar.data';
 import ToolTip from '../../ToolTip';
+import { UserContext } from '../../../utils/context/UserContext';
 
 // Icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,7 +24,7 @@ function NavBar({ usetransparent, PositionMarker }) {
 	const { isUserDropDown, toggleUserDropDown, useOutsideCloseMenu,
 		wrapperRef } = OnNavBarLogic();
 	const { DataIcons, showForm, toggleShow } = OnNavBarData();
-
+	const { userAttributes } = useContext(UserContext);
 
 	useOutsideCloseMenu(wrapperRef);
 
@@ -64,7 +65,8 @@ function NavBar({ usetransparent, PositionMarker }) {
 										</LineSeparator> :
 										<>
 											<FontAwesomeIcon onClick={() => item.function()} icon={item.icon} />
-											{item.toolTipText === 'Add' && showForm && <AddForm close={toggleShow} />}
+											{item.toolTipText === 'Add' && showForm && <AddForm close={toggleShow} 
+											authorName={userAttributes.username}/>}
 										</>
 									}
 								</ToolTip>

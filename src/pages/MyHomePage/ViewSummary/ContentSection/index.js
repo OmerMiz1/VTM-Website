@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import parse from 'html-react-parser';
 import {
 	ViewSummaryContext, ListNotes, ItemNote, EditIconContainer,
@@ -14,12 +14,14 @@ import AccessPopup from '../../../../components/Popups/Access';
 import AddButton from '../../../../components/atoms/Buttons/AddButton';
 import EditAccessForm from '../../../../components/atoms/forms/EditAccess';
 
+import { SummariesContext } from '../../../../utils/context/SummariesContext';
 
 function ContentSection({ notes, tags, filterTags, toggleTags, mode, updateNote, addNote, deleteNote, sid }) {
 	// showEditNoteNumber === null : none,
 	// showEditNoteNumber ===  "NEW_NOTE" : newNote,
 	// else : updateNote
 	const [showEditNoteNumber, setShowEditNoteNumber] = useState(null);
+	const { editAccess } = useContext(SummariesContext);
 
 	//TODO ceate styled one and move to util
 	const confirmDelete = (note) => {
@@ -37,7 +39,7 @@ function ContentSection({ notes, tags, filterTags, toggleTags, mode, updateNote,
                 mode.mode === "access" && 
                 <AccessPopup title="Access Settings" onClose={() => mode.toggleMode("access")}>
 						<EditAccessForm close={ () => mode.toggleMode("access")}
-                         sid={sid} access={['public']}></EditAccessForm>
+                         sid={sid} access={['public']} editAccess={editAccess}></EditAccessForm>
 				</AccessPopup>
                 
             }

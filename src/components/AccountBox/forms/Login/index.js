@@ -1,11 +1,10 @@
-import React from 'react';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { AccountContext } from '../../AccountBox.logic'
 import {
 	BoldLink, BoxContainer, FormContainer, ValidationWarning,
 	Input, MutedLink, SubmitButton, MarginSpanHeight
 } from '../AccountForms.style';
-import UserApi from '../../../../api/User';
+import { UserContext } from '../../../../utils/context/UserContext';
 
 // Validation
 import { useForm } from "react-hook-form";
@@ -15,7 +14,7 @@ import { useLoginSchema } from '../../../../validation/LoginValidation'
 
 export default function LoginForm({ setResetPassword }) {
 	const { switchToSignUp } = useContext(AccountContext);
-	const { Login } = UserApi();
+	const { Login } = useContext(UserContext);
 
 	// Valdation state from useSignUpSchema (schema)
 	const { register, handleSubmit, formState: { errors } } = useForm({

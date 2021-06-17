@@ -14,7 +14,7 @@ import { MockData } from './DiscoverSummary.mock';
 function Discover() {
 	const { ShowMoreSummaries, amountSummariesShow } = MySummariesLogic();
 
-    const { isLoading } = useContext(SummariesContext);
+    const { isLoading, toggleLike } = useContext(SummariesContext);
 
 
 

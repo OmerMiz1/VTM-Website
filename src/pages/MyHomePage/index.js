@@ -6,21 +6,23 @@ import OnNavbar from '../../components/Navbar/OnNavBar';
 import SideNavBar from '../../components/SideNavBar';
 import MySummaries from './MySummaries'
 import Footer from '../../components/Footer'
-import MyHomePageData from './MySummary.data'
+
+import SummaryData from '../../data/Summary.data';
 import SummaryApi from '../../api/Summary';
+
 import MyHomePageFilters from './MyHomePage.filters';
 import { MyHomePageContainer } from './MyHomePage.style';
 import Discover from './Discover';
 import MyTags from './MySummaries/MyTags';
 import ViewSummary from './ViewSummary';
-import ProfilePage from './Profile'
+import ProfilePage from './Profile';
 
 
 function MyHomePage() {
 	const { page } = useParams();
 	const { path } = useRouteMatch();
 	const { mySummaries, setMySummaries, isMySummaryEmpty, myFilterSummaries,
-		setMyFilterSummaries } = MyHomePageData();
+		setMyFilterSummaries } = SummaryData();
 	const { SearchFilterData, myFilterSummariesTags,
 		FilterDataByAttribute, UnFilter } = MyHomePageFilters(mySummaries, setMyFilterSummaries);
 	const { isLoading, setLoading, addSummary, deleteSummary, updateSummary,
