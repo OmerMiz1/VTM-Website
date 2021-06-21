@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { SummariesContext } from '../../../utils/context/SummariesContext';
 // import DiscoverLogic from './Discover.logic';
 import MySummariesLogic from '../MySummaries/MySummaries.logic';
@@ -14,17 +14,21 @@ import { MockData } from './DiscoverSummary.mock';
 function Discover() {
 	const { ShowMoreSummaries, amountSummariesShow } = MySummariesLogic();
 
-    const { isLoading, toggleLike } = useContext(SummariesContext);
+	// TODO remove GetSharedSummaries...
+	const { isLoading, toggleLike, getPublicSummaries, GetSummariesSharedWith } = useContext(SummariesContext);
 
+	//TODO add some fetch to get some (around 30 suummaries)
+	// const publicSummaries = MockData; // MOCK
+	var publicSummaries = [];
+	const publicSummarieNotEmpty = (Array.isArray(publicSummaries) && publicSummaries.length)
 
+	useEffect(async () => {
+		publicSummaries = await getPublicSummaries();
 
-    //TODO add some fetch to get some (around 30 suummaries)
-    const publicSummaries = MockData;
+		// publicSummaries = await GetSummariesSharedWith("omermiz"); //DELETEME
 
-
-   const publicSummarieNotEmpty = (Array.isArray(publicSummaries) && publicSummaries.length)
-
-
+		console.log('publicSumaries:', publicSummaries);
+	}, []);
 
 	return (
 		<MainPageContainer>
@@ -46,7 +50,7 @@ function Discover() {
 									url={card.url}
 									tags={card.tags}
 									likes={card.likes}
-                                    page = 'discover'
+									page='discover'
 								></CardSummary>
 							</CardItemContainer>
 						)

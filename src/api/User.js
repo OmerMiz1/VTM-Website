@@ -1,5 +1,5 @@
 import Amplify, { Auth } from 'aws-amplify';
-import { objectStr } from '../utils/function/Strings';
+import { ObjectStr } from '../utils/function/Strings';
 
 Amplify.configure({
 	"aws_userPools_id": "eu-central-1_gxX97wEqr",
@@ -11,7 +11,7 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 	const loginPath = "/access/login";
 	const homePath = "/home";
 	const OK = false;
-	
+
 	/**
 	 * 
 	 * @param {*} data expecting userName, password and email fields (these names)
@@ -20,9 +20,10 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 	const Signup = async (data) => {
 		console.log('sign up:', data); //DELETEME
 
-		if (data.password !== data.confirmPassword) {
-			console.log('error: password confirmation must match')
-			return !OK;
+		const invalidResponse = validateData(data);
+		if (invalidResponse) {
+			console.log(invalidResponse);
+			return;
 		}
 
 		const params = {
@@ -240,7 +241,7 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 	}
 
 	const handleChallenge = (user, data) => {
-		console.log(`handleChallenge, user: ${objectStr(user)}, data: ${objectStr(data)}`) //DELETEME
+		console.log(`handleChallenge, user: ${ObjectStr(user)}, data: ${ObjectStr(data)}`) //DELETEME
 		try {
 			switch (user.challenge) {
 				case "NEW_PASSWORD_REQUIRED":
@@ -264,6 +265,17 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 		}
 
 		return !OK;
+	}
+	
+	const validateData = (data) => {
+		const usernameRx = /^[a-zA-Z0-9]+(_[a-zA-Z0-9]+)?$/;;
+
+		if (data.password !== data.confirmPassword) {
+			return 'Password confirmation must match';
+		} else if (!usernameRx.test(data.username)) {
+			return "Invalid username, must contain alphabet, numbers and underscore only";
+		}
+		return OK;
 	}
 
 	return {

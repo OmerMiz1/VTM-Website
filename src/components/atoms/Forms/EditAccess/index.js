@@ -33,33 +33,41 @@ function EditAccessForm ({ sid, access, close, editAccess }) {
     const [acc, setAcc] = useState(access)
 	const {register, handleSubmit} = useForm(); // Valdation state from ProfileUserSchema (schema)
 
-	console.log(`acc UP`, acc);
-
 	const accessKey = "access";
 	const friendsKey = "allowFriends";
 	const allowedUsersKey = "allowedUsers";
 
 	const changeAccessType = (accessType) => {
-		acc[accessKey] = accessType;
-		let newAccess = acc;
-		setAcc(newAccess);
+		setAcc(prevState => {
+			let obj = { ...prevState };
+			obj[accessKey] = accessType;
+			return obj;
+		})
 		console.log('acc:', acc); //DELETEME
-		// setAcc(prev => prev[accessKey] = accessType)
+	}
+
+	const toggleFriends = () => {
+		setAcc(prevState => {
+			let obj = { ...prevState };
+			obj[friendsKey] = !obj[friendsKey];
+			return obj;
+		})
+		console.log('acc:', acc); //DELETEME
 	}
 
 	// TODO
 	const submitEditAccess = (data) => {
-		console.log('submitEditAccess', data); //DELETEME
-		console.log('StringToNumber(data[accessTypeKey]):', StringToNumber(data[accessKey]));
-		
-		data[accessKey] = StringToNumber(data[accessKey]);
+		data[accessKey] = Number.parseInt(data[accessKey]);
+		data[friendsKey] = data[friendsKey] === 'true' ? true : false;
+		data[allowedUsersKey] = data[allowedUsersKey] ? data[allowedUsersKey].split(" ") : [];
 
+		console.log('submitEditAccess', data); //DELETEME
 		editAccess(sid, data);
         close();
 	}
 
 	return (
-		<form onSubmit={handleSubmit(submitEditAccess)}>
+		<form onSubmit={ handleSubmit(submitEditAccess) }>
 			<SectionForm>
                 <label>
 					<input 
@@ -74,8 +82,10 @@ function EditAccessForm ({ sid, access, close, editAccess }) {
                 <label>
 					<input 
 					type="checkbox"
-					name={friendsKey} 
-					value={true} //FIXME
+					name={friendsKey}
+					checked={!acc[friendsKey]} // Has to be ! otherwise there is a weird behavior...
+					onClick={() => toggleFriends()}
+					value={true}
 					{...register(friendsKey)}>
 					</input>
 					friends
@@ -107,8 +117,13 @@ function EditAccessForm ({ sid, access, close, editAccess }) {
 				</input>
 				custom
 			</label>
-            <TextInput name={allowedUsersKey} placeholder="Enter Names "
-			 defaultValue={acc[accessKey] === 2 && acc[allowedUsersKey].length > 0 ? acc[accessKey] : ""} {...register(allowedUsersKey)} />
+			
+            <TextInput name={allowedUsersKey} placeholder="Enter Names"
+			 defaultValue={acc[accessKey] === 2 && acc[allowedUsersKey].length > 0 ? acc[accessKey] : ""}
+			 {...register(allowedUsersKey)}
+			 disabled={acc[accessKey] !== 2}
+			>
+			</TextInput>
             </SectionForm>
 
 			<ButtonInput value="Save" type="submit"/>

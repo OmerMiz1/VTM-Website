@@ -35,7 +35,7 @@ function AddForm({ close, authorName }) {
 
 		data["authorName"] = authorName;
 		data["tags"] = createTagsArrays(data.tags);
-		data["likes"] = {};
+		data["likes"] = {}; //TODO new Set()
 
 		addSummary(data);
 		close();

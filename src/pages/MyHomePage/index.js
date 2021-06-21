@@ -26,13 +26,13 @@ function MyHomePage() {
 	const { SearchFilterData, myFilterSummariesTags,
 		FilterDataByAttribute, UnFilter } = MyHomePageFilters(mySummaries, setMyFilterSummaries);
 	const { isLoading, setLoading, addSummary, deleteSummary, updateSummary,
-		ShareSummary, toggleFavorite } = SummaryApi(mySummaries, setMySummaries,
+		ShareSummary, toggleFavorite, editAccess, getPublicSummaries, GetSummariesSharedWith } = SummaryApi(mySummaries, setMySummaries,
 			myFilterSummaries, setMyFilterSummaries);
 
 	return (
 		<SummariesContext.Provider value={{
 			isMySummaryEmpty, mySummaries, isLoading, setLoading, myFilterSummaries, addSummary,
-			deleteSummary, updateSummary, ShareSummary, toggleFavorite
+			deleteSummary, updateSummary, ShareSummary, toggleFavorite, editAccess, getPublicSummaries, GetSummariesSharedWith
 		}}>
 			<FilterMySummariesContext.Provider value={{
 				SearchFilterData, myFilterSummariesTags,

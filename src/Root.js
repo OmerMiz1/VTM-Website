@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import UserData from './data/User.data';
 import UserApi from './api/User';
 import { UserContext } from './utils/context/UserContext';

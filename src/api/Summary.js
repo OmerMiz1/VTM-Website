@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Amplify, { API, Auth } from 'aws-amplify';
-import { waitFor } from '@testing-library/react';
+import { ObjectStr } from '../utils/function/Strings';
 
 // TODO no user -> logout, homepage
 // FIXME
@@ -41,13 +41,19 @@ Summary:
 const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries) => {
 	const apiName = 'SummaryAPI';
 	const summaryPath = '/summary';
+	const accessPath = summaryPath + '/access';
+	const publicSummariesPath = summaryPath + "/public";
+	const sharedWithMePath = summaryPath + "/sharedwithme";
 	const libraryPath = '/library';
-	const myLibraries = 'mylibraries';
+	const myLibrariesPath = libraryPath + '/mylibraries';
+
 	const summaryIdKeyName = 'sid';
 	const editTimeKeyName = "editTime";
 	const createTimeKeyName = "createTime";
 	const authorKeyName = "authorName";
 	const favoriteKeyName = "favorite";
+	const accessKeyName = "access";
+	const friendsKeyName = "allowFriends";
 
 	const likeValue = 1;
 	const dislikeValue = -1;
@@ -74,7 +80,7 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 		console.log('getSummary, path:', `${summaryPath}`); //DELETEME
 		const myInit = {
 			queryStringParameters: {
-				sid: JSON.stringify(sid)
+				[summaryIdKeyName]: JSON.stringify(sid)
 			}
 		}
 		console.log(`path: ${summaryPath}\nQueryParams: ${JSON.stringify(myInit.queryStringParameters)}`)
@@ -91,14 +97,14 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 
 		//TODO lid (summary.lid)
 		API.post(apiName, summaryPath, { body: summary })
-			.then(async (response) => {
+			.then(response => {
 				console.log('post response: ', response) //DELETEME
 				
 				// Update front-end
 				summary[summaryIdKeyName] = response.data[summaryIdKeyName];
 				summary[createTimeKeyName] = response.data[createTimeKeyName];
 				summary[editTimeKeyName] = response.data[createTimeKeyName];
-				
+
 				setMySummaries([...mySummaries, summary]);
 				setMyFilterSummaries([...myFilterSummaries, summary]);
 			})
@@ -158,7 +164,7 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 			})
 			.catch(error => console.log(error))
 	}
-	
+
 	const toggleFavorite = (sid) => {
 		console.log(`toggleFavorite`, sid); //DELETEME
 
@@ -170,10 +176,23 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 			if (summary.sid === sid) {
 				summary[favoriteKeyName] = !summary[favoriteKeyName];
 				toUpdate = summary;
-				updateSummary(toUpdate); // Updates Back & Front
 			};
 			return summary;
 		});
+
+		toUpdate[summaryIdKeyName] = JSON.stringify(toUpdate[summaryIdKeyName]);
+		API.patch(apiName, summaryPath, { body: toUpdate })
+			.then(response => {
+				console.log('update summary response:', response) //DELETEME
+
+				// Update Frontend
+				toUpdate[summaryIdKeyName] = JSON.parse(toUpdate[summaryIdKeyName]);
+				setMySummaries(prev => prev.map(item => (item[summaryIdKeyName] === toUpdate[summaryIdKeyName] ? toUpdate : item)));
+				setMyFilterSummaries(prev => prev.map(item => (item[summaryIdKeyName] === toUpdate[summaryIdKeyName] ? toUpdate : item)));
+			})
+			.catch(error => {
+				console.log(error) //DELETEME
+			})
 	}
 
 	const toggleLike = async (sid, likes) => {
@@ -193,18 +212,29 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 		}
 
 		const toUpdate = {
-			summaryIdKeyName: sid,
+			[summaryIdKeyName]: JSON.stringify(toUpdate[summaryIdKeyName]),
 			likes: likes
 		}
 
-		return updateSummary(toUpdate);
+		API.patch(apiName, summaryPath, { body: toUpdate })
+			.then(response => {
+				console.log('update summary response:', response) //DELETEME
+
+				// Update Frontend
+				toUpdate[summaryIdKeyName] = JSON.parse(toUpdate[summaryIdKeyName]);
+				setMySummaries(prev => prev.map(item => (item[summaryIdKeyName] === toUpdate[summaryIdKeyName] ? toUpdate : item)));
+				setMyFilterSummaries(prev => prev.map(item => (item[summaryIdKeyName] === toUpdate[summaryIdKeyName] ? toUpdate : item)));
+			})
+			.catch(error => {
+				console.log(error) //DELETEME
+			})
     };
 
 	const getMyLibraries = async () => {
 		console.log('getMyLibraries'); //DELETEME
 		setLoading(true);
 
-		API.get(apiName, `${libraryPath}/${myLibraries}`)
+		API.get(apiName, myLibrariesPath)
 			.then(summaries => {
 				console.log(`library:`, summaries) //DELETEME
 				setMySummaries(summaries);
@@ -216,13 +246,81 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 			});
 	}
 
-    //TODO ADD
     const editAccess = async (sid, access) => {
+		console.log('editAcces, access:', access); //DELETEME
 
+		access[summaryIdKeyName] = JSON.stringify(sid);
+
+		API.patch(apiName, accessPath, { body: access })
+			.then(response => {
+				console.log('response:', response); //DELETEME
+				var newItem = {};
+
+				mySummaries.forEach(summary => {
+					if (summary[summaryIdKeyName] === sid)
+						newItem = {...summary};
+				});
+
+				newItem[accessKeyName] = access[accessKeyName];
+				newItem[friendsKeyName] = access[friendsKeyName];
+
+				console.log('newItem:', newItem) //DELETEME
+				setMySummaries(prevSummaries => prevSummaries.map(item => item[summaryIdKeyName] === sid ? newItem : item));
+
+				setMyFilterSummaries(prevFiltered => prevFiltered.map(item => (item[summaryIdKeyName] === sid) ? newItem : item));
+			})
+			.catch(error => {
+				console.log(ObjectStr(error));
+			})
 	}
+
+	const getPublicSummaries = async () => {
+		console.log(`getPublicSummaries, path:`, publicSummariesPath); //DELETEME
+		setLoading(true);
+
+		try {
+			var summaries = await API.get(apiName, publicSummariesPath);
+		} catch(error) {
+			console.log(error); //DELETEME
+			setLoading(false);
+			return;
+		}
+
+		console.log('public summaries:', summaries); //DELETEME
+		setLoading(false);
+		return summaries;
+	}
+
+	const GetSummariesSharedWith = async (username) => {
+		console.log('getSummariesSharedWithMe, username:', username); //DELETEME
+		console.log('path:', sharedWithMePath);//DELETEME
+		setLoading(true);
+
+		const queryParams = {
+			queryStringParameters: {
+				username: username
+			}
+		}
+
+		console.log(`params:`, queryParams);//DELETEME
+
+		try {
+			var summaries = await API.get(apiName, sharedWithMePath, queryParams);
+		} catch (error) {
+			console.log(ObjectStr(error)); //DELETEME
+			setLoading(false);
+			return;
+		}
+
+		console.log('summaries shared with me:', summaries); //DELETEME
+		setLoading(false);
+		return summaries;
+	}
+
+    //TODO
 	const ShareSummary = (sid) => {	}
 	const getLibrary = async (lid) => {	}
-    
+
 	useEffect(async () => {
 		const libraryResult = await getMyLibraries();
 		console.log(`library:`, libraryResult);
@@ -240,7 +338,9 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 		toggleFavorite,
 		addSummary,
         editAccess,
-        toggleLike
+        toggleLike,
+		getPublicSummaries,
+		GetSummariesSharedWith
 	}
 }
 
