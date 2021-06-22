@@ -4,6 +4,10 @@ import NoteApi from '../../../api/Note';
 
 
 const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
+	const createdKeyName = "createTime";
+	const editedKeyName = "editTime";
+	const noteIdKeyName = "nid";
+
 	const [notes, setNotes] = useState([]);
 	const [allTagsNotes, setAllTagsNotes] = useState([]);
 	const [filterTagsNotes, setFilterTagsNotes] = useState([]);
@@ -12,10 +16,10 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 
     console.log(`params`, params);
 	const [mode, setMode] = useState(params.mode);
-	const { fetchNotes } = NoteApi(notes, setNotes, setLoading);
+
+    const {fetchNotes, updateNote, addNote, deleteNote } = NoteApi();
 
 	const toggleMode = (nextState) => setMode(mode === 'view' ? nextState : 'view');
-
 
 	useEffect(() => {
 		const sid = params.sid;
@@ -30,7 +34,13 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
             default:
                 console.log(`error at view summary logic case`);
         }
-		fetchNotes(sid);
+        setLoading(true);
+		let respons = fetchNotes(sid);
+        if (respons !== 'error') { // TODO error handel
+            setNotes(notes);
+			setLoading(false);
+        } 
+      
 	}, []);
 
 	useEffect(() => {
@@ -59,6 +69,35 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 	const getSummaryById = sid => mySummaries.find(summary => summary.sid === sid);
 	const getSummaryByIdPublic = sid => publicSummaries.find(summary => summary.sid === sid);
 
+
+    const addNoteIn =  (note) => {
+        console.log(`note1`, note);
+        let response =  addNote(note);
+
+        if (response !== 'error') { // TODO error handel
+            note[noteIdKeyName] = response.data[noteIdKeyName];
+            note[createdKeyName] = response.data[createdKeyName];
+            note[editedKeyName] = response.data[editedKeyName];
+            setNotes([...notes, note]);
+        }
+    }
+
+
+    const updateNoteIn = (note) => {
+        let response = updateNote(note);
+        if (response !== 'error') { // TODO error handel
+            setNotes(prev => prev.map(item => (item.nid === note.nid ? note : item)));
+        }
+    }
+
+    const deleteNoteIn = (note) => {
+        if (deleteNote !== 'error') { //rename error handel
+            const newNotes = [...notes].filter(n => n.nid !== note.nid);
+			setNotes(newNotes);
+        }
+    }
+
+
 	return {
 		notes,
 		viewSummary,
@@ -67,7 +106,10 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 		toggleFilterNote,
 		toggleMode,
 		mode,
-		setNotes
+        updateNoteIn,
+        addNoteIn,
+        deleteNoteIn,
+        
 	}
 }
 
