@@ -318,6 +318,7 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 	}
 
     //TODO
+    const getAccess = (sid) => {  }
 	const ShareSummary = (sid) => {	}
 	const getLibrary = async (lid) => {	}
 

@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 import NoteApi from '../../../api/Note';
 
 
-const ViewSummaryLogic = (setLoading, mySummaries) => {
+const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 	const [notes, setNotes] = useState([]);
 	const [allTagsNotes, setAllTagsNotes] = useState([]);
 	const [filterTagsNotes, setFilterTagsNotes] = useState([]);
 	const [viewSummary, setViewSummary] = useState();
 	const params = useParams();
+
+    console.log(`params`, params);
 	const [mode, setMode] = useState(params.mode);
 	const { fetchNotes } = NoteApi(notes, setNotes, setLoading);
 
@@ -17,7 +19,17 @@ const ViewSummaryLogic = (setLoading, mySummaries) => {
 
 	useEffect(() => {
 		const sid = params.sid;
-		setViewSummary(getSummaryById(sid));
+        switch(params.page){
+            case "mySummaries":
+                setViewSummary(getSummaryById(sid));
+                break;
+            case "discover":
+                console.log(`add here set summary`, sid);
+                setViewSummary(getSummaryByIdPublic(sid));
+                break
+            default:
+                console.log(`error at view summary logic case`);
+        }
 		fetchNotes(sid);
 	}, []);
 
@@ -45,6 +57,7 @@ const ViewSummaryLogic = (setLoading, mySummaries) => {
 	}
 
 	const getSummaryById = sid => mySummaries.find(summary => summary.sid === sid);
+	const getSummaryByIdPublic = sid => publicSummaries.find(summary => summary.sid === sid);
 
 	return {
 		notes,

@@ -21,18 +21,21 @@ import ProfilePage from './Profile';
 function MyHomePage() {
 	const { page } = useParams();
 	const { path } = useRouteMatch();
-	const { mySummaries, setMySummaries, isMySummaryEmpty, myFilterSummaries,
-		setMyFilterSummaries } = SummaryData();
+	const { mySummaries, setMySummaries, isMySummaryEmpty,
+        myFilterSummaries,setMyFilterSummaries,
+        publicSummaries, setPublicSummaries, isPublicSummariesEmpty} = SummaryData();
+
 	const { SearchFilterData, myFilterSummariesTags,
 		FilterDataByAttribute, UnFilter } = MyHomePageFilters(mySummaries, setMyFilterSummaries);
 	const { isLoading, setLoading, addSummary, deleteSummary, updateSummary,
-		ShareSummary, toggleFavorite, editAccess, getPublicSummaries, GetSummariesSharedWith } = SummaryApi(mySummaries, setMySummaries,
+		ShareSummary, toggleFavorite, editAccess, getPublicSummaries, GetSummariesSharedWith, getAccess } = SummaryApi(mySummaries, setMySummaries,
 			myFilterSummaries, setMyFilterSummaries);
 
 	return (
 		<SummariesContext.Provider value={{
 			isMySummaryEmpty, mySummaries, isLoading, setLoading, myFilterSummaries, addSummary,
-			deleteSummary, updateSummary, ShareSummary, toggleFavorite, editAccess, getPublicSummaries, GetSummariesSharedWith
+			deleteSummary, updateSummary, ShareSummary, toggleFavorite, editAccess, getPublicSummaries, GetSummariesSharedWith,
+            publicSummaries, setPublicSummaries, isPublicSummariesEmpty
 		}}>
 			<FilterMySummariesContext.Provider value={{
 				SearchFilterData, myFilterSummariesTags,

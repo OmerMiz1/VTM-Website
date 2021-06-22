@@ -7,14 +7,17 @@ import HeaderSection from './HeaderSection';
 import ContentSection from './ContentSection';
 import FooterSection from './FooterSection';
 import { ViewSummaryContainer } from './ViewSummary.style';
+import SummaryApi from "../../../api/Summary";
 
 
 function ViewSummary() {
-	const { isLoading, setLoading, mySummaries, updateSummary, deleteSummary } = useContext(SummariesContext);
+	const { isLoading, setLoading, mySummaries,
+        updateSummary, deleteSummary, publicSummaries } = useContext(SummariesContext);
 	const { notes, viewSummary, allTagsNotes, filterTagsNotes, toggleFilterNote,
-		toggleMode, mode, setNotes } = ViewSummaryLogic(setLoading, mySummaries);
+		toggleMode, mode, setNotes } = ViewSummaryLogic(setLoading, mySummaries, publicSummaries);
 	const { updateNote, addNote, deleteNote } = NoteApi(notes, setNotes, setLoading);
-	
+
+    
 	return (
 		<ViewSummaryContainer>
 			<Loading />

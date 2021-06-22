@@ -8,34 +8,29 @@ import {
 	MainPageContainer, MyHomePageH1, CardSummariesContainers,
 	CardItemContainer, BottomContainer, ViewMoreButton,
 } from '../MyHomePage.style';
-import { MockData } from './DiscoverSummary.mock';
 
 
 function Discover() {
 	const { ShowMoreSummaries, amountSummariesShow } = MySummariesLogic();
 
 	// TODO remove GetSharedSummaries...
-	const { isLoading, toggleLike, getPublicSummaries, GetSummariesSharedWith } = useContext(SummariesContext);
+	const { isLoading, toggleLike, getPublicSummaries, GetSummariesSharedWith,
+        publicSummaries, setPublicSummaries, isPublicSummariesEmpty } = useContext(SummariesContext);
 
 	//TODO add some fetch to get some (around 30 suummaries)
-	// const publicSummaries = MockData; // MOCK
-	var publicSummaries = [];
-	const publicSummarieNotEmpty = (Array.isArray(publicSummaries) && publicSummaries.length)
-
+	//TODO move to logic
 	useEffect(async () => {
-		publicSummaries = await getPublicSummaries();
-
-		// publicSummaries = await GetSummariesSharedWith("omermiz"); //DELETEME
-
-		console.log('publicSumaries:', publicSummaries);
+        if (isPublicSummariesEmpty) {
+            setPublicSummaries(await getPublicSummaries());
+        }  
+		console.log('publicSumaries:', publicSummaries); //TODO delete
 	}, []);
 
 	return (
 		<MainPageContainer>
 			<MyHomePageH1>Discover</MyHomePageH1>
 			<LoadingComponent></LoadingComponent>
-
-			{publicSummarieNotEmpty && !isLoading &&
+			{!isPublicSummariesEmpty && !isLoading &&
 				<CardSummariesContainers>
 					{publicSummaries.slice(0, amountSummariesShow).map((card) => {
 						return (
@@ -58,7 +53,7 @@ function Discover() {
 				</CardSummariesContainers>
 			}
 			<BottomContainer>
-				{publicSummarieNotEmpty && !isLoading && amountSummariesShow < publicSummaries.length && (
+				{!isPublicSummariesEmpty && !isLoading && amountSummariesShow < publicSummaries.length && (
 					<ViewMoreButton onClick={ShowMoreSummaries}>View More</ViewMoreButton>
 				)}
 			</BottomContainer>
