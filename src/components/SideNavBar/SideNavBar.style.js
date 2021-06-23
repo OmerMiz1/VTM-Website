@@ -11,7 +11,19 @@ export const SideBarContainer = styled.section`
     z-index:10;
     /* border-right: 1px solid black; */  
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    border-bottom: 1px solid #d9d9d9; 
+    border-bottom: 1px solid #d9d9d9;
+
+    @media screen and (min-width: 750px) {
+        ${({ active }) => active && css` 
+            grid-column: 1;
+            width: 100px;
+            transition: all 1s ease;
+    `};
+    
+    }
+
+    
+
     @media screen and (max-width: 750px) {
         box-shadow: none;
         border-bottom: none; 
@@ -22,6 +34,9 @@ export const SideBarList = styled.ul`
     width:100%;
     height:auto;
     padding: 0;
+    ${({ active }) => active && css`
+            display: none;
+        `};
 
     @media screen and (max-width: 750px) {
         width: 75%;
@@ -31,13 +46,13 @@ export const SideBarList = styled.ul`
         left: -100%;
         opacity: 1;
         transition: all 1s ease;
-
         ${({ active }) => active && css`
             background: #fff;
             left: 0;
             transition: all 1s ease;
-
+            z-index: 0;
         `};
+
     };
 `;
 
@@ -92,6 +107,21 @@ export const NavMenu = styled.div`
         cursor: pointer;
         color: ${({ usetransparent }) => usetransparent ? '#dfdce2' : 'black'};
 
+    };
+`
+export const AccordionButton = styled.div`
+    cursor: pointer;
+    font-size: ${props => props.theme.fontSizes.icon};
+    display: block;
+    position: absolute;
+        top: 50%;
+        left: 18%;
+        transform: translate(-100%, 60%);
+        cursor: pointer;
+        color: ${({ usetransparent }) => usetransparent ? '#dfdce2' : 'black'};
+
+    @media (max-width: 750px) {
+        display: none;
     };
 `
 
