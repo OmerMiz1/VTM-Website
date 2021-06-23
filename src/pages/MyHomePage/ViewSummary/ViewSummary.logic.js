@@ -4,6 +4,7 @@ import NoteApi from '../../../api/Note';
 
 
 const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
+	const summaryIdKeyName = "sid";
 	const createdKeyName = "createTime";
 	const editedKeyName = "editTime";
 	const noteIdKeyName = "nid";
@@ -14,15 +15,15 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 	const [viewSummary, setViewSummary] = useState();
 	const params = useParams();
 
-    console.log(`params`, params);
 	const [mode, setMode] = useState(params.mode);
 
-    const {fetchNotes, updateNote, addNote, deleteNote } = NoteApi();
+    const { getNotes, updateNote, addNote, deleteNote } = NoteApi();
 
 	const toggleMode = (nextState) => setMode(mode === 'view' ? nextState : 'view');
 
 	useEffect(() => {
 		const sid = params.sid;
+
         switch(params.page){
             case "mySummaries":
                 setViewSummary(getSummaryById(sid));
@@ -31,16 +32,22 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
                 console.log(`add here set summary`, sid);
                 setViewSummary(getSummaryByIdPublic(sid));
                 break
+			case "sharewithme":
+				// TODO
             default:
-                console.log(`error at view summary logic case`);
+                console.log(`error at view summary logic case`); //DELETEME
         }
+
         setLoading(true);
-		let respons = fetchNotes(sid);
-        if (respons !== 'error') { // TODO error handel
-            setNotes(notes);
-			setLoading(false);
-        } 
-      
+		getNotes(sid)
+			.then(notes => {
+				console.log("ViewSummaryLogic, notes:", notes); //DELETEME
+				setNotes(notes);
+				setLoading(false);
+			})
+			.catch(error => {
+				console.log(error);
+			})
 	}, []);
 
 	useEffect(() => {
@@ -69,32 +76,48 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 	const getSummaryById = sid => mySummaries.find(summary => summary.sid === sid);
 	const getSummaryByIdPublic = sid => publicSummaries.find(summary => summary.sid === sid);
 
-
-    const addNoteIn =  (note) => {
+    const addNoteIn = (note) => {
         console.log(`note1`, note);
-        let response =  addNote(note);
-
-        if (response !== 'error') { // TODO error handel
-            note[noteIdKeyName] = response.data[noteIdKeyName];
-            note[createdKeyName] = response.data[createdKeyName];
-            note[editedKeyName] = response.data[editedKeyName];
-            setNotes([...notes, note]);
-        }
+        addNote(note)
+			.then(response => {
+				console.log("response: ", response);
+				note[noteIdKeyName] = response.data[noteIdKeyName];
+				note[createdKeyName] = response.data[createdKeyName];
+				note[editedKeyName] = response.data[createdKeyName];
+				setNotes([...notes, note]);
+			})
+			.catch(error => {
+				console.log(error) // DELETEME
+			});            
     }
 
 
     const updateNoteIn = (note) => {
-        let response = updateNote(note);
-        if (response !== 'error') { // TODO error handel
-            setNotes(prev => prev.map(item => (item.nid === note.nid ? note : item)));
-        }
+		if (!note[summaryIdKeyName] || typeof(note[createdKeyName]) !== typeof (1)) {
+			console.log('invalid note object', note); //DELETEME
+			return;
+		}
+
+        updateNote(note)
+			.then(response => {
+				console.log(`update note response:`, response); //DELETEME
+				setNotes(prev => prev.map(item => (item.nid === note.nid ? note : item)));
+			})
+			.catch(error => {
+				console.log(error);
+			})
     }
 
     const deleteNoteIn = (note) => {
-        if (deleteNote !== 'error') { //rename error handel
-            const newNotes = [...notes].filter(n => n.nid !== note.nid);
-			setNotes(newNotes);
-        }
+		deleteNote(note)
+			.then(response => {
+				console.log(response);
+				const newNotes = [...notes].filter(n => n.nid !== note.nid);
+				setNotes(newNotes);
+			})
+			.catch(error => {
+				console.log(error) // DELETEME
+			});
     }
 
 
@@ -109,7 +132,6 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
         updateNoteIn,
         addNoteIn,
         deleteNoteIn,
-        
 	}
 }
 

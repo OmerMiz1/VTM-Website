@@ -22,12 +22,9 @@ const NoteApi = () => {
 	const notesPath = "/note";
 	const summaryIdKeyName = "sid";
 	const createdKeyName = "createTime";
-	const editedKeyName = "editTime";
-	const noteIdKeyName = "nid";
 
-	const fetchNotes = (sid) => {
-		console.log(`fetchNotes`, sid);
-		// setLoading(true);
+	const getNotes = (sid) => {
+		console.log(`getNotes`, sid); //DELETEME
 
 		const queryParams = {
 			queryStringParameters: {
@@ -35,34 +32,17 @@ const NoteApi = () => {
 			}
 		}
 
-		API.get(apiName, notesPath, queryParams)
-		.then(notes => {
-			console.log(`notes:`, notes) //DELETEME
-            return notes;
-			// setNotes(notes); //DELETEME
-			// setLoading(false); //DELETEME
-		})
-		.catch(error => {
-			console.log('error getting notes:', error); //DELETEME
-            return 'error';
-		});
+		return API.get(apiName, notesPath, queryParams)
 	};
 
 	const addNote = (note) => {
 		 console.log(`addNote`, note);
 
-        API.post(apiName, notesPath, { body: note })
-			.then(response => {
-                return response;	
-			})
-			.catch(error => {
-				console.log(error) // DELETEME
-                return "error"; //TODO rename error handel
-			});
+        return API.post(apiName, notesPath, { body: note });
 	};
 
 	const deleteNote = (note) => {
-		console.log(`deleteNote`, note);
+		console.log(`deleteNote`, note); //DELETEME
 
 		const queryParams = {
 			queryStringParameters: {
@@ -70,47 +50,27 @@ const NoteApi = () => {
 				[createdKeyName]: JSON.stringify(note[createdKeyName])
 			}
 		}
-		console.log(`queryParams:`, queryParams)
 
-		API.del(apiName, notesPath, queryParams)
-		.then(response => {
-			console.log(response);
-
-			// Update front-end
-			// const newNotes = [...notes].filter(n => n.nid !== note.nid);
-			// setNotes(newNotes);
-		})
-		.catch(error => {
-            console.log(error) // DELETEME
-            return "error"; //TODO rename error handel
-        });
+		console.log(`queryParams:`, queryParams); //DELETEME
+		return API.del(apiName, notesPath, queryParams);
+		
 	};
 
 	const updateNote = (note) => {
 		console.log(`updateNote`, note); //DELETEME
 
-		if (!note[summaryIdKeyName] || typeof (note[createdKeyName]) !== typeof (1)) {
-			console.log('invalid note object', note)//DELETEME
-			return 'error'; //TODO rename error handel
+		if (!note[summaryIdKeyName] || typeof(note[createdKeyName]) !== typeof (1)) {
+			console.log('invalid note object', note); //DELETEME
+			return 'error'; //TODO rename error handle
 		}
 
-		API.patch(apiName, notesPath, { body: note })
-		.then(response => {
-			console.log(`update note response:`, response); //DELETEME
-            return response;
-			// Update front-end
-			// setNotes(prev => prev.map(item => (item.nid === note.nid ? note : item)));
-		})
-		.catch(error => {
-            console.log(error);
-            return 'error'; //TODO rename error handel
-
-        })
+		return API.patch(apiName, notesPath, { body: note });
+		
 
 	};
 
 	return {
-		fetchNotes, updateNote, addNote, deleteNote
+		getNotes, updateNote, addNote, deleteNote
 	}
 }
 
