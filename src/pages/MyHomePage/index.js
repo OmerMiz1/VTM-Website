@@ -4,9 +4,10 @@ import { FilterMySummariesContext } from '../../utils/context/FilterMySummariesC
 import { Switch, Route, useParams, useRouteMatch } from 'react-router-dom';
 import OnNavbar from '../../components/Navbar/OnNavBar';
 import SideNavBar from '../../components/SideNavBar';
-import MySummaries from './MySummaries'
-import Footer from '../../components/Footer'
+import MySummaries from './MySummaries';
+import Footer from '../../components/Footer';
 
+import MyHomePageLogic from './MyHomePage.logic';
 import SummaryData from '../../data/Summary.data';
 import SummaryApi from '../../api/Summary';
 
@@ -22,21 +23,39 @@ function MyHomePage() {
 	const { page } = useParams();
 	const { path } = useRouteMatch();
 	const { mySummaries, setMySummaries, isMySummaryEmpty,
-        myFilterSummaries,setMyFilterSummaries,
+        myFilterSummaries, setMyFilterSummaries,
         publicSummaries, setPublicSummaries, isPublicSummariesEmpty} = SummaryData();
 
 	const { SearchFilterData, myFilterSummariesTags,
 		FilterDataByAttribute, UnFilter } = MyHomePageFilters(mySummaries, setMyFilterSummaries);
-	const { isLoading, setLoading, addSummary, deleteSummary, updateSummary,
-		ShareSummary, toggleFavorite, editAccess, getPublicSummaries, GetSummariesSharedWith, getAccess } = SummaryApi(mySummaries, setMySummaries,
-			myFilterSummaries, setMyFilterSummaries);
-
+	const { getPublicSummaries, GetSummariesSharedWith  } = SummaryApi();
+	const {
+		addSummary,
+		updateSummary,
+		deleteSummary,
+		toggleFavorite,
+		toggleLike,
+		getMyLibraries,
+		editAccess,
+		setLoading,
+		isLoading,
+		//TODO
+		//getAccess
+		//shareSummary
+	 } = MyHomePageLogic(mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries)
+	
 	return (
 		<SummariesContext.Provider value={{
-			isMySummaryEmpty, mySummaries, isLoading, setLoading, myFilterSummaries, addSummary,
-			deleteSummary, updateSummary, ShareSummary, toggleFavorite, editAccess, getPublicSummaries, GetSummariesSharedWith,
-            publicSummaries, setPublicSummaries, isPublicSummariesEmpty
-		}}>
+			isMySummaryEmpty, mySummaries,
+			isLoading, setLoading,
+			myFilterSummaries, addSummary,
+			deleteSummary, updateSummary,
+			toggleFavorite,
+			toggleLike, getMyLibraries,
+			editAccess, getPublicSummaries,
+			GetSummariesSharedWith,publicSummaries,
+			setPublicSummaries,	isPublicSummariesEmpty
+			}}>
 			<FilterMySummariesContext.Provider value={{
 				SearchFilterData, myFilterSummariesTags,
 				FilterDataByAttribute, UnFilter

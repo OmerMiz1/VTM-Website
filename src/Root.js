@@ -16,13 +16,12 @@ export default function Root({children}) {
 		Signup,
 		ChangePassword,
 		Logout,
-		toggleLike
 	} = UserApi(userAttributes, setUserAttributes, history);
 
 	return (
 		<UserContext.Provider value={{ userAttributes, setUserAttributes, EditProfile, ConfirmSignUpSubmit,
 									ResendConfirmSignUp, Login, ConfirmResetPassword, ResendResetPassword,
-									ResetPassword, Signup, ChangePassword, Logout, toggleLike }}>
+									ResetPassword, Signup, ChangePassword, Logout }}>
 			{children}
 		</UserContext.Provider>
 	)

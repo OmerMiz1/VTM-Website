@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import Amplify, { API, Auth } from 'aws-amplify';
+import { useState } from 'react';
+import Amplify, { API } from 'aws-amplify';
 import { ObjectStr } from '../utils/function/Strings';
 
 // TODO no user -> logout, homepage
@@ -38,7 +38,7 @@ Summary:
  */
 
 //TODO move out all params to calling components (!)
-const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries) => {
+const SummaryApi = () => {
 	const apiName = 'SummaryAPI';
 	const summaryPath = '/summary';
 	const accessPath = summaryPath + '/access';
@@ -58,25 +58,23 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 	const likeValue = 1;
 	const dislikeValue = -1;
 
-	const [isLoading, setLoading] = useState(true);
 
-	//TODO lid
-	const getSummaries = async (uid) => {
+	const getSummariesRemote = (uid) => {
 		console.log('fetchSummaries, path:', `/${uid}`); //DELETEME
-		setLoading(true);
+		// setLoading(true);
 
-		API.get(apiName, `${libraryPath}/${uid}`)
-			.then(summaries => {
-				console.log(`summaries:`, summaries) //DELETEME
-				setMySummaries(summaries);
-				setLoading(false);
-			})
-			.catch(error => {
-				console.log('error fetching summaries:', error) //DELETEME
-			});
+		return API.get(apiName, `${libraryPath}/${uid}`)
+			// .then(summaries => {
+			// 	console.log(`summaries:`, summaries) //DELETEME
+			// 	setMySummaries(summaries);
+			// 	setLoading(false);
+			// })
+			// .catch(error => {
+			// 	console.log('error fetching summaries:', error) //DELETEME
+			// });
 	}
 
-	const getSummary = async (sid) => {
+	const getSummaryRemote = async (sid) => {
 		console.log('getSummary, path:', `${summaryPath}`); //DELETEME
 		const myInit = {
 			queryStringParameters: {
@@ -92,59 +90,25 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 			.catch(error => console.log(error))
 	}
 
-	const addSummary = async (summary) => {
+	const addSummaryRemote = (summary) => {
 		console.log('addSummary:', summary); //DELETEME
 
 		//TODO lid (summary.lid)
-		API.post(apiName, summaryPath, { body: summary })
-			.then(response => {
-				console.log('post response: ', response) //DELETEME
-				
-				// Update front-end
-				summary[summaryIdKeyName] = response.data[summaryIdKeyName];
-				summary[createTimeKeyName] = response.data[createTimeKeyName];
-				summary[editTimeKeyName] = response.data[createTimeKeyName];
-
-				setMySummaries([...mySummaries, summary]);
-				setMyFilterSummaries([...myFilterSummaries, summary]);
-			})
-			.catch(error => {
-				console.log(error) // DELETEME
-			})
+		return API.post(apiName, summaryPath, { body: summary })
 	}
 
-	const updateSummary = async (summary) => {
+	const updateSummaryRemote = async (summary) => {
 		console.log('updateSummary') //DELETEME
-	
-		if (!summary[summaryIdKeyName]) {
-			console.log('error: sid missing', summary)//DELETEME
-			return;
-		}
 
 		summary[summaryIdKeyName] = JSON.stringify(summary[summaryIdKeyName]);
 		summary[editTimeKeyName] = new Date().getTime();
 		
-		API.patch(apiName, summaryPath, { body: summary })
-			.then(response => {
-				console.log('update summary response:', response) //DELETEME
-
-				// Update Frontend
-				summary[summaryIdKeyName] = JSON.parse(summary[summaryIdKeyName]);
-				setMySummaries(prev => prev.map(item => (item[summaryIdKeyName] === summary[summaryIdKeyName] ? summary : item)));
-				setMyFilterSummaries(prev => prev.map(item => (item[summaryIdKeyName] === summary[summaryIdKeyName] ? summary : item)));
-			})
-			.catch(error => {
-				console.log(error) //DELETEME
-			})
+		return API.patch(apiName, summaryPath, { body: summary })
+		
 	}
 
-	const deleteSummary = (sid) => {
+	const deleteSummaryRemote = (sid) => {
 		console.log('delete summary sid: ', sid); //DELETEME
-
-		if (typeof (sid) !== 'string') {
-			console.log('error: invalid sid.\nExpected: string\tFound:', typeof (sid)) //DELETEME
-			return;
-		}
 
 		const queryParams = {
 			queryStringParameters: {
@@ -152,149 +116,65 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 			}
 		}
 
-		API.del(apiName, summaryPath, queryParams)
-			.then(response => {
-				console.log(`delete response:`, response)//DELETEME
-
-				// Fronted delete
-				const newSummaries = [...mySummaries].filter(summary => summary.sid !== sid);
-				const newSummariesFilter = [...myFilterSummaries].filter(summary => summary.sid !== sid);
-				setMyFilterSummaries(newSummariesFilter);
-				setMySummaries(newSummaries);
-			})
-			.catch(error => console.log(error))
+		return API.del(apiName, summaryPath, queryParams)
 	}
 
-	const toggleFavorite = (sid) => {
-		console.log(`toggleFavorite`, sid); //DELETEME
+	const toggleFavoriteRemote = (summary) => {
+		console.log(`toggleFavorite`, summary); //DELETEME
 
-		var toUpdate = {};
-		var response = undefined;
-
-		// FIXME editTime shouldnt be changed becuase of this call!!!!
-		[...mySummaries].map((summary) => {
-			if (summary.sid === sid) {
-				summary[favoriteKeyName] = !summary[favoriteKeyName];
-				toUpdate = summary;
-			};
-			return summary;
-		});
-
-		toUpdate[summaryIdKeyName] = JSON.stringify(toUpdate[summaryIdKeyName]);
-		API.patch(apiName, summaryPath, { body: toUpdate })
-			.then(response => {
-				console.log('update summary response:', response) //DELETEME
-
-				// Update Frontend
-				toUpdate[summaryIdKeyName] = JSON.parse(toUpdate[summaryIdKeyName]);
-				setMySummaries(prev => prev.map(item => (item[summaryIdKeyName] === toUpdate[summaryIdKeyName] ? toUpdate : item)));
-				setMyFilterSummaries(prev => prev.map(item => (item[summaryIdKeyName] === toUpdate[summaryIdKeyName] ? toUpdate : item)));
-			})
-			.catch(error => {
-				console.log(error) //DELETEME
-			})
+		summary[summaryIdKeyName] = JSON.stringify(summary[summaryIdKeyName]);
+		return API.patch(apiName, summaryPath, { body: summary });
 	}
 
-	const toggleLike = async (sid, likes) => {
-        console.log(`toggle like ->  `, sid );
-        
-		try {
-			var { username } = await Auth.currentAuthenticatedUser();
-		} catch (error) {
-			console.log(error); //DELETEME
-			return;
-		}
-
-		if (likes.includes(username)) {
-			delete likes[username]
-		} else {
-			likes[username] = likeValue;
-		}
+	const toggleLikeRemote = async (sid, likes) => {
+        console.log(`toggle like ->  `, sid ); //DELETEME
 
 		const toUpdate = {
 			[summaryIdKeyName]: JSON.stringify(toUpdate[summaryIdKeyName]),
 			likes: likes
 		}
 
-		API.patch(apiName, summaryPath, { body: toUpdate })
-			.then(response => {
-				console.log('update summary response:', response) //DELETEME
+		return API.patch(apiName, summaryPath, { body: toUpdate })
 
-				// Update Frontend
-				toUpdate[summaryIdKeyName] = JSON.parse(toUpdate[summaryIdKeyName]);
-				setMySummaries(prev => prev.map(item => (item[summaryIdKeyName] === toUpdate[summaryIdKeyName] ? toUpdate : item)));
-				setMyFilterSummaries(prev => prev.map(item => (item[summaryIdKeyName] === toUpdate[summaryIdKeyName] ? toUpdate : item)));
-			})
-			.catch(error => {
-				console.log(error) //DELETEME
-			})
     };
 
-	const getMyLibraries = async () => {
+	const getMyLibrariesRemote = () => {
 		console.log('getMyLibraries'); //DELETEME
-		setLoading(true);
 
-		API.get(apiName, myLibrariesPath)
-			.then(summaries => {
-				console.log(`library:`, summaries) //DELETEME
-				setMySummaries(summaries);
-				setLoading(false);
-			})
-			.catch(error => {
-				console.log('error getting libraries:', error) //DELETEME
-				setLoading(false);
-			});
+		return API.get(apiName, myLibrariesPath);
 	}
 
-    const editAccess = async (sid, access) => {
+    const editAccessRemote = (sid, access) => {
 		console.log('editAcces, access:', access); //DELETEME
 
 		access[summaryIdKeyName] = JSON.stringify(sid);
 
-		API.patch(apiName, accessPath, { body: access })
-			.then(response => {
-				console.log('response:', response); //DELETEME
-				var newItem = {};
+		return API.patch(apiName, accessPath, { body: access })
 
-				mySummaries.forEach(summary => {
-					if (summary[summaryIdKeyName] === sid)
-						newItem = {...summary};
-				});
-
-				newItem[accessKeyName] = access[accessKeyName];
-				newItem[friendsKeyName] = access[friendsKeyName];
-
-				console.log('newItem:', newItem) //DELETEME
-				setMySummaries(prevSummaries => prevSummaries.map(item => item[summaryIdKeyName] === sid ? newItem : item));
-
-				setMyFilterSummaries(prevFiltered => prevFiltered.map(item => (item[summaryIdKeyName] === sid) ? newItem : item));
-			})
-			.catch(error => {
-				console.log(ObjectStr(error));
-			})
 	}
 
-	const getPublicSummaries = async () => {
+	// TODO move to discover.logic
+	const getPublicSummariesRemote = async () => {
 		console.log(`getPublicSummaries, path:`, publicSummariesPath); //DELETEME
-		setLoading(true);
+		// setLoading(true);
 
 		try {
 			var summaries = await API.get(apiName, publicSummariesPath);
 		} catch(error) {
 			console.log(error); //DELETEME
-			setLoading(false);
+			// setLoading(false);
 			return;
 		}
 
 		console.log('public summaries:', summaries); //DELETEME
-		setLoading(false);
+		// setLoading(false);
 		return summaries;
 	}
 
-	const GetSummariesSharedWith = async (username) => {
+	const GetSummariesSharedWithRemote = async (username) => {
 		console.log('getSummariesSharedWithMe, username:', username); //DELETEME
 		console.log('path:', sharedWithMePath);//DELETEME
-		setLoading(true);
+		// setLoading(true);
 
 		const queryParams = {
 			queryStringParameters: {
@@ -308,40 +188,32 @@ const SummaryApi = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterS
 			var summaries = await API.get(apiName, sharedWithMePath, queryParams);
 		} catch (error) {
 			console.log(ObjectStr(error)); //DELETEME
-			setLoading(false);
+			// setLoading(false);
 			return;
 		}
 
 		console.log('summaries shared with me:', summaries); //DELETEME
-		setLoading(false);
+		// setLoading(false);
 		return summaries;
 	}
 
     //TODO
-    const getAccess = (sid) => {  }
-	const ShareSummary = (sid) => {	}
-	const getLibrary = async (lid) => {	}
-
-	useEffect(async () => {
-		const libraryResult = await getMyLibraries();
-		console.log(`library:`, libraryResult);
-		
-		// let externalSummary = await getSummary("U2FsdGVkX18CkdIsCBablBjUIiNLIucpcam%2FeyqUSFmojPDoMICGN7u2X6vDZ2PGsWa95VdkiWcrIW0WbSsDj%2FtpGexlcljQuNu4XEV3zY63EnJD8BEcLE0s6e5E9%2BQp")
-		// console.log(`externalSummary:`, externalSummary);
-	}, []);
+    const getAccessRemote = (sid) => {  }
+	const shareSummaryRemote = (sid) => {	}
+	const getLibraryRemote = async (lid) => {	}
 
 	return {
-		isLoading,
-		setLoading,
-		deleteSummary,
-		updateSummary,
-		ShareSummary,
-		toggleFavorite,
-		addSummary,
-        editAccess,
-        toggleLike,
-		getPublicSummaries,
-		GetSummariesSharedWith
+		deleteSummaryRemote,
+		updateSummaryRemote,
+		shareSummaryRemote,
+		toggleFavoriteRemote,
+		addSummaryRemote,
+        editAccessRemote,
+        toggleLikeRemote,
+		getPublicSummariesRemote,
+		GetSummariesSharedWithRemote,
+		getMyLibrariesRemote, // NOT IN USE
+
 	}
 }
 
