@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import Amplify, { API } from 'aws-amplify';
-import { ObjectStr } from '../utils/function/Strings';
 
 // TODO no user -> logout, homepage
 // FIXME
@@ -153,29 +151,14 @@ const SummaryApi = () => {
 
 	}
 
-	// TODO move to discover.logic
-	const getPublicSummariesRemote = async () => {
+	const getPublicSummariesRemote =  () => {
 		console.log(`getPublicSummaries, path:`, publicSummariesPath); //DELETEME
 		// setLoading(true);
-
-		try {
-			var summaries = await API.get(apiName, publicSummariesPath);
-		} catch(error) {
-			console.log(error); //DELETEME
-			// setLoading(false);
-			return;
-		}
-
-		console.log('public summaries:', summaries); //DELETEME
-		// setLoading(false);
-		return summaries;
+		return API.get(apiName, publicSummariesPath);
 	}
 
-	const GetSummariesSharedWithRemote = async (username) => {
+	const getSummariesSharedWithRemote = (username) => {
 		console.log('getSummariesSharedWithMe, username:', username); //DELETEME
-		console.log('path:', sharedWithMePath);//DELETEME
-		// setLoading(true);
-
 		const queryParams = {
 			queryStringParameters: {
 				username: username
@@ -183,18 +166,7 @@ const SummaryApi = () => {
 		}
 
 		console.log(`params:`, queryParams);//DELETEME
-
-		try {
-			var summaries = await API.get(apiName, sharedWithMePath, queryParams);
-		} catch (error) {
-			console.log(ObjectStr(error)); //DELETEME
-			// setLoading(false);
-			return;
-		}
-
-		console.log('summaries shared with me:', summaries); //DELETEME
-		// setLoading(false);
-		return summaries;
+		return API.get(apiName, sharedWithMePath, queryParams);
 	}
 
     //TODO
@@ -211,9 +183,8 @@ const SummaryApi = () => {
         editAccessRemote,
         toggleLikeRemote,
 		getPublicSummariesRemote,
-		GetSummariesSharedWithRemote,
+		getSummariesSharedWithRemote,
 		getMyLibrariesRemote, // NOT IN USE
-
 	}
 }
 

@@ -14,6 +14,7 @@ import SummaryApi from '../../api/Summary';
 import MyHomePageFilters from './MyHomePage.filters';
 import { MyHomePageContainer } from './MyHomePage.style';
 import Discover from './Discover';
+import SharedWithMe from './SharedWithMe';
 import MyTags from './MySummaries/MyTags';
 import ViewSummary from './ViewSummary';
 import ProfilePage from './Profile';
@@ -24,11 +25,12 @@ function MyHomePage() {
 	const { path } = useRouteMatch();
 	const { mySummaries, setMySummaries, isMySummaryEmpty,
         myFilterSummaries, setMyFilterSummaries,
-        publicSummaries, setPublicSummaries, isPublicSummariesEmpty} = SummaryData();
+        publicSummaries, setPublicSummaries, isPublicSummariesEmpty,
+		sharedSummaries, setSharedSummaries, isSharedSummariesEmpty} = SummaryData();
 
 	const { SearchFilterData, myFilterSummariesTags,
 		FilterDataByAttribute, UnFilter } = MyHomePageFilters(mySummaries, setMyFilterSummaries);
-	const { getPublicSummaries, GetSummariesSharedWith  } = SummaryApi();
+	
 	const {
 		addSummary,
 		updateSummary,
@@ -52,9 +54,10 @@ function MyHomePage() {
 			deleteSummary, updateSummary,
 			toggleFavorite,
 			toggleLike, getMyLibraries,
-			editAccess, getPublicSummaries,
-			GetSummariesSharedWith,publicSummaries,
-			setPublicSummaries,	isPublicSummariesEmpty
+			editAccess, publicSummaries,
+			setPublicSummaries,	isPublicSummariesEmpty,
+			sharedSummaries, setSharedSummaries,
+			isSharedSummariesEmpty
 			}}>
 			<FilterMySummariesContext.Provider value={{
 				SearchFilterData, myFilterSummariesTags,
@@ -72,11 +75,11 @@ function MyHomePage() {
 							{
 								page === 'mySummaries' ? <MySummaries /> :
 								page === 'discover' ? <Discover /> :
-								page === 'sharedWithMe' ? <h1>Shared With Me</h1> :
+								page === 'sharedWithMe' ? <SharedWithMe /> :
 								page === 'myFriends' ? <h1>My Friends</h1> :
 								page === 'settings' ? <h1>Setting</h1> :
 								page === 'profile' ? <ProfilePage /> :
-								<h1>ELSE</h1> //DELETEME
+								<h1>ELSE</h1> //TODO? mySummaries
 							}
 						</Route>
 					</Switch>

@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { SummariesContext } from '../../../utils/context/SummariesContext';
-import DiscoverLogic from './Discover.logic';
+import SharedWithMeLogic from './SharedWithMe.logic';
 import MySummariesLogic from '../MySummaries/MySummaries.logic';
-import LoadingComponent from '../Loading'
+import LoadingComponent from '../Loading';
 import CardSummary from '../../../components/Card/CardSummary';
 import {
 	MainPageContainer, MyHomePageH1, CardSummariesContainers,
@@ -10,21 +10,20 @@ import {
 } from '../MyHomePage.style';
 
 
-function Discover() {
+function SharedWithMe() {
 	const { ShowMoreSummaries, amountSummariesShow } = MySummariesLogic();
-	const { isLoading, publicSummaries, isPublicSummariesEmpty } = useContext(SummariesContext);
+	const { isLoading, sharedSummaries, isSharedSummariesEmpty } = useContext(SummariesContext);
 
-	// Fetch public summaries and sets state
-	DiscoverLogic();
+	// Fetch shared summaries and sets state
+	SharedWithMeLogic();
 	
-
 	return (
 		<MainPageContainer>
-			<MyHomePageH1>Discover</MyHomePageH1>
+			<MyHomePageH1>Shared</MyHomePageH1>
 			<LoadingComponent></LoadingComponent>
-			{!isPublicSummariesEmpty && !isLoading &&
+			{!isSharedSummariesEmpty && !isLoading &&
 				<CardSummariesContainers>
-					{publicSummaries.slice(0, amountSummariesShow).map((card) => {
+					{sharedSummaries.slice(0, amountSummariesShow).map((card) => {
 						return (
 							<CardItemContainer key={card.sid}>
 								<CardSummary
@@ -45,12 +44,12 @@ function Discover() {
 				</CardSummariesContainers>
 			}
 			<BottomContainer>
-				{!isPublicSummariesEmpty && !isLoading && amountSummariesShow < publicSummaries.length && (
-					<ViewMoreButton onClick={ShowMoreSummaries}>View More</ViewMoreButton>
+				{!isSharedSummariesEmpty && !isLoading && amountSummariesShow < sharedSummaries.length && (
+					<ViewMoreButton onClick={ ShowMoreSummaries }>View More</ViewMoreButton>
 				)}
 			</BottomContainer>
 		</MainPageContainer>
 	)
 }
 
-export default Discover;
+export default SharedWithMe;
