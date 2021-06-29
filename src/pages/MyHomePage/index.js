@@ -4,15 +4,8 @@ import { FilterMySummariesContext } from '../../utils/context/FilterMySummariesC
 import { Switch, Route, useParams, useRouteMatch } from 'react-router-dom';
 import OnNavbar from '../../components/Navbar/OnNavBar';
 import SideNavBar from '../../components/SideNavBar';
-<<<<<<< HEAD
-// import MiniDrawer from '../../components/SideNavBar/SideBarMaterial';
-
-import MySummaries from './MySummaries'
-import Footer from '../../components/Footer'
-=======
 import MySummaries from './MySummaries';
 import Footer from '../../components/Footer';
->>>>>>> a9fdea86112724f23a6cc1e250776f9ade057933
 
 import MyHomePageLogic from './MyHomePage.logic';
 import SummaryData from '../../data/Summary.data';
