@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import NoteApi from '../../../api/Note';
+import SummaryApi from '../../../api/Summary';
 
 
 const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
@@ -10,6 +11,7 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 	const noteIdKeyName = "nid";
 
 	const [notes, setNotes] = useState([]);
+	const [access, setAccess] = useState({});
 	const [allTagsNotes, setAllTagsNotes] = useState([]);
 	const [filterTagsNotes, setFilterTagsNotes] = useState([]);
 	const [viewSummary, setViewSummary] = useState();
@@ -18,6 +20,7 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 	const [mode, setMode] = useState(params.mode);
 
     const { getNotes, updateNote, addNote, deleteNote } = NoteApi();
+	const { getAccessRemote } = SummaryApi();
 
 	const toggleMode = (nextState) => setMode(mode === 'view' ? nextState : 'view');
 
@@ -38,14 +41,34 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
                 console.log(`error at view summary logic case`); //DELETEME
         }
 
+		var notesDone = false;
+		var accessDone = false;
         setLoading(true);
+
 		getNotes(sid)
 			.then(notes => {
+				notesDone = true;
 				console.log("ViewSummaryLogic, notes:", notes); //DELETEME
 				setNotes(notes);
-				setLoading(false);
+
+				if (accessDone)
+					setLoading(false);
 			})
 			.catch(error => {
+				notesDone = true;
+				console.log(error);
+			})
+		getAccess(sid)
+			.then(response => {
+				accessDone = true;
+				console.log("ViewSummaryLogic, access:", response.data); //DELETEME
+				setAccess(response.data);
+
+				if (notesDone)
+					setLoading(false);
+			})
+			.catch(error => {
+				accessDone = true;
 				console.log(error);
 			})
 	}, []);
@@ -91,7 +114,6 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 			});            
     }
 
-
     const updateNoteIn = (note) => {
 		if (!note[summaryIdKeyName] || typeof(note[createdKeyName]) !== typeof (1)) {
 			console.log('invalid note object', note); //DELETEME
@@ -120,6 +142,9 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 			});
     }
 
+	const getAccess = (sid) => {
+		return getAccessRemote(sid);
+	}
 
 	return {
 		notes,
@@ -132,6 +157,7 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
         updateNoteIn,
         addNoteIn,
         deleteNoteIn,
+		getAccess
 	}
 }
 

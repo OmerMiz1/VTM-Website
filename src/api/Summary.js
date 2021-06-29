@@ -148,7 +148,18 @@ const SummaryApi = () => {
 		access[summaryIdKeyName] = JSON.stringify(sid);
 
 		return API.patch(apiName, accessPath, { body: access })
+	}
 
+	const getAccessRemote = (sid) => {
+		console.log('getSummaryAccess, sid:', sid); //DELETEME
+
+		const params = {
+			queryStringParameters: {
+				[summaryIdKeyName]: JSON.stringify(sid)
+			}
+		}
+
+		return API.get(apiName, accessPath, params);
 	}
 
 	const getPublicSummariesRemote =  () => {
@@ -170,7 +181,6 @@ const SummaryApi = () => {
 	}
 
     //TODO
-    const getAccessRemote = (sid) => {  }
 	const shareSummaryRemote = (sid) => {	}
 	const getLibraryRemote = async (lid) => {	}
 
@@ -184,6 +194,7 @@ const SummaryApi = () => {
         toggleLikeRemote,
 		getPublicSummariesRemote,
 		getSummariesSharedWithRemote,
+		getAccessRemote,
 		getMyLibrariesRemote, // NOT IN USE
 	}
 }

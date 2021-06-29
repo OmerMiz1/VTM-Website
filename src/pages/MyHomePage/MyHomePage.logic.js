@@ -14,6 +14,7 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 		toggleLikeRemote,
 		getMyLibrariesRemote,
 		editAccessRemote,
+		getAccessRemote,
 	 } = SummaryApi()
 
 	const [isLoading, setLoading] = useState(true);
@@ -160,8 +161,7 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 	}
 
 	const editAccess = (sid, access) => {
-		access[summaryIdKeyName] = JSON.stringify(sid);
-
+		// access[summaryIdKeyName] = JSON.stringify(sid); //DELETEME? not sure
 		editAccessRemote(sid, access)
 			.then(response => {
 				console.log('response:', response); //DELETEME
@@ -184,11 +184,13 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 			})
 	}
 
+
 	// TODO
 	useEffect(() => {
 		const libraryResult = getMyLibraries();
 		console.log(`library:`, libraryResult);
 		
+		//DELETEME
 		// let externalSummary = await getSummary("U2FsdGVkX18CkdIsCBablBjUIiNLIucpcam%2FeyqUSFmojPDoMICGN7u2X6vDZ2PGsWa95VdkiWcrIW0WbSsDj%2FtpGexlcljQuNu4XEV3zY63EnJD8BEcLE0s6e5E9%2BQp")
 		// console.log(`externalSummary:`, externalSummary);
 	}, []);
@@ -204,7 +206,6 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 		setLoading,
 		isLoading,
 		//TODO
-		//getAccess
 		//shareSummary
 
 	}

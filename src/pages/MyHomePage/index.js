@@ -42,7 +42,7 @@ function MyHomePage() {
 		setLoading,
 		isLoading,
 		//TODO
-		//getAccess
+		getAccess
 		//shareSummary
 	 } = MyHomePageLogic(mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries)
 	
