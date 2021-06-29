@@ -44,7 +44,7 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 		var notesDone = false;
 		var accessDone = false;
         setLoading(true);
-
+		//TODO SHON getSummaryRemote(sid)
 		getNotes(sid)
 			.then(notes => {
 				notesDone = true;
@@ -58,7 +58,7 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 				notesDone = true;
 				console.log(error);
 			})
-		getAccess(sid)
+		getAccessRemote(sid)
 			.then(response => {
 				accessDone = true;
 				console.log("ViewSummaryLogic, access:", response.data); //DELETEME
@@ -71,6 +71,7 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 				accessDone = true;
 				console.log(error);
 			})
+		
 	}, []);
 
 	useEffect(() => {
@@ -142,9 +143,9 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 			});
     }
 
-	const getAccess = (sid) => {
-		return getAccessRemote(sid);
-	}
+	// const getAccess = (sid) => {
+	// 	return getAccessRemote(sid);
+	// }
 
 	return {
 		notes,
@@ -157,7 +158,6 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
         updateNoteIn,
         addNoteIn,
         deleteNoteIn,
-		getAccess
 	}
 }
 
