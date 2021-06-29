@@ -14,9 +14,8 @@ function ViewSummary() {
         updateSummary, deleteSummary, publicSummaries } = useContext(SummariesContext);
 
 	const { notes, viewSummary, allTagsNotes, filterTagsNotes, toggleFilterNote,
-		toggleMode, mode, updateNoteIn, addNoteIn, deleteNoteIn } = ViewSummaryLogic(setLoading, mySummaries, publicSummaries);
+		toggleMode, mode, updateNoteIn, addNoteIn, deleteNoteIn, access } = ViewSummaryLogic(setLoading, mySummaries, publicSummaries);
 
-    
 	return (
 		<ViewSummaryContainer>
 			<Loading />
@@ -24,7 +23,7 @@ function ViewSummary() {
 				<>
 					<HeaderSection viewSummary={viewSummary} deleteSummary={deleteSummary} updateSummary={updateSummary} mode={{ toggleMode, mode }} />
 					<ContentSection notes={notes} tags={allTagsNotes} mode={{ toggleMode, mode }} sid={viewSummary.sid}
-						filterTags={filterTagsNotes} toggleTags={toggleFilterNote}
+						filterTags={filterTagsNotes} access={access} toggleTags={toggleFilterNote}
 						updateNote={updateNoteIn} addNote={addNoteIn} deleteNote={deleteNoteIn} />
 					<FooterSection viewSummary={viewSummary} />
 				</>

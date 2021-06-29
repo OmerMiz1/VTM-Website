@@ -158,6 +158,7 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
         updateNoteIn,
         addNoteIn,
         deleteNoteIn,
+        access
 	}
 }
 

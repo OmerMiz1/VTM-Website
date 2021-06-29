@@ -16,7 +16,7 @@ import EditAccessForm from '../../../../components/atoms/forms/EditAccess';
 
 import { SummariesContext } from '../../../../utils/context/SummariesContext';
 
-function ContentSection({ notes, tags, filterTags, toggleTags, mode, updateNote, addNote, deleteNote, sid }) {
+function ContentSection({ notes, tags, filterTags, access, toggleTags, mode, updateNote, addNote, deleteNote, sid }) {
 	// showEditNoteNumber === null : none,
 	// showEditNoteNumber ===  "NEW_NOTE" : newNote,
 	// else : updateNote
@@ -39,7 +39,7 @@ function ContentSection({ notes, tags, filterTags, toggleTags, mode, updateNote,
                 mode.mode === "access" && 
                 <AccessPopup title="Access Settings" onClose={() => mode.toggleMode("access")}>
 						<EditAccessForm close={ () => mode.toggleMode("access")}
-                         sid={sid} access={{access: 1, allowFriends: true, allowedUsers: []}} editAccess={editAccess}></EditAccessForm>
+                         sid={sid} access={access} editAccess={editAccess}></EditAccessForm>
 				</AccessPopup>
                 
             }

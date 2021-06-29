@@ -83,7 +83,7 @@ function EditAccessForm ({ sid, access, close, editAccess }) {
 					<input 
 					type="checkbox"
 					name={friendsKey}
-					checked={!acc[friendsKey]} // Has to be ! otherwise there is a weird behavior...
+					checked={acc[friendsKey] ? "checked" : false} // Has to be ! otherwise there is a weird behavior...
 					onClick={() => toggleFriends()}
 					value={true}
 					{...register(friendsKey)}>
@@ -119,7 +119,7 @@ function EditAccessForm ({ sid, access, close, editAccess }) {
 			</label>
 			
             <TextInput name={allowedUsersKey} placeholder="Enter Names"
-			 defaultValue={acc[accessKey] === 2 && acc[allowedUsersKey].length > 0 ? acc[accessKey] : ""}
+			 defaultValue={acc[accessKey] === 2 && acc[allowedUsersKey].length > 0 ? acc[allowedUsersKey].join(', ') : ""}
 			 {...register(allowedUsersKey)}
 			 disabled={acc[accessKey] !== 2}
 			>

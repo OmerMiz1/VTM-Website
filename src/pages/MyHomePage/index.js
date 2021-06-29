@@ -46,8 +46,8 @@ function MyHomePage() {
 		getAccess
 		//shareSummary
 	 } = MyHomePageLogic(mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries)
-	
-	return (
+
+     return (
 		<SummariesContext.Provider value={{
 			isMySummaryEmpty, mySummaries,
 			isLoading, setLoading,
@@ -70,6 +70,7 @@ function MyHomePage() {
 					<SideNavBar />
 					<Switch>
 						<Route exact path={`${path}/:mode/:sid`} component={ViewSummary} />
+
 						<Route exact path='/myHome/:page/:attribute' component={MyTags} />
 						<Route exact path='/myHome/:page/:action/:attribute/:name' component={MySummaries} />
 						<Route exact path='/myHome/:page'>
