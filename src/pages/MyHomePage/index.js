@@ -4,6 +4,8 @@ import { FilterMySummariesContext } from '../../utils/context/FilterMySummariesC
 import { Switch, Route, useParams, useRouteMatch } from 'react-router-dom';
 import OnNavbar from '../../components/Navbar/OnNavBar';
 import SideNavBar from '../../components/SideNavBar';
+// import MiniDrawer from '../../components/SideNavBar/SideBarMaterial';
+
 import MySummaries from './MySummaries'
 import Footer from '../../components/Footer'
 
@@ -16,6 +18,7 @@ import Discover from './Discover';
 import MyTags from './MySummaries/MyTags';
 import ViewSummary from './ViewSummary';
 import ProfilePage from './Profile';
+import Friends from './Friends';
 
 
 function MyHomePage() {
@@ -54,7 +57,7 @@ function MyHomePage() {
 								page === 'mySummaries' ? <MySummaries /> :
 								page === 'discover' ? <Discover /> :
 								page === 'sharedWithMe' ? <h1>Shared With Me</h1> :
-								page === 'myFriends' ? <h1>My Friends</h1> :
+								page === 'myFriends' ? <Friends/> :
 								page === 'settings' ? <h1>Setting</h1> :
 								page === 'profile' ? <ProfilePage /> :
 								<h1>ELSE</h1> //DELETEME
