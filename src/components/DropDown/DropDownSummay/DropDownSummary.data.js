@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { faShare, faTrash, faEdit, faEye, faLock } from '@fortawesome/free-solid-svg-icons'; // Icons
 
 const DropDownSummaryData = () => {
-	const { deleteSummary, ShareSummary } = useContext(SummariesContext);
+	const { deleteSummary, shareSummary } = useContext(SummariesContext);
 	let history = useHistory(); //FIXME? const
 	let { page } = useParams(); //FIXME? const
 
@@ -36,7 +36,7 @@ const DropDownSummaryData = () => {
             {
                 title: 'share',
                 icon: faShare,
-                function: ShareSummary
+                function: shareSummary
             }
         ]
     };
@@ -60,7 +60,7 @@ const DropDownSummaryData = () => {
         {
 			title: 'Share',
 			icon: faShare,
-			function: ShareSummary
+			function: shareSummary
 		},
 		{
 			title: 'Delete',

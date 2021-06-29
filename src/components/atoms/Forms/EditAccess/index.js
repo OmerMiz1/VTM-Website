@@ -55,8 +55,8 @@ function EditAccessForm ({ sid, access, close, editAccess }) {
 		console.log('acc:', acc); //DELETEME
 	}
 
-	// TODO
 	const submitEditAccess = (data) => {
+		//TODO use retrieved data as default values (if not null)
 		data[accessKey] = Number.parseInt(data[accessKey]);
 		data[friendsKey] = data[friendsKey] === 'true' ? true : false;
 		data[allowedUsersKey] = data[allowedUsersKey] ? data[allowedUsersKey].split(" ") : [];

@@ -1,24 +1,32 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import NoteApi from '../../../api/Note';
+import SummaryApi from '../../../api/Summary';
 
 
 const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
+	const summaryIdKeyName = "sid";
+	const createdKeyName = "createTime";
+	const editedKeyName = "editTime";
+	const noteIdKeyName = "nid";
+
 	const [notes, setNotes] = useState([]);
+	const [access, setAccess] = useState({});
 	const [allTagsNotes, setAllTagsNotes] = useState([]);
 	const [filterTagsNotes, setFilterTagsNotes] = useState([]);
 	const [viewSummary, setViewSummary] = useState();
 	const params = useParams();
 
-    console.log(`params`, params);
 	const [mode, setMode] = useState(params.mode);
-	const { fetchNotes } = NoteApi(notes, setNotes, setLoading);
+
+    const { getNotes, updateNote, addNote, deleteNote } = NoteApi();
+	const { getAccessRemote } = SummaryApi();
 
 	const toggleMode = (nextState) => setMode(mode === 'view' ? nextState : 'view');
 
-
 	useEffect(() => {
 		const sid = params.sid;
+
         switch(params.page){
             case "mySummaries":
                 setViewSummary(getSummaryById(sid));
@@ -27,10 +35,42 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
                 console.log(`add here set summary`, sid);
                 setViewSummary(getSummaryByIdPublic(sid));
                 break
+			case "sharewithme":
+				// TODO
             default:
-                console.log(`error at view summary logic case`);
+                console.log(`error at view summary logic case`); //DELETEME
         }
-		fetchNotes(sid);
+
+		var notesDone = false;
+		var accessDone = false;
+        setLoading(true);
+
+		getNotes(sid)
+			.then(notes => {
+				notesDone = true;
+				console.log("ViewSummaryLogic, notes:", notes); //DELETEME
+				setNotes(notes);
+
+				if (accessDone)
+					setLoading(false);
+			})
+			.catch(error => {
+				notesDone = true;
+				console.log(error);
+			})
+		getAccess(sid)
+			.then(response => {
+				accessDone = true;
+				console.log("ViewSummaryLogic, access:", response.data); //DELETEME
+				setAccess(response.data);
+
+				if (notesDone)
+					setLoading(false);
+			})
+			.catch(error => {
+				accessDone = true;
+				console.log(error);
+			})
 	}, []);
 
 	useEffect(() => {
@@ -59,6 +99,53 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 	const getSummaryById = sid => mySummaries.find(summary => summary.sid === sid);
 	const getSummaryByIdPublic = sid => publicSummaries.find(summary => summary.sid === sid);
 
+    const addNoteIn = (note) => {
+        console.log(`note1`, note);
+        addNote(note)
+			.then(response => {
+				console.log("response: ", response);
+				note[noteIdKeyName] = response.data[noteIdKeyName];
+				note[createdKeyName] = response.data[createdKeyName];
+				note[editedKeyName] = response.data[createdKeyName];
+				setNotes([...notes, note]);
+			})
+			.catch(error => {
+				console.log(error) // DELETEME
+			});            
+    }
+
+    const updateNoteIn = (note) => {
+		if (!note[summaryIdKeyName] || typeof(note[createdKeyName]) !== typeof (1)) {
+			console.log('invalid note object', note); //DELETEME
+			return;
+		}
+
+        updateNote(note)
+			.then(response => {
+				console.log(`update note response:`, response); //DELETEME
+				setNotes(prev => prev.map(item => (item.nid === note.nid ? note : item)));
+			})
+			.catch(error => {
+				console.log(error);
+			})
+    }
+
+    const deleteNoteIn = (note) => {
+		deleteNote(note)
+			.then(response => {
+				console.log(response);
+				const newNotes = [...notes].filter(n => n.nid !== note.nid);
+				setNotes(newNotes);
+			})
+			.catch(error => {
+				console.log(error) // DELETEME
+			});
+    }
+
+	const getAccess = (sid) => {
+		return getAccessRemote(sid);
+	}
+
 	return {
 		notes,
 		viewSummary,
@@ -67,7 +154,10 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 		toggleFilterNote,
 		toggleMode,
 		mode,
-		setNotes
+        updateNoteIn,
+        addNoteIn,
+        deleteNoteIn,
+		getAccess
 	}
 }
 

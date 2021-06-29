@@ -16,17 +16,15 @@ const awsmobile = {
 };
 Amplify.configure(awsmobile)
 
-const NoteApi = (notes, setNotes, setLoading) => {
+// notes, setNotes, setLoading
+const NoteApi = () => {
 	const apiName = "SummaryAPI";
 	const notesPath = "/note";
 	const summaryIdKeyName = "sid";
 	const createdKeyName = "createTime";
-	const editedKeyName = "editTime";
-	const noteIdKeyName = "nid";
 
-	const fetchNotes = (sid) => {
-		console.log(`fetchNotes`, sid);
-		setLoading(true);
+	const getNotes = (sid) => {
+		console.log(`getNotes`, sid); //DELETEME
 
 		const queryParams = {
 			queryStringParameters: {
@@ -34,38 +32,17 @@ const NoteApi = (notes, setNotes, setLoading) => {
 			}
 		}
 
-		API.get(apiName, notesPath, queryParams)
-		.then(notes => {
-			console.log(`notes:`, notes) //DELETEME
-			setNotes(notes);
-			setLoading(false);
-		})
-		.catch(error => {
-			console.log('error getting notes:', error) //DELETEME
-		});
+		return API.get(apiName, notesPath, queryParams)
 	};
 
-	const addNote = async (note) => {
-		console.log(`addNote`, note);
+	const addNote = (note) => {
+		 console.log(`addNote`, note);
 
-		API.post(apiName, notesPath, { body: note })
-			.then(response => {
-				console.log('post response: ', response) //DELETEME
-
-				// Update front-end
-				note[noteIdKeyName] = response.data[noteIdKeyName];
-				note[createdKeyName] = response.data[createdKeyName];
-				note[editedKeyName] = response.data[createdKeyName];
-				console.log('added note:', note)
-				setNotes([...notes, note]);
-			})
-			.catch(error => {
-				console.log(error) // DELETEME
-			});
+        return API.post(apiName, notesPath, { body: note });
 	};
 
 	const deleteNote = (note) => {
-		console.log(`deleteNote`, note);
+		console.log(`deleteNote`, note); //DELETEME
 
 		const queryParams = {
 			queryStringParameters: {
@@ -73,40 +50,27 @@ const NoteApi = (notes, setNotes, setLoading) => {
 				[createdKeyName]: JSON.stringify(note[createdKeyName])
 			}
 		}
-		console.log(`queryParams:`, queryParams)
 
-		API.del(apiName, notesPath, queryParams)
-		.then(response => {
-			console.log(response);
-
-			// Update front-end
-			const newNotes = [...notes].filter(n => n.nid !== note.nid);
-			setNotes(newNotes);
-		})
-		.catch(err => console.log(err))
+		console.log(`queryParams:`, queryParams); //DELETEME
+		return API.del(apiName, notesPath, queryParams);
+		
 	};
 
 	const updateNote = (note) => {
 		console.log(`updateNote`, note); //DELETEME
 
-		if (!note[summaryIdKeyName] || typeof (note[createdKeyName]) !== typeof (1)) {
-			console.log('invalid note object', note)//DELETEME
-			return;
+		if (!note[summaryIdKeyName] || typeof(note[createdKeyName]) !== typeof (1)) {
+			console.log('invalid note object', note); //DELETEME
+			return 'error'; //TODO rename error handle
 		}
 
-		API.patch(apiName, notesPath, { body: note })
-		.then(response => {
-			console.log(`update note response:`, response); //DELETEME
-
-			// Update front-end
-			setNotes(prev => prev.map(item => (item.nid === note.nid ? note : item)));
-		})
-		.catch(error => console.log(error))
+		return API.patch(apiName, notesPath, { body: note });
+		
 
 	};
 
 	return {
-		updateNote, addNote, deleteNote, fetchNotes
+		getNotes, updateNote, addNote, deleteNote
 	}
 }
 

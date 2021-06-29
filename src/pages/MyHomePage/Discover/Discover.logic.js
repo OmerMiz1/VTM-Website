@@ -1,19 +1,36 @@
-// import React, {useEffect} from 'react'
+import React, { useEffect, useContext} from 'react';
+import SummaryApi from '../../../api/Summary';
+import { SummariesContext } from '../../../utils/context/SummariesContext';
 
 
-// function DiscoverLogic(setPublicSummaries, getPublicSummaries) {
+function DiscoverLogic() {
+	const { 
+		setLoading,
+		setPublicSummaries,
+	} = useContext(SummariesContext);
+	
+	const { getPublicSummariesRemote } = SummaryApi();
+	const getPublicSummaries = () => {
+		setLoading(true);
 
-// 	useEffect(async () => {
-        
-//         setPublicSummaries(await getPublicSummaries())
-// 		console.log('publicSumaries:'); //TODO delete
-// 	}, []);
+		getPublicSummariesRemote()
+			.then(summaries => {
+				// TODO add to session storage
+				setPublicSummaries(summaries);
+				setLoading(false);
+			})
+			.catch(error => {
+				console.log(`error:`, error);
+				setLoading(false);
+			});
+	}
+
+	useEffect(() => {
+        getPublicSummaries()
+	}, []);
 
 
-//     return (
-//         {}
+    return ( {} )
+}
 
-//     )
-// }
-
-// export default DiscoverLogic
+export default DiscoverLogic
