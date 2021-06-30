@@ -72,20 +72,16 @@ const SummaryApi = () => {
 			// });
 	}
 
-	const getSummaryRemote = async (sid) => {
-		console.log('getSummary, path:', `${summaryPath}`); //DELETEME
+	const getSummaryRemote = (sid) => {
+		console.log('getSummary, sid:', sid); //DELETEME
+
 		const myInit = {
 			queryStringParameters: {
 				[summaryIdKeyName]: JSON.stringify(sid)
 			}
 		}
-		console.log(`path: ${summaryPath}\nQueryParams: ${JSON.stringify(myInit.queryStringParameters)}`)
-		API.get(apiName, summaryPath, myInit)
-			.then(response => {
-				console.log(`response`, response) //DELETEME
-				return response;
-			})
-			.catch(error => console.log(error))
+
+		return API.get(apiName, summaryPath, myInit)
 	}
 
 	const addSummaryRemote = (summary) => {
@@ -185,6 +181,7 @@ const SummaryApi = () => {
 	const getLibraryRemote = async (lid) => {	}
 
 	return {
+		getSummaryRemote,
 		deleteSummaryRemote,
 		updateSummaryRemote,
 		shareSummaryRemote,

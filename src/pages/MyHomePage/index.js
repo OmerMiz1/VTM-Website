@@ -9,7 +9,6 @@ import Footer from '../../components/Footer';
 
 import MyHomePageLogic from './MyHomePage.logic';
 import SummaryData from '../../data/Summary.data';
-import SummaryApi from '../../api/Summary';
 
 import MyHomePageFilters from './MyHomePage.filters';
 import { MyHomePageContainer } from './MyHomePage.style';
@@ -33,6 +32,7 @@ function MyHomePage() {
 		FilterDataByAttribute, UnFilter } = MyHomePageFilters(mySummaries, setMyFilterSummaries);
 	
 	const {
+		getSummary,
 		addSummary,
 		updateSummary,
 		deleteSummary,
@@ -58,7 +58,7 @@ function MyHomePage() {
 			editAccess, publicSummaries,
 			setPublicSummaries,	isPublicSummariesEmpty,
 			sharedSummaries, setSharedSummaries,
-			isSharedSummariesEmpty
+			isSharedSummariesEmpty, getSummary
 			}}>
 			<FilterMySummariesContext.Provider value={{
 				SearchFilterData, myFilterSummariesTags,

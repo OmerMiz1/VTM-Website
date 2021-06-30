@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { SummariesContext } from '../../../utils/context/SummariesContext';
 import ViewSummaryLogic from './ViewSummary.logic';
-import NoteApi from '../../../api/Note';
 import Loading from '../Loading';
 import HeaderSection from './HeaderSection';
 import ContentSection from './ContentSection';
@@ -15,6 +14,7 @@ function ViewSummary() {
 
 	const { notes, viewSummary, allTagsNotes, filterTagsNotes, toggleFilterNote,
 		toggleMode, mode, updateNoteIn, addNoteIn, deleteNoteIn, access } = ViewSummaryLogic(setLoading, mySummaries, publicSummaries);
+
 
 	return (
 		<ViewSummaryContainer>

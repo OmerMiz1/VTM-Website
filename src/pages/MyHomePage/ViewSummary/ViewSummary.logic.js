@@ -26,7 +26,7 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 
 	useEffect(() => {
 		const sid = params.sid;
-
+		
         switch(params.page){
             case "mySummaries":
                 setViewSummary(getSummaryById(sid));
@@ -72,7 +72,7 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 				console.log(error);
 			})
 		
-	}, []);
+	}, [mySummaries]);
 
 	useEffect(() => {
 		const allNotes = getAllTags(notes)

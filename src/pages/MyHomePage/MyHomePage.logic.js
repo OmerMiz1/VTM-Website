@@ -6,7 +6,8 @@ import { ObjectStr } from '../../utils/function/Strings';
 
 const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries) => {
 	const { userAttributes } = useContext(UserContext);
-	const { 
+	const {
+		getSummaryRemote,
 		addSummaryRemote,
 		updateSummaryRemote,
 		deleteSummaryRemote,
@@ -37,6 +38,15 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 
 	const likeValue = 1;
 	const dislikeValue = -1;
+	
+	const getSummary = (sid) => {
+		getSummaryRemote()
+			.then(response => {
+				console.log(`response`, response) //DELETEME
+				return response;
+			})
+			.catch(error => console.log(error))
+	}
 
 	const addSummary = (summary) => {
 		addSummaryRemote(summary)
@@ -196,6 +206,7 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 	}, []);
 
 	return {
+		getSummary,
 		addSummary,
 		updateSummary,
 		deleteSummary,
