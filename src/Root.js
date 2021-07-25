@@ -18,6 +18,7 @@ export default function Root({children}) {
 		Signup,
 		ChangePassword,
 		Logout,
+		GetCurrentSession //TODO
 	} = UserApi(userAttributes, setUserAttributes, history);
 
 	useEffect(()=> {

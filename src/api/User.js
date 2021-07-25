@@ -1,3 +1,4 @@
+/* global chrome */
 import Amplify, { Auth } from 'aws-amplify';
 import { ObjectStr } from '../utils/function/Strings';
 
@@ -70,6 +71,18 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 		delete attributes.email_verified; // Remove bool
 
 		setUserAttributes(attributes);
+		// https://stackoverflow.com/questions/60244048/login-to-chrome-extension-via-website-with-aws-amplify
+		//Get the current session from aws amplify
+		const session = await Auth.currentSession();
+		const extensionId = 'keohhbpcjlkoohpjpbeojdakdjlneebn';
+
+		console.log('sending message to ext1:', extensionId);
+		console.log('chrome:', chrome);
+		chrome.runtime.sendMessage(extensionId, session,
+			function(response) {
+				console.log('sending message to ext2:', response);
+			});
+
 		history.push(mySummariesPath); //FIXME should be done from front if result was OK?
 
 		if (user.challengeName)
@@ -226,6 +239,10 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 		return OK;
 	};
 
+	const GetCurrentSession = () => {
+		return Auth.currentSession();
+	}
+
 	// TODO
 	const ResendResetPassword = (data) => { };
 	
@@ -291,7 +308,8 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 		IsLoggedIn,
 		EditProfile,
 		userAttributes,
-		setUserAttributes
+		setUserAttributes,
+		GetCurrentSession
 	};
 }
 
