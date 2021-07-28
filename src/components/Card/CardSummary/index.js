@@ -77,7 +77,7 @@ function CardSummary(props) {
 				<RatingContainer pointer={page !== 'mySummaries' ? 1 : 0}>
 					<FontAwesomeIcon icon={faHeart} size="sm"
                     onClick={page !== 'mySummaries' ? () => toggleLike(sid) : () => {}} />
-					{Object.keys(likes).length}
+					{likes.size}
 				</RatingContainer>
 				<AuthorName attribution='Created By'
 					textValue={authorName}></AuthorName>

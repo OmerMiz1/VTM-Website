@@ -56,7 +56,6 @@ const SummaryApi = () => {
 	const likeValue = 1;
 	const dislikeValue = -1;
 
-
 	const getSummariesRemote = (uid) => {
 		console.log('fetchSummaries, path:', `/${uid}`); //DELETEME
 		// setLoading(true);

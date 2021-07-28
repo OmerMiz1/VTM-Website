@@ -40,7 +40,7 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 	const dislikeValue = -1;
 	
 	const getSummary = (sid) => {
-		getSummaryRemote()
+		getSummaryRemote(sid)
 			.then(response => {
 				console.log(`response`, response) //DELETEME
 				return response;
@@ -200,7 +200,7 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 		const libraryResult = getMyLibraries();
 		console.log(`library:`, libraryResult);
 		
-		//DELETEME
+		// //DELETEME
 		// let externalSummary = await getSummary("U2FsdGVkX18CkdIsCBablBjUIiNLIucpcam%2FeyqUSFmojPDoMICGN7u2X6vDZ2PGsWa95VdkiWcrIW0WbSsDj%2FtpGexlcljQuNu4XEV3zY63EnJD8BEcLE0s6e5E9%2BQp")
 		// console.log(`externalSummary:`, externalSummary);
 	}, []);
