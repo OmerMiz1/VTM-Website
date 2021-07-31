@@ -4,7 +4,7 @@ import { SummariesContext } from '../../../utils/context/SummariesContext';
 import { FilterMySummariesContext } from '../../../utils/context/FilterMySummariesContext';
 
 function DiscoverLogic() {
-	const { 
+	const {
 		setLoading,
 		setPublicSummaries,
         publicSummaries
@@ -63,7 +63,6 @@ function DiscoverLogic() {
 		setLoading(true);
 		getPublicSummariesRemote()
 			.then(summaries => {
-				// TODO add to session storage
 				setPublicSummaries(summaries);
 				setPublicFilterSummaries(summaries);
                 console.log(`settttt`, summaries, "now ----" ,publicFilterSummaries )

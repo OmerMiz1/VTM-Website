@@ -14,11 +14,16 @@ import {
 import { TimeStringFormat } from '../../../utils/function/TimeFormat';
 // import SummaryApi from '../../../api/Summary';
 
+import img1 from '../../../images/illustrations/1Tacking_note.png';
+import img2 from '../../../images/illustrations/sharepoint.png';
+import img3 from '../../../images/illustrations/youtube.jpg';
+import img4 from '../../../images/illustrations/zoom.jpg';
+import img5 from '../../../images/illustrations/google_drive.jpg';
 
 function CardSummary(props) {
 	const { sid, imgUrl, title, editTime, likes,
         authorName, url, tags, favorite, page, toggleLike } = props;
-	
+
 	// all the component logic
 	const { isDropDown, toggleDropDown,
 		useOutsideCloseMenu, wrapperRef,
@@ -26,6 +31,16 @@ function CardSummary(props) {
 
 	// close when click outside
 	useOutsideCloseMenu(wrapperRef);
+
+	const parseImage = () => {
+		switch(true) {
+			case imgUrl === "sharepoint": return img2;
+			case imgUrl === "youtube": return img3;
+			case imgUrl === "zoom": return img4;
+			case imgUrl === "google_drive": return img5;
+			default: return img1;
+		}
+	}
 
 	return (
 		<CradContainer>
@@ -41,7 +56,7 @@ function CardSummary(props) {
 					
 				</TopContainer>
 				<CardImgContainer href={url} target="_blank" rel="noopener noreferrer">
-					<img src={imgUrl} alt={title}/>
+					<img src={parseImage()} alt={title}/>
 				</CardImgContainer>
 			</CradLink>
 			

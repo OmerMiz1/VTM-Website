@@ -56,5 +56,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "files": [
+	  "./src/images/illustrations/1Tacking_note.png",
+	  "./src/images/illustrations/youtube.jpg",
+	  "./src/images/illustrations/google_drive.jpg",
+	  "./src/images/illustrations/sharepoint.png",
+	  "./src/images/illustrations/zoom.jpg"
+  ]
 }
