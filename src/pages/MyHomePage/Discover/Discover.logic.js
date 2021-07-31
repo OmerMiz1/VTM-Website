@@ -1,4 +1,4 @@
-import React, { useEffect, useContext} from 'react';
+import React, { useEffect, useContext, useState} from 'react';
 import SummaryApi from '../../../api/Summary';
 import { SummariesContext } from '../../../utils/context/SummariesContext';
 import { FilterMySummariesContext } from '../../../utils/context/FilterMySummariesContext';
@@ -15,6 +15,17 @@ function DiscoverLogic() {
         publicFilterSummaries,
         setPublicFilterSummaries 
     } = useContext(FilterMySummariesContext);
+
+    const [urlSearchText, setUrlSearchText] = useState("");
+
+    useEffect(() => {
+        if (urlSearchText !== "") {
+            console.log(`search this Urls`, urlSearchText);
+            
+        } else {
+            UnFilter();
+        }
+    }, [urlSearchText])
 
 
     const UnFilter = () => setPublicFilterSummaries(publicSummaries);

@@ -15,6 +15,23 @@ export const SearchBar = styled.input`
 
 `;
 
+
+export const StaticSearchBarInput = styled.input`
+    border: none;
+    background: #eee;
+    outline: none;
+    float: left;
+    color: black;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 240px;
+    font-weight: bold;
+    padding: 0 30px;
+    font-weight: 600;
+
+`;
+
 export const ContainerSearchBar = styled.div`
     
     position: absolute;
@@ -66,6 +83,22 @@ export const ContainerSearchBar = styled.div`
     
 `;
 
+export const ContainerStaticSearchBar = styled.div`
+    float:right;
+    display:flex;
+    margin:20px;
+    z-index: 1;
+    /* top: 50%;
+    left: 50%; */
+    background: #eee;
+    height: 40px;
+    border-radius: 40px;
+    padding: 0;
+    opacity: 1;
+    /* transition: visibility 0s, opacity 0.5s linear; */
+
+`;
+
 
 export const SearchLink = styled.a`
     color: #e84118;
@@ -73,6 +106,26 @@ export const SearchLink = styled.a`
     height: 40px;
     border-radius: 50%;
     background: ${(props) => props.theme.colors.second};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    color: white;
+    cursor: pointer;
+
+    &:icon {
+        color:white;
+        font-size: 30px;
+    }
+   
+`;
+
+export const StaticSearchLink = styled.a`
+    color: #e84118;
+    width: 40px;
+    height: 40px;
+    /* background: ${(props) => props.theme.colors.second}; */
+    background: #7f7676;
     display: flex;
     justify-content: center;
     align-items: center;

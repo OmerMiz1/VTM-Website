@@ -6,11 +6,11 @@ import LoadingComponent from '../Loading'
 import CardSummary from '../../../components/Card/CardSummary';
 import {
 	MainPageContainer, MyHomePageH1, CardSummariesContainers,
-	CardItemContainer, BottomContainer, ViewMoreButton,
+	CardItemContainer, BottomContainer, ViewMoreButton, TiltleContainer
 } from '../MyHomePage.style';
 import {WarningText} from '../Loading/Loading.style';
 import { FilterMySummariesContext } from '../../../utils/context/FilterMySummariesContext';
-import  SearchNavBar from '../../../components/Navbar/SearchNavBar/index'
+import  StaticSearchBar from '../../../components/Navbar/SearchNavBar/StaticSearchBar'
 
 
 
@@ -21,15 +21,19 @@ function Discover() {
 	const {publicFilterSummaries} = useContext(FilterMySummariesContext);
 
 	// Fetch public summaries and sets state
-	DiscoverLogic();
+	const setUrlSearchText = DiscoverLogic();
 	
 	return (
 		<MainPageContainer>
-			<MyHomePageH1>Discover</MyHomePageH1>
+            <TiltleContainer>
+                <MyHomePageH1>Discover</MyHomePageH1>
+                <StaticSearchBar setUrlSearchText={setUrlSearchText}></StaticSearchBar>
+            </TiltleContainer>
+
 			<LoadingComponent page="Discover"></LoadingComponent>
-            {/* <SearchNavBar></SearchNavBar> */}
 			{publicFilterSummaries && !isLoading ?
 				<CardSummariesContainers>
+
 					{publicFilterSummaries.slice(0, amountSummariesShow).map((card) => {
 						return (
 							<CardItemContainer key={card.sid}>

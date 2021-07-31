@@ -24,6 +24,12 @@ export const MyHomePageContainer = styled.section`
     }
 `;
 
+
+export const TiltleContainer = styled.div`
+    display:flex;
+    justify-content: space-between;
+`
+
 export const MainPageContainer = styled.div`
     grid-column: span 10;
     display: block;
