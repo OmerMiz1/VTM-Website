@@ -19,7 +19,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AddForm from '../../atoms/forms/AddForm'; //DELETEME
 
 
-function NavBar({ usetransparent, PositionMarker }) {
+function NavBar({ usetransparent, PositionMarker, setFilterText }) {
 	const { clickedOnMenu, closeMobileMenu } = NavbarLogic()
 	const { isUserDropDown, toggleUserDropDown, useOutsideCloseMenu,
 		wrapperRef } = OnNavBarLogic();
@@ -50,7 +50,7 @@ function NavBar({ usetransparent, PositionMarker }) {
 
 			<NavRightList position='end' width='auto'>
 				<NavItem>
-					<SearchNavBar />
+					<SearchNavBar setFilterText={setFilterText} />
 				</NavItem>
 
 				{

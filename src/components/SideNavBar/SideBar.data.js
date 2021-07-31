@@ -1,8 +1,10 @@
 // icons
 import {
-	faBookOpen, faGifts, faGlobe, faUserFriends, faTools,
-	faTags, faStar, faExclamationCircle, faCheckSquare
+	faBookOpen, faGifts, faGlobe, faUserFriends,
+	faTags, faStar, faExclamationCircle, faCheckSquare, faUser
 } from '@fortawesome/free-solid-svg-icons';
+
+
 
 // Operations Data
 export const DataOperations = [
@@ -27,9 +29,9 @@ export const DataOperations = [
 		link: '/myHome/myFriends'
 	},
 	{
-		title: 'Settings',
-		icon: faTools,
-		link: '/myHome/settings'
+		title: 'Profile',
+		icon: faUser,
+		link: '/myHome/profile'
 	},
 	{
 		spanText: 'Filters',

@@ -14,8 +14,6 @@ function MyTags() {
 	return (
 		<MainPageContainer>
 			<MyHomePageH1>My Tags</MyHomePageH1>
-			<LoadingComponent page="mySummaries"/>
-
 			{!isMySummaryEmpty && !isLoading &&
 				<ListOfButtonsTags margin='2% 8%'>
 					{Array.from(myFilterSummariesTags).map((tag, index) => {
