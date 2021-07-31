@@ -29,12 +29,19 @@ export const TopContainer = styled.div`
 export const CardH1 = styled.a`
     color: black;
     color: ${props => props.theme.colors.darkMain}; //fix
-    display: flex;
-    justify-content: center;
+    display: block;
+    /* justify-content: center; */
     text-decoration: none;
     font-size:  ${props => props.theme.fontSizes.icon};
     font-weight: 800;
-
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    :hover {
+        white-space: pre-line;
+        color: red;
+        justify-content: center;
+    }
 
 `;
 
