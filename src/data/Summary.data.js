@@ -5,7 +5,10 @@ import { useState, useEffect } from 'react';
 const SummaryData = () => {
 	const [mySummaries, setMySummaries] = useState([]);
 	const [myFilterSummaries, setMyFilterSummaries] = useState([]);
+
     const [publicSummaries, setPublicSummaries] = useState([]);
+    const [publicFilterSummaries, setPublicFilterSummaries] = useState([]);
+
 	const [sharedSummaries, setSharedSummaries] = useState([]);
 
 
@@ -14,6 +17,12 @@ const SummaryData = () => {
 			setMyFilterSummaries(mySummaries);
 		}
 	}, [mySummaries])
+
+    useEffect(() => {
+		if (publicFilterSummaries.length < 1) {
+			setPublicFilterSummaries(publicSummaries);
+		}
+	}, [publicSummaries])
 
 	const isMySummaryEmpty =
 		!mySummaries || (mySummaries && mySummaries.length === 0);
@@ -27,7 +36,8 @@ const SummaryData = () => {
 		mySummaries, setMySummaries, isMySummaryEmpty,
 		myFilterSummaries, setMyFilterSummaries,
         publicSummaries, setPublicSummaries, isPublicSummariesEmpty,
-		sharedSummaries, setSharedSummaries, isSharedSummariesEmpty
+		sharedSummaries, setSharedSummaries, isSharedSummariesEmpty,
+        publicFilterSummaries, setPublicFilterSummaries
 	}
 }
 

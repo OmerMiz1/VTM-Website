@@ -3,7 +3,7 @@ import { FilterMySummariesContext } from '../../../utils/context/FilterMySummari
 import { useParams } from 'react-router-dom';
 
 
-const SearchNavBarLogic = () => {
+const SearchNavBarLogic = (setFilterText) => {
 	const params = useParams();
 	const { SearchFilterData } = useContext(FilterMySummariesContext);
 	const [isHidden, setIsHidden] = useState(0);
@@ -13,21 +13,26 @@ const SearchNavBarLogic = () => {
 		setIsHidden(['settings', 'profile'].includes(params.page) ? 1 : 0)
 	}, [params]);
 
-	const handleChange = value => setSearchText(value);
+	const handleChange = value => {
+        setSearchText(value);
+        startSearch();
+    }
 
 	const startSearch = () => {
 		console.log(`startSearch`, params); //DELETEME
 
 		switch (params.page) {
 			case 'mySummaries':
-				console.log(`search.... `, searchText); //DELETEME
+				// console.log(`search.... `, searchText); //DELETEME
 				SearchFilterData(searchText);
 				break;
 			case 'sharedWithMe':
-				console.log(`search.... in sharedWithMe`, searchText); //DELETEME
+				// console.log(`search.... in sharedWithMe`, searchText); //DELETEME
+                setFilterText(searchText);
 				break;
 			case 'discover':
-				console.log(`search.... in discover`, searchText); //DELETEME
+				// console.log(`search.... in discover`, searchText); //DELETEME
+                setFilterText(searchText);
 				break;
 		}
 	}

@@ -26,7 +26,8 @@ function MyHomePage() {
 	const { mySummaries, setMySummaries, isMySummaryEmpty,
         myFilterSummaries, setMyFilterSummaries,
         publicSummaries, setPublicSummaries, isPublicSummariesEmpty,
-		sharedSummaries, setSharedSummaries, isSharedSummariesEmpty} = SummaryData();
+		sharedSummaries, setSharedSummaries, isSharedSummariesEmpty, 
+        publicFilterSummaries, setPublicFilterSummaries} = SummaryData();
 
 	const { SearchFilterData, myFilterSummariesTags,
 		FilterDataByAttribute, UnFilter } = MyHomePageFilters(mySummaries, setMyFilterSummaries);
@@ -43,8 +44,10 @@ function MyHomePage() {
 		setLoading,
 		isLoading,
 		//TODO
-		getAccess
+		getAccess,
 		//shareSummary
+        filterText,
+        setFilterText,
 	 } = MyHomePageLogic(mySummaries, setMySummaries, myFilterSummaries, setMyFilterSummaries)
 
      return (
@@ -62,15 +65,15 @@ function MyHomePage() {
 			}}>
 			<FilterMySummariesContext.Provider value={{
 				SearchFilterData, myFilterSummariesTags,
-				FilterDataByAttribute, UnFilter
+				FilterDataByAttribute, UnFilter,
+                filterText, publicFilterSummaries, setPublicFilterSummaries
 			}} >
-				<OnNavbar usetransparent={0} PositionMarker={page} />
+				<OnNavbar usetransparent={0} PositionMarker={page} setFilterText={setFilterText} />
 				
 				<MyHomePageContainer>
 					<SideNavBar />
 					<Switch>
 						<Route exact path={`${path}/:mode/:sid`} component={ViewSummary} />
-
 						<Route exact path='/myHome/:page/:attribute' component={MyTags} />
 						<Route exact path='/myHome/:page/:action/:attribute/:name' component={MySummaries} />
 						<Route exact path='/myHome/:page'>
@@ -79,7 +82,6 @@ function MyHomePage() {
 								page === 'discover' ? <Discover /> :
 								page === 'myFriends' ? <Friends/> :
 								page === 'sharedWithMe' ? <SharedWithMe /> :
-								page === 'settings' ? <h1>Setting</h1> :
 								page === 'profile' ? <ProfilePage /> :
 								<h1>ELSE</h1> //TODO? mySummaries
 							}

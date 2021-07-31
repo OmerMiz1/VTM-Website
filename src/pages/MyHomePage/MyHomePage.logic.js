@@ -19,6 +19,7 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 	 } = SummaryApi()
 
 	const [isLoading, setLoading] = useState(true);
+    const [filterText, setFilterText] = useState("");
 
 	const apiName = 'SummaryAPI';
 	const summaryPath = '/summary';
@@ -218,6 +219,8 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 		isLoading,
 		//TODO
 		//shareSummary
+        filterText,
+        setFilterText
 
 	}
 }
