@@ -8,7 +8,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ChangePasswordSchema } from '../../../../validation/ChangePasswordValidation';
 
 
-
 function EditProfileForm({ setChangePassword }) {
 	const { ChangePassword } = useContext(UserContext);
 	// Valdation state from ProfileUserSchema (schema)
