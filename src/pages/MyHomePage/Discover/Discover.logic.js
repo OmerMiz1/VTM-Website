@@ -9,10 +9,9 @@ function DiscoverLogic() {
 		setPublicSummaries,
 	} = useContext(SummariesContext);
 	
-	const { getPublicSummariesRemote } = SummaryApi();
+	const { getPublicSummariesRemote, getPublicSummariesFromUrlRemote } = SummaryApi();
 	const getPublicSummaries = () => {
 		setLoading(true);
-
 		getPublicSummariesRemote()
 			.then(summaries => {
 				// TODO add to session storage
@@ -23,6 +22,20 @@ function DiscoverLogic() {
 				console.log(`error:`, error);
 				setLoading(false);
 			});
+	}
+
+	const getPublicSummariesFromUrl = (url) => {
+		setLoading(true);
+		getPublicSummariesFromUrlRemote(url)
+		.then(summaries => {
+			// TODO add to session storage
+			setPublicSummaries(summaries);
+			setLoading(false);
+		})
+		.catch(error => {
+			console.log(`error:`, error);
+			setLoading(false);
+		});
 	}
 
 	useEffect(() => {
