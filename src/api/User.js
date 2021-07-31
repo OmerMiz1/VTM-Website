@@ -13,7 +13,7 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 	const loginPath = "/access/login";
 	const homePath = "/home";
 	const OK = false;
-	const extensionId = 'keohhbpcjlkoohpjpbeojdakdjlneebn';
+	const extensionId = 'plemdgmijbjknnggfebbjdifoaemagkc';
 
 	/**
 	 * 
