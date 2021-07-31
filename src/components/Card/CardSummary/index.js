@@ -14,6 +14,11 @@ import {
 import { TimeStringFormat } from '../../../utils/function/TimeFormat';
 // import SummaryApi from '../../../api/Summary';
 
+import img1 from '../../../images/illustrations/1Tacking_note.png';
+import img2 from '../../../images/illustrations/sharepoint.png';
+import img3 from '../../../images/illustrations/youtube.jpg';
+import img4 from '../../../images/illustrations/zoom.jpg';
+import img5 from '../../../images/illustrations/google_drive.jpg';
 
 function CardSummary(props) {
 	const { sid, imgUrl, title, editTime, likes,

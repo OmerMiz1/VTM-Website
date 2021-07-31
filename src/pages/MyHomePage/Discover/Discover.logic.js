@@ -4,7 +4,7 @@ import { SummariesContext } from '../../../utils/context/SummariesContext';
 
 
 function DiscoverLogic() {
-	const { 
+	const {
 		setLoading,
 		setPublicSummaries,
 	} = useContext(SummariesContext);
@@ -14,7 +14,6 @@ function DiscoverLogic() {
 		setLoading(true);
 		getPublicSummariesRemote()
 			.then(summaries => {
-				// TODO add to session storage
 				setPublicSummaries(summaries);
 				setLoading(false);
 			})
