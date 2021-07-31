@@ -21,7 +21,7 @@ function DiscoverLogic() {
     useEffect(() => {
         if (urlSearchText !== "") {
             console.log(`search this Urls`, urlSearchText);
-            
+            getPublicSummariesFromUrl(urlSearchText);
         } else {
             UnFilter();
         }
@@ -50,7 +50,7 @@ function DiscoverLogic() {
 
     useEffect(() => {
         if (filterText !== "") {
-            console.log(`filllte`, filterText);
+            console.log(`filter`, filterText);
             
             SearchFilterData(filterText);
         } else {
@@ -65,7 +65,6 @@ function DiscoverLogic() {
 			.then(summaries => {
 				setPublicSummaries(summaries);
 				setPublicFilterSummaries(summaries);
-                console.log(`settttt`, summaries, "now ----" ,publicFilterSummaries )
 				setLoading(false);
 			})
 			.catch(error => {
@@ -79,7 +78,9 @@ function DiscoverLogic() {
 		getPublicSummariesFromUrlRemote(url)
 		.then(summaries => {
 			// TODO add to session storage
-			setPublicSummaries(summaries);
+			// setPublicSummaries(summaries);
+            setPublicFilterSummaries(summaries);
+
 			setLoading(false);
 		})
 		.catch(error => {
@@ -93,7 +94,7 @@ function DiscoverLogic() {
 	}, []);
 
 
-    return ( {} )
+    return ( {setUrlSearchText} )
 }
 
 export default DiscoverLogic

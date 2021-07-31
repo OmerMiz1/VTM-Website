@@ -13,7 +13,7 @@ function StaticSearchBar({setUrlSearchText}) {
 	return (
         <>
         <ContainerStaticSearchBar>
-			<StaticSearchBarInput onChange={e => handleChange(e.target.value)} className="input" type="text" placeholder="search by url"  defaultValue="" />
+			<StaticSearchBarInput onChange={e => handleChange(e.target.value)} className="input" type="text" placeholder="search by URL"  defaultValue="" />
 			<StaticSearchLink onClick={startSearch}  className="link">
 			{/* <SearchLink onClick={startSearch} className="link"> */}
 				<FontAwesomeIcon className="icon" icon={faSearch} />

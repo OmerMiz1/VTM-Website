@@ -21,7 +21,7 @@ function Discover() {
 	const {publicFilterSummaries} = useContext(FilterMySummariesContext);
 
 	// Fetch public summaries and sets state
-	const setUrlSearchText = DiscoverLogic();
+	const {setUrlSearchText} = DiscoverLogic();
 	
 	return (
 		<MainPageContainer>
@@ -31,7 +31,7 @@ function Discover() {
             </TiltleContainer>
 
 			<LoadingComponent page="Discover"></LoadingComponent>
-			{publicFilterSummaries && !isLoading ?
+			{publicFilterSummaries && publicFilterSummaries.length >0 && !isLoading ?
 				<CardSummariesContainers>
 
 					{publicFilterSummaries.slice(0, amountSummariesShow).map((card) => {
@@ -53,7 +53,7 @@ function Discover() {
 						)
 					})}
 				</CardSummariesContainers>: !isLoading ?
-            <WarningText>No summaries Shared!</WarningText> : <></>
+            <WarningText>No summaries found!</WarningText> : <></>
 			}
 			<BottomContainer>
 				{publicFilterSummaries && !isLoading && amountSummariesShow < publicFilterSummaries.length && (
