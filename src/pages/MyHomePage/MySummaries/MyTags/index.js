@@ -14,7 +14,7 @@ function MyTags() {
 	return (
 		<MainPageContainer>
 			<MyHomePageH1>My Tags</MyHomePageH1>
-			<LoadingComponent />
+			<LoadingComponent page="mySummaries"/>
 
 			{!isMySummaryEmpty && !isLoading &&
 				<ListOfButtonsTags margin='2% 8%'>

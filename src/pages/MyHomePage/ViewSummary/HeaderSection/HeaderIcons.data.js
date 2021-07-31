@@ -54,14 +54,13 @@ export const EditIcons = {
   },
 };
 
-const HeaderIconsData = (mode, modeToggle, deleteSummary) => {
+const HeaderIconsData = (mode, modeToggle, deleteSummary, sid) => {
   const history = useHistory();
 
-  //TODO ceate styled one and move to util *2
-  const confirmDelete = (sid) => {
+  const confirmDelete = (title) => {
     var ans = window.confirm("Are you sure you want to delete this summary?");
     if (ans === true) {
-      console.log(`deleteSummary`, sid);
+      console.log(`deleteSummary- `, title, sid);
       deleteSummary(sid);
       history.push("/myHome/mySummaries");
     }

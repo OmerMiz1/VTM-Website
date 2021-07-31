@@ -8,6 +8,8 @@ import {
 	MainPageContainer, MyHomePageH1, CardSummariesContainers,
 	CardItemContainer, BottomContainer, ViewMoreButton,
 } from '../MyHomePage.style';
+import {WarningText} from '../Loading/Loading.style';
+
 
 
 function Discover() {
@@ -21,8 +23,8 @@ function Discover() {
 	return (
 		<MainPageContainer>
 			<MyHomePageH1>Discover</MyHomePageH1>
-			<LoadingComponent></LoadingComponent>
-			{!isPublicSummariesEmpty && !isLoading &&
+			<LoadingComponent page="Discover"></LoadingComponent>
+			{!isPublicSummariesEmpty && !isLoading ?
 				<CardSummariesContainers>
 					{publicSummaries.slice(0, amountSummariesShow).map((card) => {
 						return (
@@ -42,7 +44,8 @@ function Discover() {
 							</CardItemContainer>
 						)
 					})}
-				</CardSummariesContainers>
+				</CardSummariesContainers>: !isLoading ?
+            <WarningText>No summaries Shared!</WarningText> : <></>
 			}
 			<BottomContainer>
 				{!isPublicSummariesEmpty && !isLoading && amountSummariesShow < publicSummaries.length && (

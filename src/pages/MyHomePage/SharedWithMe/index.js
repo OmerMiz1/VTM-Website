@@ -8,6 +8,7 @@ import {
 	MainPageContainer, MyHomePageH1, CardSummariesContainers,
 	CardItemContainer, BottomContainer, ViewMoreButton,
 } from '../MyHomePage.style';
+import {WarningText} from '../Loading/Loading.style';
 
 
 function SharedWithMe() {
@@ -20,8 +21,8 @@ function SharedWithMe() {
 	return (
 		<MainPageContainer>
 			<MyHomePageH1>Shared</MyHomePageH1>
-			<LoadingComponent></LoadingComponent>
-			{!isSharedSummariesEmpty && !isLoading &&
+			<LoadingComponent page="Shared"></LoadingComponent>
+			{!isSharedSummariesEmpty && !isLoading ?
 				<CardSummariesContainers>
 					{sharedSummaries.slice(0, amountSummariesShow).map((card) => {
 						return (
@@ -41,8 +42,10 @@ function SharedWithMe() {
 							</CardItemContainer>
 						)
 					})}
-				</CardSummariesContainers>
-			}
+				</CardSummariesContainers>: !isLoading ?
+            <WarningText>No summaries Shared!</WarningText> : <></>
+            }
+
 			<BottomContainer>
 				{!isSharedSummariesEmpty && !isLoading && amountSummariesShow < sharedSummaries.length && (
 					<ViewMoreButton onClick={ ShowMoreSummaries }>View More</ViewMoreButton>

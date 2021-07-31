@@ -73,7 +73,7 @@ function NavBar({ usetransparent, PositionMarker }) {
 							</NavItem>
 						);
 					})
-				};
+				}
 			</NavRightList>
 		</NavbarSection>
 	);

@@ -17,7 +17,7 @@ function HeaderSection({ viewSummary, deleteSummary, updateSummary, mode }) {
 	const { titleInputRef, Title, modeToggle, updateTitle, editTitle, toggleEditTitle,
 		addTagInputRef, toggleShowAddTagInput, deleteTag,
 		addTag, tags, showAddTagInput } = HeaderLogic(updateSummary, mode, viewSummary);
-	const IconData = HeaderIconsData(mode.mode, modeToggle, deleteSummary);
+	const IconData = HeaderIconsData(mode.mode, modeToggle, deleteSummary, viewSummary.sid);
 
 	return (
 		<ViewSummaryHeaderContainer>

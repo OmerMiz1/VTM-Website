@@ -30,7 +30,7 @@ export default function LoginForm({ setResetPassword }) {
 		<BoxContainer>
 			<MarginSpanHeight height='30px' />
 			<FormContainer onSubmit={handleSubmit(Login)}>
-				<Input type='text' placeholder='email' name='email' {...register("email")} />
+				<Input type='text' placeholder='user name' name='email' {...register("email")} />
 				<ValidationWarning> {errors.email?.message} </ValidationWarning>
 				<MarginSpanHeight height='12px' />
 				<Input type='password' placeholder='password' name='password' {...register("password")} />

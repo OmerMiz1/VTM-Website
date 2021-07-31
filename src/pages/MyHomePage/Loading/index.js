@@ -7,19 +7,18 @@ import {
 } from './Loading.style';
 
 
-function LoadingComponent() {
+function LoadingComponent({page}) {
 	const { isMySummaryEmpty, isLoading, myFilterSummaries } = useContext(SummariesContext);
 
 	return (
 		<div>
-			{isMySummaryEmpty && !isLoading && (
+			{page === "mySummaries" && isMySummaryEmpty && !isLoading ? (
 				<WarningText>No summaries found!</WarningText>
-			)}
-
-			{myFilterSummaries.length === 0 && !isLoading && (
+			) :
+			page === "mySummaries" && myFilterSummaries.length === 0 && !isLoading && (
 				<WarningText>Summary not found!</WarningText>
 			)}
-			{isLoading &&
+            {isLoading &&
 				<LoadingContainer>
 					<WarningText>Loading</WarningText>
 					<LoadingContainerMotion

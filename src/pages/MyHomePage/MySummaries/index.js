@@ -16,7 +16,7 @@ function MySummaries() {
 	return (
 		<MainPageContainer>
 			<MyHomePageH1>My Summaries</MyHomePageH1>
-			<LoadingComponent></LoadingComponent>
+			<LoadingComponent page="mySummaries"></LoadingComponent>
             
 			{!isMySummaryEmpty && !isLoading &&
 				<CardSummariesContainers>
