@@ -13,7 +13,7 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 	const loginPath = "/access/login";
 	const homePath = "/home";
 	const OK = false;
-	const extensionId = 'plemdgmijbjknnggfebbjdifoaemagkc';
+	const extensionIds = ['plemdgmijbjknnggfebbjdifoaemagkc', 'cnlefmmeadmemmdciolhbnfeacpdfbkd'];
 
 	/**
 	 * 
@@ -77,10 +77,13 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 		//Get the current session from aws amplify
 		const session = await Auth.currentSession();
 
-		chrome.runtime.sendMessage(extensionId, session,
-			function(response) {
-				console.log('sending message to ext2:', response);
-			});
+		extensionIds.forEach(id => {
+			chrome.runtime.sendMessage(id, session,
+				function(response) {
+					console.log('sending message to ext2:', response);
+				});
+		})
+		
 
 		history.push(mySummariesPath); //FIXME should be done from front if result was OK?
 
