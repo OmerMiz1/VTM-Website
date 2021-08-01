@@ -82,7 +82,7 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 				function(response) {
 					console.log('sending message to ext2:', response);
 				});
-		})
+		});
 		
 
 		history.push(mySummariesPath); //FIXME should be done from front if result was OK?
