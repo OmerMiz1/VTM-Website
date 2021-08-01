@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faHeart, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { stringLength } from '../../../utils/function/Strings';
@@ -12,7 +12,6 @@ import {
 	DateContainer, LeftContainer
 } from './CardSummary.style';
 import { TimeStringFormat } from '../../../utils/function/TimeFormat';
-// import SummaryApi from '../../../api/Summary';
 
 import img1 from '../../../images/illustrations/1Tacking_note.png';
 import img2 from '../../../images/illustrations/sharepoint.png';
@@ -22,12 +21,14 @@ import img5 from '../../../images/illustrations/google_drive.jpg';
 
 function CardSummary(props) {
 	const { sid, imgUrl, title, editTime, likes,
-        authorName, url, tags, favorite, page, toggleLike } = props;
+        authorName, url, tags, favorite, page, setSummaries } = props;
+	
+	const [likesState, setLikesState] = useState(likes);
 
 	// all the component logic
 	const { isDropDown, toggleDropDown,
 		useOutsideCloseMenu, wrapperRef,
-		toggleIsFavorite, isFavorite } = CardSummaryLogic(favorite);
+		toggleIsFavorite, isFavorite, toggleLike } = CardSummaryLogic(favorite);
 
 	// close when click outside
 	useOutsideCloseMenu(wrapperRef);
@@ -91,8 +92,8 @@ function CardSummary(props) {
 			<BottomContainer>
 				<RatingContainer pointer={page !== 'mySummaries' ? 1 : 0}>
 					<FontAwesomeIcon icon={faHeart} size="sm"
-                    onClick={page !== 'mySummaries' ? () => toggleLike(sid) : () => {}} />
-					{likes.size}
+                    onClick={page !== 'mySummaries' ? () => toggleLike(sid, likesState, setSummaries, setLikesState) : () => {}} />
+					{likesState.length}
 				</RatingContainer>
 				<AuthorName attribution='Created By'
 					textValue={authorName}></AuthorName>

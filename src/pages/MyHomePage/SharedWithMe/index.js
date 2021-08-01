@@ -13,7 +13,11 @@ import {WarningText} from '../Loading/Loading.style';
 
 function SharedWithMe() {
 	const { ShowMoreSummaries, amountSummariesShow } = MySummariesLogic();
-	const { isLoading, sharedSummaries, isSharedSummariesEmpty } = useContext(SummariesContext);
+	const {
+		isLoading,
+		sharedSummaries,
+		setSharedSummaries,
+		isSharedSummariesEmpty } = useContext(SummariesContext);
 
 	// Fetch shared summaries and sets state
 	SharedWithMeLogic();
@@ -38,6 +42,7 @@ function SharedWithMe() {
 									tags={card.tags}
 									likes={card.likes}
 									page='discover'
+									setSummary={setSharedSummaries}
 								></CardSummary>
 							</CardItemContainer>
 						)

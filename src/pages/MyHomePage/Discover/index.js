@@ -17,7 +17,7 @@ import  StaticSearchBar from '../../../components/Navbar/SearchNavBar/StaticSear
 
 function Discover() {
 	const { ShowMoreSummaries, amountSummariesShow } = MySummariesLogic();
-	const { isLoading, isPublicSummariesEmpty } = useContext(SummariesContext);
+	const { isLoading, isPublicSummariesEmpty, setPublicSummaries, publicSummaries } = useContext(SummariesContext);
 	const {publicFilterSummaries} = useContext(FilterMySummariesContext);
 
 	// Fetch public summaries and sets state
@@ -48,6 +48,7 @@ function Discover() {
 									tags={card.tags}
 									likes={card.likes}
 									page='discover'
+									setSummaries={setPublicSummaries}
 								></CardSummary>
 							</CardItemContainer>
 						)

@@ -117,14 +117,15 @@ const SummaryApi = () => {
 	}
 
 	const toggleLikeRemote = async (sid, likes) => {
-        console.log(`toggle like ->  `, sid ); //DELETEME
+        console.log(`toggleLikeRemote, sid:`, sid, typeof(sid)); //DELETEME
 
-		const toUpdate = {
-			[summaryIdKeyName]: JSON.stringify(toUpdate[summaryIdKeyName]),
+		const myInit = {
+			[summaryIdKeyName]: JSON.stringify(sid),
 			likes: likes
 		}
 
-		return API.patch(apiName, summaryPath, { body: toUpdate })
+		console.log(`myInit:`, myInit); //DELETEME
+		return API.patch(apiName, summaryPath, { body: myInit })
 
     }
 

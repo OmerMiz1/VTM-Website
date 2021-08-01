@@ -5,7 +5,7 @@ import { SummariesContext } from '../../../utils/context/SummariesContext';
 const CardSummaryLogic = (favorites) => {
 	const [isDropDown, setIsDropDown] = useState(false);
 	const [isFavorite, setIsFavorite] = useState(favorites);
-	const { toggleFavorite } = useContext(SummariesContext);
+	const { toggleFavorite, toggleLike } = useContext(SummariesContext);
 
 
 	//only frontend change here  
@@ -14,6 +14,7 @@ const CardSummaryLogic = (favorites) => {
 		setIsFavorite(!isFavorite);
 		toggleFavorite(sid);
 	}
+
 	const toggleDropDown = () => setIsDropDown(!isDropDown);
 	const closeDropDown = () => setIsDropDown(false); // close mobile menu
 	const wrapperRef = useRef(null); // ref click out of the navbar
@@ -42,7 +43,8 @@ const CardSummaryLogic = (favorites) => {
 		useOutsideCloseMenu,
 		wrapperRef,
 		toggleIsFavorite,
-		isFavorite
+		isFavorite,
+		toggleLike
 	}
 }
 

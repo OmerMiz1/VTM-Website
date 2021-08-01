@@ -132,24 +132,27 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 			})
 	}
 
-	const toggleLike = (sid, likes) => {
+	const toggleLike = (sid, likes, setSummaries, setLikesState) => {
+		console.log(`toggleLike, sid, likes:`, sid, likes); //DELETEME
 		const username = userAttributes.username;
-		
-		// TODO debug, likes is a map?
-		if (likes.includes(username)) {
-			delete likes[username]
+
+		var likesSet = new Set(likes);
+
+		if (likesSet.has(username)) {
+			likesSet.delete(username);
 		} else {
-			likes[username] = likeValue;
+			likesSet.add(username);
 		}
+
+		likes = Array.from(likesSet);
 
 		toggleLikeRemote(sid, likes)
 			.then(response => {
 				console.log('update summary response:', response) //DELETEME
 
 				// Update Frontend
-				// toUpdate[summaryIdKeyName] = JSON.parse(toUpdate[summaryIdKeyName]);
-				// setMySummaries(prev => prev.map(item => (item[summaryIdKeyName] === toUpdate[summaryIdKeyName] ? toUpdate : item)));
-				// setMyFilterSummaries(prev => prev.map(item => (item[summaryIdKeyName] === toUpdate[summaryIdKeyName] ? toUpdate : item)));
+				setSummaries(prev => prev.map(item => item[summaryIdKeyName] === sid ? {...item, likes:likes} : item));
+				setLikesState(likes);
 			})
 			.catch(error => {
 				console.log(error) //DELETEME
