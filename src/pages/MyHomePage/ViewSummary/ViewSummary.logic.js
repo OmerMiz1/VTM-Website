@@ -18,6 +18,7 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 	const params = useParams();
 
 	const [mode, setMode] = useState(params.mode);
+	const [page, setPage] = useState("mySummaries");
 
     const { getNotes, updateNote, addNote, deleteNote } = NoteApi();
 	const { getAccessRemote } = SummaryApi();
@@ -26,14 +27,17 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 
 	useEffect(() => {
 		const sid = params.sid;
+
 		
         switch(params.page){
             case "mySummaries":
                 setViewSummary(getSummaryById(sid));
+                setPage("mySummaries")
                 break;
             case "discover":
                 console.log(`add here set summary`, sid);
                 setViewSummary(getSummaryByIdPublic(sid));
+                setPage("discover");
                 break
 			case "sharewithme":
 				// TODO
@@ -158,7 +162,8 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
         updateNoteIn,
         addNoteIn,
         deleteNoteIn,
-        access
+        access,
+        page
 	}
 }
 

@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { faShare, faTrash, faEdit, faEye, faLock } from '@fortawesome/free-solid-svg-icons'; // Icons
 
 const DropDownSummaryData = () => {
-	const { deleteSummary, shareSummary } = useContext(SummariesContext);
+	const { deleteSummary} = useContext(SummariesContext);
 	let history = useHistory(); //FIXME? const
 	let { page } = useParams(); //FIXME? const
 

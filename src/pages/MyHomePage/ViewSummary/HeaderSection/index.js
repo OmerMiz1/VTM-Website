@@ -13,7 +13,7 @@ import Icon from '../../../../components/atoms/Icon';
 import IconContainer from '../../../../containers/IconContainer';
 
 
-function HeaderSection({ viewSummary, deleteSummary, updateSummary, mode }) {
+function HeaderSection({ viewSummary, deleteSummary, updateSummary, mode, page }) {
 	const { titleInputRef, Title, modeToggle, updateTitle, editTitle, toggleEditTitle,
 		addTagInputRef, toggleShowAddTagInput, deleteTag,
 		addTag, tags, showAddTagInput } = HeaderLogic(updateSummary, mode, viewSummary);
@@ -63,7 +63,7 @@ function HeaderSection({ viewSummary, deleteSummary, updateSummary, mode }) {
 				<IconContainer justContent="flex-end">
 					{IconData.map((data, index) => {
 						return (
-							<Icon key={index} margin={data.margin} funOnClick={() => data.function(data.title)}
+							<Icon key={index} margin={data.margin} funOnClick={() => page === "mySummaries" ? data.function(data.title): console.log(`try!`)}
 								color={data.color} icon={data.icon} />
 						)
 					})
