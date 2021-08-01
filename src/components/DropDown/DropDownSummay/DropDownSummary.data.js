@@ -12,6 +12,11 @@ const DropDownSummaryData = () => {
 		history.push('/myHome/' + page + '/' + title + '/' + sid, sid);
 	}
 
+
+    const shareSummary = () => {
+        console.log(`not work`);
+    }
+
 	//TODO create styled one and move to util *2
 	const confirmDelete = (sid) => {
 		var ans = window.confirm("Are you sure you want to delete this summary?");
