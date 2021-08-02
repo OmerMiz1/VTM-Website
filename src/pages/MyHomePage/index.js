@@ -10,6 +10,8 @@ import Footer from '../../components/Footer';
 import MyHomePageLogic from './MyHomePage.logic';
 import SummaryData from '../../data/Summary.data';
 
+import TagView from './TagView';
+
 import MyHomePageFilters from './MyHomePage.filters';
 import { MyHomePageContainer } from './MyHomePage.style';
 import Discover from './Discover';
@@ -74,7 +76,7 @@ function MyHomePage() {
 					<Switch>
 						<Route exact path={`${path}/:mode/:sid`} component={ViewSummary} />
 						<Route exact path='/myHome/:page/:attribute' component={MyTags} />
-						<Route exact path='/myHome/:page/:action/:attribute/:name' component={MySummaries} />
+						<Route exact path='/myHome/:page/:action/:attribute/:name' component={TagView} />
 						<Route exact path='/myHome/:page'>
 							{
 								page === 'mySummaries' ? <MySummaries /> :
@@ -95,5 +97,3 @@ function MyHomePage() {
 }
 
 export default MyHomePage;
-
-

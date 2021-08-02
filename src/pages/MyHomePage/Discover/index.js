@@ -21,13 +21,15 @@ function Discover() {
 	const {publicFilterSummaries} = useContext(FilterMySummariesContext);
 
 	// Fetch public summaries and sets state
-	const {setUrlSearchText} = DiscoverLogic();
+	const {setUrlSearchText,  attribute , name} = DiscoverLogic();
 	
 	return (
 		<MainPageContainer>
             <TiltleContainer>
                 <MyHomePageH1>Discover</MyHomePageH1>
+                {attribute && name ? <></>:
                 <StaticSearchBar setUrlSearchText={setUrlSearchText}></StaticSearchBar>
+                }
             </TiltleContainer>
 
 			<LoadingComponent page="Discover"></LoadingComponent>
