@@ -5,8 +5,8 @@ import { faGithub, faChrome } from '@fortawesome/free-brands-svg-icons'; // add 
 import Icon from '../atoms/Icon';
 
 
-function index() {
-	const history = useHistory();
+function Footer() {	
+	const history = useHistory()
 
 	return (
 		<FooterConatainer>
@@ -15,12 +15,12 @@ function index() {
 				<FooterP>&#169; All Rights reserved, 2021</FooterP>
 			</FooterContent>
 			<FooterContent float="right" marginTop="9px">
-				<Icon margin='12px 6px' color='#3f423e' icon={faChrome} funOnClick={history.push("https://omermiz.atlassian.net/jira/software/projects/VNM/boards/1/backlog")}></Icon>
-				<Icon margin='12px 6px' color='#3f423e' icon={faGithub} funOnClick={history.push("https://github.com/OmerMiz1/VTM-Website")}></Icon>
+				<Icon margin='12px 6px' color='#3f423e' icon={faChrome} funOnClick={() => window.open("https://omermiz.atlassian.net/jira/software/projects/VNM/boards/1/backlog")}></Icon>
+				<Icon margin='12px 6px' color='#3f423e' icon={faGithub} funOnClick={() => window.open("https://github.com/OmerMiz1/VTM-Website")}></Icon>
 			</FooterContent>
 
 		</FooterConatainer>
 
 	)
 }
-export default index
+export default Footer;

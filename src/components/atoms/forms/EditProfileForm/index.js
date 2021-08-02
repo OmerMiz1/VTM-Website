@@ -58,14 +58,14 @@ function EditProfileForm({ setChangePassword, userAttributes, EditProfile }) {
 					<label>First Name</label>
 					<input defaultValue={userAttributes[firstNameKey]} type="text"
 					 name={firstNameKey} {...register(firstNameKey)}></input>
-					<ValidationWarning> {errors.firstName?.message} </ValidationWarning>
+					<ValidationWarning> {errors.name?.message} </ValidationWarning>
 				</ColumeFrom>
 
 				<ColumeFrom margin='0 0 0 30px'>
 					<label>Last Name</label>
 					<input defaultValue={valueOrEmpty(userAttributes[lastNameKey])} type="text"
 					 name={lastNameKey} {...register(lastNameKey)}></input>
-					<ValidationWarning> {errors.lastName?.message} </ValidationWarning>
+					<ValidationWarning> {errors.family_name?.message} </ValidationWarning>
 				</ColumeFrom>
 			</SectionForm>
 
