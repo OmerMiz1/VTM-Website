@@ -63,8 +63,10 @@ function HeaderSection({ viewSummary, deleteSummary, updateSummary, mode, page }
 				<IconContainer justContent="flex-end">
 					{IconData.map((data, index) => {
 						return (
+							page === "mySummaries" &&
 							<Icon key={index} margin={data.margin} funOnClick={() => page === "mySummaries" ? data.function(data.title): console.log(`not summary`)}
-								color={data.color} icon={data.icon} visible={page === "mySummaries" ? 1 : 0}/>
+								color={data.color} icon={data.icon} />
+								
 						)
 					})
 					}

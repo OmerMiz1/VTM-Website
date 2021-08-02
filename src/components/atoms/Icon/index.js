@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const IconItem = styled.div`
     margin: ${({ margin }) => margin ? margin : '0'};
     font-size: ${({ fontSize }) => fontSize ? fontSize : '25px'};
-    visibility: ${({ visible }) => visible ? "visible" : "hidden"};
     cursor: pointer;
     display: inline-table;
     &:hover {
@@ -15,10 +14,10 @@ const IconItem = styled.div`
 `
 
 
-function Icon({ className, margin, color, icon, fontSize, funOnClick, visible }) {
+function Icon({ className, margin, color, icon, fontSize, funOnClick }) {
 
 	return (
-		<IconItem visible={visible} className={className} margin={margin} fontSize={fontSize} onClick={funOnClick}>
+		<IconItem className={className} margin={margin} fontSize={fontSize} onClick={funOnClick}>
 			<FontAwesomeIcon color={color} icon={icon}></FontAwesomeIcon>
 		</IconItem>
 	)
