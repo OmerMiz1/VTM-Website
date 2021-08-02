@@ -16,7 +16,7 @@ import { UserContext } from '../../../utils/context/UserContext';
 
 // Icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import AddForm from '../../atoms/forms/AddForm'; //DELETEME
+import AddForm from '../../atoms/forms/AddForm';
 
 
 function NavBar({ usetransparent, PositionMarker, setFilterText }) {

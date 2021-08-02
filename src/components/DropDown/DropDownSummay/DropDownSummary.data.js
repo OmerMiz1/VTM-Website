@@ -13,11 +13,8 @@ const DropDownSummaryData = () => {
 	}
 
 
-    const shareSummary = () => {
-        console.log(`not work`);
-    }
+    const shareSummary = () => { /*TODO*/ }
 
-	//TODO create styled one and move to util *2
 	const confirmDelete = (sid) => {
 		var ans = window.confirm("Are you sure you want to delete this summary?");
 		if (ans === true) {

@@ -14,7 +14,6 @@ export default function ForgotPassword({ setResetPassword }) {
 	useEffect(() => {
 		const unlisten = history.listen(location => {
 			setResetPassword(0);
-			console.log(`You changed the page to: ${location.pathname}`)
 		});
 		return unlisten;
 	}, [history]);

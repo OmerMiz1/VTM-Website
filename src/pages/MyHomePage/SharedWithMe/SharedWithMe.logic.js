@@ -16,9 +16,6 @@ function SharedWithMeLogic() {
 		
 		getSummariesSharedWithRemote(userAttributes.username)
 			.then(response => {
-				console.log(`shared summaries:`, response.data); //DELETEME
-				
-				// TODO add to session storage
 				setSharedSummaries(response.data);
 				setLoading(false);
 			})

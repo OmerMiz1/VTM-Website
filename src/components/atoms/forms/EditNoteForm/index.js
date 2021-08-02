@@ -14,7 +14,6 @@ function EditNoteForm({ open, onClose, note, updateNote, sid }) {
 	const onSubmit = (e) => {
 		e.preventDefault();
 
-		console.log(`note`, note) //DELETEME
 		const newNote = {
 			sid: sid,
 			title: title ? title : "Untitled",
@@ -25,11 +24,7 @@ function EditNoteForm({ open, onClose, note, updateNote, sid }) {
 			nid: note?.nid,
 			createTime: note?.createTime
 		}
-
-		// if(note?.nid)
-		// 	newNote["nid"] = note.nid;
 		
-		console.log(`newNote`, newNote); //DELETEME
 		updateNote(newNote);
 		onClose();
 	}

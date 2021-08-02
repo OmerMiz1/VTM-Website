@@ -23,7 +23,6 @@ function ContentSection({ notes, tags, filterTags, access, toggleTags, mode, upd
 	const [showEditNoteNumber, setShowEditNoteNumber] = useState(null);
 	const { editAccess } = useContext(SummariesContext);
 
-	//TODO ceate styled one and move to util
 	const confirmDelete = (note) => {
 		var ans = window.confirm("Are you sure you want to delete this note?");
 		if (ans === true) {
@@ -34,7 +33,6 @@ function ContentSection({ notes, tags, filterTags, access, toggleTags, mode, upd
 	return (
 		<ViewSummaryContext>
             
-            {/* TODO fix style and accces */}
             {
                 mode.mode === "access" && 
                 <AccessPopup title="Access Settings" onClose={() => mode.toggleMode("access")}>
@@ -46,7 +44,7 @@ function ContentSection({ notes, tags, filterTags, access, toggleTags, mode, upd
 
 			<ListOfButtonsTags>
 				{tags.map((tag, index) => {
-					const color = filterTags.includes(tag) ? '#aee2ae' : '#fff'; //TODO change colors
+					const color = filterTags.includes(tag) ? '#aee2ae' : '#fff';
 					return (
 						<TagsButton fontSize='75%' key={index}
 							backColor={color} keyId={index} text={tag}

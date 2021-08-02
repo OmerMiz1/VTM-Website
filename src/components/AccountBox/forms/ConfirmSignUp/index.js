@@ -19,8 +19,6 @@ export function ConfirmSignUp({ userData }) {
 		= useForm({ resolver: yupResolver(useConfirmSignupSchema), })
 
 	const submitConfirm = (data) => {
-		console.log(`submitConfirm`, data, userData);
-
 		ConfirmSignUpSubmit({
 			code: data.confirm,
 			username: userData.userName

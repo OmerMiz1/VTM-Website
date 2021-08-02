@@ -22,7 +22,6 @@ export function SignupForm({ setIsConfirm, setUserData }) {
 	});
 
 	const submitSignup = (data) => {
-		console.log(`submitSingUp`);
 		if (Signup(data, setIsConfirm)) {
             setUserData(data);
             setIsConfirm(true); // DELETEME: 'User' incharge

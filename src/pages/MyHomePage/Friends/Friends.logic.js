@@ -6,7 +6,7 @@
 // 	useEffect(async () => {
         
 //         setPublicSummaries(await getPublicSummaries())
-// 		console.log('publicSumaries:'); //TODO delete
+// 		console.log('publicSumaries:');
 // 	}, []);
 
 

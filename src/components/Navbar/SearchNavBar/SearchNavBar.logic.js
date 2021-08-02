@@ -19,19 +19,14 @@ const SearchNavBarLogic = (setFilterText) => {
     }
 
 	const startSearch = () => {
-		console.log(`startSearch`, params); //DELETEME
-
 		switch (params.page) {
 			case 'mySummaries':
-				// console.log(`search.... `, searchText); //DELETEME
 				SearchFilterData(searchText);
 				break;
 			case 'sharedWithMe':
-				// console.log(`search.... in sharedWithMe`, searchText); //DELETEME
                 setFilterText(searchText);
 				break;
 			case 'discover':
-				// console.log(`search.... in discover`, searchText); //DELETEME
                 setFilterText(searchText);
 				break;
 		}

@@ -10,7 +10,6 @@ const CardSummaryLogic = (favorites) => {
 
 	//only frontend change here  
 	const toggleIsFavorite = (sid) => {
-		console.log(`toggleIs Favorite... now summay sid: ` + sid + ' is - ' + isFavorite); //DELETEME
 		setIsFavorite(!isFavorite);
 		toggleFavorite(sid);
 	}

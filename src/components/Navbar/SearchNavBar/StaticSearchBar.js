@@ -8,8 +8,6 @@ import StaticSearchNavBarLogic from './StaticSearchNavBar.logic';
 function StaticSearchBar({setUrlSearchText}) {
 	const { handleChange, startSearch } = StaticSearchNavBarLogic(setUrlSearchText);
     
-    // console.log(window.location.pathname);
-
 	return (
         <>
         <ContainerStaticSearchBar>

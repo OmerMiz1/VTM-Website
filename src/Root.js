@@ -18,11 +18,9 @@ export default function Root({children}) {
 		Signup,
 		ChangePassword,
 		Logout,
-		GetCurrentSession //TODO
 	} = UserApi(userAttributes, setUserAttributes, history);
 
 	useEffect(()=> {
-		console.log('fetching user attributes');
 		Auth.currentAuthenticatedUser()
 		.then(user => {
 			const attributes = user.attributes; 
@@ -33,7 +31,6 @@ export default function Root({children}) {
 			setUserAttributes(attributes);
 		})
 		.catch(error => {
-			console.log('error:', error); //DELETEME
 		})
 	}, [])
 

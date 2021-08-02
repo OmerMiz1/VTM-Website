@@ -25,13 +25,11 @@ const theme = {
 		autoFitMediumMubile: 'clamp(1.2rem, 3vw, 1.2rem)'
 	},
 
-	//TODO FIX ALL
 	mediaQueries: {
 		bellow500: 'only screen and (max-width: 500px)'
 
 	},
 
-	// TODO fix margin...
 	spacers: {
 		large: '2rem',
 		medium: '1rem',

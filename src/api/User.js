@@ -21,11 +21,8 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 	 * @returns true if error, false if not
 	 */
 	const Signup = async (data) => {
-		console.log('sign up:', data); //DELETEME
-
 		const invalidResponse = validateData(data);
 		if (invalidResponse) {
-			console.log(invalidResponse);
 			return;
 		}
 
@@ -39,10 +36,8 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 
 		try {
 			var user = await Auth.signUp(params);
-			console.log('signup response:', user); // DELETEME
 		}
 		catch (error) {
-			console.log('error signup:', error); // DELETEME
 			alert('error:', error.message);
 			return !OK;
 		}
@@ -53,19 +48,12 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 	}
 
 	const Login = async (data) => {
-		console.log('request data:', data);  // DELETEME
-		
 		try {
-			//FIXME username (not email), other files ("useLoginSchema")
 			var user = await Auth.signIn(data.email, data.password);
 		} catch (error) {
-			alert('Error:' + error.message);
-			console.log(error); //DELETEME
+			alert('error:' + error.message);
 			return handleError(error);
 		}
-
-		alert("Logged in"); //DELETEME
-		console.log('response data:', user); //DELETEME
 
 		const attributes = user.attributes;
 		attributes.username = user.username; // Add username to attrs
@@ -78,14 +66,11 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 		const session = await Auth.currentSession();
 
 		extensionIds.forEach(id => {
-			chrome.runtime.sendMessage(id, session,
-				function(response) {
-					console.log('sending message to ext2:', response);
-				});
+			chrome.runtime.sendMessage(id, session, function() {});
 		});
 		
 
-		history.push(mySummariesPath); //FIXME should be done from front if result was OK?
+		history.push(mySummariesPath);
 
 		if (user.challengeName)
 			return handleChallenge(user, data);
@@ -93,29 +78,21 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 	}
 
 	const Logout = () => {
-		if (Auth.currentUserInfo == undefined)
-			console.log('error: you must login first');
-
 		Auth.signOut()
 			.then(_ => {
-				alert("Logged out successfully"); //DELETEME
 				history.push(homePath);
 			})
 			.catch(e => {
-				alert('Logout Error:\n' + e.message); //DELETEME
+				alert('Logout Error:\n' + e.message);
 			})
 	}
 
-	const ConfirmSignUpSubmit = (data) => { //FIXME username ?
-		console.log('ConfirmSignup: data:', data)
-
+	const ConfirmSignUpSubmit = (data) => {
 		Auth.confirmSignUp(data.username, data.code) // FIXME ?
-			.then(response => {
-				console.log('confirm sign up response:', response) //DELETEME
+			.then(() => {
 				history.push(loginPath)
 			})
 			.catch(error => {
-				console.log(`error confirm signup:`, error); //DELETEME
 				if (error.code === "ExpiredCodeException") {
 					alert('Verification code resent to your username')
 					Auth.resendSignUp(data.username)
@@ -124,51 +101,35 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 	}
 
 	const ResetPassword = async (username) => {
-		console.log(`ResetPassword, username:`, username)
 		let success = false;
 
 		try {
 			var response = await Auth.forgotPassword(username);
 			success = true;
 		} catch (error) {
-			console.log(error); //DELETEME
+			success = false;
 		}
 
-		console.log(`response:`, response);
 		return success;
 	}
 
 	const ConfirmResetPassword = async (username, code, newPassword) => {
-		console.log(`ConfirmResetPassword, username: ${username}, code: ${code}, newPassword: ${newPassword}`); //DELETEME
-
 		try {
 			let response = await Auth.forgotPasswordSubmit(username, code, newPassword);
 			history.push(loginPath);
 		} catch (error) {
 			console.log(error);
-			alert(error.message); //DELETEME
 		}
 	}
 
-	// FIXME Complete -> Confirm
 	const CompleteNewPassword = async (user, username, newPassword) => {
-		console.log('CompleteNewPassword'); //DELETEME
-
 		try {
 			var user = await Auth.completeNewPassword(user, newPassword, { username: username });
 		} catch (error) {
-			console.log(error); //DELETEME
 			return !OK;
 		}
 
-		console.log(user); //DELETEME
 		return OK;
-	}
-
-	const RefreshUserSession = () => {
-		Auth.currentSession()
-			.then(data => console.log(data)) //DELETEME
-			.catch(err => console.log(err)); //DELETEME
 	}
 
 	const IsLoggedIn = () => {
@@ -178,25 +139,18 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 	};
 
 	const ResendConfirmSignUp = async (username) => {
-		console.log(`ResendConfirmSignUp, username:`, username);
-
 		try {
-			let response = await Auth.resendSignUp(username);
-			console.log(`resend confirm signup response:`, response);
+			await Auth.resendSignUp(username);
 			return true;
 		} catch (error) {
-			console.log(`error resending confirmation code:`, error); //DELETEME
-			return true;
+			return false;
 		}
 	};
 
 	const EditProfile = async (data) => {
-		console.log(`EditProfile, data:`, data); //DELETEME
-
 		try {
 			var curUser = await Auth.currentAuthenticatedUser();
 		} catch (error) {
-			console.log(error); //DELETEME
 			return !OK;
 		}
 
@@ -204,40 +158,31 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 		delete data.email;
 
 		try {
-			var response = await Auth.updateUserAttributes(curUser, data);
+			await Auth.updateUserAttributes(curUser, data);
 		} catch (error) {
-			console.log(error); //DELETEME
 			return !OK;
 		}
 		setUserAttributes(data);
-		console.log(`response:`, response); //DELETEME
-		
 		return OK;
 	}
 
 	const ChangePassword = async (data) => {
-		console.log(`ChangePassword, data:`, data); //DELETEME
-
 		if (data.newPassword !== data.confirm) {
-			console.log("Password confirmation mismatch!"); //DELETEME
 			return !OK;
 		}
 
 		try {
 			var user = await Auth.currentAuthenticatedUser();
 		} catch (error) {
-			console.log(error); //DELETEME
 			return handleError(error);
 		}
 		
 		try {
-			var response = await Auth.changePassword(user, data.password, data.newPassword);
+			await Auth.changePassword(user, data.password, data.newPassword);
 		} catch (error) {
-			console.log(error); //DELETEME
 			return handleError(error);
 		}
 		
-		console.log(`response:`, response); //DELETEME
 		return OK;
 	};
 
@@ -260,7 +205,6 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 	}
 
 	const handleChallenge = (user, data) => {
-		console.log(`handleChallenge, user: ${ObjectStr(user)}, data: ${ObjectStr(data)}`) //DELETEME
 		try {
 			switch (user.challenge) {
 				case "NEW_PASSWORD_REQUIRED":

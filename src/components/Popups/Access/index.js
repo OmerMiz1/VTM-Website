@@ -12,7 +12,6 @@ function AccessPopup({ children, onClose, title }) {
 		useEffect(() => {
 			function handleClickOutside(event) {
 				if (ref.current && !ref.current.contains(event.target)) {
-                    console.log(`clicked`);
 					onClose();
 				}
 			}

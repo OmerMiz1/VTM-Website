@@ -18,12 +18,9 @@ function EditProfileForm({ setChangePassword }) {
 	const incorrectPasswordError = "Incorrect username or password";
 
 	const submitChangePassword = async (data) => {
-		console.log('submitChangePassword', data);
-		
 		const error = await ChangePassword(data);
 		
 		if (error) {
-			//TODO fix error not showing in alert
 			error = (error === incorrectPasswordError) ? "Incorrect password" : error;
 			alert(error);
 			return;

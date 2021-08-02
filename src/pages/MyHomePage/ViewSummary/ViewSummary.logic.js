@@ -35,24 +35,20 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
                 setPage("mySummaries")
                 break;
             case "discover":
-                console.log(`add here set summary`, sid);
                 setViewSummary(getSummaryByIdPublic(sid));
                 setPage("discover");
                 break
 			case "sharewithme":
-				// TODO
             default:
-                console.log(`error at view summary logic case`); //DELETEME
+                break;
         }
 
 		var notesDone = false;
 		var accessDone = false;
         setLoading(true);
-		//TODO SHON getSummaryRemote(sid)
 		getNotes(sid)
 			.then(notes => {
 				notesDone = true;
-				console.log("ViewSummaryLogic, notes:", notes); //DELETEME
 				setNotes(notes);
 
 				if (accessDone)
@@ -65,7 +61,6 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 		getAccessRemote(sid)
 			.then(response => {
 				accessDone = true;
-				console.log("ViewSummaryLogic, access:", response.data); //DELETEME
 				setAccess(response.data);
 
 				if (notesDone)
@@ -105,10 +100,8 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 	const getSummaryByIdPublic = sid => publicSummaries.find(summary => summary.sid === sid);
 
     const addNoteIn = (note) => {
-        console.log(`note1`, note);
         addNote(note)
 			.then(response => {
-				console.log("response: ", response);
 				note[noteIdKeyName] = response.data[noteIdKeyName];
 				note[createdKeyName] = response.data[createdKeyName];
 				note[editedKeyName] = response.data[createdKeyName];
@@ -121,13 +114,11 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
 
     const updateNoteIn = (note) => {
 		if (!note[summaryIdKeyName] || typeof(note[createdKeyName]) !== typeof (1)) {
-			console.log('invalid note object', note); //DELETEME
 			return;
 		}
 
         updateNote(note)
 			.then(response => {
-				console.log(`update note response:`, response); //DELETEME
 				setNotes(prev => prev.map(item => (item.nid === note.nid ? note : item)));
 			})
 			.catch(error => {
@@ -138,7 +129,6 @@ const ViewSummaryLogic = (setLoading, mySummaries, publicSummaries) => {
     const deleteNoteIn = (note) => {
 		deleteNote(note)
 			.then(response => {
-				console.log(response);
 				const newNotes = [...notes].filter(n => n.nid !== note.nid);
 				setNotes(newNotes);
 			})

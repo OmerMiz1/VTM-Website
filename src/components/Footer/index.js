@@ -4,7 +4,6 @@ import { faGithub, faChrome } from '@fortawesome/free-brands-svg-icons'; // add 
 import Icon from '../atoms/Icon';
 
 
-//TODO on click -> git, chrome  
 function index() {
 	return (
 		<FooterConatainer>

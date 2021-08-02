@@ -43,7 +43,6 @@ function EditAccessForm ({ sid, access, close, editAccess }) {
 			obj[accessKey] = accessType;
 			return obj;
 		})
-		console.log('acc:', acc); //DELETEME
 	}
 
 	const toggleFriends = () => {
@@ -52,16 +51,13 @@ function EditAccessForm ({ sid, access, close, editAccess }) {
 			obj[friendsKey] = !obj[friendsKey];
 			return obj;
 		})
-		console.log('acc:', acc); //DELETEME
 	}
 
 	const submitEditAccess = (data) => {
-		//TODO use retrieved data as default values (if not null)
 		data[accessKey] = Number.parseInt(data[accessKey]);
 		data[friendsKey] = data[friendsKey] === 'true' ? true : false;
 		data[allowedUsersKey] = data[allowedUsersKey] ? data[allowedUsersKey].split(" ") : [];
 
-		console.log('submitEditAccess', data); //DELETEME
 		editAccess(sid, data);
         close();
 	}

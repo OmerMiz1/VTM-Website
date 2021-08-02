@@ -8,8 +8,6 @@ import SearchNavBarLogic from './SearchNavBar.logic';
 function SearchNavBar({setFilterText}) {
 	const { handleChange, startSearch, isHidden } = SearchNavBarLogic(setFilterText);
     
-    // console.log(window.location.pathname);
-
 	return (
         <>
         <ContainerSearchBar hidden={isHidden}>

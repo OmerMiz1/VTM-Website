@@ -31,11 +31,9 @@ function AddForm({ close, authorName }) {
 	const { register, handleSubmit } = useForm();
 
 	const onSubmit = (data) => {
-		console.log('form data is -> ', data); //DELETEME
-
 		data["authorName"] = authorName;
 		data["tags"] = createTagsArrays(data.tags);
-		data["likes"] = {}; //TODO new Set()
+		data["likes"] = {};
 
 		addSummary(data);
 		close();

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-//TODO ADD props
 const Button = styled.button`
     padding: 2px 10px;
     border-radius: 10%;

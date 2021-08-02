@@ -43,7 +43,6 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 	const getSummary = (sid) => {
 		getSummaryRemote(sid)
 			.then(response => {
-				console.log(`response`, response) //DELETEME
 				return response;
 			})
 			.catch(error => console.log(error))
@@ -52,8 +51,6 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 	const addSummary = (summary) => {
 		addSummaryRemote(summary)
 		.then(response => {
-			console.log('post response: ', response) //DELETEME
-			
 			// Update front-end
 			summary[summaryIdKeyName] = response.data[summaryIdKeyName];
 			summary[createTimeKeyName] = response.data[createTimeKeyName];
@@ -63,40 +60,34 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 			setMyFilterSummaries([...myFilterSummaries, summary]);
 		})
 		.catch(error => {
-			console.log(error) // DELETEME
+			console.log(error);
 		})
 	}
 
 	const updateSummary = (summary) => {
 		if (!summary[summaryIdKeyName]) {
-			console.log('error: sid missing', summary)//DELETEME
 			return;
 		}
 
 		updateSummaryRemote(summary)
 			.then(response => {
-				console.log('update summary response:', response) //DELETEME
-
 				// Update Frontend
 				summary[summaryIdKeyName] = JSON.parse(summary[summaryIdKeyName]);
 				setMySummaries(prev => prev.map(item => (item[summaryIdKeyName] === summary[summaryIdKeyName] ? summary : item)));
 				setMyFilterSummaries(prev => prev.map(item => (item[summaryIdKeyName] === summary[summaryIdKeyName] ? summary : item)));
 			})
 			.catch(error => {
-				console.log(error) //DELETEME
+				console.log(error);
 			})
 	}
 
 	const deleteSummary = (sid) => {
 		if (typeof (sid) !== 'string') {
-			console.log('error: invalid sid.\nExpected: string\tFound:', typeof (sid)) //DELETEME
 			return;
 		}
 
 		deleteSummaryRemote(sid)
 		.then(response => {
-			console.log(`delete response:`, response)//DELETEME
-
 			const newSummaries = [...mySummaries].filter(summary => summary.sid !== sid);
 			const newSummariesFilter = [...myFilterSummaries].filter(summary => summary.sid !== sid);
 			setMyFilterSummaries(newSummariesFilter);
@@ -106,8 +97,6 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 	}
 
 	const toggleFavorite = (sid) => {
-		console.log(`toggleFavorite`, sid); //DELETEME
-
 		var toUpdate = {};
 
 		[...mySummaries].map((summary) => {
@@ -120,20 +109,17 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 
 		toggleFavoriteRemote(toUpdate)
 			.then(response => {
-				console.log('update summary response:', response) //DELETEME
-
 				// Update Frontend
 				toUpdate[summaryIdKeyName] = JSON.parse(toUpdate[summaryIdKeyName]);
 				setMySummaries(prev => prev.map(item => (item[summaryIdKeyName] === toUpdate[summaryIdKeyName] ? toUpdate : item)));
 				setMyFilterSummaries(prev => prev.map(item => (item[summaryIdKeyName] === toUpdate[summaryIdKeyName] ? toUpdate : item)));
 			})
 			.catch(error => {
-				console.log(error) //DELETEME
+				console.log(error);
 			})
 	}
 
 	const toggleLike = (sid, likes, setSummaries, setLikesState) => {
-		console.log(`toggleLike, sid, likes:`, sid, likes); //DELETEME
 		const username = userAttributes.username;
 
 		var likesSet = new Set(likes);
@@ -148,14 +134,12 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 
 		toggleLikeRemote(sid, likes)
 			.then(response => {
-				console.log('update summary response:', response) //DELETEME
-
 				// Update Frontend
 				setSummaries(prev => prev.map(item => item[summaryIdKeyName] === sid ? {...item, likes:likes} : item));
 				setLikesState(likes);
 			})
 			.catch(error => {
-				console.log(error) //DELETEME
+				console.log(error);
 			})
 	}
 
@@ -164,21 +148,18 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 
 		getMyLibrariesRemote(apiName, myLibrariesPath)
 			.then(summaries => {
-				console.log(`library:`, summaries) //DELETEME
 				setMySummaries(summaries);
 				setLoading(false);
 			})
 			.catch(error => {
-				console.log('error getting libraries:', error) //DELETEME
+				console.log('error getting libraries:', error);
 				setLoading(false);
 			});
 	}
 
 	const editAccess = (sid, access) => {
-		// access[summaryIdKeyName] = JSON.stringify(sid); //DELETEME? not sure
 		editAccessRemote(sid, access)
-			.then(response => {
-				console.log('response:', response); //DELETEME
+			.then(() => {
 				var newItem = {};
 
 				mySummaries.forEach(summary => {
@@ -189,7 +170,6 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 				newItem[accessKeyName] = access[accessKeyName];
 				newItem[friendsKeyName] = access[friendsKeyName];
 
-				console.log('newItem:', newItem) //DELETEME
 				setMySummaries(prevSummaries => prevSummaries.map(item => item[summaryIdKeyName] === sid ? newItem : item));
 				setMyFilterSummaries(prevFiltered => prevFiltered.map(item => (item[summaryIdKeyName] === sid) ? newItem : item));
 			})
@@ -202,11 +182,6 @@ const MyHomePageLogic = (mySummaries, setMySummaries, myFilterSummaries, setMyFi
 	// TODO
 	useEffect(() => {
 		const libraryResult = getMyLibraries();
-		console.log(`library:`, libraryResult);
-		
-		// //DELETEME
-		// let externalSummary = await getSummary("U2FsdGVkX18CkdIsCBablBjUIiNLIucpcam%2FeyqUSFmojPDoMICGN7u2X6vDZ2PGsWa95VdkiWcrIW0WbSsDj%2FtpGexlcljQuNu4XEV3zY63EnJD8BEcLE0s6e5E9%2BQp")
-		// console.log(`externalSummary:`, externalSummary);
 	}, []);
 
 	return {

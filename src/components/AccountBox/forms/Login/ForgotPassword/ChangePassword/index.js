@@ -14,22 +14,17 @@ import { UserContext } from '../../../../../../utils/context/UserContext';
 export default function ChangePassword({ userData }) {
 	const { ConfirmResetPassword, ResendResetPassword } = useContext(UserContext);
 
-	//TODO show username reffering to the reset (userData.username)
-	
 	// Valdation state from useSignupSchema (schema)
 	const { register, handleSubmit, formState: { errors } } = useForm({
 		resolver: yupResolver(ConfirmResetPasswordSchema),
 	})
 
 	const resendPassword = () => {
-		console.log(`resendPassword`, userData); //DELETEME
 
 		ResendResetPassword(userData); //FIXME username
 	}
 
 	const submitConfirm = async (data) => {
-		console.log('data:', data); //DELETEME
-		console.log('userData:', userData); //DELETEME
 
 		ConfirmResetPassword(userData.username, data.code, data.newPassword);
 	}

@@ -21,7 +21,6 @@ export default function ResetPassword({ setResetPassword, setChangePassword, set
 
 	// FIXME data.username?
 	const submitSendPassword = async (data) => {
-		console.log('submitSendPassword, data:', data); //DELETEME
 		
 		setUserData(data);
 

@@ -13,7 +13,7 @@ import {
   faMinus,
 } from "@fortawesome/free-solid-svg-icons"; // Icons
 
-const mockFunction = (title) => console.log(`MOCK`, title); //DELETEME
+const mockFunction = (title) => console.log(`MOCK`, title);
 
 export const EditIcons = {
   plus: {
@@ -60,7 +60,6 @@ const HeaderIconsData = (mode, modeToggle, deleteSummary, sid) => {
   const confirmDelete = (title) => {
     var ans = window.confirm("Are you sure you want to delete this summary?");
     if (ans === true) {
-      console.log(`deleteSummary- `, title, sid);
       deleteSummary(sid);
       history.push("/myHome/mySummaries");
     }

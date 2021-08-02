@@ -22,7 +22,6 @@ export default function LoginForm({ setResetPassword }) {
 	})
 
 	const resetPasswordConfirm = () => {
-		console.log('resetPasswordConfirm'); //DELETEME
 		setResetPassword(1);
 	}
 

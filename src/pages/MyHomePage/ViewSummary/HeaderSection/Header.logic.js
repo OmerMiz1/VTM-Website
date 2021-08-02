@@ -17,14 +17,11 @@ const HeaderLogic = (updateSummary, mode, viewSummary) => {
 	}
 
 	const modeToggle = (next) => {
-        console.log(`mode`, mode.mode);
-        console.log(`next`, next);
 		setEditTitle(false);
 		mode.toggleMode(next);
 	}
 
 	const updateTitle = () => {
-		console.log(`updateTitle`, titleInputRef.current.value); //DELETEME
 		setTitle(titleInputRef.current.value);
 
 		const copySummary = { ...viewSummary };
@@ -39,7 +36,6 @@ const HeaderLogic = (updateSummary, mode, viewSummary) => {
 	}
 
 	const deleteTag = (sid, myTag) => {
-		console.log(`deleteTag`, sid, myTag); //DELETEME
 		const newTags = tags.filter(tag => tag !== myTag);
 		const copySummary = { ...viewSummary };
 		copySummary.tags = newTags;
@@ -48,8 +44,6 @@ const HeaderLogic = (updateSummary, mode, viewSummary) => {
 	}
 
 	const addTag = () => {
-		console.log(`addTag`, addTagInputRef.current.value); //DELETEME
-
 		const newTag = addTagInputRef.current.value;
 		if (!tags.includes(newTag) && newTag !== '') {
 			const newTags = [...tags, newTag];

@@ -24,7 +24,6 @@ const NoteApi = () => {
 	const createdKeyName = "createTime";
 
 	const getNotes = (sid) => {
-		console.log(`getNotes`, sid); //DELETEME
 
 		const queryParams = {
 			queryStringParameters: {
@@ -36,13 +35,10 @@ const NoteApi = () => {
 	};
 
 	const addNote = (note) => {
-		 console.log(`addNote`, note);
-
         return API.post(apiName, notesPath, { body: note });
 	};
 
 	const deleteNote = (note) => {
-		console.log(`deleteNote`, note); //DELETEME
 
 		const queryParams = {
 			queryStringParameters: {
@@ -51,17 +47,14 @@ const NoteApi = () => {
 			}
 		}
 
-		console.log(`queryParams:`, queryParams); //DELETEME
 		return API.del(apiName, notesPath, queryParams);
 		
 	};
 
 	const updateNote = (note) => {
-		console.log(`updateNote`, note); //DELETEME
 
 		if (!note[summaryIdKeyName] || typeof(note[createdKeyName]) !== typeof (1)) {
-			console.log('invalid note object', note); //DELETEME
-			return 'error'; //TODO rename error handle
+			return 'error';
 		}
 
 		return API.patch(apiName, notesPath, { body: note });

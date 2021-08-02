@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-
-//TODO rename and not default..
 const SummaryData = () => {
 	const [mySummaries, setMySummaries] = useState([]);
 	const [myFilterSummaries, setMyFilterSummaries] = useState([]);

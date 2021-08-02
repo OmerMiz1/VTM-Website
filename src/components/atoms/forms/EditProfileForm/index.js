@@ -35,13 +35,10 @@ function EditProfileForm({ setChangePassword, userAttributes, EditProfile }) {
 	const prefferedUsernameKey = "preferred_username";
 	
 	const valueOrEmpty = (attr) => {
-		// console.log(`attr:`, attr); //DELETEME
 		return attr;
 	}
 
 	const submitEditProfile = (data) => {
-		console.log('submitEditProfile', data); //DELETEME
-
 		EditProfile(data); //FIXME
 	}
 

@@ -43,7 +43,6 @@ function MyHomePage() {
 		editAccess,
 		setLoading,
 		isLoading,
-		//TODO
 		getAccess,
 		//shareSummary
         filterText,
@@ -83,7 +82,7 @@ function MyHomePage() {
 								page === 'myFriends' ? <Friends/> :
 								page === 'sharedWithMe' ? <SharedWithMe /> :
 								page === 'profile' ? <ProfilePage /> :
-								<h1>ELSE</h1> //TODO? mySummaries
+								<MySummaries />
 							}
 						</Route>
 					</Switch>

@@ -20,7 +20,6 @@ function DiscoverLogic() {
 
     useEffect(() => {
         if (urlSearchText !== "") {
-            console.log(`search this Urls`, urlSearchText);
             getPublicSummariesFromUrl(urlSearchText);
         } else {
             UnFilter();
@@ -50,8 +49,6 @@ function DiscoverLogic() {
 
     useEffect(() => {
         if (filterText !== "") {
-            console.log(`filter`, filterText);
-            
             SearchFilterData(filterText);
         } else {
             UnFilter();
