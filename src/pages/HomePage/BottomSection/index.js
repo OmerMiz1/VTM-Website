@@ -10,8 +10,7 @@ import Footer from '../../../components/Footer'
 function BottomSection() {
 	return (
 		<BottomSectionContainer>
-			<BottomSectionContent>
-				{/* <BottomSectionH1>ADD... </BottomSectionH1> // DELETEME */}
+			{/* <BottomSectionContent>
 				<BottomItems>
 					<BottomItem>
 						<BottomSectionP>Item 1</BottomSectionP>
@@ -26,7 +25,7 @@ function BottomSection() {
 					</BottomItem>
 				</BottomItems>
 
-			</BottomSectionContent>
+			</BottomSectionContent> */}
 			<Footer></Footer>
 		</BottomSectionContainer>
 	)

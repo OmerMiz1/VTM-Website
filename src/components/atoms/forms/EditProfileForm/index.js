@@ -23,16 +23,16 @@ function EditProfileForm({ setChangePassword, userAttributes, EditProfile }) {
 	const firstNameKey = "name";
 	const lastNameKey = "family_name";
 	const ageKey = "custom:age";
-	const birthdayKey = "birthdate";
-	const phoneKey = "phone_number";
-	const genderKey = "gender";
+	// const birthdayKey = "birthdate";
+	// const phoneKey = "phone_number";
+	// const genderKey = "gender";
 	const countryKey = "custom:country";
 	const cityKey = "custom:city";
 	const educationKey = "custom:education";
 	const interestsKey = "custom:interests";
 
-	const nicknameKey = "nickname";
-	const prefferedUsernameKey = "preferred_username";
+	// const nicknameKey = "nickname";
+	// const prefferedUsernameKey = "preferred_username";
 	
 	const valueOrEmpty = (attr) => {
 		return attr;

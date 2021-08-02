@@ -4,7 +4,6 @@ import styled from 'styled-components';
 // small screen 800px
 export const BottomSectionContainer = styled.section`
     width: 100%;
-    height: 370px;
     align-items: center;
     justify-content: center;
     text-align: center;

@@ -163,6 +163,7 @@ const UserApi = (userAttributes, setUserAttributes, history) => {
 			return !OK;
 		}
 		setUserAttributes(data);
+		history.push("/myHome/mySummaries");
 		return OK;
 	}
 

@@ -30,7 +30,7 @@ function DiscoverLogic() {
     const UnFilter = () => setPublicFilterSummaries(publicSummaries);
 
 
-    	// Filter summaries by all the data in the object
+	// Filter summaries by all the data in the object
 	const SearchFilterData = value => {
 		const lowerCaseValue = value.toLowerCase().trim();
 
